@@ -1,0 +1,38 @@
+1. I have modified the template wsdls for Request/Execute and Send/Receive/Reply. The Get template has the
+correct values set thusly :
+
+		<wsdl:portType name="Get{Information_Object_Name}_Port">
+		
+		<wsdl:binding name="Get{Information_Object_Name}_Binding" type="tns:Get{Information_Object_Name}_Port">
+		
+		<wsdl:service name="Get{Information_Object_Name}">
+			<wsdl:port name="Get{Information_Object_Name}_Port" binding="tns:Get{Information_Object_Name}_Binding">
+				<soap:address location="http://iec.ch/TC57/2010/Get{Information_Object_Name}"/>
+			</wsdl:port>
+		</wsdl:service>
+		
+Old tags : for 61968_1_2_Request_Execute_Templatev9.wsdl and 61968_1_2_Send_Receive_Reply_Templatev5.wsdl
+
+		<wsdl:portType name="{Information_Object_Name}_Port">
+		
+		<wsdl:binding name="{Information_Object_Name}_Binding" type="tns:{Information_Object_Name}_Port">
+		
+		<wsdl:service name="{Send | Receive | Reply}{Information_Object_Name}">
+			<wsdl:port name="{Information_Object_Name}_Port" binding="tns:{Information_Object_Name}_Binding">
+				<soap:address location="http://iec.ch/TC57/2010/{Send | Receive | Reply}{Information_Object_Name}"/>
+			</wsdl:port>
+		</wsdl:service>
+		
+New tags : Note that the change below precedes all instances of {Information_Object_Name} with {Send | Receive | Reply}
+		
+		<wsdl:portType name="{Send | Receive | Reply}{Information_Object_Name}_Port">
+		
+		<wsdl:binding name="{Send | Receive | Reply}{Information_Object_Name}_Binding" type="tns:{Send | Receive | Reply}{Information_Object_Name}_Port">
+		
+		<wsdl:service name="{Send | Receive | Reply}{Information_Object_Name}">
+			<wsdl:port name="{Send | Receive | Reply}{Information_Object_Name}_Port" binding="tns:{Send | Receive | Reply}{Information_Object_Name}_Binding">
+				<soap:address location="http://iec.ch/TC57/2010/{Send | Receive | Reply}{Information_Object_Name}"/>
+			</wsdl:port>
+		</wsdl:service>
+	
+		

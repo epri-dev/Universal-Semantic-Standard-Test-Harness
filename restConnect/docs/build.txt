@@ -1,0 +1,24 @@
+This project depends on the epriConnect project for libraries, specifically the hibernate
+libraries and mysql link. In order to build this project you first need to create a
+jar file from the other project and then install it in your local maven repository.
+
+1. Change to the epriConnect directory
+1b. mvn package (to build everything)
+2. mvn jar:jar (will create target/epriConnect.jar file)
+3. run scripts/install-in-repo.sh (this will copy the jar into your local M2 repository)
+4. if you're working in eclipse then change back to this base and do mvn eclipse:eclipse
+   to add the repository to your current eclipse project
+5. run mvn generate-sources (this will create EventState.java, which will need to be modified)
+6. find and vi EventState.java and add the line
+     @XmlRootElement
+   above the class definition
+6.b  and add import javax.xml.bind.annotation.XmlRootElement;
+
+7. to build a war that you can place in tomcat execute mvn package (will create target/*.war)
+
+
+Testing
+
+1. go up to step 6 in build above.
+2. do mvn tomcat:run (project has a little tomcat starter/plugin that will start tomcat and deploy app)
+3. run the junit test. It will create success/failure messages in the database

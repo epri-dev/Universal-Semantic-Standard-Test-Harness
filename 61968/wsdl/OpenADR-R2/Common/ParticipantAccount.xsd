@@ -1,0 +1,361 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns:ns0="urn:ProgramConstraint" xmlns:ns1="urn:Bid"
+	xmlns:ns2="urn:UtilityProgram" xmlns:q2="urn:ParticipantAccount"
+	xmlns:ns3="urn:ParticipantAccount" elementFormDefault="qualified"
+	targetNamespace="urn:ParticipantAccount" version="0.9"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:import
+		schemaLocation="wsdl/OpenADR-R2/Common/ProgramConstraint.xsd"
+		namespace="urn:ProgramConstraint" />
+	<xs:import schemaLocation="wsdl/OpenADR-R2/Common/Bid.xsd"
+		namespace="urn:Bid" />
+	<xs:import
+		schemaLocation="wsdl/OpenADR-R2/Common/UtilityProgram.xsd"
+		namespace="urn:UtilityProgram" />
+	<xs:complexType name="ParticipantAccount">
+		<xs:annotation>
+			<xs:documentation>
+				This represents information associated with a
+				participant. Note that depending upon how accounts are
+				set a Participant may have more than one Participant
+				Account within the DRAS.
+
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="participantName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						A human readable name that can be used in the
+						generation of reports and other such
+						information. Not used to identify the
+						participant. This name field is not required to
+						be unique.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="userName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This is an authorization credential used by the
+						participant manager to identify themselves to
+						the DRAS as an authorized user in order to
+						perform various functions associated with their
+						account. User names are unique within the DRAS.
+
+						This field can be set and viewed by users with
+						DRAS Operator and Utility Operator roles, but
+						must never be set or viewed by users of any
+						other role.
+
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="password" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This is an authorization credential used by the
+						participant manager to identify themselves to
+						the DRAS as an authorized user in order to
+						perform various functions associated with their
+						account. The strength of the password should
+						follow the guidelines established in the DRAS
+						security policy.
+
+						This field can be set and viewed by users with
+						DRAS Operator and Utility Operator roles, but
+						must never be set or viewed by users of any
+						other role.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="programs">
+				<xs:annotation>
+					<xs:documentation>
+						List of zero or more references to programs that
+						this Participant account may participate in.
+
+						This field can not be modified by a user with a
+						Participant Operator role, but may be viewed.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="unbounded"
+							name="program" type="ns2:ProgramInfo">
+							<xs:annotation>
+								<xs:documentation>
+									This defines a specific program and
+									the ProgramConstraint associated
+									with this program.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="utilityGroups">
+				<xs:annotation>
+					<xs:documentation>
+						List of zero or more groups that this
+						Participant Account is a member of from the
+						point of view of the Utility. These type of
+						groups may be used by the Utility as a
+						convenience in specifying groups of participants
+						for specific operations such as who to issue DR
+						events to.
+
+						This field can not be modified by a user with a
+						Participant Operator role, but may be viewed.
+
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="unbounded"
+							name="groupID" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>
+									Identifier of a group
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="participantGroups">
+				<xs:annotation>
+					<xs:documentation>
+						List of zero or more groups that this
+						Participant Account is a member of from the
+						point of view of the Participant. These type of
+						groups may be used by the Participant as a
+						convenience in specifying groups of Participant
+						Accounts for operations that may be performed by
+						a Participant Manager. These type of groups are
+						mainly used when a specific Participant has more
+						than one Participant Account in the system. For
+						example a Participant such as BIG BOX COMPANY A
+						may have multiple stores and each store may have
+						their own Participant Account. In this case it
+						may be convenient to assign each of those
+						Participant Accounts to a single group.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="unbounded"
+							name="groupID" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>
+									Identifier of a group
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="DRASClients">
+				<xs:annotation>
+					<xs:documentation>
+						List of zero or more references to DRAS clients
+						that are associated with this account.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="unbounded"
+							name="clientID" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>
+									Identifier for a DRAS Client
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="contactInformation"
+				type="ns3:ContactInformation">
+				<xs:annotation>
+					<xs:documentation>
+						Information specifying how to contact a
+						Participant Manager associated with this
+						account.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="standingBids">
+				<xs:annotation>
+					<xs:documentation>
+						List of standing bids that may be associated
+						with a program.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="unbounded"
+							name="bid" type="ns1:Bid">
+							<xs:annotation>
+								<xs:documentation>
+									An instance of a standing bid for a
+									DR program.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemaVersion" type="xs:string"
+			use="required" />
+		<xs:attribute name="accountID" type="xs:string"
+			use="required">
+			<xs:annotation>
+				<xs:documentation>
+					This is a unique identifer for an instance of a
+					ParticipantAccount entity.
+
+					This field can not be modified by a user with a
+					Participant Operator role, but may be viewed.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ContactInformation">
+		<xs:sequence>
+			<xs:element name="emailAddresses">
+				<xs:annotation>
+					<xs:documentation>
+						List of email addresses
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="unbounded"
+							name="address" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="voiceNumbers">
+				<xs:annotation>
+					<xs:documentation>
+						List of voice mail numbers
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="unbounded"
+							name="number" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="pagerNumbers">
+				<xs:annotation>
+					<xs:documentation>
+						List of pager numbers
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="unbounded"
+							name="number" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="faxNumbers">
+				<xs:annotation>
+					<xs:documentation>
+						List of fax numbers
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="unbounded"
+							name="number" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ListOfParticipantAccounts">
+		<xs:annotation>
+			<xs:documentation>
+				This is a list of ParticipantAccount objects.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded"
+				name="participantAccount" type="ns3:ParticipantAccount">
+				<xs:annotation>
+					<xs:documentation>
+						This is a instance of a ParticipantAccount object
+						in the lsit.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ListOfParticipantAccountIDs">
+		<xs:annotation>
+			<xs:documentation>
+				This represents a list of ParticipantAccount identifiers.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded"
+				name="participantAccountID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This is an instance of a ParticipantAccount
+						identifer in the list.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+    <!--
+    <xs:complexType name="ParticipantStatus">
+		<xs:annotation>
+			<xs:documentation>
+				This structure is used to specify communication status concerning
+				a participant.
+			</xs:documentation>
+		</xs:annotation>
+   	    <xs:attribute name="schemaVersion" type="xs:string"
+			use="required" />
+	    <xs:attribute name="accountID" type="xs:string"
+			use="required">
+			<xs:annotation>
+				<xs:documentation>
+					This is a unique identifer for an instance of a
+					ParticipantStatus entity.
+
+					This field can not be modified by a user with a
+					Participant Operator role, but may be viewed.
+				</xs:documentation>
+			</xs:annotation>
+	    </xs:attribute>
+        <xs:attribute name="status" type="xs:string" use="required" />
+    </xs:complexType>
+	<xs:complexType name="ListOfParticipantStatus">
+		<xs:annotation>
+			<xs:documentation>
+				This represents a list of ParticipantStatus.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded"
+				name="participantStatus" type="ns3:ParticipantStatus">
+				<xs:annotation>
+					<xs:documentation>
+						This is an instance of a ParticipantAccount
+						identifer in the list.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	-->
+</xs:schema>

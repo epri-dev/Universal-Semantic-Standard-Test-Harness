@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+		name="RequestEndDeviceControls" 
+        targetNamespace="http://iec.ch/TC57/2011/EndDeviceControls" 
+        xmlns:tns="http://iec.ch/TC57/2011/EndDeviceControls" 
+        xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+        xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+        xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+        xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" 
+        xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+        xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" 
+        xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+        xmlns:infoMessage="http://www.iec.ch/TC57/2011/EndDeviceControlsMessage">
+		
+		<wsdl:types>
+			
+			<xs:schema targetNamespace="http://www.iec.ch/TC57/2011/EndDeviceControlsMessage"
+							   elementFormDefault="qualified">
+				
+                <xs:include schemaLocation="xsd/EndDeviceControlsMessage.xsd"/>
+				
+			</xs:schema>
+			
+		</wsdl:types>
+		
+		<!-- Message Definitions -->
+		
+		<wsdl:message name="CreateEndDeviceControlsRequestMessage">
+			<wsdl:part name="CreateEndDeviceControlsRequestMessage" element="infoMessage:CreateEndDeviceControls"/>
+		</wsdl:message>
+		
+		<wsdl:message name="ChangeEndDeviceControlsRequestMessage">
+			<wsdl:part name="ChangeEndDeviceControlsRequestMessage" element="infoMessage:ChangeEndDeviceControls"/>
+		</wsdl:message>
+		
+		<wsdl:message name="CloseEndDeviceControlsRequestMessage">
+			<wsdl:part name="CloseEndDeviceControlsRequestMessage" element="infoMessage:CloseEndDeviceControls"/>
+		</wsdl:message>
+		
+		<wsdl:message name="CancelEndDeviceControlsRequestMessage">
+			<wsdl:part name="CancelEndDeviceControlsRequestMessage" element="infoMessage:CancelEndDeviceControls"/>
+		</wsdl:message>
+		
+		<wsdl:message name="DeleteEndDeviceControlsRequestMessage">
+			<wsdl:part name="DeleteEndDeviceControlsRequestMessage" element="infoMessage:DeleteEndDeviceControls"/>
+		</wsdl:message>
+		
+		<wsdl:message name="ResponseMessage">
+			<wsdl:part name="ResponseMessage" element="infoMessage:EndDeviceControlsResponseMessage"/>
+		</wsdl:message>
+		
+		<wsdl:message name="FaultMessage">
+			<wsdl:part name="FaultMessage" element="infoMessage:EndDeviceControlsFaultMessage"/>
+		</wsdl:message>
+		
+		<!-- Port Definitions -->
+		<wsdl:portType name="RequestEndDeviceControls_Port">
+			
+			<wsdl:operation name="CreateEndDeviceControls">
+				<wsdl:input name="CreateEndDeviceControlsRequest" message="tns:CreateEndDeviceControlsRequestMessage"/>
+				<wsdl:output name="CreateEndDeviceControlsResponse" message="tns:ResponseMessage"/>
+				<wsdl:fault name="CreateEndDeviceControlsFault" message="tns:FaultMessage"/>
+			</wsdl:operation>
+			
+			<wsdl:operation name="ChangeEndDeviceControls">
+				<wsdl:input name="ChangeEndDeviceControlsRequest" message="tns:ChangeEndDeviceControlsRequestMessage"/>
+				<wsdl:output name="ChangeEndDeviceControlsResponse" message="tns:ResponseMessage"/>
+				<wsdl:fault name="ChangeEndDeviceControlsFault" message="tns:FaultMessage"/>
+			</wsdl:operation>
+			
+			<wsdl:operation name="CancelEndDeviceControls">
+				<wsdl:input name="CancelEndDeviceControlsRequest" message="tns:CancelEndDeviceControlsRequestMessage"/>
+				<wsdl:output name="CancelEndDeviceControlsResponse" message="tns:ResponseMessage"/>
+				<wsdl:fault name="CancelEndDeviceControlsFault" message="tns:FaultMessage"/>
+			</wsdl:operation>
+			
+			<wsdl:operation name="CloseEndDeviceControls">
+				<wsdl:input name="CloseEndDeviceControlsRequest" message="tns:CloseEndDeviceControlsRequestMessage"/>
+				<wsdl:output name="CloseEndDeviceControlsResponse" message="tns:ResponseMessage"/>
+				<wsdl:fault name="CloseEndDeviceControlsFault" message="tns:FaultMessage"/>
+			</wsdl:operation>
+			
+			<wsdl:operation name="DeleteEndDeviceControls">
+				<wsdl:input name="DeleteEndDeviceControlsRequest" message="tns:DeleteEndDeviceControlsRequestMessage"/>
+				<wsdl:output name="DeleteEndDeviceControlsResponse" message="tns:ResponseMessage"/>
+				<wsdl:fault name="DeleteEndDeviceControlsFault" message="tns:FaultMessage"/>
+			</wsdl:operation>
+			
+		</wsdl:portType>
+		
+		<wsdl:binding name="RequestEndDeviceControls_Binding" type="tns:RequestEndDeviceControls_Port">
+		
+			<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+			
+			<wsdl:operation name="CreateEndDeviceControls">
+				<soap:operation soapAction="http://iec.ch/TC57/2011/EndDeviceControls/CreateEndDeviceControls" style="document"/>
+				<wsdl:input name="CreateEndDeviceControlsRequest">
+					<soap:body use="literal"/>
+				</wsdl:input>
+				<wsdl:output name="CreateEndDeviceControlsResponse">
+					<soap:body use="literal"/>
+				</wsdl:output>
+				<wsdl:fault name="CreateEndDeviceControlsFault">
+					<soap:fault name="CreateEndDeviceControlsFault" use="literal"/>
+				</wsdl:fault>
+			</wsdl:operation>
+			<wsdl:operation name="ChangeEndDeviceControls">
+				<soap:operation soapAction="http://iec.ch/TC57/2011/EndDeviceControls/ChangeEndDeviceControls" style="document"/>
+				<wsdl:input name="ChangeEndDeviceControlsRequest">
+					<soap:body use="literal"/>
+				</wsdl:input>
+				<wsdl:output name="ChangeEndDeviceControlsResponse">
+					<soap:body use="literal"/>
+				</wsdl:output>
+				<wsdl:fault name="ChangeEndDeviceControlsFault">
+					<soap:fault name="ChangeEndDeviceControlsFault" use="literal"/>
+				</wsdl:fault>
+			</wsdl:operation>
+			<wsdl:operation name="CancelEndDeviceControls">
+				<soap:operation soapAction="http://iec.ch/TC57/2011/EndDeviceControls/CancelEndDeviceControls" style="document"/>
+				<wsdl:input name="CancelEndDeviceControlsRequest">
+					<soap:body use="literal"/>
+				</wsdl:input>
+				<wsdl:output name="CancelEndDeviceControlsResponse">
+					<soap:body use="literal"/>
+				</wsdl:output>
+				<wsdl:fault name="CancelEndDeviceControlsFault">
+					<soap:fault name="CancelEndDeviceControlsFault" use="literal"/>
+				</wsdl:fault>
+			</wsdl:operation>
+			<wsdl:operation name="CloseEndDeviceControls">
+				<soap:operation soapAction="http://iec.ch/TC57/2011/EndDeviceControls/CloseEndDeviceControls" style="document"/>
+				<wsdl:input name="CloseEndDeviceControlsRequest">
+					<soap:body use="literal"/>
+				</wsdl:input>
+				<wsdl:output name="CloseEndDeviceControlsResponse">
+					<soap:body use="literal"/>
+				</wsdl:output>
+				<wsdl:fault name="CloseEndDeviceControlsFault">
+					<soap:fault name="CloseEndDeviceControlsFault" use="literal"/>
+				</wsdl:fault>
+			</wsdl:operation>
+			<wsdl:operation name="DeleteEndDeviceControls">
+				<soap:operation soapAction="http://iec.ch/TC57/2011/EndDeviceControls/DeleteEndDeviceControls" style="document"/>
+				<wsdl:input name="DeleteEndDeviceControlsRequest">
+					<soap:body use="literal"/>
+				</wsdl:input>
+				<wsdl:output name="DeleteEndDeviceControlsResponse">
+					<soap:body use="literal"/>
+				</wsdl:output>
+				<wsdl:fault name="DeleteEndDeviceControlsFault">
+					<soap:fault name="DeleteEndDeviceControlsFault" use="literal"/>
+				</wsdl:fault>
+			</wsdl:operation>
+		</wsdl:binding>
+		
+		<wsdl:service name="RequestEndDeviceControls">
+			<wsdl:port name="RequestEndDeviceControls_Port" binding="tns:RequestEndDeviceControls_Binding">
+				<soap:address location="http://iec.ch/TC57/2011/RequestEndDeviceControls"/>
+			</wsdl:port>
+		</wsdl:service>
+	
+</wsdl:definitions>

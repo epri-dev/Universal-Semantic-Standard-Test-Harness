@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ReplyMeterServiceRequests"
+	targetNamespace="http://iec.ch/TC57/2011/MeterServiceRequests"
+	xmlns:tns="http://iec.ch/TC57/2011/MeterServiceRequests" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/"
+	xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:infoMessage="http://www.iec.ch/TC57/2011/MeterServiceRequestsMessage">
+
+	<wsdl:types>
+
+		<xs:schema targetNamespace="http://www.iec.ch/TC57/2011/MeterServiceRequestsMessage"
+			elementFormDefault="qualified">
+
+			<xs:include schemaLocation="xsd/MeterServiceRequestsMessage.xsd" />
+
+		</xs:schema>
+
+	</wsdl:types>
+
+	<!-- Message Definitions -->
+
+	<wsdl:message name="CreatedMeterServiceRequestsEventMessage">
+		<wsdl:part name="CreatedMeterServiceRequestsEventMessage"
+			element="infoMessage:CreatedMeterServiceRequests" />
+	</wsdl:message>
+
+	<wsdl:message name="ChangedMeterServiceRequestsEventMessage">
+		<wsdl:part name="ChangedMeterServiceRequestsEventMessage"
+			element="infoMessage:ChangedMeterServiceRequests" />
+	</wsdl:message>
+
+	<wsdl:message name="ClosedMeterServiceRequestsEventMessage">
+		<wsdl:part name="ClosedMeterServiceRequestsEventMessage"
+			element="infoMessage:ClosedMeterServiceRequests" />
+	</wsdl:message>
+
+	<wsdl:message name="CanceledMeterServiceRequestsEventMessage">
+		<wsdl:part name="CanceledMeterServiceRequestsEventMessage"
+			element="infoMessage:CanceledMeterServiceRequests" />
+	</wsdl:message>
+
+	<wsdl:message name="DeletedMeterServiceRequestsEventMessage">
+		<wsdl:part name="DeletedMeterServiceRequestsEventMessage"
+			element="infoMessage:DeletedMeterServiceRequests" />
+	</wsdl:message>
+
+	<wsdl:message name="ResponseMessage">
+		<wsdl:part name="ResponseMessage"
+			element="infoMessage:MeterServiceRequestsResponseMessage" />
+	</wsdl:message>
+
+	<wsdl:message name="FaultMessage">
+		<wsdl:part name="FaultMessage"
+			element="infoMessage:MeterServiceRequestsFaultMessage" />
+	</wsdl:message>
+
+	<!-- Port Definitions -->
+	<wsdl:portType name="ReplyMeterServiceRequests_Port">
+
+		<wsdl:operation name="CreatedMeterServiceRequests">
+			<wsdl:input name="CreatedMeterServiceRequestsEvent"
+				message="tns:CreatedMeterServiceRequestsEventMessage" />
+			<wsdl:output name="CreatedMeterServiceRequestsResponse"
+				message="tns:ResponseMessage" />
+			<wsdl:fault name="CreatedMeterServiceRequestsFault"
+				message="tns:FaultMessage" />
+		</wsdl:operation>
+
+		<wsdl:operation name="ChangedMeterServiceRequests">
+			<wsdl:input name="ChangedMeterServiceRequestsEvent"
+				message="tns:ChangedMeterServiceRequestsEventMessage" />
+			<wsdl:output name="ChangedMeterServiceRequestsResponse"
+				message="tns:ResponseMessage" />
+			<wsdl:fault name="ChangedMeterServiceRequestsFault"
+				message="tns:FaultMessage" />
+		</wsdl:operation>
+
+		<wsdl:operation name="CanceledMeterServiceRequests">
+			<wsdl:input name="CanceledMeterServiceRequestsEvent"
+				message="tns:CanceledMeterServiceRequestsEventMessage" />
+			<wsdl:output name="CanceledMeterServiceRequestsResponse"
+				message="tns:ResponseMessage" />
+			<wsdl:fault name="CanceledMeterServiceRequestsFault"
+				message="tns:FaultMessage" />
+		</wsdl:operation>
+
+		<wsdl:operation name="ClosedMeterServiceRequests">
+			<wsdl:input name="ClosedMeterServiceRequestsEvent"
+				message="tns:ClosedMeterServiceRequestsEventMessage" />
+			<wsdl:output name="ClosedMeterServiceRequestsResponse"
+				message="tns:ResponseMessage" />
+			<wsdl:fault name="ClosedMeterServiceRequestsFault"
+				message="tns:FaultMessage" />
+		</wsdl:operation>
+
+		<wsdl:operation name="DeletedMeterServiceRequests">
+			<wsdl:input name="DeletedMeterServiceRequestsEvent"
+				message="tns:DeletedMeterServiceRequestsEventMessage" />
+			<wsdl:output name="DeletedMeterServiceRequestsResponse"
+				message="tns:ResponseMessage" />
+			<wsdl:fault name="DeletedMeterServiceRequestsFault"
+				message="tns:FaultMessage" />
+		</wsdl:operation>
+
+	</wsdl:portType>
+
+	<wsdl:binding name="ReplyMeterServiceRequests_Binding"
+		type="tns:ReplyMeterServiceRequests_Port">
+
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+
+		<wsdl:operation name="CreatedMeterServiceRequests">
+			<soap:operation
+				soapAction="http://iec.ch/TC57/2011/MeterServiceRequests/CreatedMeterServiceRequests"
+				style="document" />
+			<wsdl:input name="CreatedMeterServiceRequestsEvent">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="CreatedMeterServiceRequestsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="CreatedMeterServiceRequestsFault">
+				<soap:fault name="CreatedMeterServiceRequestsFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="ChangedMeterServiceRequests">
+			<soap:operation
+				soapAction="http://iec.ch/TC57/2011/MeterServiceRequests/ChangedMeterServiceRequests"
+				style="document" />
+			<wsdl:input name="ChangedMeterServiceRequestsEvent">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="ChangedMeterServiceRequestsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="ChangedMeterServiceRequestsFault">
+				<soap:fault name="ChangedMeterServiceRequestsFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="CanceledMeterServiceRequests">
+			<soap:operation
+				soapAction="http://iec.ch/TC57/2011/MeterServiceRequests/CanceledMeterServiceRequests"
+				style="document" />
+			<wsdl:input name="CanceledMeterServiceRequestsEvent">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="CanceledMeterServiceRequestsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="CanceledMeterServiceRequestsFault">
+				<soap:fault name="CanceledMeterServiceRequestsFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="ClosedMeterServiceRequests">
+			<soap:operation
+				soapAction="http://iec.ch/TC57/2011/MeterServiceRequests/ClosedMeterServiceRequests"
+				style="document" />
+			<wsdl:input name="ClosedMeterServiceRequestsEvent">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="ClosedMeterServiceRequestsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="ClosedMeterServiceRequestsFault">
+				<soap:fault name="ClosedMeterServiceRequestsFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="DeletedMeterServiceRequests">
+			<soap:operation
+				soapAction="http://iec.ch/TC57/2011/MeterServiceRequests/DeletedMeterServiceRequests"
+				style="document" />
+			<wsdl:input name="DeletedMeterServiceRequestsEvent">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="DeletedMeterServiceRequestsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="DeletedMeterServiceRequestsFault">
+				<soap:fault name="DeletedMeterServiceRequestsFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="ReplyMeterServiceRequests">
+		<wsdl:port name="ReplyMeterServiceRequests_Port" binding="tns:ReplyMeterServiceRequests_Binding">
+			<soap:address location="http://iec.ch/TC57/2011/ReplyMeterServiceRequests" />
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>

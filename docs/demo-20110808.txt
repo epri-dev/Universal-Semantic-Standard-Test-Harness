@@ -1,0 +1,42 @@
+CB_Server 1
+
+Service : http://localhost:8080/epriConnect/CB_Service
+
+Open project : CB_Server
+
+1. execute CB_Server/CB_ServerSoap TestSuite/ProcessPaymentTransaction TestCase/Test Steps/ProcessPaymentTransaction
+
+   Succesful test, returns the credit card info along with Sucesss response
+
+2. CB_Server/CB_ServerSoap TestSuite/ProcessPaymentTransaction TestCase/Test Steps/Failure
+
+   Failed test, sent a message with no real data, got enumeration error
+   
+MR_Server 2
+
+Service : http://localhost:8080/epriConnect/MR_Service
+
+Open project : MR_Server
+
+1. execute MR_Server/MR_ServerSoap TestSuite/GetReadingsByDate/GetReadingsByDate
+
+   Succesful test, returns a single meter with fake data
+   
+2. execute MR_Server/MR_ServerSoap TestSuite/GetReadingsByDate/Failure
+
+   Failed test, gives line error because first date is illegal value (?)
+   
+OpenADR SendDREventOptOut 3
+
+Service : http://localhost:8080/epriConnect/OpenADR/SendDREventOptOut
+
+Open project : OpenADR - SendDREventOptOut
+
+1. execute OpenADR - SendDREventOptOut/DREventOptOut_Binding TestSuite/CreatedDREventOptOut Testcase/Success
+
+   Succesful test, returns an 'OKAY' error message
+   
+2. execute OpenADR - SendDREventOptOut/DREventOptOut_Binding TestSuite/CreatedDREventOptOut Testcase/Failure
+
+  Failed test, returns unmarshalling error
+   

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<eventState xmlns="urn:EventState" programName="epri" eventModNumber="0" drasClientID="DRAS10.0" eventStateID="14" schemaVersion="1.0" drasName="AKUA" testEvent="true" offLine="false">
+  <simpleDRModeData>
+    <EventStatus>Success</EventStatus>
+    <OperationModeValue>Mode 1</OperationModeValue>
+  </simpleDRModeData>
+</eventState>
+

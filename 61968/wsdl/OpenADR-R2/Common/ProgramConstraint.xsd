@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema elementFormDefault="qualified"
+	targetNamespace="urn:ProgramConstraint" version="0.9"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:complexType name="ProgramConstraint">
+		<xs:annotation>
+			<xs:documentation>
+				Programs, Participant Accounts, and DRAS Clients may
+				have a set of program constraints that define various
+				date/time and duration constraints associated with a DR
+				Event with regards to a particular DR program. For
+				example a Utility may have a DR program that has the
+				flexibility (e.g. PG&amp;amp;amp;E cafeteria plan) that
+				allows their participants to set their own event windows
+				and event durations. For intelligent DRAS Clients these
+				constraints may not need to be reflected in the DRAS
+				since they can be implemented at the facility, but for
+				simple DRAS Clients these constraints may be used to
+				further define the simple shed strategies associated
+				with a DR program and thus they need to be configured
+				within the DRAS.
+
+				When a DR event is issued by the Utility/ISO the event
+				is verified against the parameters and constraints that
+				were established when the program was set up. For
+				example if the program was configured to support DR
+				events between 12:00 and 16:00 then when a DR event is
+				issued the DRAS checks to verify that the DR event is
+				within 12:00 and 16:00. If it is not then the DRAS must
+				take some action to resolve the conflict.
+
+				For each program parameter (e.g. DR event window) that
+				specifies a constraint on issued DR events there is an
+				additional parameter that specifies how the DRAS will
+				respond to DR events that are issued, but do not satisfy
+				the configured constraints. The DRAS may respond to
+				issued DR events that conflict with configured
+				constraints in the following way: • ACCEPT – simply
+				accept the issued DR event regardless of any conflicts.
+				• REJECT – reject any DR events that conflict with
+				configured constraints. • FORCE – regardless of what the
+				issued DR events parameters are (even if there is no
+				conflict) force them to be the parameters that were
+				configured as part of the program. • RESTRICT – modify
+				the DR event parameters so that they legally fall within
+				the bounds of the configured parameters.
+
+				Program constraints are always associated with a
+				specific program and may also be associated with one of
+				the following hierarchical entities: • Overall Program •
+				Specific Participant Accont on the whole • Specific DRAS
+				Client
+
+				Each of these entities is in essence a subset of the one
+				above it and therefore the time intervals od the
+				constraints that are specified are also by default
+				subsets of the ones above it even if they are not
+				specified in that fashion. For example if the constraint
+				that are associated with a program as a whole state that
+				DR events happen between 12 – 4 then even if the
+				participant or DRAS Client constraints state that DR
+				event can happen before 12 or after 4 they will never
+				happen in that time frame. Likewise the constraints
+				associated with the Participant as a whole further
+				constrain the DRAS Client constraint attributes by
+				default.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element xmlns:q1="urn:ProgramConstraint" minOccurs="0"
+				name="eventWindow" type="q1:EventWindow">
+				<xs:annotation>
+					<xs:documentation>
+						This is a start and end time (time of day) that
+						specifies a window within which a DR event may
+						be issued for this program.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element xmlns:q2="urn:ProgramConstraint" minOccurs="0"
+				name="eventWindowFilter" type="q2:ConstraintFilter">
+				<xs:annotation>
+					<xs:documentation>
+						This determines how the DRAS behaves if an
+						issued DR event is not within the Event window
+						parameter above. Legal values for this
+						parameters are ACCEPT, REJECT, FORCE, and
+						RESTRICT.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="maxEventDuration"
+				type="xs:double">
+				<xs:annotation>
+					<xs:documentation>
+						This is the maximum length of time in seconds
+						that a DR event may be active.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element xmlns:q3="urn:ProgramConstraint" minOccurs="0"
+				name="maxEventDurationFilter" type="q3:ConstraintFilter">
+				<xs:annotation>
+					<xs:documentation>
+						This determines how the DRAS behaves if an
+						issued DR event is not within the Event duration
+						parameter. Legal values for this parameters are
+						ACCEPT, REJECT, FORCE, and RESTRICT.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element xmlns:q4="urn:ProgramConstraint" minOccurs="0"
+				name="notificationWindow" type="q4:NotificationWindow">
+				<xs:annotation>
+					<xs:documentation>
+						This specifies the minimum and maximum time
+						prior to a DR event being active that
+						notification of the event can be given to the
+						participant.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element xmlns:q5="urn:ProgramConstraint" minOccurs="0"
+				name="notificationFilter" type="q5:ConstraintFilter">
+				<xs:annotation>
+					<xs:documentation>
+						This determines how the DRAS behaves if an
+						issued DR event is not within the Notification
+						window parameter. Legal values for this
+						parameter are ACCEPT, REJECT, FORCE, and
+						RESTRICT.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="blackOutDateTimes">
+				<xs:annotation>
+					<xs:documentation>
+						This is a list of date/times during whcih a DR
+						event can not be issued.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element xmlns:q1="urn:ProgramConstraint"
+							maxOccurs="unbounded" name="dateTimeWindow"
+							type="q1:DateTimeWindow">
+							<xs:annotation>
+								<xs:documentation>
+									This is an instance of a blackout
+									date/time window.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element xmlns:q6="urn:ProgramConstraint" minOccurs="0"
+				name="blackOutDateTimeFilter" type="q6:ConstraintFilter">
+				<xs:annotation>
+					<xs:documentation>
+						This determines how the DRAS behaves if an
+						issued DR event overlaps with one of the
+						blackOutDateTimes. Legal values for this
+						parameters are ACCEPT, REJECT, FORCE, and
+						RESTRICT.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="validDateTimes">
+				<xs:annotation>
+					<xs:documentation>
+						These are the date/times during which a DR Event
+						may be issued. If undefined then it is assumed
+						that the DR Event may be issued at any time
+						except as specified by the other constraints
+						such as the black out dates and times.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element xmlns:q1="urn:ProgramConstraint"
+							maxOccurs="unbounded" name="dateTimeWindow"
+							type="q1:DateTimeWindow" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="maxConsecutiveDays"
+				type="xs:unsignedLong">
+				<xs:annotation>
+					<xs:documentation>
+						This parameter restricts the number of
+						consecutive days on which a DR event can be
+						issued.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element xmlns:q7="urn:ProgramConstraint" minOccurs="0"
+				name="maxConsecutiveDaysFilter">
+				<xs:annotation>
+					<xs:documentation>
+						This determines how the DRAS behaves if an
+						issued DR event violates the maxConsecutiveDays
+						constraint. Legal values for this parameter are
+						ACCEPT or REJECT.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="ACCEPT" />
+						<xs:enumeration value="REJECT" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemaVersion" type="xs:string"
+			use="required">
+			<xs:annotation>
+				<xs:documentation>
+					The version of the schema representing this entity.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="constraintID" type="xs:string"
+			use="required">
+			<xs:annotation>
+				<xs:documentation>
+					This is the identifier that may used by other
+					entities to refer to this instance of a
+					ProgramConstraint.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="programName" type="xs:string"
+			use="required">
+			<xs:annotation>
+				<xs:documentation>
+					This is a reference to the program that these
+					constraints are defined for and corresponds to the
+					name attribute of the UtilityProgram entity.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="participantID" type="xs:string"
+			use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					If this ProgramConstraint is associated with a
+					specific ParticipantAccount then this is the
+					identifier of the ParticipantAccount that it is
+					associated with.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="DRASClientID" type="xs:string"
+			use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					If this ProgramConstraint is associated with a
+					specific DRASClient then this is the identifier of
+					the DRASClient that it is associated with.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="ConstraintFilter">
+		<xs:annotation>
+			<xs:documentation>
+				This represents the ways in which the DRAS will repsond
+				to issued DR events that conflict with configured
+				constraints. • ACCEPT – simply accept the issued DR
+				event regardless of any conflicts. • REJECT – reject any
+				DR events that conflict with configured constraints. •
+				FORCE – regardless of what the issued DR events
+				parameters are (even if there is no conflict) force them
+				to be the parameters that were configured as part of the
+				program. • RESTRICT – modify the DR event parameters so
+				that they legally fall within the bounds of the
+				configured parameters.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="ACCEPT" />
+			<xs:enumeration value="REJECT" />
+			<xs:enumeration value="FORCE" />
+			<xs:enumeration value="RESTRICT" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="EventWindow">
+		<xs:annotation>
+			<xs:documentation>
+				This is a generic type for a window of time with a start
+				and end time (time of day).
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startTime" type="xs:time">
+				<xs:annotation>
+					<xs:documentation>
+						Starting time of the window.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endTime" type="xs:unsignedLong">
+				<xs:annotation>
+					<xs:documentation>
+						Ending time of the window.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NotificationWindow">
+		<xs:annotation>
+			<xs:documentation>
+				This is the window of time during whcih notification of
+				the DR event must occur.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="minimumTime" type="xs:unsignedLong" />
+			<xs:element name="maximumTime" type="xs:unsignedLong" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DateTimeWindow">
+		<xs:annotation>
+			<xs:documentation>
+				This is a generic type for a window of date/time with a
+				start and end date/time (date AND time of day).
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startDateTime" type="xs:dateTime" />
+			<xs:element name="endDateTime" type="xs:dateTime" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ListOfProgramConstraints">
+		<xs:annotation>
+			<xs:documentation>
+				This represetns a list of ProgramConstraint objects.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element xmlns:q1="urn:ProgramConstraint" minOccurs="0"
+				maxOccurs="unbounded" name="programConstraint"
+				type="q1:ProgramConstraint">
+				<xs:annotation>
+					<xs:documentation>
+						ProgramConstraint instance in the list.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

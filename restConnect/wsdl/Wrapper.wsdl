@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.example.org/UtilityInterface/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="UtilityInterface"
+	targetNamespace="http://www.example.org/UtilityInterface/" xmlns:xsd1="urn:EventState">
+	<!-- This is not a true wsdle. It was created in order to cause
+	     the wsdl2java generator to enstantiate the EventState.xsd
+	     into an annotated pojo so it could be sent as part of a
+	     restful service
+	  -->
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="urn:EventState"
+				schemaLocation="wsdl/EventState.xsd"></xsd:import>
+		</xsd:schema>
+	</wsdl:types>
+</wsdl:definitions>

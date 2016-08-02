@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:cxf="http://cxf.apache.org/core" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxrs="http://cxf.apache.org/jaxrs" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+       http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+
+	<jaxrs:server id="restContainer2" address="/openADRPost">
+		<jaxrs:inInterceptors>
+			<bean class="com.sixthc.interceptor.LoggingInInterceptor">
+				<property name="vendorRoleType" value="OpenADR" />
+				<property name="packageName" value="Open ADR" />
+				<property name="interfaceName" value="ADR(EventStatePost)" />
+				<property name="resultCode" value="success" />
+				<property name="stage" value="serviceIn" />
+			</bean>
+		</jaxrs:inInterceptors>
+		<jaxrs:outInterceptors>
+			<bean class="com.sixthc.interceptor.RestLoggingOutInterceptor">
+				<property name="vendorRoleType" value="OpenADR" />
+				<property name="packageName" value="Open ADR" />
+				<property name="interfaceName" value="ADR(EventStatePost)" />
+				<property name="resultCode" value="success" />
+				<property name="stage" value="serviceOut" />
+			</bean>
+		</jaxrs:outInterceptors>
+		<jaxrs:outFaultInterceptors>
+			<bean class="com.sixthc.interceptor.RestLoggingOutInterceptor">
+				<property name="vendorRoleType" value="OpenADR" />
+				<property name="packageName" value="Open ADR" />
+				<property name="interfaceName" value="ADR(EventStatePost)" />
+				<property name="resultCode" value="fail" />
+				<property name="stage" value="serviceOutFault" />
+			</bean>
+		</jaxrs:outFaultInterceptors>
+		<jaxrs:inFaultInterceptors>
+			<bean class="com.sixthc.interceptor.LoggingInInterceptor">
+				<property name="vendorRoleType" value="OpenADR" />
+				<property name="packageName" value="Open ADR" />
+				<property name="interfaceName" value="ADR(EventStatePost)" />
+				<property name="resultCode" value="fail" />
+				<property name="stage" value="serviceInFault" />
+			</bean>
+		</jaxrs:inFaultInterceptors>
+		<jaxrs:providers>
+			<bean class="com.sixthc.interceptor.WebApplicationExceptionMapper" />
+		</jaxrs:providers>
+		<jaxrs:properties>
+			<entry key="org.apache.cxf.propogate.exception" value="false" />
+			<entry key="org.apache.cxf.propagate.exception" value="false" />
+		</jaxrs:properties>
+		<jaxrs:features>
+			<cxf:logging />
+		</jaxrs:features>
+		<jaxrs:serviceBeans>
+			<ref bean="eventService2" />
+		</jaxrs:serviceBeans>
+		<jaxrs:extensionMappings>
+			<entry key="xml" value="application/xml" />
+		</jaxrs:extensionMappings>
+	</jaxrs:server>
+
+	<bean id="eventService2" class="com.sixthc.EventStateServiceImpl" />
+</beans>

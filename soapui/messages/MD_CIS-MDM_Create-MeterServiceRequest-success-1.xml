@@ -1,0 +1,74 @@
+<!--
+
+CIS vendor sends a meter service request (create disconnect)
+to the MDMS test server, which responds with an OK messageo
+
+CIS Test 1
+
+-->
+
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:met="http://www.iec.ch/TC57/2011/MeterServiceRequestsMessage" xmlns:mes="http://www.iec.ch/TC57/2011/schema/message" xmlns:met1="http://iec.ch/TC57/2011/MeterServiceRequests#">
+<soapenv:Header/>
+   <soapenv:Body>
+      <met:CreatedMeterServiceRequests>
+         <met:Header>
+            <mes:Verb>create</mes:Verb>
+            <mes:Noun>MeterServiceRequests</mes:Noun>
+            <mes:Context>TESTING</mes:Context>
+            <mes:Timestamp>2011-06-17T09:30:47.0Z</mes:Timestamp>
+            <mes:Source>CIS-001</mes:Source>
+            <mes:AsyncReplyFlag>true</mes:AsyncReplyFlag>
+            <mes:ReplyAddress>NONE</mes:ReplyAddress>
+            <mes:AckRequired>true</mes:AckRequired>
+            <mes:MessageID>CIS-12345</mes:MessageID>
+            <mes:CorrelationID>String</mes:CorrelationID>
+            <mes:Comment>Remote Disconnect Request</mes:Comment>
+            <!--Zero or more repetitions:-->
+         </met:Header>
+         <!--Optional:-->
+         <met:Payload>
+            <met1:MeterServiceRequests>
+               <met1:Header>
+                  <mes:Verb>create</mes:Verb>
+                  <mes:Noun>MeterServiceRequest</mes:Noun>
+                  <mes:Revision>?</mes:Revision>
+                  <mes:Context>TESTING</mes:Context>
+                  <mes:Timestamp>2011-06-17T09:30:47.0Z</mes:Timestamp>
+                  <mes:Source>?</mes:Source>
+                  <mes:AsyncReplyFlag>true</mes:AsyncReplyFlag>
+                  <mes:ReplyAddress>hello</mes:ReplyAddress>
+                  <mes:AckRequired>true</mes:AckRequired>
+                  <mes:User>
+                     <mes:UserID>?</mes:UserID>
+                     <mes:Organization>?</mes:Organization>
+                  </mes:User>
+                  <mes:MessageID>?</mes:MessageID>
+                  <mes:CorrelationID>?</mes:CorrelationID>
+                  <mes:Comment>?</mes:Comment>
+               </met1:Header>
+               <met1:MeterServiceWork>
+                  <met1:kind>disconnect</met1:kind>
+                  <met1:lastModifiedDateTime>2011-06-17T09:30:47.0Z</met1:lastModifiedDateTime>
+                  <met1:priority>?</met1:priority>
+                  <met1:requestDateTime>2011-06-17T09:30:47.0Z</met1:requestDateTime>
+                  <met1:type>?</met1:type>
+                  <met1:ActivityRecords>
+                     <met1:createdDateTime>2011-06-17T09:30:47.0Z</met1:createdDateTime>
+                     <met1:reason>?</met1:reason>
+                     <met1:severity>?</met1:severity>
+                     <met1:type>?</met1:type>
+                  </met1:ActivityRecords>
+                  <met1:Meter>
+                     <met1:mRID>1234</met1:mRID>
+                     <met1:amrSystem>?</met1:amrSystem>
+                     <met1:formNumber>?</met1:formNumber>
+                     <met1:serialNumber>?</met1:serialNumber>
+                  </met1:Meter>
+               </met1:MeterServiceWork>
+            </met1:MeterServiceRequests>
+            <met:Compressed>?</met:Compressed>
+            <met:Format>?</met:Format>
+         </met:Payload>
+      </met:CreatedMeterServiceRequests>
+   </soapenv:Body>
+</soapenv:Envelope>

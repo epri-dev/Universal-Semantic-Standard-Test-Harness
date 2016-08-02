@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="RequestWorkRequest" 
+                  xmlns="http://schemas.xmlsoap.org/wsdl/" 
+                  xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+                  xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+                  xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" 
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+                  xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" 
+                  xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+                  targetNamespace="http://iec.ch/TC57/2010/WorkRequest" 
+                  xmlns:tns="http://iec.ch/TC57/2010/WorkRequest" 
+                  xmlns:infoMessage="http://www.iec.ch/TC57/2010/WorkRequestMessage">
+		
+		<wsdl:types>
+			
+			<xs:schema targetNamespace="http://www.iec.ch/TC57/2010/WorkRequestMessage"
+							   elementFormDefault="qualified">
+				
+                <xs:include schemaLocation="xsd/WorkRequestMessage.xsd"/>
+				
+			</xs:schema>
+			
+		</wsdl:types>
+		
+		<!-- Message Definitions -->
+		
+		<wsdl:message name="CreateWorkRequestEventMessage">
+			<wsdl:part name="CreateWorkRequestEventMessage" element="infoMessage:CreateWorkRequest"/>
+		</wsdl:message>
+		
+		<wsdl:message name="ChangeWorkRequestEventMessage">
+			<wsdl:part name="ChangeWorkRequestEventMessage" element="infoMessage:ChangeWorkRequest"/>
+		</wsdl:message>
+		
+		<wsdl:message name="CloseWorkRequestEventMessage">
+			<wsdl:part name="CloseWorkRequestEventMessage" element="infoMessage:CloseWorkRequest"/>
+		</wsdl:message>
+		
+		<wsdl:message name="CancelWorkRequestEventMessage">
+			<wsdl:part name="CancelWorkRequestEventMessage" element="infoMessage:CancelWorkRequest"/>
+		</wsdl:message>
+		
+		<wsdl:message name="DeleteWorkRequestEventMessage">
+			<wsdl:part name="DeleteWorkRequestEventMessage" element="infoMessage:DeleteWorkRequest"/>
+		</wsdl:message>
+		
+		<wsdl:message name="ResponseMessage">
+			<wsdl:part name="ResponseMessage" element="infoMessage:WorkRequestResponseMessage"/>
+		</wsdl:message>
+		
+		<wsdl:message name="FaultMessage">
+			<wsdl:part name="FaultMessage" element="infoMessage:WorkRequestFaultMessage"/>
+		</wsdl:message>
+		
+		<!-- Port Definitions -->
+		<wsdl:portType name="WorkRequest_Port">
+			
+			<wsdl:operation name="CreateWorkRequest">
+				<wsdl:input name="CreateWorkRequestRequest" message="tns:CreateWorkRequestEventMessage"/>
+				<wsdl:output name="CreateWorkRequestResponse" message="tns:ResponseMessage"/>
+				<wsdl:fault name="CreateWorkRequestFault" message="tns:FaultMessage"/>
+			</wsdl:operation>
+			
+			<wsdl:operation name="ChangeWorkRequest">
+				<wsdl:input name="ChangeWorkRequestRequest" message="tns:ChangeWorkRequestEventMessage"/>
+				<wsdl:output name="ChangeWorkRequestResponse" message="tns:ResponseMessage"/>
+				<wsdl:fault name="ChangeWorkRequestFault" message="tns:FaultMessage"/>
+			</wsdl:operation>
+			
+			<wsdl:operation name="CancelWorkRequest">
+				<wsdl:input name="CancelWorkRequestRequest" message="tns:CancelWorkRequestEventMessage"/>
+				<wsdl:output name="CancelWorkRequestResponse" message="tns:ResponseMessage"/>
+				<wsdl:fault name="CancelWorkRequestFault" message="tns:FaultMessage"/>
+			</wsdl:operation>
+			
+			<wsdl:operation name="CloseWorkRequest">
+				<wsdl:input name="CloseWorkRequestRequest" message="tns:CloseWorkRequestEventMessage"/>
+				<wsdl:output name="CloseWorkRequestResponse" message="tns:ResponseMessage"/>
+				<wsdl:fault name="CloseWorkRequestFault" message="tns:FaultMessage"/>
+			</wsdl:operation>
+			
+			<wsdl:operation name="DeleteWorkRequest">
+				<wsdl:input name="DeleteWorkRequestRequest" message="tns:DeleteWorkRequestEventMessage"/>
+				<wsdl:output name="DeleteWorkRequestResponse" message="tns:ResponseMessage"/>
+				<wsdl:fault name="DeleteWorkRequestFault" message="tns:FaultMessage"/>
+			</wsdl:operation>
+			
+		</wsdl:portType>
+		
+		<wsdl:binding name="WorkRequest_Binding" type="tns:WorkRequest_Port">
+		
+			<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+			
+			<wsdl:operation name="CreateWorkRequest">
+				<soap:operation soapAction="http://iec.ch/TC57/2010/WorkRequest/CreateWorkRequest" style="document"/>
+				<wsdl:input name="CreateWorkRequestRequest">
+					<soap:body use="literal"/>
+				</wsdl:input>
+				<wsdl:output name="CreateWorkRequestResponse">
+					<soap:body use="literal"/>
+				</wsdl:output>
+				<wsdl:fault name="CreateWorkRequestFault">
+					<soap:fault name="CreateWorkRequestFault" use="literal"/>
+				</wsdl:fault>
+			</wsdl:operation>
+			<wsdl:operation name="ChangeWorkRequest">
+				<soap:operation soapAction="http://iec.ch/TC57/2010/WorkRequest/ChangeWorkRequest" style="document"/>
+				<wsdl:input name="ChangeWorkRequestRequest">
+					<soap:body use="literal"/>
+				</wsdl:input>
+				<wsdl:output name="ChangeWorkRequestResponse">
+					<soap:body use="literal"/>
+				</wsdl:output>
+				<wsdl:fault name="ChangeWorkRequestFault">
+					<soap:fault name="ChangeWorkRequestFault" use="literal"/>
+				</wsdl:fault>
+			</wsdl:operation>
+			<wsdl:operation name="CancelWorkRequest">
+				<soap:operation soapAction="http://iec.ch/TC57/2010/WorkRequest/CancelWorkRequest" style="document"/>
+				<wsdl:input name="CancelWorkRequestRequest">
+					<soap:body use="literal"/>
+				</wsdl:input>
+				<wsdl:output name="CancelWorkRequestResponse">
+					<soap:body use="literal"/>
+				</wsdl:output>
+				<wsdl:fault name="CancelWorkRequestFault">
+					<soap:fault name="CancelWorkRequestFault" use="literal"/>
+				</wsdl:fault>
+			</wsdl:operation>
+			<wsdl:operation name="CloseWorkRequest">
+				<soap:operation soapAction="http://iec.ch/TC57/2010/WorkRequest/CloseWorkRequest" style="document"/>
+				<wsdl:input name="CloseWorkRequestRequest">
+					<soap:body use="literal"/>
+				</wsdl:input>
+				<wsdl:output name="CloseWorkRequestResponse">
+					<soap:body use="literal"/>
+				</wsdl:output>
+				<wsdl:fault name="CloseWorkRequestFault">
+					<soap:fault name="CloseWorkRequestFault" use="literal"/>
+				</wsdl:fault>
+			</wsdl:operation>
+			<wsdl:operation name="DeleteWorkRequest">
+				<soap:operation soapAction="http://iec.ch/TC57/2010/WorkRequest/DeleteWorkRequest" style="document"/>
+				<wsdl:input name="DeleteWorkRequestRequest">
+					<soap:body use="literal"/>
+				</wsdl:input>
+				<wsdl:output name="DeleteWorkRequestResponse">
+					<soap:body use="literal"/>
+				</wsdl:output>
+				<wsdl:fault name="DeleteWorkRequestFault">
+					<soap:fault name="DeleteWorkRequestFault" use="literal"/>
+				</wsdl:fault>
+			</wsdl:operation>
+		</wsdl:binding>
+		
+		<wsdl:service name="RequestWorkRequest">
+			<wsdl:port name="WorkRequest_Port" binding="tns:WorkRequest_Binding">
+				<soap:address location="http://iec.ch/TC57/2010/RequestWorkRequest"/>
+			</wsdl:port>
+		</wsdl:service>
+	
+</wsdl:definitions>

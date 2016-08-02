@@ -1,0 +1,64 @@
+CIS 1
+
+Service : http://localhost:8080/epriConnect/mdms/cis/send
+
+Open project : CIS-1
+
+1. execute CIS-1/SendMeterServiceRequests_Binding TestSuite/CreatedMeterServiceRequests TestCase/Test Steps (1)/CreatedMeterServiceRequests/Request 1
+
+   Succesful test, indicates the wsdl sent is correct
+
+2. execute CIS-1/SendMeterServiceRequests_Binding TestSuite/CreatedMeterServiceRequests TestCase/Test Steps (1)/CreatedMeterServiceRequests/Request 1
+
+   Failed test, the payload has an error, date stamp is wrong
+   
+CIS 2
+
+Service : http://localhost:8080/epriConnect/mdms/cis/request
+
+Open project : CIS-2
+
+Test : request the MDMS send CIS a meterservicesrequest message (specifically created(reply) disconnect)
+
+1. start epriconnect web service
+2. start mock service in soapui : ReplyMeterServiceRequests_Binding Mock Service
+   note : Check and you will see that response 1 for Created has valid data set for the response
+   If it does not, load from response file
+3. execute CIS-2/RequestMeterServiceRequests_Binding TestSuite/CreateMeterServiceRequests TestCase/Test Steps(1)/CreateMeterServiceRequests/CreateMeterServiceRequests
+
+Notes : This is actually a two part test and will generate 4 rows of data.  row 1, soapui sends
+	request to epri, asking epri to send it a replymeterservice request. row 2, epri responds
+	with an 'ok' message, indicating it will send the reply. row 3, epri sends the reply to
+	the mock service in soapui. row 4, the soapui mock service responds to epri with an 'ok'.k
+
+CIS 3
+
+Service : http://localhost:80809/epriConnect/mdms/cis/request
+
+Test : request the MDMS send CIS a meter service request message (specifically updated(reply) disconnect)
+
+1. start epriconnect web service
+2. start mock service in soapui : CIS-3/ReplyMeterServiceRequests_Binding MockService
+   note : Check and you will see that response 1 for Changed has valid data set for the response
+   if it does not, load from response file
+3. soapui : CIS-3/RequestMeterServiceRequests_Binding TestSuite/ChangeMeterServiceRequests TestCase/Test Steps(1)/ChangeMeterServiceRequests
+
+MDMS 1
+
+Service : http://localhost/8080/epriConnect/cis/mdms/requestCreate
+
+Test : request that CIS send a meter service request message (create) to the mdms server
+
+1. start epriconnect web service
+2. start mock service in soapui : MDMS-1/SendMeterServiceRequests_Binding MockService
+3. execute MDMS-1/RequestMeterServiceRequests_Binding TestSuite/CreateMeterServiceRequests TestCase/Test Steps(1)/CreateMeterServiceRequests
+
+MDMS 2
+
+Service : http://localhost:8080/epriConnect/cis/mdms/reply
+
+Test : The vendor is MDMS and sends a Reply(MeterServiceRequest) to epri CIS test service
+
+1. start epriconnect web service
+2. execute MDMS-2/ReplyMeterServiceRequests_Binding TestSuite/CreatedMeterServiceRequests TestCase/Test Steps(1)/CreatedMeterServiceRequests
+

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns:tns="urn:Feedback" elementFormDefault="qualified"
+	targetNamespace="urn:Feedback" version="0.9"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:complexType name="FeedBack">
+		<xs:annotation>
+			<xs:documentation>
+				This represents feedback from a Participant that
+				typically pertains to a particular DR Event, but can be
+				specified to correspond to a wide variety of entities
+				such as UtilityProgram, DRASClient, and
+				ParticipantAccount. This feedback is not used by the
+				DRAS, but can be queried and used by the Utility.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" name="programName"
+				type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						Name of the program that this feedback is for.
+						This corresponds to the name attribute of the
+						UtilityProgram entity.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="participantID"
+				type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						Identifier of the ParticipantAccount that this
+						feeback is for. Correpsonds to the identifier
+						attribute of a ParticipantAccount entity.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="DRASClientID"
+				type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						Identifier for a DRAS Client that this feedback
+						is applied to. Correpsonds to the identifier
+						attribute of a DRASClient entity.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="eventID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						The identifier of the event that this feedback
+						it related to. Corresponds to the
+						eventIdentifier attribute of the Dr Event.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="feedback">
+				<xs:annotation>
+					<xs:documentation>
+						This is the actual feedback. Feedback is always
+						in the form of a name/value pair. The following
+						types of feedback are currently supported:
+
+						SHED_ATTEMPTED - Indicates wheter a shed was
+						attempted in repsonse to a DR Event. Must be
+						sent within 5 minutes? Before (after?) DR event
+						becomes active
+
+						CURRENT_SHED_LEVEL - The present state of client
+						and/or controls. Must be sent within 5 minutes
+						of receiving new event mode.
+
+						AVAILABLE_SHED - Number indicating number of
+						megawatts available to be shed if an evebt was
+						issued. Must be sent before DR event becomes
+						active.
+
+						CURRENT_USAGE_LEVEL - Number indicating number
+						of KWH currently being consumed none.
+
+
+						Other name/value pairs may be used and are
+						beyond the scope of this standard.
+
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="name">
+							<xs:annotation>
+								<xs:documentation>
+									This is the name of the name-value
+									pair
+								</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration
+										value="SHED_ATTEMPTED" />
+									<xs:enumeration
+										value="CURRENT_SHED_LEVEL" />
+									<xs:enumeration
+										value="CURRENT_USAGE" />
+									<xs:enumeration
+										value="SHED_AVAILABLE" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="value" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>
+									These are strings corresponding to
+									the values of the name-value pair.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="timeStamp" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>
+						This is a date/time stamp for the feedback.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemaVersion" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>Schema version.</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ListOfFeedback">
+		<xs:annotation>
+			<xs:documentation>
+				Represents a list of Feedback objects.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded"
+				name="feedback" type="tns:FeedBack">
+				<xs:annotation>
+					<xs:documentation>
+						Instance of a Feedback object in the list.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,31 @@
+<!--
+
+Response message returned by the SOAPUI mock service
+
+CIS test 3
+
+-->
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:met="http://www.iec.ch/TC57/2011/MeterServiceRequestsMessage" xmlns:mes="http://www.iec.ch/TC57/2011/schema/message" xmlns:met1="http://iec.ch/TC57/2011/MeterServiceRequests#">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <met:MeterServiceRequestsResponseMessage>
+          <met:Header>
+            <mes:Verb>create</mes:Verb>
+            <mes:Noun>MeterServiceRequests</mes:Noun>
+            <mes:Context>TESTING</mes:Context>
+            <mes:Timestamp>2011-06-17T09:30:47.0Z</mes:Timestamp>
+            <mes:Source>CIS-001</mes:Source>
+            <mes:AsyncReplyFlag>true</mes:AsyncReplyFlag>
+            <mes:ReplyAddress>NONE</mes:ReplyAddress>
+            <mes:AckRequired>false</mes:AckRequired>
+            <mes:MessageID>CIS-12345</mes:MessageID>
+            <mes:CorrelationID>String</mes:CorrelationID>
+            <mes:Comment>Remote Disconnect Request</mes:Comment>
+            <!--Zero or more repetitions:-->
+         </met:Header>
+         <met:Reply>
+            <mes:Result>OK</mes:Result>
+	 </met:Reply>
+      </met:MeterServiceRequestsResponseMessage>
+   </soapenv:Body>
+</soapenv:Envelope>

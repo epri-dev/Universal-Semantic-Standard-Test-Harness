@@ -1,0 +1,66 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:cxf="http://cxf.apache.org/core"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://cxf.apache.org/core
+	http://cxf.apache.org/schemas/core.xsd
+	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+	<bean id="mt_ami1Bean" class="com.sixthc.server.ws.SendEndDeviceEventsImpl" />
+
+	<!-- Epri role CIS, Vendor role MDM, Service sendEndDeviceEvents -->
+	<!-- MDMS 3 -->
+	<!-- MD_MDM_CIS-Create(EndDeviceControls) -->
+
+	<jaxws:endpoint id="mt_ami1Service" implementor="#mt_ami1Bean"
+		address="/tamper/ami/mdms/send">
+		<jaxws:inInterceptors>
+			<bean class="com.sixthc.interceptor.LoggingInInterceptor">
+				<property name="vendorRoleType" value="AMI" />
+				<property name="packageName" value="Meter Tamper" />
+				<property name="interfaceName" value="MT_AMI-MDM_Create(EndDeviceEvents)" />
+				<property name="resultCode" value="success" />
+				<property name="stage" value="serviceIn" />
+			</bean>
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<bean class="com.sixthc.interceptor.LoggingOutInterceptor">
+				<property name="vendorRoleType" value="AMI" />
+				<property name="packageName" value="Meter Tamper" />
+				<property name="interfaceName" value="MT_AMI-MDM_Create(EndDeviceEvents)" />
+				<property name="resultCode" value="success" />
+				<property name="stage" value="serviceOut" />
+			</bean>
+		</jaxws:outInterceptors>
+		<jaxws:outFaultInterceptors>
+			<bean class="com.sixthc.interceptor.LoggingOutInterceptor">
+				<property name="vendorRoleType" value="AMI" />
+				<property name="packageName" value="Meter Tamper" />
+				<property name="interfaceName" value="MT_AMI-MDM_Create(EndDeviceEvents)" />
+				<property name="resultCode" value="fail" />
+				<property name="stage" value="serviceOutFault" />
+			</bean>
+		</jaxws:outFaultInterceptors>
+		<jaxws:inFaultInterceptors>
+			<bean class="com.sixthc.interceptor.LoggingInInterceptor">
+				<property name="vendorRoleType" value="AMI" />
+				<property name="packageName" value="Meter Tamper" />
+				<property name="interfaceName" value="MT_AMI-MDM_Create(EndDeviceEvents)" />
+				<property name="resultCode" value="fail" />
+				<property name="stage" value="serviceInFault" />
+			</bean>
+		</jaxws:inFaultInterceptors>
+		<jaxws:properties>
+			<entry key="schema-validation-enabled" value="true" />
+			<entry key="jaxb-validation-event-handler">
+				<bean class="com.sixthc.interceptor.DetailValidationHandler" />
+			</entry>
+		</jaxws:properties>
+	</jaxws:endpoint>
+
+</beans>

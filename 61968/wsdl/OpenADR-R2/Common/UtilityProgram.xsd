@@ -1,0 +1,301 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns:ns0="urn:ProgramConstraint" xmlns:ns1="urn:EventInfo"
+	xmlns:ns2="urn:DRASClient" elementFormDefault="qualified"
+	targetNamespace="urn:UtilityProgram" version="0.9"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:import schemaLocation="wsdl/OpenADR-R2/Common/ProgramConstraint.xsd"
+		namespace="urn:ProgramConstraint" />
+	<xs:import schemaLocation="wsdl/OpenADR-R2/Common/EventInfo.xsd"
+		namespace="urn:EventInfo" />
+	<xs:import schemaLocation="wsdl/OpenADR-R2/Common/DRASClient.xsd"
+		namespace="urn:DRASClient" />
+	<xs:complexType name="UtilityProgram">
+		<xs:annotation>
+			<xs:documentation>
+				This represents all the information associated with a DR
+				program that is created by a Utility or ISO. Each
+				program has a set of attributes that describe how the
+				program is managed and run from the point of view of the
+				DRAS and Participants. The attributes include the
+				following type of information: • Time and date
+				attributes which specify when a DR event can be issued.
+				• Type of events that can be issued • List of
+				participants that participate in the program. •
+				Parameters that control how bidding is performed by a
+				Participant as part of the program
+
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" name="programConstraints"
+				type="ns0:ProgramConstraint">
+				<xs:annotation>
+					<xs:documentation>
+						This is an instance of a ProgramConstraint
+						entity which is a list of parameters that define
+						when DR events may occur.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="biddingConfiguration">
+				<xs:annotation>
+					<xs:documentation>
+						These parameters are associated with how bidding
+						is managed for the program. These parameters are
+						only necessary if bidding is associated with the
+						program. Note that some of these parameters
+						define what type of information may be included
+						with a bid. Also note that more than one type of
+						information may be included with a bid from a
+						Participant.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="submitImmediate"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:documentation>
+									If set to true then whenever a
+									Participant submits a new bid in
+									response to the request for bids
+									then the bid is immediately
+									submitted to the Utility. If this is
+									set to false then any new bids are
+									submitted with the rest of the
+									standing bids from other
+									Participants when the bidding
+									closes.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="submitTime"
+							type="xs:double">
+							<xs:annotation>
+								<xs:documentation>
+									This is a delta time in seconds that
+									defines how long before the closing
+									time of the bidding that any
+									outstanding bids should be sent to
+									the Utility from the DRAS.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="fixedPrice"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:documentation>
+									If true then the Participant does
+									not bid on price. If false then the
+									Participant may submit a bid based
+									upon price.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="fixedSchedule"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:documentation>
+									If true then the Participant does
+									not bid on the schedule and duration
+									of the shed they will perform. If
+									false then the Participant may submit
+									a bid based upon the schedule or
+									duration of the shed.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="fixedLoad"
+							type="xs:boolean">
+							<xs:annotation>
+								<xs:documentation>
+									If true then the Participant does
+									not bid on the amount of load to
+									shed. If false then the participant
+									may submit a bid based upon the
+									amount of load to shed.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="eventInfoTypes">
+				<xs:annotation>
+					<xs:documentation>
+						This is a List EventInfoType entities that
+						represent the type of event info that may be
+						associated with a program. This represents the
+						type of information that is sent in conjunction
+						with a DR Event when it is issued by the
+						Utility.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="unbounded"
+							name="eventInfoType" type="ns1:EventInfoType">
+							<xs:annotation>
+								<xs:documentation>
+									A single instance of an
+									EventInfoType that may be included
+									with a DR Event when it is issued.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element xmlns:q1="urn:UtilityProgram"
+				name="participants" type="q1:ParticipantList" />
+		</xs:sequence>
+		<xs:attribute name="name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					This is the identifier that is used by other
+					entities to refer to this program. It is specified
+					by the Utility/ISO when the program is defined.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="schemaVersion" type="xs:string"
+			use="required">
+			<xs:annotation>
+				<xs:documentation>
+					This is the version of the schema used to represent
+					this entity.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="priority" type="xs:integer" />
+	</xs:complexType>
+	<xs:complexType name="ProgramInfo">
+		<xs:annotation>
+			<xs:documentation>
+				This structure is used to specify information concerning
+				a program.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="programName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This is the name of a program and corresponds to
+						the name attribute in the UtilityProgram entity.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="programConstraints"
+				type="ns0:ProgramConstraint">
+				<xs:annotation>
+					<xs:documentation>
+						This is an instance of a ProgramConstraint
+						entity which is a list of parameters that define
+						when DR events may occur.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ParticipantList">
+		<xs:sequence>
+			<xs:element name="accounts">
+				<xs:annotation>
+					<xs:documentation>
+						List of references to ParticipantAccount
+						entities that may participate in this DR
+						program.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="unbounded"
+							name="participantID" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="groups">
+				<xs:annotation>
+					<xs:documentation>
+						List of references to Utility Groups that may
+						participate in this DR program.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="unbounded"
+							name="groupID" type="xs:string" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="locations">
+				<xs:annotation>
+					<xs:documentation>
+						List of locations that are members of the DR
+						program.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="location"
+							type="ns2:Location">
+							<xs:annotation>
+								<xs:documentation>
+									An instance of a location
+									specification.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ListOfProgramNames">
+		<xs:annotation>
+			<xs:documentation>
+				This is a list of program identifiers.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded"
+				name="programID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This is an instance of a program identifier.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ListOfPrograms">
+		<xs:annotation>
+			<xs:documentation>
+				List of UtilityProgram objects.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element xmlns:q1="urn:UtilityProgram" minOccurs="0"
+				maxOccurs="unbounded" name="program" type="q1:UtilityProgram">
+				<xs:annotation>
+					<xs:documentation>
+						This is an instance of a UtilityProgram in the
+						list of UtilityPograms.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ListOfIDs">
+		<xs:annotation>
+			<xs:documentation>
+				Generic list of identifiers.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded"
+				name="identifier" type="xs:string" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

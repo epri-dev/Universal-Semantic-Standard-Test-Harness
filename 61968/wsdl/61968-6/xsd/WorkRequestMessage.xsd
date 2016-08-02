@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns="http://www.iec.ch/TC57/2010/WorkRequestMessage" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msg="http://www.iec.ch/TC57/2010/schema/message" xmlns:obj="http://iec.ch/TC57/2010/WorkRequest#" targetNamespace="http://www.iec.ch/TC57/2010/WorkRequestMessage" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.0">
+	<!-- Base Message Definitions -->
+	<xs:import namespace="http://www.iec.ch/TC57/2010/schema/message" schemaLocation="Message.xsd"/>
+	<!-- CIM Information Object Definition -->
+	<xs:import namespace="http://iec.ch/TC57/2010/WorkRequest#" schemaLocation="WorkRequest.xsd"/>
+	<!-- PayloadType Definition -->
+	<xs:complexType name="WorkRequestPayloadType">
+		<xs:sequence>
+			<xs:element ref="obj:WorkRequest"/>
+			<xs:element name="OperationSet" type="msg:OperationSet" minOccurs="0"/>
+			<xs:element name="Compressed" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>For compressed and/or binary, uuencoded payloads</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Format" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Hint as to format of payload, e.g. XML, RDF, SVF, BINARY, PDF, ...</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- Message Types -->
+	<!-- RequestMessageType -->
+	<xs:complexType name="WorkRequestRequestMessageType">
+		<xs:sequence>
+			<xs:element name="Header" type="msg:HeaderType"/>
+			<xs:element name="Request" type="msg:RequestType" minOccurs="0"/>
+			<xs:element name="Payload" type="WorkRequestPayloadType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ResponseMessageType -->
+	<xs:complexType name="WorkRequestResponseMessageType">
+		<xs:sequence>
+			<xs:element name="Header" type="msg:HeaderType"/>
+			<xs:element name="Reply" type="msg:ReplyType"/>
+			<xs:element name="Payload" type="WorkRequestPayloadType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- EventMessageType -->
+	<xs:complexType name="WorkRequestEventMessageType">
+		<xs:sequence>
+			<xs:element name="Header" type="msg:HeaderType"/>
+			<xs:element name="Payload" type="WorkRequestPayloadType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!-- FaultMessageType -->
+	<xs:complexType name="WorkRequestFaultMessageType">
+		<xs:sequence>
+			<xs:element name="Reply" type="msg:ReplyType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="CreateWorkRequest" type="WorkRequestRequestMessageType"/>
+	<xs:element name="ChangeWorkRequest" type="WorkRequestRequestMessageType"/>
+	<xs:element name="CancelWorkRequest" type="WorkRequestRequestMessageType"/>
+	<xs:element name="CloseWorkRequest" type="WorkRequestRequestMessageType"/>
+	<xs:element name="DeleteWorkRequest" type="WorkRequestRequestMessageType"/>
+	<xs:element name="CreatedWorkRequest" type="WorkRequestEventMessageType"/>
+	<xs:element name="ChangedWorkRequest" type="WorkRequestEventMessageType"/>
+	<xs:element name="CanceledWorkRequest" type="WorkRequestEventMessageType"/>
+	<xs:element name="ClosedWorkRequest" type="WorkRequestEventMessageType"/>
+	<xs:element name="DeletedWorkRequest" type="WorkRequestEventMessageType"/>
+	<xs:element name="WorkRequestResponseMessage" type="WorkRequestResponseMessageType"/>
+	<xs:element name="WorkRequestFaultMessage" type="WorkRequestFaultMessageType"/>
+</xs:schema>

@@ -1,0 +1,57 @@
+Bug List :
+
+Currently when you go to localhost:####/epriConnect and click on the dispatch service to see the wsdl, it brings you
+to the wrong page. It leaves out the 'epriConnect'. The wsdl is present at localhost:####/epriConnect/dispatchService?wsdl, there is
+just some minor config error.
+
+
+Notes for demo on Thursday
+
+A. Show what happens when you send a bad disconnect message to the server.
+
+How to :
+
+1. Open $PROJECT/soapui/Disconnect-soapui-project.xml
+2. Repoint it to the project on the ec2 server (note, double-click on DisconnectSOAP) and change endpoint (Remember our ip changes every time we reboot)
+3. Start tomcat, start mysql
+4. Run DisconnectSOAP TestSuite -> CreateMeterServiceRequests TestCase -> Test Steps -> FailMeterRequest
+
+It should come back with a line number, indicating that there is a '?' in a date format.
+Please note, this method of finding errors is not full proof. Certain errors are caught and return a null and can't
+be traced.
+
+I suggest that we tell John we will create a SOAP UI mock service for people to do pure validation on their soap messages,
+as it is better than JAXB at just complaining about bad fields and such.
+
+B. Send a single disconnect message with two meters in it.
+
+How to :
+
+1. Open $PROJECT/soapui/Disconnect-soapui-project.xml
+2. Repoint it to the project on the ec2 server (note, double-click on DisconnectSOAP) and change endpoint (Remember our ip changes every time we reboot)
+3. Start tomcat, start mysql
+4. Run DisconnectSOAP TestSuite -> CreateMeterServiceRequests TestCase -> Test Steps -> MeterRequest
+5. Execute mysql -> select * from request. You will see two rows with meter disconnect messages and the meter number
+
+C. Send a request to the soap server, asking it to send two tamper requests to another server
+
+How to :
+
+1. Open $PROJECT/soapui/Disconnect-soapui-project.xml
+2. Repoint it to the project on the ec2 server (note, double-click on DisconnectSOAP) and change endpoint (Remember our ip changes every time we reboot)
+3. Start tomcat, start mysql
+4. Find the EndDeviceEventsSOAP MockService within the epri soapui project and start it. Note, it should start up on localhost:8090
+5. run Dispatch Tamper Suite -> Tamper TestCase -> Test Steps -> Tamper test case
+6. Note that the mock service now shows that it received and responded to two createEndDevice events (tampers)
+7. Execute mysql -> select * from request. You will see two rows with the tamper requests recorded within
+
+D. Proxying a SOAP Service
+
+1. Open $PROJECT/soapui/Disconnect-soapui-project.xml
+2. Repoint it to the project on the ec2 server (note, double-click on DisconnectSOAP) and change endpoint (Remember our ip changes every time we reboot)
+3. Find the EndDeviceEventsSOAP MockService within the epri soapui project and start it. Note, it should start up on localhost:8090
+4. Find EndDeviceEventsSOAP TestSuite -> CreatedEndDeviceEvents TestCase -> Test Steps -> CreatedEndDeviceEvents and change its endpoint to
+   http://localhost:8085/proxy and run it.
+   
+The following occurs. The route service running on port 8085 proxies the message to the mock service running on 8090, which replies
+to the client that the request was received. 

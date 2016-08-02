@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+	<!-- Hibernate session factory -->
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
+				<prop key="hibernate.show_sql">true</prop>
+				<!-- <prop key="hibernate.hbm2ddl.auto">create</prop> -->
+			</props>
+		</property>
+
+		<property name="annotatedClasses">
+			<list>
+				<value>com.sixthc.model.EpriLog</value>
+				<value>com.sixthc.model.Iface</value>
+				<value>com.sixthc.model.Pkg</value>
+				<value>com.sixthc.model.VendorRole</value>
+				<value>com.sixthc.model.VendorRoleType</value>
+			</list>
+		</property>
+	</bean>
+
+	<!-- These beans set up an autowired session for the request dao. They require 
+		the following files: RequestDao.java, RequestDaoImpl.java, CustomHibernateDaoSupport.java. 
+		To create new DAO objects, just clone the RequestDao[Impl].java files and 
+		repeat the beans below. See DisconnectImpl.java for an example on how to 
+		use the autowired feature of hibernate/spring -->
+	<context:annotation-config />
+	<bean id="hibernateInterceptor" class="org.springframework.orm.hibernate3.HibernateInterceptor"
+		autowire="byName" />
+
+
+	<!-- epriLog DAO beans -->
+	<bean id="epriLogDaoTarget" class="com.sixthc.dao.impl.EpriLogDaoImpl"
+		autowire="byName" />
+	<bean id="epriLogDao" class="org.springframework.aop.framework.ProxyFactoryBean"
+		autowire="byName">
+		<property name="proxyInterfaces">
+			<value>com.sixthc.dao.EpriLogDao</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>hibernateInterceptor</value>
+				<value>epriLogDaoTarget</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="ifaceDaoTarget" class="com.sixthc.dao.impl.IfaceDaoImpl"
+		autowire="byName" />
+	<bean id="ifaceDao" class="org.springframework.aop.framework.ProxyFactoryBean"
+		autowire="byName">
+		<property name="proxyInterfaces">
+			<value>com.sixthc.dao.IfaceDao</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>hibernateInterceptor</value>
+				<value>ifaceDaoTarget</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="pkgDaoTarget" class="com.sixthc.dao.impl.PkgDaoImpl"
+		autowire="byName" />
+	<bean id="pkgDao" class="org.springframework.aop.framework.ProxyFactoryBean"
+		autowire="byName">
+		<property name="proxyInterfaces">
+			<value>com.sixthc.dao.PkgDao</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>hibernateInterceptor</value>
+				<value>pkgDaoTarget</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="vendorRoleDaoTarget" class="com.sixthc.dao.impl.VendorRoleDaoImpl"
+		autowire="byName" />
+	<bean id="vendorRoleDao" class="org.springframework.aop.framework.ProxyFactoryBean"
+		autowire="byName">
+		<property name="proxyInterfaces">
+			<value>com.sixthc.dao.VendorRoleDao</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>hibernateInterceptor</value>
+				<value>vendorRoleDaoTarget</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="vendorRoleTypeDaoTarget" class="com.sixthc.dao.impl.VendorRoleTypeDaoImpl"
+		autowire="byName" />
+	<bean id="vendorRoleTypeDao" class="org.springframework.aop.framework.ProxyFactoryBean"
+		autowire="byName">
+		<property name="proxyInterfaces">
+			<value>com.sixthc.dao.VendorRoleTypeDao</value>
+		</property>
+		<property name="interceptorNames">
+			<list>
+				<value>hibernateInterceptor</value>
+				<value>vendorRoleTypeDaoTarget</value>
+			</list>
+		</property>
+	</bean>
+
+</beans>

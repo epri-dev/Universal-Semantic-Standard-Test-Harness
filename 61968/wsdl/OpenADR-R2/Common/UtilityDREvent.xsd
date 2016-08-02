@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns:ns0="urn:EventInfo" xmlns:ns1="urn:DRASClient"
+	xmlns="urn:UtilityDREvent" elementFormDefault="qualified"
+	targetNamespace="urn:UtilityDREvent" version="0.9"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:import schemaLocation="wsdl/OpenADR-R2/Common/EventInfo.xsd"
+		namespace="urn:EventInfo" />
+	<xs:import schemaLocation="wsdl/OpenADR-R2/Common/DRASClient.xsd"
+		namespace="urn:DRASClient" />
+	<xs:complexType name="UtilityDREvent">
+		<xs:annotation>
+			<xs:documentation>
+				This is the information associated with a DR Event that
+				has been issued by a Utility/ISO.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="destinations">
+				<xs:annotation>
+					<xs:documentation>
+						These elements are used to specify who is to
+						receive the DR Event.
+
+						(1) BY explicitely specifying the Participant
+						Accounts (2) By specifying groups which contain
+						Participant Accounts (3) By specifying the DRAS
+						Clients that are to recieve the event. (4) By
+						specifying locations which will be resolved to
+						specific DRAS Clients at those locations.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" name="participants">
+							<xs:annotation>
+								<xs:documentation>
+									List of references to
+									ParticipantAccount entities that are
+									to receive the DR Event.
+								</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element maxOccurs="unbounded"
+										name="participantID" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>
+												A reference to a
+												specific
+												ParticipantAccount. It
+												correpsonds to the
+												accoutID attribute of
+												the ParticipantAccount.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element minOccurs="0" name="groups">
+							<xs:annotation>
+								<xs:documentation>
+									List of Utility Groups that specify
+									which ParticipantAccount entities
+									are to receive the DR Event.
+								</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element maxOccurs="unbounded"
+										name="groupID" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>
+												A reference of a
+												specific Utility Group.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element minOccurs="0" name="locations">
+							<xs:annotation>
+								<xs:documentation>
+									A list of locations that can be used
+									to describe which DRAS Clients
+									should receive to receive the DR
+									Event.
+
+								</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="location"
+										type="ns1:Location">
+										<xs:annotation>
+											<xs:documentation>
+												An instance of a
+												location.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element minOccurs="0" name="drasClients">
+							<xs:annotation>
+								<xs:documentation>
+									List of identifiers that specify
+									which DRAS Clients are to receive
+									the DR Event.
+								</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="drasClientID"
+										type="xs:string">
+										<xs:annotation>
+											<xs:documentation>
+												An instance of a DRAS
+												Client identifier.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="eventTiming">
+				<xs:annotation>
+					<xs:documentation>
+						These are the date/time parameters for the DR
+						Event.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="notificationTime"
+							type="xs:dateTime">
+							<xs:annotation>
+								<xs:documentation>
+									This is the date/time at which the
+									Participants should be notified of
+									the DR event.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="startTime"
+							type="xs:dateTime">
+							<xs:annotation>
+								<xs:documentation>
+									This is the date/time that the DR
+									event becomes active.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="endTime" type="xs:dateTime">
+							<xs:annotation>
+								<xs:documentation>
+									This is the date/time that the DR
+									event ends.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="biddingInformation">
+				<xs:annotation>
+					<xs:documentation>
+						If a program supports bidding by the
+						Participants this information is used to control
+						that process.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="openingTime"
+							type="xs:dateTime">
+							<xs:annotation>
+								<xs:documentation>
+									This is the date/time at which the
+									Participants may start placing bids.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="closingTime"
+							type="xs:dateTime">
+							<xs:annotation>
+								<xs:documentation>
+									This is the time at which the
+									bidding will close and is the
+									deadline for which the Utility may
+									receive the bids from the DRAS.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="eventInformation">
+				<xs:annotation>
+					<xs:documentation>
+						This is the information associated with the DR
+						event. It is a list of EventInfoInstances
+						wherein the corresponding EventInfoType were
+						defined when the DR Program was first
+						configured.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded"
+							name="eventInfoInstance" type="ns0:EventInfoInstance">
+							<xs:annotation>
+								<xs:documentation>
+									This is an instance of an
+									EventInfoInstance.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="eventIdentifier" type="xs:string"
+			use="required">
+			<xs:annotation>
+				<xs:documentation>
+					This is a globally unique id that is specified by
+					the Utility/ISO when the DR event is issued. It is
+					subsequently used to associated and retrieve
+					information related to the DR event.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="schemaVersion" type="xs:string"
+			use="required">
+			<xs:annotation>
+				<xs:documentation>
+					This is the version number for the Evebt State
+					schema itself.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="eventModNumber" type="xs:unsignedInt"
+			use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Modification number of the DR event. Used to
+					indicate if the DR Event has been modified by the
+					Utility. Each time it is modified this number is
+					incremented.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="programName" type="xs:string"
+			use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Identifier of the program this DR event was issued
+					for. It corresponds to the name attribute of the
+					Program.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="utilityITName" type="xs:string"
+			use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					This optional field is the name and/or version of
+					the IT system that initiated the DR Event. It may be
+					used by the DRAS to confirm that it is compatible
+					with the Utilties IT system.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ListOfUtilityDREvents">
+		<xs:annotation>
+			<xs:documentation>
+				This is simply a list of Utility DR events.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded"
+				name="DREvent" type="UtilityDREvent">
+				<xs:annotation>
+					<xs:documentation>
+						An instance of a UtiityDREvent in the list.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ListOfEventIDs">
+		<xs:annotation>
+			<xs:documentation>List of DR Event ID's</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded"
+				name="eventID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						Instance of a DR Event ID.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

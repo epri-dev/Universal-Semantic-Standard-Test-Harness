@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<artifactId>epri</artifactId>
+		<groupId>com.sixthc</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<groupId>com.sixthc</groupId>
+	<artifactId>restConnect</artifactId>
+	<version>1.0-SNAPSHOT</version>
+	<packaging>war</packaging>
+	<name>restConnect</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+
+	<build>
+		<finalName>restConnect</finalName>
+		<!-- Feel free to change maven-compiler-plugin configuration -->
+		<plugins>
+			<!-- <plugin> <groupId>org.jvnet.jaxb2.maven2</groupId> <artifactId>maven-jaxb2-plugin</artifactId> 
+				<executions> <execution> <goals> <goal>generate</goal> </goals> </execution> 
+				</executions> </plugin> -->
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>2.3.2</version>
+				<configuration>
+					<source>1.6</source>
+					<target>1.6</target>
+				</configuration>
+			</plugin>
+			<!-- Do not run generate-sources. If you do it will hose the EventState.java 
+				class which needs the @XmlRootElement annotation before its class name. I 
+				used this plugin to generate eventState.java from the Wrapper.wsdl (which 
+				I created by hand) for to output xml output. -->
+			<!-- <plugin> <groupId>org.apache.maven.plugins</groupId> <artifactId>maven-surefire-plugin</artifactId> 
+				<version>2.4.3</version> <configuration> <includes> <include>**/Test*.java</include> 
+				</includes> </configuration> </plugin> -->
+			<plugin>
+				<groupId>org.apache.cxf</groupId>
+				<artifactId>cxf-codegen-plugin</artifactId>
+				<version>${cxf.version}</version>
+				<executions>
+					<execution>
+						<id>generate-sources</id>
+						<phase>generate-sources</phase>
+						<configuration>
+							<wsdlOptions>
+								<wsdlOption>
+									<wsdl>${basedir}/wsdl/Wrapper.wsdl</wsdl>
+									<extraargs>
+										<extraarg>-client</extraarg>
+									</extraargs>
+								</wsdlOption>
+							</wsdlOptions>
+						</configuration>
+						<goals>
+							<goal>wsdl2java</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>tomcat-maven-plugin</artifactId>
+				<version>1.0-beta-1</version>
+				<configuration>
+					<port>9998</port>
+					<path>/cxf</path>
+					<warFile>${project.basedir}/target/${project.build.finalName}.war</warFile>
+				</configuration>
+			</plugin>
+
+		</plugins>
+	</build>
+
+	<!-- restConnect uses rs jars from cxf -->
+	<dependencies>
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.httpcomponents</groupId>
+			<artifactId>httpclient</artifactId>
+			<version>4.1.2</version>
+			<scope>compile</scope>
+		</dependency>
+ 
+ 		<!-- Common DAO and logging classes -->
+		<dependency>
+			<groupId>com.sixthc</groupId>
+			<artifactId>common</artifactId>
+			<version>0.1</version>
+		</dependency>
+
+	</dependencies>
+</project>

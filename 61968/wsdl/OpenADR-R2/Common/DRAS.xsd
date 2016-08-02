@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns:ns0="urn:Bid" xmlns:ns1="urn:DRASClient" xmlns:ns9="urn:UtilityDREvent" xmlns:ns8="urn:ResponseSchedule" xmlns:ns10="urn:UtilityProgram" xmlns:ns7="urn:ProgramConstraint" xmlns:ns2="urn:EventInfo" xmlns:ns5="urn:OptOutState" xmlns:ns4="urn:Logs" xmlns:ns3="urn:Feedback" xmlns:ns6="urn:ParticipantAccount" elementFormDefault="qualified" targetNamespace="urn:DRAS" version="0.9" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="wsdl/OpenADR-R2/Common/Bid.xsd" namespace="urn:Bid" />
+  <xs:import schemaLocation="wsdl/OpenADR-R2/Common/DRASClient.xsd" namespace="urn:DRASClient" />
+  <xs:import schemaLocation="wsdl/OpenADR-R2/Common/EventInfo.xsd" namespace="urn:EventInfo" />
+  <xs:import schemaLocation="wsdl/OpenADR-R2/Common/FeedBack.xsd" namespace="urn:Feedback" />
+  <xs:import schemaLocation="wsdl/OpenADR-R2/Common/Logs.xsd" namespace="urn:Logs" />
+  <xs:import schemaLocation="wsdl/OpenADR-R2/Common/OptOutState.xsd" namespace="urn:OptOutState" />
+  <xs:import schemaLocation="wsdl/OpenADR-R2/Common/ParticipantAccount.xsd" namespace="urn:ParticipantAccount" />
+  <xs:import schemaLocation="wsdl/OpenADR-R2/Common/ProgramConstraint.xsd" namespace="urn:ProgramConstraint" />
+  <xs:import schemaLocation="wsdl/OpenADR-R2/Common/ResponseSchedule.xsd" namespace="urn:ResponseSchedule" />
+  <xs:import schemaLocation="wsdl/OpenADR-R2/Common/UtilityDREvent.xsd" namespace="urn:UtilityDREvent" />
+  <xs:import schemaLocation="wsdl/OpenADR-R2/Common/UtilityProgram.xsd" namespace="urn:UtilityProgram">
+    <xs:annotation>
+      <xs:documentation>This is the data entity that defines a DR program.</xs:documentation>
+    </xs:annotation>
+  </xs:import>
+</xs:schema>

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.example.org/UtilityInterface/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="UtilityInterface" targetNamespace="http://www.example.org/UtilityInterface/" xmlns:xsd1="urn:Bid">
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+            <xsd:import namespace="urn:Bid" schemaLocation="wsdl/OpenADR-R2/Common/Bid.xsd"></xsd:import></xsd:schema></wsdl:types>
+    <wsdl:message name="SubmitBidsRequest">
+<wsdl:part name="bids" type="xsd1:ListOfBids">
+    <wsdl:documentation>This is a list of Participant bids.
+
+</wsdl:documentation></wsdl:part>
+</wsdl:message>
+<wsdl:message name="SubmitBidsResponse">
+<wsdl:part name="returnValue" type="xsd:string">
+    <wsdl:documentation>
+                This is a string used to signify SUCCESS or FAILURE. If
+                the string value is SUCCESS then the operation was
+                successful. If the value is not SUCCESS then this
+                signifies FAILURE and there may be additional free form
+                text which can be used to further elaborate on the
+                nature of the error.
+
+     
+</wsdl:documentation></wsdl:part>
+</wsdl:message>
+<wsdl:portType name="UtilityInterface">
+<wsdl:operation name="SubmitBids">
+    <wsdl:documentation>This method is implemented on the Utility IT system and is used by the DRAS to submit Participant bids in
+in the model where the Bid information is pushed from the DRAS to the Utility IT system.
+
+</wsdl:documentation>
+    <wsdl:input message="tns:SubmitBidsRequest"/>
+<wsdl:output message="tns:SubmitBidsResponse"/>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="UtilityInterfaceSOAP" type="tns:UtilityInterface">
+<soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="SubmitBids">
+<soap:operation soapAction="http://www.example.org/UtilityInterface/NewOperation"/>
+<wsdl:input>
+<soap:body namespace="http://www.example.org/UtilityInterface/" use="literal"/>
+</wsdl:input>
+<wsdl:output>
+<soap:body namespace="http://www.example.org/UtilityInterface/" use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="UtilityInterface">
+<wsdl:port binding="tns:UtilityInterfaceSOAP" name="UtilityInterfaceSOAP">
+<soap:address location="http://www.example.org/"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

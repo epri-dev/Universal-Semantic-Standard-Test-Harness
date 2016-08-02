@@ -1,0 +1,112 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:cxf="http://cxf.apache.org/core"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://cxf.apache.org/core
+	http://cxf.apache.org/schemas/core.xsd
+	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+	<bean id="requestLoadMgmtBean" class="com.sixthc.server.ws.LmServerImpl">
+		<property name="client">
+			<bean class="com.sixthc.client.RequestLMClient">
+				<property name="loggingInInterceptor">
+					<bean class="com.sixthc.interceptor.LoggingInInterceptor">
+						<property name="interfaceName"
+							value="MD_AMI-MDM_Request_Create(EndDeviceControls)" />
+						<property name="packageName" value="Meter Connect" />
+						<property name="vendorRoleType" value="AMI" />
+						<property name="resultCode" value="success" />
+						<property name="stage" value="clientIn" />
+					</bean>
+				</property>
+				<property name="loggingInFaultInterceptor">
+					<bean class="com.sixthc.interceptor.LoggingInInterceptor">
+						<property name="interfaceName"
+							value="MD_AMI-MDM_Request_Create(EndDeviceControls)" />
+						<property name="packageName" value="Meter Connect" />
+						<property name="vendorRoleType" value="AMI" />
+						<property name="resultCode" value="fail" />
+						<property name="stage" value="clientInFault" />
+
+					</bean>
+				</property>
+				<property name="loggingOutInterceptor">
+					<bean class="com.sixthc.interceptor.LoggingOutInterceptor">
+						<property name="interfaceName"
+							value="MD_AMI-MDM_Request_Create(EndDeviceControls)" />
+						<property name="packageName" value="Meter Connect" />
+						<property name="vendorRoleType" value="AMI" />
+						<property name="resultCode" value="success" />
+						<property name="stage" value="clientOut" />
+
+					</bean>
+				</property>
+				<property name="loggingOutFaultInterceptor">
+					<bean class="com.sixthc.interceptor.LoggingOutInterceptor">
+						<property name="interfaceName"
+							value="MD_AMI-MDM_Request_Create(EndDeviceControls)" />
+						<property name="packageName" value="Meter Connect" />
+						<property name="vendorRoleType" value="AMI" />
+						<property name="resultCode" value="fail" />
+						<property name="stage" value="clientOutFault" />
+
+					</bean>
+				</property>
+			</bean>
+		</property>
+	</bean>
+
+	<!-- Epri role MDM, Vendor role AMI, Service Reply EndDeviceControls -->
+	<!-- AMI 2 -->
+	<!-- MD_MDM_CIS-Create(MeterServiceRequest) -->
+	<jaxws:endpoint id="RequestLoadMgmtService" implementor="#requestLoadMgmtBean"
+		address="/mgmt/loadMgmtRequest">
+		<jaxws:inInterceptors>
+			<bean class="com.sixthc.interceptor.LoggingInInterceptor">
+				<property name="vendorRoleType" value="LM" />
+				<property name="packageName" value="Load Mgmt" />
+				<property name="interfaceName" value="LM(Initiate)" />
+				<property name="resultCode" value="success" />
+				<property name="stage" value="serviceIn" />
+			</bean>
+		</jaxws:inInterceptors>
+		<jaxws:outInterceptors>
+			<bean class="com.sixthc.interceptor.LoggingOutInterceptor">
+				<property name="vendorRoleType" value="LM" />
+				<property name="packageName" value="Load Mgmt" />
+				<property name="interfaceName" value="LM(Initiate)" />
+				<property name="resultCode" value="success" />
+				<property name="stage" value="serviceOut" />
+			</bean>
+		</jaxws:outInterceptors>
+		<jaxws:outFaultInterceptors>
+			<bean class="com.sixthc.interceptor.LoggingOutInterceptor">
+				<property name="vendorRoleType" value="LM" />
+				<property name="packageName" value="Load Mgmt" />
+				<property name="interfaceName" value="LM(Initiate)" />
+				<property name="resultCode" value="fail" />
+				<property name="stage" value="serviceOutFault" />
+			</bean>
+		</jaxws:outFaultInterceptors>
+		<jaxws:inFaultInterceptors>
+			<bean class="com.sixthc.interceptor.LoggingInInterceptor">
+				<property name="vendorRoleType" value="LM" />
+				<property name="packageName" value="Load Mgmt" />
+				<property name="interfaceName" value="LM(Initiate)" />
+				<property name="resultCode" value="fail" />
+				<property name="stage" value="serviceInFault" />
+			</bean>
+		</jaxws:inFaultInterceptors>
+		<jaxws:properties>
+			<entry key="schema-validation-enabled" value="true" />
+			<entry key="jaxb-validation-event-handler">
+				<bean class="com.sixthc.interceptor.DetailValidationHandler" />
+			</entry>
+		</jaxws:properties>
+	</jaxws:endpoint>
+</beans>

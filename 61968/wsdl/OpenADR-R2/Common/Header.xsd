@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited by Gerald Gray (Guiding Principle Consulting) to create OpenADR version -->
+<xs:schema xmlns="http://osgug.ucaiug.org/2010/06/schema/header" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://osgug.ucaiug.org/2010/06/schema/header" elementFormDefault="qualified" attributeFormDefault="unqualified" version="3.0">
+	<xs:element name="MessageHeader" type="MessageHeaderType"/>
+	<xs:complexType name="MessageHeaderType">
+		<xs:sequence>
+			<xs:element name="ID" type="xs:string" minOccurs="0"/>
+			<xs:element name="referenceID" type="xs:string" minOccurs="0"/>
+			<xs:element name="application" type="xs:string" minOccurs="0"/>
+			<xs:element name="creationDateTime" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="noun" type="xs:string" minOccurs="0"/>
+			<xs:element name="receiver" type="xs:string" minOccurs="0"/>
+			<xs:element name="reconciliationIndicator" type="xs:string" minOccurs="0"/>
+			<xs:element name="revision" type="xs:string" minOccurs="0"/>
+			<xs:element name="sender" type="xs:string" minOccurs="0"/>
+			<xs:element name="testDataIndicator" type="xs:string" minOccurs="0"/>
+			<xs:element name="timeDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="verb" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

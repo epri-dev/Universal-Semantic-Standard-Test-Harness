@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+		name="GetEndDeviceControls" 
+        targetNamespace="http://iec.ch/TC57/2011/EndDeviceControls" 
+        xmlns:tns="http://iec.ch/TC57/2011/EndDeviceControls" 
+        xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+        xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+        xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+        xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" 
+        xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+        xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" 
+        xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+        xmlns:infoMessage="http://www.iec.ch/TC57/2011/EndDeviceControlsMessage">
+		
+		<wsdl:types>
+			
+			<xs:schema targetNamespace="http://www.iec.ch/TC57/2011/EndDeviceControlsMessage"
+							   elementFormDefault="qualified">
+				
+                <xs:include schemaLocation="xsd/EndDeviceControlsMessage.xsd"/>
+				
+			</xs:schema>
+			
+		</wsdl:types>
+		
+		<!-- Message Definitions -->
+		<wsdl:message name="GetEndDeviceControlsRequestMessage">
+			<wsdl:part name="GetEndDeviceControlsRequestMessage" element="infoMessage:EndDeviceControlsRequestMessage"/>
+		</wsdl:message>
+		
+		<wsdl:message name="ResponseMessage">
+			<wsdl:part name="ResponseMessage" element="infoMessage:EndDeviceControlsResponseMessage"/>
+		</wsdl:message>
+		
+		<wsdl:message name="FaultMessage">
+			<wsdl:part name="FaultMessage" element="infoMessage:EndDeviceControlsFaultMessage"/>
+		</wsdl:message>
+		
+		<!-- Port Definitions -->
+		<wsdl:portType name="GetEndDeviceControls_Port">
+			
+			<wsdl:operation name="GetEndDeviceControls">
+				<wsdl:input name="GetEndDeviceControlsRequest" message="tns:GetEndDeviceControlsRequestMessage"/>
+				<wsdl:output name="GetEndDeviceControlsResponse" message="tns:ResponseMessage"/>
+				<wsdl:fault name="GetEndDeviceControlsFault" message="tns:FaultMessage"/>
+			</wsdl:operation>
+			
+		</wsdl:portType>
+		
+		<wsdl:binding name="GetEndDeviceControls_Binding" type="tns:GetEndDeviceControls_Port">
+		
+			<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+			
+			<wsdl:operation name="GetEndDeviceControls">
+				<soap:operation soapAction="http://iec.ch/TC57/2011/GetEndDeviceControls/GetEndDeviceControls" style="document"/>
+				<wsdl:input name="GetEndDeviceControlsRequest">
+					<soap:body use="literal"/>
+				</wsdl:input>
+				<wsdl:output name="GetEndDeviceControlsResponse">
+					<soap:body use="literal"/>
+				</wsdl:output>
+				<wsdl:fault name="GetEndDeviceControlsFault">
+					<soap:fault name="GetEndDeviceControlsFault" use="literal"/>
+				</wsdl:fault>
+			</wsdl:operation>
+		</wsdl:binding>
+		
+		<wsdl:service name="GetEndDeviceControls">
+			<wsdl:port name="GetEndDeviceControls_Port" binding="tns:GetEndDeviceControls_Binding">
+				<soap:address location="http://iec.ch/TC57/2011/GetEndDeviceControls"/>
+			</wsdl:port>
+		</wsdl:service>
+	
+</wsdl:definitions>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema
+	targetNamespace="http://www.iec.ch/TC57/2011/EndDeviceControlsMessage"
+	xmlns:tns="http://www.iec.ch/TC57/2011/EndDeviceControlsMessage"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:msg="http://www.iec.ch/TC57/2011/schema/message"
+	xmlns:obj="http://iec.ch/TC57/2011/EndDeviceControls#"
+	elementFormDefault="qualified" attributeFormDefault="unqualified"
+	version="1.0.0">
+
+	<!-- Base Message Definitions -->
+	<xs:import namespace="http://www.iec.ch/TC57/2011/schema/message"
+		schemaLocation="Message.xsd" />
+	<!-- CIM Information Object Definition -->
+	<xs:import namespace="http://iec.ch/TC57/2011/EndDeviceControls#"
+		schemaLocation="EndDeviceControls.xsd" />
+
+	<!-- PayloadType Definition -->
+	<xs:complexType name="EndDeviceControlsPayloadType">
+		<xs:sequence>
+			<xs:element ref="obj:EndDeviceControls" />
+			<xs:element name="OperationSet" type="msg:OperationSet"
+				minOccurs="0" />
+			<xs:element name="Compressed" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>For compressed and/or binary, uuencoded payloads
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Format" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Hint as to format of payload, e.g. XML, RDF, SVF,
+						BINARY, PDF, ...</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<!-- Message Types -->
+	<!-- RequestMessageType -->
+	<xs:complexType name="EndDeviceControlsRequestMessageType">
+		<xs:sequence>
+			<xs:element name="Header" type="msg:HeaderType" />
+			<xs:element name="Request" type="msg:RequestType"
+				minOccurs="0" />
+			<xs:element name="Payload" type="tns:EndDeviceControlsPayloadType"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<!-- ResponseMessageType -->
+	<xs:complexType name="EndDeviceControlsResponseMessageType">
+		<xs:sequence>
+			<xs:element name="Header" type="msg:HeaderType" />
+			<xs:element name="Reply" type="msg:ReplyType" />
+			<xs:element name="Payload" type="tns:EndDeviceControlsPayloadType"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<!-- EventMessageType -->
+	<xs:complexType name="EndDeviceControlsEventMessageType">
+		<xs:sequence>
+			<xs:element name="Header" type="msg:HeaderType" />
+			<xs:element name="Payload" type="tns:EndDeviceControlsPayloadType"
+				minOccurs="0" />
+		</xs:sequence>
+	</xs:complexType>
+	<!-- FaultMessageType -->
+	<xs:complexType name="EndDeviceControlsFaultMessageType">
+		<xs:sequence>
+			<xs:element name="Reply" type="msg:ReplyType" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="CreateEndDeviceControls" type="tns:EndDeviceControlsRequestMessageType" />
+	<xs:element name="ChangeEndDeviceControls" type="tns:EndDeviceControlsRequestMessageType" />
+	<xs:element name="CancelEndDeviceControls" type="tns:EndDeviceControlsRequestMessageType" />
+	<xs:element name="CloseEndDeviceControls" type="tns:EndDeviceControlsRequestMessageType" />
+	<xs:element name="DeleteEndDeviceControls" type="tns:EndDeviceControlsRequestMessageType" />
+	<xs:element name="CreatedEndDeviceControls" type="tns:EndDeviceControlsEventMessageType" />
+	<xs:element name="ChangedEndDeviceControls" type="tns:EndDeviceControlsEventMessageType" />
+	<xs:element name="CanceledEndDeviceControls" type="tns:EndDeviceControlsEventMessageType" />
+	<xs:element name="ClosedEndDeviceControls" type="tns:EndDeviceControlsEventMessageType" />
+	<xs:element name="DeletedEndDeviceControls" type="tns:EndDeviceControlsEventMessageType" />
+	<xs:element name="EndDeviceControlsResponseMessage" type="tns:EndDeviceControlsResponseMessageType" />
+	<xs:element name="EndDeviceControlsFaultMessage" type="tns:EndDeviceControlsFaultMessageType" />
+	<xs:element name="EndDeviceControlsRequestMessage" type="tns:EndDeviceControlsRequestMessageType" />
+
+
+</xs:schema>

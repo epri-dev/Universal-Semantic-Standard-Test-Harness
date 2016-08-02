@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:jaxws="http://cxf.apache.org/jaxws"
+	xmlns:cxf="http://cxf.apache.org/core"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://cxf.apache.org/core
+	http://cxf.apache.org/schemas/core.xsd
+	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd">
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+	<import resource="spring/DataSource.xml" />
+	<import resource="spring/Hibernate.xml" />
+ 	<import resource="spring/tamper-cxf-mdms1.xml" />
+	<import resource="spring/tamper-cxf-mdms2.xml" />
+	<import resource="spring/tamper-cxf-ami1.xml" />
+	<import resource="spring/tamper-cxf-cis1.xml" />
+	<import resource="spring/outage-cxf-mdms1.xml" />
+	<import resource="spring/schedule-cxf-ami1.xml" />
+	<import resource="spring/schedule-cxf-ami2.xml" />
+	<import resource="spring/schedule-cxf-ami3.xml" />
+	<import resource="spring/schedule-cxf-mdms1.xml" />
+	<import resource="spring/schedule-cxf-mdms2.xml" />
+	<import resource="spring/schedule-cxf-mdms3.xml" />
+	<import resource="spring/cxf-ami1.xml" />
+	<import resource="spring/cxf-ami2.xml" />
+	<import resource="spring/cxf-ami3.xml" />
+	<import resource="spring/cxf-ami4.xml" />
+	<import resource="spring/cxf-ami5.xml" />
+	<import resource="spring/cxf-cis1.xml" />
+	<import resource="spring/cxf-cis2.xml" />
+	<import resource="spring/cxf-cis3.xml" />
+	<import resource="spring/cxf-mdms1.xml" />
+	<import resource="spring/cxf-mdms2.xml" />
+	<import resource="spring/cxf-mdms3.xml" />
+	<import resource="spring/cxf-mdms4.xml" />
+	<import resource="spring/cxf-mdms5.xml" />
+	<import resource="spring/cxf-mdms6.xml" />
+	<import resource="spring/cxf-mdms7.xml" />
+	<import resource="spring/cxf-mdms8.xml" />
+	<import resource="spring/ondemand-cxf-ami1.xml" />
+	<import resource="spring/ondemand-cxf-ami2.xml" />
+	<import resource="spring/ondemand-cxf-ami3.xml" />
+	<import resource="spring/ondemand-cxf-ami4.xml" />
+	<import resource="spring/ondemand-cxf-cis1.xml" />
+	<import resource="spring/ondemand-cxf-cis2.xml" />
+	<import resource="spring/ondemand-cxf-cis3.xml" />
+	<import resource="spring/ondemand-cxf-cis4.xml" />
+	<import resource="spring/ondemand-cxf-cis5.xml" />
+	<import resource="spring/ondemand-cxf-cis6.xml" />
+	<import resource="spring/ondemand-cxf-mdms1.xml" />
+	<import resource="spring/ondemand-cxf-mdms2.xml" />
+	<import resource="spring/ondemand-cxf-mdms3.xml" />
+	<import resource="spring/ondemand-cxf-mdms4.xml" />
+	<import resource="spring/ondemand-cxf-mdms5.xml" />
+	<import resource="spring/ondemand-cxf-mdms6.xml" />
+	<import resource="spring/mo-cxf-mdms2.xml" />
+	<import resource="spring/wms1.xml" /> 
+	<import resource="spring/wms2.xml" /> 
+
+	<!-- <import resource="spring/rest-event.xml" /> -->
+	<!-- <import resource="spring/request-cxf.xml" /> Do not uncomment this! -->
+</beans>

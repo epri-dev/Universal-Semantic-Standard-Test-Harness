@@ -1,0 +1,956 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="OpenADR - SendDREventOptOut" resourceRoot="${projectDir}" soapui-version="3.6.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="DREventOptOut_Binding" type="wsdl" bindingName="{http://osgug.ucaiug.org/ns/2010/06/wsoadr/wsdl/SendDREventOptOut}DREventOptOut_Binding" soapVersion="1_1" anonymous="optional" definition="SendDREventOptOut.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/Users/bgoodwin/workspace/epri/wsdl_v1/OpenADR/SendDREventOptOut/SendDREventOptOut.wsdl"><con:part><con:url>file:/Users/bgoodwin/workspace/epri/wsdl_v1/OpenADR/SendDREventOptOut/SendDREventOptOut.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="SendDREventOptOut" targetNamespace="http://osgug.ucaiug.org/ns/2010/06/wsoadr/wsdl/SendDREventOptOut" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://osgug.ucaiug.org/ns/2010/06/wsoadr/wsdl/SendDREventOptOut" xmlns:typeMessage="http://osgug.ucaiug.org/ns/2010/06/wsoadr/schema/message" xmlns:typeHeader="http://osgug.ucaiug.org/2010/06/schema/header" xmlns:typeReply="http://osgug.ucaiug.org/2010/06/schema/reply" xmlns:typePayload="http://osgug.ucaiug.org/ns/2010/06/wsoadr/DREventOptOut">
+  <wsdl:documentation>A web service for DREventOptOut data transaction</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema targetNamespace="http://osgug.ucaiug.org/ns/2010/06/wsoadr/schema/message">
+      <xs:import namespace="http://osgug.ucaiug.org/2010/06/schema/header" schemaLocation="../Common/Header.xsd"/>
+      <xs:import namespace="http://osgug.ucaiug.org/2010/06/schema/reply" schemaLocation="../Common/Reply.xsd"/>
+      <xs:import namespace="http://osgug.ucaiug.org/ns/2010/06/wsoadr/DREventOptOut" schemaLocation="DREventOptOut.xsd"/>
+      <xs:element name="CreatedDREventOptOut" type="typeMessage:MessageType"/>
+      <xs:complexType name="MessageType">
+        <xs:sequence>
+          <xs:element name="Header" type="typeHeader:MessageHeaderType"/>
+          <xs:element name="Reply" type="typeReply:ReplyType" minOccurs="0"/>
+          <xs:element name="Payload" type="typePayload:DREventOptOut" minOccurs="0"/>
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="CreatedDREventOptOutInput">
+    <wsdl:part name="CreatedDREventOptOut" element="typeMessage:CreatedDREventOptOut"/>
+  </wsdl:message>
+  <wsdl:message name="replyData">
+    <wsdl:part name="replyData" element="typeReply:Reply"/>
+  </wsdl:message>
+  <wsdl:message name="faultReturn">
+    <wsdl:part name="faultInfor" element="typeReply:Reply">
+      <wsdl:documentation>fault information</wsdl:documentation>
+    </wsdl:part>
+  </wsdl:message>
+  <wsdl:portType name="DREventOptOut">
+    <wsdl:operation name="CreatedDREventOptOut">
+      <wsdl:documentation>CreatedDREventOptOut</wsdl:documentation>
+      <wsdl:input name="CreatedDREventOptOutInput" message="tns:CreatedDREventOptOutInput"/>
+      <wsdl:output name="CreatedDREventOptOutOutput" message="tns:replyData"/>
+      <wsdl:fault name="faultInfor" message="tns:faultReturn"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DREventOptOut_Binding" type="tns:DREventOptOut">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CreatedDREventOptOut">
+      <wsdl:documentation>CreatedDREventOptOut binding</wsdl:documentation>
+      <soap:operation soapAction="http://osgug.ucaiug.org/ns/2010/06/wsoadr/wsdl/SendDREventOptOut/CreatedDREventOptOut" style="document"/>
+      <wsdl:input name="CreatedDREventOptOutInput">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CreatedDREventOptOutOutput">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="faultInfor">
+        <soap:fault name="faultInfor" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SendDREventOptOut">
+    <wsdl:port name="DREventOptOut_Port" binding="tns:DREventOptOut_Binding">
+      <soap:address location="http://osgug.ucaiug.org/ns/2010/06/wsoadr/wsdl/SendDREventOptOut"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:/Users/bgoodwin/workspace/epri/wsdl_v1/OpenADR/Common/Header.xsd</con:url><con:content><![CDATA[<!--edited by Gerald Gray (Guiding Principle Consulting) to create OpenADR version-->
+<xs:schema targetNamespace="http://osgug.ucaiug.org/2010/06/schema/header" elementFormDefault="qualified" attributeFormDefault="unqualified" version="3.0" xmlns:common="http://osgug.ucaiug.org/2010/06/schema/header" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="MessageHeader" type="common:MessageHeaderType"/>
+  <xs:complexType name="MessageHeaderType">
+    <xs:sequence>
+      <xs:element name="ID" type="xs:string" minOccurs="0"/>
+      <xs:element name="referenceID" type="xs:string" minOccurs="0"/>
+      <xs:element name="application" type="xs:string" minOccurs="0"/>
+      <xs:element name="creationDateTime" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="noun" type="xs:string" minOccurs="0"/>
+      <xs:element name="receiver" type="xs:string" minOccurs="0"/>
+      <xs:element name="reconciliationIndicator" type="xs:string" minOccurs="0"/>
+      <xs:element name="revision" type="xs:string" minOccurs="0"/>
+      <xs:element name="sender" type="xs:string" minOccurs="0"/>
+      <xs:element name="testDataIndicator" type="xs:string" minOccurs="0"/>
+      <xs:element name="timeDate" type="xs:dateTime" minOccurs="0"/>
+      <xs:element name="verb" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/bgoodwin/workspace/epri/wsdl_v1/OpenADR/Common/Reply.xsd</con:url><con:content><![CDATA[<!--edited by Gerald Gray (Guiding Principle Consulting) to create OpenADR version-->
+<xs:schema targetNamespace="http://osgug.ucaiug.org/2010/06/schema/reply" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0" xmlns="http://osgug.ucaiug.org/2010/06/schema/reply" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="Reply" type="ReplyType"/>
+  <xs:complexType name="ReplyType">
+    <xs:annotation>
+      <xs:documentation>This captures an event happened during a service transaction. This can be used to represent receipt acknowledgment and  error information</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="creationTime" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Event creation time</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="description" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Event description</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ID" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Resulting transaction ID (usually consequence of create)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="replyCode" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Reply code: OK or application defined error code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="result" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Event result. This represents the outcome of a service invocation.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Error" type="Error_Type" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Error" type="Error_Type"/>
+  <xs:complexType name="Error_Type">
+    <xs:annotation>
+      <xs:documentation>Errors in a service call</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="code" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>error code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="details" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>content about the error</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="level" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Severity level, e.g. INFORMATIVE, WARNING, FATAL, CATASTROPHIC</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="INFORM"/>
+            <xs:enumeration value="WARNING"/>
+            <xs:enumeration value="FATAL"/>
+            <xs:enumeration value="CATASTROPHIC"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="reason" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>description of the error</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="stackTrace" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>stack trace</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="xpath" type="xs:QName" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>XPath expression to identify specific XML element</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Location" type="Location_Type" minOccurs="0"/>
+      <xs:element name="Object" type="IdentifiedObject" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Location" type="Location_Type"/>
+  <xs:complexType name="Location_Type">
+    <xs:annotation>
+      <xs:documentation>Identifies the pipeline and the stage where the error occurred</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="node" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Name of the Pipeline/Branch/Route node where error occurred</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="pipeline" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Name of the Pipeline where error occurred (if applicable)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="stage" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Name of the Stage where error occurred (if applicable)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IdentifiedObject">
+    <xs:annotation>
+      <xs:documentation>From CIM</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="mRID" minOccurs="0"/>
+      <xs:element name="objectType" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>CIM class name that classiifies the identified object</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Name" type="Name" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NameType">
+    <xs:annotation>
+      <xs:documentation>From CIM</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="name"/>
+      <xs:element name="description" minOccurs="0"/>
+      <xs:element name="NameTypeAuthority" type="NameTypeAuthority" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Name">
+    <xs:annotation>
+      <xs:documentation>From CIM</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="name"/>
+      <xs:element name="NameType" type="NameType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NameTypeAuthority">
+    <xs:annotation>
+      <xs:documentation>From CIM</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="name"/>
+      <xs:element name="description" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/bgoodwin/workspace/epri/wsdl_v1/OpenADR/SendDREventOptOut/DREventOptOut.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://osgug.ucaiug.org/ns/2010/06/wsoadr/DREventOptOut" elementFormDefault="qualified" attributeFormDefault="unqualified" xml:base="http://osgug.ucaiug.org/ns/2010/06/wsoadr/DREventOptOut" xmlns:sawsdl="http://www.w3.org/ns/sawsdl" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:cimp="http://www.iec.org/CimProfile" xmlns="http://osgug.ucaiug.org/ns/2010/06/wsoadr/DREventOptOut" xmlns:m="http://osgug.ucaiug.org/ns/2010/06/wsoadr/DREventOptOut">
+  <xs:element name="DREventOptOut" type="DREventOptOut"/>
+  <xs:complexType name="DREventOptOut">
+    <xs:sequence>
+      <xs:element name="AbsoluteDate" type="AbsoluteDate" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="AbsoluteDateTime" type="AbsoluteDateTime" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="String" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="UnitMultiplier" type="UnitMultiplier" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="UnitSymbol" type="UnitSymbol" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="ConstraintInterval" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintInterval">
+    <xs:annotation>
+      <xs:documentation>Typically daily, hourly, weekly, date</xs:documentation>
+      <xs:documentation xml:lang="en" cimp:category="stereotype">enumeration</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="daily" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintInterval">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="weekly" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintInterval">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="hourly" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintInterval">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="date" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintInterval">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ConstraintType" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintType">
+    <xs:annotation>
+      <xs:documentation>Minimum load
+&amp;bull; Maximum load.
+&amp;bull; Maximum-Duration
+&amp;bull; Minimum-Duration</xs:documentation>
+      <xs:documentation xml:lang="en" cimp:category="stereotype">enumeration</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="maximumCallsPerDay" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="minimumAdvancedNotification" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="operationalMaximumRuntime" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="minimumDowntime" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="minimumStarts" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="maximumEnergy" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="maximumStarts" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="timeOfDay " sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="blackOutDate" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="maximumConsecutiveDays" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="minimumDuration" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="minimumLoad" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="maximumLoad" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="maximumDuration" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="minumumDuration" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="operationalMinimumRuntime" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="scheduleMinimumRuntime," sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ConstraintType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="ResourceType" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ResourceType">
+    <xs:annotation>
+      <xs:documentation xml:lang="en" cimp:category="stereotype">enumeration</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="loadReduction" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ResourceType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="generation" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ResourceType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="combination" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/OpenADR Extensions/ResourceType">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="EndDeviceAsset" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IEC61970_IEC61968_combined/IEC61968/Metering/EndDeviceAsset">
+    <xs:annotation>
+      <xs:documentation>AssetContainer that performs one or more end device functions. One type of EndDeviceAsset is a MeterAsset which can perform metering, load management, connect/disconnect, accounting functions, etc. Some EndDeviceAssets, such as ones monitoring and controlling air conditioner, refrigerator, pool pumps may be connected to a MeterAsset. All EndDeviceAssets may have communication capability defined by the associated ComFunction(s). An EndDeviceAsset may be owned by a consumer, a service provider, utility or otherwise.
+There may be a related end device function that identifies a sensor or control point within a metering applicaiton or communications systems (e.g., water, gas, electricity).
+Some devices may use an optical port that conforms to the ANSI C12.18 standard for communications.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="mRID" type="xs:string" minOccurs="0" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IEC61970_IEC61968_combined/IEC61968/Metering/EndDeviceAsset.mRID">
+        <xs:annotation>
+          <xs:documentation>A Model Authority issues mRIDs. Given that each Model Authority has a unique id and this id is part of the mRID, then the mRID is globally unique.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="name" type="xs:string" minOccurs="0" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IEC61970_IEC61968_combined/IEC61968/Metering/EndDeviceAsset.name">
+        <xs:annotation>
+          <xs:documentation>The name is a free text human readable name of the object. It may be non unique and may not correlate to a naming hierarchy.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Resources" type="Resource" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IEC61970_IEC61968_combined/IEC61968/Metering/EndDeviceAsset.Resources"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AbsoluteDate" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IEC61970_IEC61968_combined/IEC61970/Domain/AbsoluteDate">
+    <xs:annotation>
+      <xs:documentation>Date and time as "yyyy-mm-dd", which conforms with ISO 8601. UTC time zone is specified as "yyyy-mm-dd".</xs:documentation>
+      <xs:documentation xml:lang="en" cimp:category="stereotype">Datatype</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="value" type="xs:string" minOccurs="0" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IEC61970_IEC61968_combined/IEC61970/Domain/AbsoluteDate.value">
+        <xs:annotation>
+          <xs:documentation>String representation of date, refer to description of the class.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="AbsoluteDateTime" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IEC61970_IEC61968_combined/IEC61970/Domain/AbsoluteDateTime">
+    <xs:annotation>
+      <xs:documentation>Date and time as "yyyy-mm-ddThh:mm:ss.sss", which conforms with ISO 8601. UTC time zone is specified as "yyyy-mm-ddThh:mm:ss.sssZ". A local timezone relative UTC is specified as "yyyy-mm-ddThh:mm:ss.sss-hh:mm".
+AbsoluteDateTime can be used both for calender time, e.g. 2007-02-07T10:30, and for relative time, e.g. 10:30.</xs:documentation>
+      <xs:documentation xml:lang="en" cimp:category="stereotype">Datatype</xs:documentation>
+    </xs:annotation>
+    <xs:sequence/>
+  </xs:complexType>
+  <xs:simpleType name="UnitMultiplier" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IEC61970_IEC61968_combined/IEC61970/Domain/UnitMultiplier">
+    <xs:annotation>
+      <xs:documentation>The unit multipliers defined for the CIM</xs:documentation>
+      <xs:documentation xml:lang="en" cimp:category="stereotype">enumeration</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="UnitSymbol" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IEC61970_IEC61968_combined/IEC61970/Domain/UnitSymbol">
+    <xs:annotation>
+      <xs:documentation>The units defiend for usage in the CIM</xs:documentation>
+      <xs:documentation xml:lang="en" cimp:category="stereotype">enumeration</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:simpleType name="CommitDispatchStatus" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/CommitDispatchStatus">
+    <xs:annotation>
+      <xs:documentation xml:lang="en" cimp:category="stereotype">enumeration</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="notParticipating" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/CommitDispatchStatus">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+      <xs:enumeration value="participating" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/CommitDispatchStatus">
+        <xs:annotation>
+          <xs:documentation xml:lang="en" cimp:category="stereotype">enum</xs:documentation>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:complexType name="Constraint" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Constraint">
+    <xs:sequence>
+      <xs:element name="constraintInterval" type="ConstraintInterval" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Constraint.constraintInterval">
+        <xs:annotation>
+          <xs:documentation>Typically daily, hourly, weeky</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="constraintType" type="ConstraintType" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Constraint.constraintType">
+        <xs:annotation>
+          <xs:documentation>Types of runtime offer parameters. Options may include: Select Minimum Runtime, Maximum Runtime, Minimum Downtime, Minimum Starts, Maximum Energy, Maximum Starts</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="constraintValue" type="xs:string" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Constraint.constraintValue">
+        <xs:annotation>
+          <xs:documentation>Multiple Limit Types are applicable. High and Low operating limits can also be used for Realtime AGC control.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OfferParameters" type="OfferParameters" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Constraint.OfferParameters"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DemandResponseEvent" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/DemandResponseEvent">
+    <xs:annotation>
+      <xs:documentation>An identified period of time for which demand [reductions] adjustments are requested or required.
+
+"Demand Response Events shall be described using the terminology illustrated in Figure 1 (in the NAESB document).  The terminology used to describe the time periods and transitions in Figure 1 and the durations and applicability are optional unless otherwise specified by the System Operator."</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="mRID" type="xs:string" minOccurs="0" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/DemandResponseEvent.mRID">
+        <xs:annotation>
+          <xs:documentation>A Model Authority issues mRIDs. Given that each Model Authority has a unique id and this id is part of the mRID, then the mRID is globally unique.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="eventID" type="xs:string" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/DemandResponseEvent.eventID">
+        <xs:annotation>
+          <xs:documentation>Identifier assigned to the Event 
+
+An Event consists of the time periods, deadlines, and transitions during which Demand Resources perform. The System Operator shall specify the duration and applicability of a Demand Response Event. Some deadlines, time periods, and transitions may not be not applicable to all products or services.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="name" type="xs:string" minOccurs="0" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/DemandResponseEvent.name">
+        <xs:annotation>
+          <xs:documentation>The name is a free text human readable name of the object. It may be non unique and may not correlate to a naming hierarchy.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Program" type="Program" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/DemandResponseEvent.Program"/>
+      <xs:element name="Resources" type="Resource" minOccurs="0" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/DemandResponseEvent.Resources"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="Enum" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Enum">
+    <xs:annotation>
+      <xs:documentation>IRC: Generic enumeration to be used broadly when an attribute type is likely to be an enumeration, but not all the choices have been defined.  The model evolves it should be replaced with more specific data types.</xs:documentation>
+      <xs:documentation xml:lang="en" cimp:category="stereotype">enumeration</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string"/>
+  </xs:simpleType>
+  <xs:complexType name="Offer" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Offer">
+    <xs:annotation>
+      <xs:documentation>Offer to sell.
+
+This term may not be needed, as it is inclusive in the CIM definition of "Bid."</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="commitStatus" type="CommitDispatchStatus" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Offer.commitStatus">
+        <xs:annotation>
+          <xs:documentation>Commitment status of offer
+
+Product-specific commitment status types included with offer. Examples include: economic, emergency, must-run, not participating, and outage.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="dispatchStatus" type="CommitDispatchStatus" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Offer.dispatchStatus">
+        <xs:annotation>
+          <xs:documentation>Dispatch Status of Offer
+
+Product-specific commitment status types included with offer. Examples include: economic, emergency, not participating, not qualified, and self-schedule.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Schedules" type="Schedule" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Offer.Schedules"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OfferParameters" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/OfferParameters">
+    <xs:annotation>
+      <xs:documentation>Request to buy.
+
+The CIM Market Operations package uses bids to represent both bids and offers.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Constraint" type="Constraint" minOccurs="0" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/OfferParameters.Constraint"/>
+      <xs:element name="Resource" type="Resource" minOccurs="0" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/OfferParameters.Resource"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Program" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Program">
+    <xs:sequence>
+      <xs:element name="mRID" type="xs:string" minOccurs="0" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Program.mRID">
+        <xs:annotation>
+          <xs:documentation>A Model Authority issues mRIDs. Given that each Model Authority has a unique id and this id is part of the mRID, then the mRID is globally unique.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DemandResponseEvent" type="DemandResponseEvent" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Program.DemandResponseEvent"/>
+      <xs:element name="name" type="xs:string" minOccurs="0" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Program.name">
+        <xs:annotation>
+          <xs:documentation>The name is a free text human readable name of the object. It may be non unique and may not correlate to a naming hierarchy.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="programID" type="xs:string" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Program.programID">
+        <xs:annotation>
+          <xs:documentation>Program Identifier
+
+The identifier of the program</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="programName" type="xs:string" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Program.programName">
+        <xs:annotation>
+          <xs:documentation>Name of the Program</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Resource" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Resource">
+    <xs:annotation>
+      <xs:documentation>There is a similar CIM class called RegisteredResource, however it is not fitting to wholesale and its needs.  For instance, the name RegisteredResource implies state and that a resource is registered.  This is not always the case in wholesale as a resource can be in several states.  The registered state equivalent in wholesale is enrolled.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="mRID" type="xs:string" minOccurs="0" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Resource.mRID">
+        <xs:annotation>
+          <xs:documentation>A Model Authority issues mRIDs. Given that each Model Authority has a unique id and this id is part of the mRID, then the mRID is globally unique.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="DemandResponseEvent" type="DemandResponseEvent" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Resource.DemandResponseEvent"/>
+      <xs:element name="EndDeviceAssets" type="EndDeviceAsset" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Resource.EndDeviceAssets"/>
+      <xs:element name="name" type="xs:string" minOccurs="0" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Resource.name">
+        <xs:annotation>
+          <xs:documentation>The name is a free text human readable name of the object. It may be non unique and may not correlate to a naming hierarchy.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="OfferParameters" type="OfferParameters" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Resource.OfferParameters"/>
+      <xs:element name="Resource" type="Resource" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Resource.Resource"/>
+      <xs:element name="resourceType" type="ResourceType" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Resource.resourceType">
+        <xs:annotation>
+          <xs:documentation>Type of Resource
+
+Examples are: load reduction (curtailable or interruptible load), distributed generation, combination, renewable, storage, etc.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Schedule" type="Schedule" minOccurs="0" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Resource.Schedule"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Schedule" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Schedule">
+    <xs:annotation>
+      <xs:documentation>This is similar to a CIM IrregularIntervalSchedule. This is an area of ongoing standardization efforts.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="endTime" type="AbsoluteDateTime" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Schedule.endTime">
+        <xs:annotation>
+          <xs:documentation>Energy Schedule: End Time of the Energy Schedule
+
+A Schedule is an energy profile for a Resource for a future time period, by scheduling time interval.
+
+Ancillary Services Schedule: End Time of the ancillary service Award
+
+A Schedule is an ancillary service profile for a Resource for a future time period, by scheduling time interval.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Offers" type="Offer" minOccurs="0" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Schedule.Offers"/>
+      <xs:element name="Resource" type="Resource" maxOccurs="unbounded" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Schedule.Resource"/>
+      <xs:element name="startTime" type="AbsoluteDateTime" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Schedule.startTime">
+        <xs:annotation>
+          <xs:documentation>Energy Schedule: Start Time of the Energy Schedule
+
+A Schedule is an energy profile for a Resource for a future time period, by scheduling time interval.
+
+Ancillary Services Schedule: Start Time of the Ancillary Services Schedule
+
+A Schedule is an Ancillary Service profile for a Resource for a future time period, by scheduling time interval.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="status" type="xs:string" sawsdl:modelReference="OpenADR 1.0/DR Event - OptOut/IRC-Wholesale-09-25-2010/IRC/Schedule.status">
+        <xs:annotation>
+          <xs:documentation>Status of the Offer</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://osgug.ucaiug.org/ns/2010/06/wsoadr/wsdl/SendDREventOptOut</con:endpoint><con:endpoint>http://localhost:8080/epriConnect/OpenADR/SendDREventOptOut</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://osgug.ucaiug.org/ns/2010/06/wsoadr/wsdl/SendDREventOptOut/CreatedDREventOptOut" name="CreatedDREventOptOut" bindingOperationName="CreatedDREventOptOut" type="Request-Response" outputName="CreatedDREventOptOutOutput" inputName="CreatedDREventOptOutInput" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://osgug.ucaiug.org/ns/2010/06/wsoadr/wsdl/SendDREventOptOut</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mes="http://osgug.ucaiug.org/ns/2010/06/wsoadr/schema/message" xmlns:head="http://osgug.ucaiug.org/2010/06/schema/header" xmlns:rep="http://osgug.ucaiug.org/2010/06/schema/reply" xmlns:drev="http://osgug.ucaiug.org/ns/2010/06/wsoadr/DREventOptOut">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mes:CreatedDREventOptOut>
+         <Header>
+            <!--Optional:-->
+            <head:ID>?</head:ID>
+            <!--Optional:-->
+            <head:referenceID>?</head:referenceID>
+            <!--Optional:-->
+            <head:application>?</head:application>
+            <!--Optional:-->
+            <head:creationDateTime>?</head:creationDateTime>
+            <!--Optional:-->
+            <head:noun>?</head:noun>
+            <!--Optional:-->
+            <head:receiver>?</head:receiver>
+            <!--Optional:-->
+            <head:reconciliationIndicator>?</head:reconciliationIndicator>
+            <!--Optional:-->
+            <head:revision>?</head:revision>
+            <!--Optional:-->
+            <head:sender>?</head:sender>
+            <!--Optional:-->
+            <head:testDataIndicator>?</head:testDataIndicator>
+            <!--Optional:-->
+            <head:timeDate>?</head:timeDate>
+            <!--Optional:-->
+            <head:verb>?</head:verb>
+         </Header>
+         <!--Optional:-->
+         <Reply>
+            <!--Optional:-->
+            <rep:creationTime>?</rep:creationTime>
+            <!--Optional:-->
+            <rep:description>?</rep:description>
+            <!--Zero or more repetitions:-->
+            <rep:ID>?</rep:ID>
+            <!--Optional:-->
+            <rep:replyCode>?</rep:replyCode>
+            <rep:result>?</rep:result>
+            <!--Optional:-->
+            <rep:Error>
+               <rep:code>?</rep:code>
+               <!--Optional:-->
+               <rep:details>?</rep:details>
+               <!--Optional:-->
+               <rep:level>?</rep:level>
+               <!--Optional:-->
+               <rep:reason>?</rep:reason>
+               <!--Optional:-->
+               <rep:stackTrace>?</rep:stackTrace>
+               <!--Optional:-->
+               <rep:xpath>?</rep:xpath>
+               <!--Optional:-->
+               <rep:Location>
+                  <!--Optional:-->
+                  <rep:node>?</rep:node>
+                  <!--Optional:-->
+                  <rep:pipeline>?</rep:pipeline>
+                  <!--Optional:-->
+                  <rep:stage>?</rep:stage>
+               </rep:Location>
+               <!--Optional:-->
+               <rep:Object>
+                  <!--Optional:-->
+                  <rep:mRID>?</rep:mRID>
+                  <!--Optional:-->
+                  <rep:objectType>?</rep:objectType>
+                  <!--Zero or more repetitions:-->
+                  <rep:Name>
+                     <rep:name>?</rep:name>
+                     <!--Optional:-->
+                     <rep:NameType>
+                        <rep:name>?</rep:name>
+                        <!--Optional:-->
+                        <rep:description>?</rep:description>
+                        <!--Optional:-->
+                        <rep:NameTypeAuthority>
+                           <rep:name>?</rep:name>
+                           <!--Optional:-->
+                           <rep:description>?</rep:description>
+                        </rep:NameTypeAuthority>
+                     </rep:NameType>
+                  </rep:Name>
+               </rep:Object>
+            </rep:Error>
+         </Reply>
+         <!--Optional:-->
+         <Payload>
+            <!--Zero or more repetitions:-->
+            <drev:AbsoluteDate>
+               <!--Optional:-->
+               <drev:value>?</drev:value>
+            </drev:AbsoluteDate>
+            <!--Zero or more repetitions:-->
+            <drev:AbsoluteDateTime/>
+            <!--Zero or more repetitions:-->
+            <drev:String>?</drev:String>
+            <!--Zero or more repetitions:-->
+            <drev:UnitMultiplier>?</drev:UnitMultiplier>
+            <!--Zero or more repetitions:-->
+            <drev:UnitSymbol>?</drev:UnitSymbol>
+         </Payload>
+      </mes:CreatedDREventOptOut>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://osgug.ucaiug.org/ns/2010/06/wsoadr/wsdl/SendDREventOptOut/CreatedDREventOptOut"/></con:call></con:operation></con:interface><con:testSuite name="DREventOptOut_Binding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="CreatedDREventOptOut TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="Failure"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>DREventOptOut_Binding</con:interface><con:operation>CreatedDREventOptOut</con:operation><con:request name="Failure"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/epriConnect/OpenADR/SendDREventOptOut</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mes="http://osgug.ucaiug.org/ns/2010/06/wsoadr/schema/message" xmlns:head="http://osgug.ucaiug.org/2010/06/schema/header" xmlns:rep="http://osgug.ucaiug.org/2010/06/schema/reply" xmlns:drev="http://osgug.ucaiug.org/ns/2010/06/wsoadr/DREventOptOut">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mes:CreatedDREventOptOut>
+         <Header>
+            <!--Optional:-->
+            <head:ID>?</head:ID>
+            <!--Optional:-->
+            <head:referenceID>?</head:referenceID>
+            <!--Optional:-->
+            <head:application>?</head:application>
+            <!--Optional:-->
+            <head:creationDateTime>?</head:creationDateTime>
+            <!--Optional:-->
+            <head:noun>?</head:noun>
+            <!--Optional:-->
+            <head:receiver>?</head:receiver>
+            <!--Optional:-->
+            <head:reconciliationIndicator>?</head:reconciliationIndicator>
+            <!--Optional:-->
+            <head:revision>?</head:revision>
+            <!--Optional:-->
+            <head:sender>?</head:sender>
+            <!--Optional:-->
+            <head:testDataIndicator>?</head:testDataIndicator>
+            <!--Optional:-->
+            <head:timeDate>?</head:timeDate>
+            <!--Optional:-->
+            <head:verb>?</head:verb>
+         </Header>
+         <!--Optional:-->
+         <Reply>
+            <!--Optional:-->
+            <rep:creationTime>?</rep:creationTime>
+            <!--Optional:-->
+            <rep:description>?</rep:description>
+            <!--Zero or more repetitions:-->
+            <rep:ID>?</rep:ID>
+            <!--Optional:-->
+            <rep:replyCode>?</rep:replyCode>
+            <rep:result>?</rep:result>
+            <!--Optional:-->
+            <rep:Error>
+               <rep:code>?</rep:code>
+               <!--Optional:-->
+               <rep:details>?</rep:details>
+               <!--Optional:-->
+               <rep:level>?</rep:level>
+               <!--Optional:-->
+               <rep:reason>?</rep:reason>
+               <!--Optional:-->
+               <rep:stackTrace>?</rep:stackTrace>
+               <!--Optional:-->
+               <rep:xpath>?</rep:xpath>
+               <!--Optional:-->
+               <rep:Location>
+                  <!--Optional:-->
+                  <rep:node>?</rep:node>
+                  <!--Optional:-->
+                  <rep:pipeline>?</rep:pipeline>
+                  <!--Optional:-->
+                  <rep:stage>?</rep:stage>
+               </rep:Location>
+               <!--Optional:-->
+               <rep:Object>
+                  <!--Optional:-->
+                  <rep:mRID>?</rep:mRID>
+                  <!--Optional:-->
+                  <rep:objectType>?</rep:objectType>
+                  <!--Zero or more repetitions:-->
+                  <rep:Name>
+                     <rep:name>?</rep:name>
+                     <!--Optional:-->
+                     <rep:NameType>
+                        <rep:name>?</rep:name>
+                        <!--Optional:-->
+                        <rep:description>?</rep:description>
+                        <!--Optional:-->
+                        <rep:NameTypeAuthority>
+                           <rep:name>?</rep:name>
+                           <!--Optional:-->
+                           <rep:description>?</rep:description>
+                        </rep:NameTypeAuthority>
+                     </rep:NameType>
+                  </rep:Name>
+               </rep:Object>
+            </rep:Error>
+         </Reply>
+         <!--Optional:-->
+         <Payload>
+            <!--Zero or more repetitions:-->
+            <drev:AbsoluteDate>
+               <!--Optional:-->
+               <drev:value>?</drev:value>
+            </drev:AbsoluteDate>
+            <!--Zero or more repetitions:-->
+            <drev:AbsoluteDateTime/>
+            <!--Zero or more repetitions:-->
+            <drev:String>?</drev:String>
+            <!--Zero or more repetitions:-->
+            <drev:UnitMultiplier>?</drev:UnitMultiplier>
+            <!--Zero or more repetitions:-->
+            <drev:UnitSymbol>?</drev:UnitSymbol>
+         </Payload>
+      </mes:CreatedDREventOptOut>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://osgug.ucaiug.org/ns/2010/06/wsoadr/wsdl/SendDREventOptOut/CreatedDREventOptOut" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>DREventOptOut_Binding</con:interface><con:operation>CreatedDREventOptOut</con:operation><con:request name="Success"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost:8080/epriConnect/OpenADR/SendDREventOptOut</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:mes="http://osgug.ucaiug.org/ns/2010/06/wsoadr/schema/message" xmlns:head="http://osgug.ucaiug.org/2010/06/schema/header" xmlns:rep="http://osgug.ucaiug.org/2010/06/schema/reply" xmlns:drev="http://osgug.ucaiug.org/ns/2010/06/wsoadr/DREventOptOut">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <mes:CreatedDREventOptOut>
+         <Header>
+            <!--Optional:-->
+            <head:ID>1234</head:ID>
+            <!--Optional:-->
+            <head:referenceID>5678</head:referenceID>
+            <!--Optional:-->
+            <head:application>DR</head:application>
+            <!--Optional:-->
+            <head:creationDateTime>2011-03-16T13:00:56.581-05:00</head:creationDateTime>
+            <!--Optional:-->
+            <head:noun>Test</head:noun>
+            <!--Optional:-->
+            <head:receiver>Remote</head:receiver>
+            <!--Optional:-->
+            <head:reconciliationIndicator>False</head:reconciliationIndicator>
+            <!--Optional:-->
+            <head:revision>0.1</head:revision>
+            <!--Optional:-->
+            <head:sender>sixthc</head:sender>
+            <!--Optional:-->
+            <head:testDataIndicator>false</head:testDataIndicator>
+            <!--Optional:-->
+            <head:timeDate>2011-03-16T13:00:56.581-05:00</head:timeDate>
+            <!--Optional:-->
+            <head:verb>overcome</head:verb>
+         </Header>
+         <!--Optional:-->
+         <Reply>
+            <!--Optional:-->
+            <rep:creationTime>2011-03-16T13:00:56.581-05:00</rep:creationTime>
+            <!--Optional:-->
+            <rep:description>Test</rep:description>
+            <!--Zero or more repetitions:-->
+            <rep:ID>1.0</rep:ID>
+            <!--Optional:-->
+            <rep:replyCode>Success</rep:replyCode>
+            <rep:result>Success</rep:result>
+            <!--Optional:-->
+            <rep:Error>
+               <rep:code>14</rep:code>
+               <!--Optional:-->
+               <rep:details>none</rep:details>
+               <!--Optional:-->
+               <rep:level>2</rep:level>
+               <!--Optional:-->
+               <rep:reason>Error</rep:reason>
+               <!--Optional:-->
+               <rep:stackTrace>false</rep:stackTrace>
+               <!--Optional:-->
+               <rep:xpath>none</rep:xpath>
+               <!--Optional:-->
+               <rep:Location>
+                  <!--Optional:-->
+                  <rep:node>14</rep:node>
+                  <!--Optional:-->
+                  <rep:pipeline>12</rep:pipeline>
+                  <!--Optional:-->
+                  <rep:stage>2</rep:stage>
+               </rep:Location>
+               <!--Optional:-->
+               <rep:Object>
+                  <!--Optional:-->
+                  <rep:mRID>12367</rep:mRID>
+                  <!--Optional:-->
+                  <rep:objectType>meter</rep:objectType>
+                  <!--Zero or more repetitions:-->
+                  <rep:Name>
+                     <rep:name>mrid1</rep:name>
+                     <!--Optional:-->
+                     <rep:NameType>
+                        <rep:name>mrid1</rep:name>
+                        <!--Optional:-->
+                        <rep:description>test</rep:description>
+                        <!--Optional:-->
+                        <rep:NameTypeAuthority>
+                           <rep:name>rmrid1</rep:name>
+                           <!--Optional:-->
+                           <rep:description>test</rep:description>
+                        </rep:NameTypeAuthority>
+                     </rep:NameType>
+                  </rep:Name>
+               </rep:Object>
+            </rep:Error>
+         </Reply>
+         <!--Optional:-->
+         <Payload>
+            <!--Zero or more repetitions:-->
+            <drev:AbsoluteDate>
+               <!--Optional:-->
+               <drev:value>?</drev:value>
+            </drev:AbsoluteDate>
+            <!--Zero or more repetitions:-->
+            <drev:AbsoluteDateTime/>
+            <!--Zero or more repetitions:-->
+            <drev:String>?</drev:String>
+            <!--Zero or more repetitions:-->
+            <drev:UnitMultiplier>?</drev:UnitMultiplier>
+            <!--Zero or more repetitions:-->
+            <drev:UnitSymbol>?</drev:UnitSymbol>
+         </Payload>
+      </mes:CreatedDREventOptOut>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/></con:soapui-project>

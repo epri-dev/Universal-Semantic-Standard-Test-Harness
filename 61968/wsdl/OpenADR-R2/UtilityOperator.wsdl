@@ -1,0 +1,1603 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+    xmlns:tns="http://www.example.org/UtilityOperator/"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="UtilityOperator"
+    targetNamespace="http://www.example.org/UtilityOperator/"
+    xmlns:xsd1="urn:UtilityDREvent" xmlns:xsd2="urn:ProgramConstraint"
+    xmlns:xsd3="urn:UtilityProgram" xmlns:xsd4="urn:ParticipantAccount"
+    xmlns:xsd5="urn:Bid" xmlns:xsd6="urn:Logs"
+    xmlns:xsd7="urn:Feedback" xmlns:xsd8="urn:DRASClient">   
+    <wsdl:types>
+        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="urn:UtilityDREvent"
+				schemaLocation="wsdl/OpenADR-R2/Common/UtilityDREvent.xsd">
+			</xsd:import>
+			<xsd:import namespace="urn:ProgramConstraint"
+				schemaLocation="wsdl/OpenADR-R2/Common/ProgramConstraint.xsd">
+			</xsd:import>
+			<xsd:import namespace="urn:UtilityProgram"
+				schemaLocation="wsdl/OpenADR-R2/Common/UtilityProgram.xsd">
+			</xsd:import>
+			<xsd:import namespace="urn:ParticipantAccount"
+				schemaLocation="wsdl/OpenADR-R2/Common/ParticipantAccount.xsd">
+			</xsd:import>
+			<xsd:import namespace="urn:Bid"
+				schemaLocation="wsdl/OpenADR-R2/Common/Bid.xsd">
+			</xsd:import>
+			<xsd:import namespace="urn:Logs"
+				schemaLocation="wsdl/OpenADR-R2/Common/Logs.xsd">
+			</xsd:import>
+			<xsd:import namespace="urn:Feedback"
+				schemaLocation="wsdl/OpenADR-R2/Common/FeedBack.xsd">
+			</xsd:import>
+            <xsd:import namespace="urn:DRASClient"
+				schemaLocation="wsdl/OpenADR-R2/Common/DRASClient.xsd">
+			</xsd:import>
+        </xsd:schema>
+    </wsdl:types>
+    <wsdl:message name="InitiateDREventRequest">
+        <wsdl:part name="DR_Event" type="xsd1:UtilityDREvent">
+            <wsdl:documentation>
+                This is the Utility DR Event object.
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="InitiateDREventResponse">
+        <wsdl:part name="returnValue" type="xsd2:ConstraintFilter">
+            <wsdl:documentation>
+                This is a string which signifies what the DRAS did with
+                the DR Event information that as submitted. The return
+                value can take on any of the following:
+
+                - ACCEPT – The DR Event was accepted and will be
+                forwarded.
+
+                - REJECT – The DR Event was rejected because some of its
+                parameters did not match the parameters configured for
+                the program that this DR Event is being initiated for.
+                See the section on the conceptual data model for more
+                information on how this works.
+
+                - MODIFY – The Utility DR Event object was modified
+                because some of its parameters did not match the
+                parameters configured for the program that this DR Event
+                is being initiated for. See the section on the
+                conceptual data model for more information on how this
+                works.
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ModifyDREventRequest">
+        <wsdl:part name="eventID" type="xsd:string">
+            <wsdl:documentation>
+                This is the event ID that was assigned by the Utility
+                when the DR vent was initiated by the Utility/ISO.
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="modificationType" type="xsd:string">
+            <wsdl:documentation>
+                This defines the type of modification and may take one
+                of the following values:
+
+                - CANCEL - This will immediately cancel a pending DR
+                event. If the DR Event information has already been sent
+                to the Participants then a message will be sent which
+                notifies them of the change in the DR Event. A DR Event
+                can be cancelled at any time.
+
+                - PARTICIPANTS - This will modify the list of
+                Participants that will receive the DR Event. If there
+                are Participants that have been dropped off the list
+                that have already been notified of the DR Event then
+                they will be sent messages by the DRAS notifying them
+                that the DR Event has been cancelled.
+
+                - MODIFY -This will modify the parameters of an already
+                initiated DR Event. If the DR Event information has
+                already been sent to a Participant then that Participant
+                will be sent the new information.
+
+
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="DR_Event" type="xsd1:UtilityDREvent">
+            <wsdl:documentation>
+                New Utility DR Event information. This has the same
+                elements as when the DR Event is initiated. This is only
+                necessary if the modficaton Type is to change the
+                existing DR Event parameters.
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ModifyDREventResponse">
+        <wsdl:part name="returnValue" type="xsd2:ConstraintFilter">
+            <wsdl:documentation>
+                This is a string which signifies what the DRAS did with
+                the DR Event information that as submitted. The return
+                value can take on any of the following:
+
+                - ACCEPT – The DR Event was accepted and will be
+                forwarded.
+
+                - REJECT – The DR Event was rejected because some of its
+                parameters did not match the parameters configured for
+                the program that this DR Event is being initiated for.
+                See the section on the conceptual data model for more
+                information on how this works.
+
+                - MODIFY – The Utility DR Event object was modified
+                because some of its parameters did not match the
+                parameters configured for the program that this DR Event
+                is being initiated for. See the section on the
+                conceptual data model for more information on how this
+                works.
+
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="AdjustDREventParticipantsRequest">
+        <wsdl:part name="eventID" type="xsd:string">
+            <wsdl:documentation>
+                This is the identifier of the DR event.
+
+
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="addParticipants" type="xsd:boolean">
+            <wsdl:documentation>
+                This defines whether the participants are to be added or
+                deleted from the existing DR Event. If TRUE then the
+                participants are added and if FALSE they are deleted.
+
+
+
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="participantList" type="xsd3:ParticipantList">
+            <wsdl:documentation>
+                List of Participants to add or remove.
+
+                The list can be in the form of three different types of
+                lists:
+
+                - Explicite list of participant ID's. - List of Utility
+                groups. - List of locations..
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="AdjustDREventParticipantsResponse">
+        <wsdl:part name="returnValue" type="xsd:string">
+            <wsdl:documentation>
+                This is a string used to signify SUCCESS or FAILURE. If
+                the string value is SUCCESS then the operation was
+                successful. If the value is not SUCCESS then this
+                signifies FAILURE and there may be additional free form
+                text which can be used to further elaborate on the
+                nature of the error.
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetDREventInformationRequest">
+        <wsdl:part name="eventID" type="xsd1:ListOfEventIDs">
+            <wsdl:documentation>
+                This is a list of event identifiers that were defined by
+                the Utility/ISO when the DR Event was initially issued.
+                If no event identifier is specified then any event
+                identifier is deemed to be valid.
+
+
+
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="programNames" type="xsd3:ListOfProgramNames">
+            <wsdl:documentation>
+                This is a list of programs that the DR events were
+                issued for. If no program name is specified then any
+                program name is deemed to be valid.
+
+
+
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="participants" type="xsd3:ParticipantList">
+            <wsdl:documentation>
+                This is a list of participants which can be specified
+                using Participant Account ID's, Utility Group names, or
+                locations. If none are specified than any participant
+                may be returned.
+
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetDREventInformationResponse">
+        <wsdl:part name="DREvents" type="xsd1:ListOfUtilityDREvents">
+            <wsdl:documentation>
+                A list of all Utility DR Event objects that satisfy the
+                specified search keys, as described in the input
+                parameters.
+
+
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="CreateProgramRequest">
+        <wsdl:part name="program" type="xsd3:UtilityProgram">
+            <wsdl:documentation>
+                This is the UtilityProgram object that defines the
+                Program being created. Its name must not already exist
+                within the DRAS
+
+                There are seperate methods for adding and deleting
+                Participants from Programs, so it is not necessary that
+                the list of Participanst be defined when the Program is
+                first created.
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="CreateProgramResponse">
+        <wsdl:part name="returnValue" type="xsd:string">
+            <wsdl:documentation>
+                This is a string used to signify SUCCESS or FAILURE. If
+                the string value is SUCCESS then the operation was
+                successful. If the value is not SUCCESS then this
+                signifies FAILURE and there may be additional free form
+                text which can be used to further elaborate on the
+                nature of the error.
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ModifyProgramRequest">
+        <wsdl:part name="program" type="xsd3:UtilityProgram">
+            <wsdl:documentation>
+                This is the new Program information. Note that any
+                fields that are not defined in this Program object
+                passed in will not be changed in the existing Program
+                within the DRAS.
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ModifyProgramResponse">
+        <wsdl:part name="returnValue" type="xsd:string">
+            <wsdl:documentation>
+                This is a string used to signify SUCCESS or FAILURE. If
+                the string value is SUCCESS then the operation was
+                successful. If the value is not SUCCESS then this
+                signifies FAILURE and there may be additional free form
+                text which can be used to further elaborate on the
+                nature of the error.
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="DeleteProgramRequest">
+        <wsdl:part name="programName" type="xsd:string">
+            <wsdl:documentation>
+                Name of the program to delete.
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="DeleteProgramResponse">
+        <wsdl:part name="returnValue" type="xsd:string">
+            <wsdl:documentation>
+                This is a string used to signify SUCCESS or FAILURE. If
+                the string value is SUCCESS then the operation was
+                successful. If the value is not SUCCESS then this
+                signifies FAILURE and there may be additional free form
+                text which can be used to further elaborate on the
+                nature of the error.
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetProgramsRequest">
+        <wsdl:part name="programNames" type="xsd3:ListOfProgramNames">
+            <wsdl:documentation>
+                Optional list ofProgram names to return. If not defined
+                then all Programs are considered valid.
+
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="participants" type="xsd3:ParticipantList">
+            <wsdl:documentation>
+                List of participants to help narrow search of
+                UtilityProgram objects to return. It can be specified
+                using Participant Account ID's, Utility Group names, or
+                locations.
+
+                If not specified then all program names from the
+                programNames list are returned.
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetProgramsResponse">
+        <wsdl:part name="programList" type="xsd3:ListOfPrograms">
+            <wsdl:documentation>
+                List of UtilityProgram objects that satisfy the search
+                criteria specified.
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="CreateParticipantAccountsRequest">
+        <wsdl:part name="participantAccounts"
+            type="xsd4:ListOfParticipantAccounts">
+            <wsdl:documentation>
+                This is a list of ParticipantAccount objects that are to
+                be created. If any already exist then this method
+                returns failure and none are created.
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="CreateParticipantAccountsResponse">
+        <wsdl:part name="returnValue" type="xsd:string">
+            <wsdl:documentation>
+                This is a string used to signify SUCCESS or FAILURE. If
+                the string value is SUCCESS then the operation was
+                successful. If the value is not SUCCESS then this
+                signifies FAILURE and there may be additional free form
+                text which can be used to further elaborate on the
+                nature of the error.
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ModifyParticipantAccountsRequest">
+        <wsdl:part name="participantAccounts"
+            type="xsd4:ListOfParticipantAccounts">
+            <wsdl:documentation>
+                This is a list of ParticipantAccount objects that are to
+                be modifed. If any do not exist then this method returns
+                failure and none are modified.
+
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="ModifyParticipantAccountsResponse">
+        <wsdl:part name="returnValue" type="xsd:string">
+            <wsdl:documentation>
+                This is a string used to signify SUCCESS or FAILURE. If
+                the string value is SUCCESS then the operation was
+                successful. If the value is not SUCCESS then this
+                signifies FAILURE and there may be additional free form
+                text which can be used to further elaborate on the
+                nature of the error.
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="DeleteParticipantAccountsRequest">
+        <wsdl:part name="participantAccountIDs"
+            type="xsd4:ListOfParticipantAccountIDs">
+            <wsdl:documentation>
+                This is a list of identifiers for the
+                ParticipantAccounts that will be deleted. If any of the
+                accounts are currently involved in a DR event then this
+                method will fail.
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="DeleteParticipantAccountsResponse">
+        <wsdl:part name="returnValue" type="xsd:string">
+            <wsdl:documentation>
+                This is a string used to signify SUCCESS or FAILURE. If
+                the string value is SUCCESS then the operation was
+                successful. If the value is not SUCCESS then this
+                signifies FAILURE and there may be additional free form
+                text which can be used to further elaborate on the
+                nature of the error.
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetParticipantAccountsRequest">
+        <wsdl:part name="participants" type="xsd3:ParticipantList">
+            <wsdl:documentation>
+                This is a list of ParticipantAccount ID's, which may be
+                specified using explicite ID's, Utility Group names, or
+                locations. If none are specified than any
+                ParticipantAccount may be returned depending upon any
+                further search qualifications in the programNames
+                parameter.
+
+
+
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="programName" type="xsd:string">
+            <wsdl:documentation>
+                This is a list of programs that the ParticipantAccounts
+                may be associated with. If no program name is specified
+                then all ParticipantAccounts specified by the participants
+                parameter are returned.
+
+
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetParticipantAccountsResponse">
+        <wsdl:part name="participantAccounts"
+            type="xsd4:ListOfParticipantAccounts">
+            <wsdl:documentation>
+                List of all ParticipantAccount objects satisfying the
+                search criteria.
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="AdjustProgramParticipantsRequest">
+        <wsdl:part name="programName" type="xsd:string">
+            <wsdl:documentation>
+                This is the name of the Program to associate or
+                disassociate ParticipantAccounts from.
+
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="addParticipants" type="xsd:boolean">
+            <wsdl:documentation>
+                This defines whether the Participants are to be added or
+                deleted from the existing UtilityProgram. If TRUE then
+                the participants are added and if FALSE they are removed.
+
+
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="participantList" type="xsd3:ParticipantList">
+            <wsdl:documentation>
+                List of participants to add or remove from the Program.
+                It can be specified using Participant Account ID's,
+                Utility Group names, or locations.
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="AdjustProgramParticipantsResponse">
+        <wsdl:part name="returnValue" type="xsd:string">
+            <wsdl:documentation>
+                This is a string used to signify SUCCESS or FAILURE. If
+                the string value is SUCCESS then the operation was
+                successful. If the value is not SUCCESS then this
+                signifies FAILURE and there may be additional free form
+                text which can be used to further elaborate on the
+                nature of the error.
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetCurrentBidsRequest">
+        <wsdl:part name="eventID" type="xsd:string">
+            <wsdl:documentation>
+                This is the identifier of the DR event for which to
+                return the current bids.
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="programName" type="xsd:string">
+            <wsdl:documentation>
+                This is the name of the Program for whcih to return all
+                standing bids.
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetCurrentBidsResponse">
+        <wsdl:part name="bids" type="xsd5:ListOfBids"></wsdl:part>
+        <wsdl:part name="biddingOpen" type="xsd:boolean">
+            <wsdl:documentation>
+                If TRUE then bidding is currently open, FALSE otherwise
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="CloseBiddingRequest">
+        <wsdl:part name="eventID" type="xsd:string">
+            <wsdl:documentation>
+                An identifier for the Event in which bidding will be
+                closed
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="CloseBiddingResponse">
+        <wsdl:part name="returnValue" type="xsd:string">
+            <wsdl:documentation>
+                This is a string used to signify SUCCESS or FAILURE. If
+                the string value is SUCCESS then the operation was
+                successful. If the value is not SUCCESS then this
+                signifies FAILURE and there may be additional free form
+                text which can be used to further elaborate on the
+                nature of the error.
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="SetBidStatusRequest">
+        <wsdl:part name="eventID" type="xsd:string">
+            <wsdl:documentation>
+                This is the identifier of the DR Event for which the
+                Participant’s bids are being rejected and accepted.
+
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="acceptedBids"
+            type="xsd1:ListOfUtilityDREvents">
+            <wsdl:documentation>                This is a list of DR Events for Participants whose bids were accepted.  
+This allows there to be DR Events initiated that contain EventInfo that correpsonds to the 
+bid made by a Participant.  Potentially there could be a different DR Event for each Participat whose bid was accepted.
+
+
+
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="rejectedBids"
+            type="xsd4:ListOfParticipantAccountIDs">
+            <wsdl:documentation>
+                This is a list of Participants whose bids were rejecte.
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="SetBidStatusResponse">
+        <wsdl:part name="returnValue" type="xsd:string">
+            <wsdl:documentation>
+                This is a string used to signify SUCCESS or FAILURE. If
+                the string value is SUCCESS then the operation was
+                successful. If the value is not SUCCESS then this
+                signifies FAILURE and there may be additional free form
+                text which can be used to further elaborate on the
+                nature of the error.
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetDRASClientCommsStatusRequest">
+        <wsdl:part name="participants" type="xsd3:ParticipantList">
+            <wsdl:documentation>
+                List of participants to help narrow search of DRAS Client
+                comms status to be return. It can be specified using
+                Participant Account ID's, Utility Group names, or
+                locations.
+
+                If not specified then the DRAS Clients comms status of
+                all the Programs specified by the programNames
+                parametert are returned.
+
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="programNames" type="xsd3:ListOfProgramNames">
+            <wsdl:documentation>
+                List of Programs names that are used to help narrow the
+                list of DRAS Client comms status that are returned. Only
+                DRAS Clients that belong to one of the Programs in this
+                list will be returned. If this is not specified then all
+                Programs are valid.
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetDRASClientCommsStatusResponse">
+        <wsdl:part name="DRASClientStatus" type="xsd8:ListOfCommsStatus">
+            <wsdl:documentation>
+                This is a list of the comms status for all the DRAS
+                Clients specified.
+
+                This list consists of the DRAS Client identifier along
+                with the status for that DARS Client. Valid return
+                values for the status include:
+
+                OK - All commuications
+
+                OK OFFLINE - DRAS Client is off line and not
+                communicatiing.
+
+                ERRORS - DRAS Client is still communicating, but with
+                some errors.
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetDRASTransactionsRequest">
+        <wsdl:part name="userNames" type="xsd3:ListOfIDs">
+            <wsdl:documentation>
+                This is the user name associated with the transaction
+                being fetched
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="DRASClientIDs" type="xsd3:ListOfIDs">
+            <wsdl:documentation>
+                This is an optional parameter that is the identifier for
+                the DRAS Client whose transactions are being retrieved.
+                In essence this provides a convenient way to fetch the
+                communications log for a DRAS Client.
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="participantIDs" type="xsd3:ListOfIDs">
+            <wsdl:documentation>
+                This is the identifier of a ParticppantAccount that was
+                invloved with the transaction. All users including DRAS
+                Clients that are associated with that Participant are
+                used as the serach criteria.
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="methodName" type="xsd:string">
+            <wsdl:documentation>
+                his is the name of the function that was invoked to
+                create the transaction. In essence this is the type of
+                transaction. If not specified then all transactions are
+                returned.
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="timeInterval" type="xsd2:DateTimeWindow">
+            <wsdl:documentation>
+                This is the date/time interval that the transactions are
+                being retrieved for. If startDateTime in timeInterval is not specified returns FAILED resultCode.
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="resultCode" type="xsd:string">
+            <wsdl:documentation>
+                This optional parameter allows transactions to be
+                filtered based upon whether the transations were SUCCESSFUL or
+                FAILED.
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetDRASTransactionsResponse">
+        <wsdl:part name="transactions"
+            type="xsd6:ListOfTransactionLogs">
+            <wsdl:documentation>
+                This is the list of transactions that satisfy the search
+                criteria
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetDRASClientAlarmsRequest">
+        <wsdl:part name="DRASClientIDs" type="xsd3:ListOfIDs">
+            <wsdl:documentation>
+                This is an optional parameter that is the identifier for
+                the DRAS Client whose transactions are being retrieved.
+                In essence this provides a convenient way to fetch the
+                communications log for a DRAS Client.
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="participantIDs" type="xsd3:ListOfIDs">
+            <wsdl:documentation>
+                This isan optional parameter that specifies the
+                identifier of a ParticppantAccount that was associated
+                with the DRAS Client(s) that generated the Alarm. All
+                DRAS Clients associated with the specified
+                ParticipantAccount are returned.
+
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="timeInterval" type="xsd2:DateTimeWindow">
+            <wsdl:documentation>
+                This is the optional date/time period for which the DRAS
+                Client Alarms are returned.
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetDRASClientAlarmsResponse">
+        <wsdl:part name="alarms" type="xsd6:ListOfDRASClientAlarms">
+            <wsdl:documentation>
+                This is the list of DRASClientAlarms that satisfy the
+                search criteria.
+
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetParticipantFeedbackRequest">
+        <wsdl:part name="DRASClientIDs" type="xsd3:ListOfIDs">
+            <wsdl:documentation>
+                This optonal parameter specifies that only those
+                Feedback objects associated with the DRASClient
+                identifiers in this list should be returned.
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="participantIDs" type="xsd3:ListOfIDs">
+            <wsdl:documentation>
+                This optonal parameter specifies that only those
+                Feedback objects associated with the
+                ParticipantAccountidentifiers in this list should be
+                returned.
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="programNames" type="xsd3:ListOfIDs">
+            <wsdl:documentation>
+                This optonal parameter specifies that only those
+                Feedback objects associated with the Programidentifiers
+                in this list should be returned.
+
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="timeInterval" type="xsd2:DateTimeWindow">
+            <wsdl:documentation>
+                This optional parameter specifies that only those
+                Feedback objects that were logged within the specified
+                date/time interval should be returned.
+            </wsdl:documentation>
+        </wsdl:part>
+        <wsdl:part name="name" type="xsd:string">
+            <wsdl:documentation>
+                This optional parameter specifies that only those
+                Feedback objects with the specified name parameter
+                should be returned.
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetParticipantFeedbackResponse">
+        <wsdl:part name="feedback" type="xsd7:ListOfFeedback">
+            <wsdl:documentation>
+                This is the list of Feedback objects that satisfy the
+                search criteria
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <!--
+    <wsdl:message name="GetGroupsRequest">
+        <wsdl:part name="GetGroupsRequest" type="xsd:string"></wsdl:part>
+    </wsdl:message>
+        -->
+    <wsdl:message name="empty" />
+    <wsdl:message name="GetGroupsResponse">
+        <wsdl:part name="groups" type="xsd3:ListOfIDs">
+            <wsdl:documentation>
+                This is a list of identifiers for all the groups in the
+                DRAS.
+            </wsdl:documentation>
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetGroupParticipantsRequest">
+        <wsdl:part name="GetGroupParticipantsRequest"
+            type="xsd:string">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetGroupParticipantsResponse">
+        <wsdl:part name="GetGroupParticipantsResponse"
+            type="xsd:string">
+        </wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="SetEventConstraintRequest">
+        <wsdl:part name="eventID" type="xsd:string">
+            <wsdl:documentation>Identifier for the DR Event for which the ProgramConstraints are being set.
+
+</wsdl:documentation></wsdl:part>
+        <wsdl:part name="constraint" type="xsd2:ProgramConstraint">
+            <wsdl:documentation>The ProgramConstraints to be applied to a DR Event.
+
+</wsdl:documentation></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="SetEventConstraintResponse">
+        <wsdl:part name="returnValue" type="xsd:string">
+            <wsdl:documentation>                This is a string used to signify SUCCESS or FAILURE. If
+                the string value is SUCCESS then the operation was
+                successful. If the value is not SUCCESS then this
+                signifies FAILURE and there may be additional free form
+                text which can be used to further elaborate on the
+                nature of the error.
+
+  
+</wsdl:documentation></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetEventConstraintRequest">
+        <wsdl:part name="eventID" type="xsd:string">
+            <wsdl:documentation>Identifier for the DR Event for which the ProgramConstraints are being fetched</wsdl:documentation></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="GetEventConstraintResponse">
+        <wsdl:part name="constraint" type="xsd2:ProgramConstraint"></wsdl:part>
+    </wsdl:message>
+    <wsdl:portType name="UtilityOperator">
+        <wsdl:operation name="InitiateDREvent">
+            <wsdl:documentation>
+                This function is implemented on the DRAS and is used by
+                the Utility/ISO to initiate a DR Event. All the event
+                information is passed in concerning the event along with
+                a specification of the Participants that should receive
+                the event. In the case where bidding is required as part of the Program then this method call will initiate the bidding process.
+
+                Before the Utility/ISO can issue a DR Event it is
+                assumed that all the relevant information concerning the
+                DR Program and Participants has been configured.
+
+                Once the DR Event is initiated by the Utility/ISO the DR
+                Event information will be sent to the Participants at
+                the appropriate time depending upon whether the
+                Participant is configured to use a Smart DRAS Client or
+                a Simple DRAS Client. For more information on this
+                mechanism see the section concerning the event
+                propagation model.
+
+It is possible to call this method numerous times and initiate a DR Events with the same e
+
+                Authorized Users:
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+            </wsdl:documentation>
+            <wsdl:input message="tns:InitiateDREventRequest" />
+            <wsdl:output message="tns:InitiateDREventResponse" />
+        </wsdl:operation>
+        <wsdl:operation name="ModifyDREvent">
+            <wsdl:documentation>
+                This function is used to edit a previously issued DR
+                Event. It must reference the DR Event id that was
+                assigned by the Utility/ISO when the event was issued.
+
+                The following types of modifications can be made to an
+                already initiated DR Event:
+
+ - Cancel a DR Event. This
+                will immediately cancel a pending DR event. If the DR
+                Event information has already been sent to the
+                Participants then a message will be sent which notifies
+                them of the change in the DR Event. A DR Event can be
+                cancelled at any time.
+
+                - Change the Participant list. This will modify the list
+                of Participants that will receive the DR Event. If there
+                are Participants that have been dropped off the list
+                that have already been notified of the DR Event then
+                they will be sent messages by the DRAS notifying them
+                that the DR Event has been cancelled.
+
+                - Modify DR Event parameters. This will modify the
+                parameters of an already initiated DR Event. If the DR
+                Event information has already been sent to a Participant
+                then that Participant will be sent the new information.
+
+                Authorized Users:
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+            </wsdl:documentation>
+            <wsdl:input message="tns:ModifyDREventRequest"></wsdl:input>
+            <wsdl:output message="tns:ModifyDREventResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="AdjustDREventParticipants">
+            <wsdl:documentation>
+                This function will modify the list of Participants that
+                will receive an already existing DR Event. If there are
+                Participants that have been dropped off the list that
+                have already been notified of the DR Event then they
+                will be sent messages by the DRAS notifying them that
+                the DR Event has been cancelled.
+
+
+                Authorized Users:
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+            </wsdl:documentation>
+            <wsdl:input
+                message="tns:AdjustDREventParticipantsRequest">
+            </wsdl:input>
+            <wsdl:output
+                message="tns:AdjustDREventParticipantsResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetDREventInformation">
+            <wsdl:documentation>
+                This function is used to get information related to
+                currently pending or active DR Events within the DRAS.
+                There are a number of keys that may be used to specify
+                which Utility DR Event objects are returned. A Utility
+                DR Event object is returned if it satisfies all of the
+                search criteria specified in the list of parameters.
+
+                Note that if none of the search keys are specified then
+                all pending or active Utility DR Event entities are
+                returned.
+
+                Authorized Users:
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+            </wsdl:documentation>
+            <wsdl:input message="tns:GetDREventInformationRequest"></wsdl:input>
+            <wsdl:output message="tns:GetDREventInformationResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CreateProgram">
+            <wsdl:documentation>
+                This function is used to create a new DR program.
+
+                Authorized Users:
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+
+            </wsdl:documentation>
+            <wsdl:input message="tns:CreateProgramRequest"></wsdl:input>
+            <wsdl:output message="tns:CreateProgramResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ModifyProgram">
+            <wsdl:documentation>
+                This function is used to modify an existing Program that
+                was created with the CreateProgram function.
+
+                Authorized Users:
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+
+            </wsdl:documentation>
+            <wsdl:input message="tns:ModifyProgramRequest"></wsdl:input>
+            <wsdl:output message="tns:ModifyProgramResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="DeleteProgram">
+            <wsdl:documentation>
+                This function is used to delete an existing Program that
+                was created with the Create Program function. This
+                function must fail if there is any pending or active DR
+                Events associated with this program. Any pending events
+                must be canceled or allowed to complete before deleting
+                the program.
+
+                Authorized Users:
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+
+            </wsdl:documentation>
+            <wsdl:input message="tns:DeleteProgramRequest"></wsdl:input>
+            <wsdl:output message="tns:DeleteProgramResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetPrograms">
+            <wsdl:documentation>
+                This function is used to get all the information related
+                to Programs including the Program Constraints and Event
+                Info Types associated with the program. One of two keys
+                may be used to specify which programs to return. The
+                first is a list of prgram names and the second is a list
+                of participants. Note that if none of the above keys are
+                specified then all UtilityProgram objects are returned.
+
+                Parameters There are a two different keys that may be
+                used to specify which Utility Program entities are
+                returned. 
+
+- Program name(s) – these are the names of
+                programs that were created. 
+
+- Participant/group id(s) –
+                these are the specifications for the participants that
+                are associated with various programs.
+
+
+                Return Values 
+
+List of Utility Program objects that
+                satisfy the search criteria specified. The associated
+                Program Constraints and Event Info Types for each
+                Utility Program object are also returned. 
+
+
+                Authorized Users:
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+            </wsdl:documentation>
+            <wsdl:input message="tns:GetProgramsRequest"></wsdl:input>
+            <wsdl:output message="tns:GetProgramsResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CreateParticipantAccounts">
+            <wsdl:documentation>
+                This function is used to create one or more Participant
+                Accounts.
+
+                Authorized Users:
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+
+            </wsdl:documentation>
+            <wsdl:input
+                message="tns:CreateParticipantAccountsRequest">
+            </wsdl:input>
+            <wsdl:output
+                message="tns:CreateParticipantAccountsResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="ModifyParticipantAccounts">
+            <wsdl:documentation>
+                This function is used modify existing Participant
+                Accounts.
+
+                Authorized Users 
+
+- All DRAS Operators 
+
+- All Utility/ISO
+                Operators
+
+
+            </wsdl:documentation>
+            <wsdl:input
+                message="tns:ModifyParticipantAccountsRequest">
+            </wsdl:input>
+            <wsdl:output
+                message="tns:ModifyParticipantAccountsResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="DeleteParticipantAccounts">
+            <wsdl:documentation>
+                Description This function is used to delete Participant
+                Accounts that were created with the
+                CreateParticipantAccounts function.
+
+                Authorized Users:
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+
+            </wsdl:documentation>
+            <wsdl:input
+                message="tns:DeleteParticipantAccountsRequest">
+            </wsdl:input>
+            <wsdl:output
+                message="tns:DeleteParticipantAccountsResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetParticipantAccounts">
+            <wsdl:documentation>
+                This function is used to fetch all the ParticipantAccount
+                objects that satisfy the specified search criteria. The
+                search crieria is specified by a list of participant
+                specifications (account id's, Utility Group names, and
+                locations) or by the name of the Programs that the
+                ParticipantAccounts may be assiciated with. Note that if
+                no search criteria is specified then all Participant
+                Account objects are returned.
+
+                Authorized Users:
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+
+            </wsdl:documentation>
+            <wsdl:input message="tns:GetParticipantAccountsRequest"></wsdl:input>
+            <wsdl:output message="tns:GetParticipantAccountsResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="AdjustProgramParticipants">
+            <wsdl:documentation>
+                Description This function is used to add or remove a
+                Participant from a program.
+
+                Authorized Users:
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+
+            </wsdl:documentation>
+            <wsdl:input
+                message="tns:AdjustProgramParticipantsRequest">
+            </wsdl:input>
+            <wsdl:output
+                message="tns:AdjustProgramParticipantsResponse">
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetCurrentBids">
+            <wsdl:documentation>
+                This function allows the Utility/ISO to request the
+                current Participant bids from the DRAS. The Utility/ISO
+                can either request bids for a specific event or all the
+                standing bids for a specific UProgram. Either an Event
+                ID or a Program name, but not both should be specified.
+                If an Event ID is specified then the returned bid are
+                only for those that pertain to a specific DR Event and
+                will include real time bids if any have been submitted
+                for that DR Event or the Participants standing bid if no
+                real time bids have been submitted for that event. If
+                the program name is specified then the standing bids of
+                the participants for the program are returned.
+
+                Parameters • Event id – this is the id of the DR event
+                that was assigned when the DR event was issued.
+
+
+
+                Return Values • A list of Participant Bid objects for
+                each participant in the program. • A true/false
+                indicator which signifies whether the bidding is still
+                open for the event.
+
+                Authorized Users:
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+
+            </wsdl:documentation>
+            <wsdl:input message="tns:GetCurrentBidsRequest"></wsdl:input>
+            <wsdl:output message="tns:GetCurrentBidsResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="CloseBidding">
+            <wsdl:documentation>
+                This function is used to explicitly close the bidding
+                for a particular DR event. When bidding is closed
+                Participants can no longer submit bids. When a DR Event
+                that requires bidding is issued it has a time in which
+                the bidding will close. This function can close that
+                bidding before that time. It is also recommended that it
+                be used with the PULL model to insure that the bidding
+                has closed before the Utility/ISO gets the final bidding
+                information.
+
+                Authorized Users:
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+
+            </wsdl:documentation>
+            <wsdl:input message="tns:CloseBiddingRequest"></wsdl:input>
+            <wsdl:output message="tns:CloseBiddingResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetBidStatus">
+            <wsdl:documentation>
+                This function is used to notify the DRAS of which
+                previously submitted Participant Bids have been rejected
+                and accepted.
+
+                Authorized Users:
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+
+            </wsdl:documentation>
+            <wsdl:input message="tns:SetBidStatusRequest"></wsdl:input>
+            <wsdl:output message="tns:SetBidStatusResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetDRASClientCommsStatus">
+            <wsdl:documentation>
+                This function is for retrieving a DRAS Client’s current
+                communication state. The states can be fetched based
+                upon aa ParticipantAccount identifier, or a Program
+                name. If none of those parameters are specified then the
+                states of all DRAS Clients are returned
+
+                Authorized Users:
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+
+            </wsdl:documentation>
+            <wsdl:input message="tns:GetDRASClientCommsStatusRequest"></wsdl:input>
+            <wsdl:output
+                message="tns:GetDRASClientCommsStatusResponse">
+            </wsdl:output>
+        </wsdl:operation> 
+        <wsdl:operation name="GetDRASTransactions">
+            <wsdl:documentation>
+                This function is used to retrieve any of the transaction
+                logs associated with the DRAS. A number of search keys
+                can be used to specify whcih transactions are retrieved
+
+                Parameters • Transaction users – this is an identifier
+                that is used to specify which users were involved in the
+                transaction. There are three ways in which the users may
+                be specified. o User name(s) – this is the user name
+                associated with the transaction being fetched. o
+                Participant id(s) – this is the identifier of the
+                Participant that was involved with the transactions. All
+                users including DRAS Clients that are associated with
+                that Participant are used. o DRAS Client id(s) – this is
+                an optional parameter that is the identifier for the
+                DRAS Client whose transactions are being retrieved. In
+                essence this provides a convenient way to fetch the
+                communications log for a DRAS Client. • Method name –
+                this is the name of the function that was invoked to
+                create the transaction. In essence this is the type of
+                transaction. If not specified then all transactions are
+                returned. • Data/time interval – this is the interval of
+                time that the transactions are being retrieved for. •
+                Result – this optional parameter allows transactions the
+                be retrieved based upon whether they were SUCESSFUL or
+                FAILED.
+
+                Return Values • SUCCESS or FAILURE
+
+                Authorized Users:
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+
+            </wsdl:documentation>
+            <wsdl:input message="tns:GetDRASTransactionsRequest"></wsdl:input>
+            <wsdl:output message="tns:GetDRASTransactionsResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetDRASClientAlarms">
+            <wsdl:documentation>
+                This function is used to retrieve DRAS Client Alarms
+                that have been logged within the DRAS.
+
+                Authorized Users
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+
+            </wsdl:documentation>
+            <wsdl:input message="tns:GetDRASClientAlarmsRequest"></wsdl:input>
+            <wsdl:output message="tns:GetDRASClientAlarmsResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetParticipantFeedback">
+            <wsdl:documentation>
+                This function is used to fetch a list of Feedback
+                objects based upon a set of search criteria
+
+                Authorized Users
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+
+            </wsdl:documentation>
+            <wsdl:input message="tns:GetParticipantFeedbackRequest"></wsdl:input>
+            <wsdl:output message="tns:GetParticipantFeedbackResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetGroups">
+            <wsdl:documentation>
+                This function returns all the defined groups for all
+                ParticipantAccounts.
+
+                Authorized Users
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+
+            </wsdl:documentation>
+            <wsdl:input message="tns:empty"/>
+            <wsdl:output message="tns:GetGroupsResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="SetEventConstraint">
+            <wsdl:documentation>This is method is used to set ProgramConstraints that are applied to a specific DR Event.  
+They must adhere to the ProgramConstraints that are part of a specific Program.
+If ProgramConstraints are set for a specific DR Event then they are associated with the
+event identifier for that DR Event and each subsequent DR Evetn with that identifier that is initiated
+must adhere to those constraints.
+If there are no ProgramConstraints specifically set for a DR Event then any DR Events issued will adhere
+to the normal set of ProgramConstraints established for the Program, Participants, or the DRAS Client .
+
+                Authorized Users
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+
+       
+
+</wsdl:documentation>
+            <wsdl:input message="tns:SetEventConstraintRequest"></wsdl:input>
+            <wsdl:output message="tns:SetEventConstraintResponse"></wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="GetEventConstraint">
+            <wsdl:documentation>This is used to fetch a ProgramConstraint that may have been set by a call to the SetEventConstraint method.
+
+                Authorized Users
+
+                - All DRAS Operators
+
+                - All Utility/ISO Operators
+
+       
+</wsdl:documentation>
+            <wsdl:input message="tns:GetEventConstraintRequest"></wsdl:input>
+            <wsdl:output message="tns:GetEventConstraintResponse"></wsdl:output>
+        </wsdl:operation>
+    </wsdl:portType>
+    <wsdl:binding name="UtilityOperatorSOAP"
+    	type="tns:UtilityOperator">
+
+    	<soap:binding style="rpc"
+    		transport="http://schemas.xmlsoap.org/soap/http" />
+    	<wsdl:operation name="InitiateDREvent">
+
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/InitiateDREvent" />
+    		<wsdl:input>
+
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>
+    	<wsdl:operation name="ModifyDREvent">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/ModifyDREvent" />
+    		<wsdl:input>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>
+    	<wsdl:operation name="AdjustDREventParticipants">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/AdjustDREventParticipants" />
+    		<wsdl:input>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>
+    	<wsdl:operation name="GetDREventInformation">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/GetDREventInformation" />
+    		<wsdl:input>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>   
+    	<wsdl:operation name="CreateProgram">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/CreateProgram" />
+    		<wsdl:input>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>
+    	<wsdl:operation name="ModifyProgram">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/ModifyProgram" />
+    		<wsdl:input>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>
+    	<wsdl:operation name="DeleteProgram">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/DeleteProgram" />
+    		<wsdl:input>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>
+    	<wsdl:operation name="GetPrograms">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/GetPrograms" />
+    		<wsdl:input>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation> 
+    	<wsdl:operation name="CreateParticipantAccounts">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/CreateParticipantAccounts" />
+    		<wsdl:input>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>
+    	<wsdl:operation name="ModifyParticipantAccounts">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/ModifyParticipantAccounts" />
+    		<wsdl:input>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>
+    	<wsdl:operation name="DeleteParticipantAccounts">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/DeleteParticipantAccounts" />
+    		<wsdl:input>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>
+    	<wsdl:operation name="GetParticipantAccounts">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/GetParticipantAccounts" />
+    		<wsdl:input>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>
+    	<wsdl:operation name="AdjustProgramParticipants">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/AdjustProgramParticipants" />
+    		<wsdl:input>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>
+    	<wsdl:operation name="GetCurrentBids">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/GetCurrentBids" />
+    		<wsdl:input>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>
+    	<wsdl:operation name="CloseBidding">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/CloseBidding" />
+    		<wsdl:input>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>
+    	<wsdl:operation name="SetBidStatus">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/SetBidStatus" />
+    		<wsdl:input>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>
+    	<wsdl:operation name="GetDRASClientCommsStatus">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/GetDRASClientCommsStatus" />
+    		<wsdl:input>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>
+    	
+    	<wsdl:operation name="GetDRASTransactions">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/GetDRASTransactions" />
+    		<wsdl:input>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>
+        <wsdl:operation name="GetDRASClientAlarms">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/GetDRASClientAlarms" />
+    		<wsdl:input>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>
+    	<wsdl:operation name="GetParticipantFeedback">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/GetParticipantFeedback" />
+    		<wsdl:input>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>
+    	<wsdl:operation name="GetGroups">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/GetGroups" />
+            <wsdl:input>
+                <soap:body use="literal"
+                        namespace="http://www.example.org/UtilityOperator/"/>
+            </wsdl:input>
+            <wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>
+    	<wsdl:operation name="SetEventConstraint">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/SetEventConstraint" />
+    		<wsdl:input>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>
+    	<wsdl:operation name="GetEventConstraint">
+    		<soap:operation
+    			soapAction="http://www.example.org/UtilityOperator/GetEventConstraint" />
+    		<wsdl:input>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:input>
+    		<wsdl:output>
+    			<soap:body use="literal"
+    				namespace="http://www.example.org/UtilityOperator/" />
+    		</wsdl:output>
+    	</wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="UtilityOperator">
+        <wsdl:port binding="tns:UtilityOperatorSOAP"
+            name="UtilityOperatorPort">
+            <soap:address location="http://www.example.org/" />
+        </wsdl:port>
+    </wsdl:service>
+</wsdl:definitions>

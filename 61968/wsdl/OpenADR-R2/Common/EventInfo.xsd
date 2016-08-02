@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns:tns="urn:EventInfo" elementFormDefault="qualified"
+	targetNamespace="urn:EventInfo"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:complexType name="EventInfoType">
+		<xs:annotation>
+			<xs:documentation>
+				When a DR Event is issued by the Utility/ISO there is so
+				called "Event Info" that accompanies the DR Event and is
+				valid for the period of time that the DR Event is
+				active. The Event Info can be of various types depending
+				on the requirements of the DR program. The supported
+				types are defined by the enumerations found in the
+				EventInfoTypeID
+
+				Part of setting up a DR program in the DRAS is
+				specifying what Event Info Types may be sent as part of
+				issuing a DR Event. There are various attributes
+				associated with each Event Info type that may be
+				configured when the DR program is set up. These
+				attributes define the range of values that may be sent
+				as part of the Event Info that is associated with a DR
+				Event.
+
+				In addition each Event Info Type may have a schedule
+				associated with it that defines a schedule of values
+				that cover the period when the DR Event is active. A
+				schedule is defined by a set of "time slots" within the
+				DR Events active period. The slots are defined using the
+				attributes in the scheduleType element as well as the
+				time slots in the schedule element.
+
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="scheduleType">
+				<xs:annotation>
+					<xs:documentation>
+						This specifies how a schedule that may be
+						associated with the Dr Event information is
+						defined.
+
+						• None – there is no schedule and thus the Event
+						Info does not change values during the entire DR
+						event window. • Dynamic – The time schedule is
+						not fixed during configuration, but can be set
+						when the DR Event is issued. • Static –
+						Theschedule is fixed when the DR program is
+						configured within the DRAS
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="NONE" />
+						<xs:enumeration value="DYNAMIC" />
+						<xs:enumeration value="STATIC" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element minOccurs="0" name="schedule">
+				<xs:annotation>
+					<xs:documentation>
+						Recall from the scheduleType element that if the
+						schedule type is FIXED then the schedule is
+						defined as part of the EventInfoType definition.
+						This element is thus used to define a "FIXED"
+						schedule that is associated with Event Info
+						values. A schedule consists of ordered time
+						slots which are defined using a relative time
+						offset from the beginning of the DR event
+						period. This a schedule is nothing more than an
+						ordered list of time offset values that define
+						when each time slot begins.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="timeSlot" type="xs:double">
+							<xs:annotation>
+								<xs:documentation>
+									This is the definition of a schedule
+									time slot. The value is a relative
+									time offset in seconds from the
+									beginning of the DR period. The
+									value signifies the start of this
+									time slot. The end of this time slot
+									is the time value of the next
+									timeSlot in the schedule list. If
+									there are not more elements in the
+									list then the end of the DR period
+									is the end of this time slot. The
+									first time slot in the schedule list
+									must have a value of 0.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="enumerations">
+				<xs:annotation>
+					<xs:documentation>
+						This is an list that defines a fixed set of
+						values that the Event Info value may take. If
+						defined then the Event Info is an enumeration
+						and can take on any of the values in the array,
+						but if left undefined then the Event Info can
+						take on any contiguous value between the
+						minValue and maxValue.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="unbounded"
+							name="value" type="xs:double" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="minValue"
+				type="xs:double">
+				<xs:annotation>
+					<xs:documentation>
+						This is the minimum possible value that the
+						Event Info may take. If this is undefined then
+						there is no minimum value.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="maxValue"
+				type="xs:double">
+				<xs:annotation>
+					<xs:documentation>
+						This is the maximum possible value that the
+						Event Info may take. If this is undefined then
+						there is no maximum value.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemaVersion" type="xs:string"
+			use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Version of the schema.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="name" type="xs:string" use="required">
+			<xs:annotation>
+				<xs:documentation>
+					This is a name assigned to the event Info Type.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="typeID" type="tns:EventInfoTypeID"
+			use="required">
+			<xs:annotation>
+				<xs:documentation>
+					This identifies the data type of the EventInfoType
+					as described in the definition of the
+					EventInfoTypeID.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="EventInfoInstance">
+		<xs:annotation>
+			<xs:documentation>
+				Whereas the EventInfoType is used to define what type of
+				informaiton may be sent as part of a DR event the
+				EventInfoInstance is an actual instantiation of that
+				information.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" name="values">
+				<xs:annotation>
+					<xs:documentation>
+						These are the actual values. Note that if there
+						are a schedule of values then there will be more
+						than one value defined in the list. In addition
+						if the schdule associated with the values is
+						dynamic then the schedule slots associated with
+						the values is also specified.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="value"
+							type="tns:EventInfoValue">
+							<xs:annotation>
+								<xs:documentation>
+									The actual event info value.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="participants">
+				<xs:annotation>
+					<xs:documentation>
+						This is an optional list of participant account
+						ID's that this instance of Event Info applies
+						to.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded"
+							name="accountID" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>
+									Participant Account identifier.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="groups">
+				<xs:annotation>
+					<xs:documentation>
+						This is an optional list of utility group ID's
+						that this instance of Event Info applies to.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="groupID"
+							type="xs:string">
+							<xs:annotation>
+								<xs:documentation>
+									Utility group identifier.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="endTime" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>
+						[dan] I added this field so that the last element
+						in the sequence need not be implied by the end time of
+						event but can be explicitly defined. This is useful if
+						the sequence is not exactly bounded by the event timing.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>			
+		</xs:sequence>
+		<xs:attribute name="schemaVersion" type="xs:string"
+			use="required">
+			<xs:annotation>
+				<xs:documentation>
+					This is the schema version.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="eventInfoTypeName" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>
+					This is the name that was assigned to the
+					EventInfoType and corresponds to the name attribute
+					of the EventInfoType that was defined when the
+					program was established.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:simpleType name="EventInfoTypeID">
+		<xs:annotation>
+			<xs:documentation>
+				This identifies the data type of an EventInfoType
+				definition and may take on any of the following values:
+				• PRICE_ABSOLUTE - Price number, i.e. $0.25 •
+				PRICE_RELATIVE - Change in price, i.e. -$0.05 •
+				PRICE_MULTIPLE - Multiple of current price, i.e. 1.5 •
+				LOAD_LEVEL - Amount of load based on an enumeration,
+				i.e. moderate, high, etc • LOAD_AMOUNT - Fixed amount of
+				load to shed, i.e. 5 MW • LOAD_PERCENTAGE - Percentage
+				of load to shed, i.e. 10% • GRID_RELIABILITY - Number
+				signifying the reliability of the grid
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="PRICE_ABSOLUTE" />
+			<xs:enumeration value="PRICE_RELATIVE" />
+			<xs:enumeration value="PRICE_MULTIPLE" />
+			<xs:enumeration value="LOAD_LEVEL" />
+			<xs:enumeration value="LOAD_AMOUNT" />
+			<xs:enumeration value="LOAD_PERCENTAGE" />
+			<xs:enumeration value="GRID_RELIABILITY" />
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="EventInfoValue">
+		<xs:annotation>
+			<xs:documentation>
+				This is used to specify both an Event Info value and
+				possibly an accompanying time period for that value. If
+				the time period is left unspecified then the value
+				correpsonds to the schedule that was defined when the
+				EventInfoType was defined.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="value" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>
+						This is the actual value that is associated with
+						this time slot.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="startTime"
+				type="xs:double">
+				<xs:annotation>
+					<xs:documentation>
+						This is the definition of a schedule time slot.
+						The value is a relative time offset in seconds
+						from the beginning of the DR period. The value
+						signifies the start of this time slot. The end
+						of this time slot is the time value of the next
+						timeSlot in the schedule list. If there are not
+						more elements in the list then the end of the DR
+						period is the end of this time slot. The first
+						time slot in the schedule list must have a value
+						of 0.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ListOfEventInfoType">
+		<xs:annotation>
+			<xs:documentation>
+				This represents a list of EventInfoTypes.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="eventInfoType" type="tns:EventInfoType">
+				<xs:annotation>
+					<xs:documentation>
+						This is an instance of an EventInfoType in the
+						list.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

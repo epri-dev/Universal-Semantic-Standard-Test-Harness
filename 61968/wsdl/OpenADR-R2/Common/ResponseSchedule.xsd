@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns:tns="urn:ResponseSchedule"
+	elementFormDefault="qualified" targetNamespace="urn:ResponseSchedule"
+	version="0.9" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:complexType name="ResponseSchedule">
+		<xs:annotation>
+			<xs:documentation>
+				Response schedules are associated with both a DR program
+				and a DRAS Client. They are used to define how a Simple
+				DRAS Client will respond to DR Events that issued for a
+				specific DR program. The Response Schedule is used by
+				the DRAS to map the information associated with a DR
+				Event to the simple levels required by a Simple DRAS
+				Client. Response Schedules are typically set up and
+				configured by Participants and associated with specific
+				DRAS Clients although they may be set up by the
+				Utility/ISO if there is a wsdl/OpenADR/Common set of strategies that
+				should be used with all DRAS Clients.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="nearTransitionTime" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>
+						This parameter is used to control when the Event
+						Status attribute of the Event State entity
+						transitions from PENDING_FAR to PENDING_NEAR. It
+						is a relative time from the beginning of the DR
+						Event window. If it is set to 0 then the Event
+						Status attribute is always PENDING_NEAR before
+						it transitions to ACTIVE.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="operationStates">
+				<xs:annotation>
+					<xs:documentation>
+						This is a sequence of the operational state(s)
+						which the Simple DRAS Client may be in with
+						respect to a DR Event that may be issued. This
+						basically defines the mappings between a DR
+						Event and the simple levels that are used by a
+						Simple DRAS Client. A Simple DRAS Client may be
+						in a series of such states and will transition
+						through them during a DR Event. Each such state
+						represents a simple level as described in the
+						OperationState entity.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded"
+							name="stateSpec" type="tns:OperationStateSpec">
+							<xs:annotation>
+								<xs:documentation>
+									This is an instance of an
+									OperationState.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemaVersion" type="xs:string"
+			use="required">
+			<xs:annotation>
+				<xs:documentation>
+					This is the version of the schema.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="identifier" type="xs:string"
+			use="required">
+			<xs:annotation>
+				<xs:documentation>
+					This is an identifier that is created when the
+					Response Schedule is first created and configured.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="programName" type="xs:string"
+			use="required">
+			<xs:annotation>
+				<xs:documentation>
+					This is the naem of the Program that this
+					ResponseSchedule is associated with. It corresponds
+					ot the name attribute of the Program.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="DRASClientID">
+			<xs:annotation>
+				<xs:documentation>
+					This is the identifier of the DRASClient that this
+					RepsonseSchedule belongs to.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="OperationStateSpec">
+		<xs:annotation>
+			<xs:documentation>
+				This is used to define an Operation State. Each
+				Operation State is a single time slot within a Response
+				Schedule. A series of these states define a Response
+				Schedule as described in the ResponseSchedule entity .
+				It defines a time slot and a set of rules that are used
+				to create one of the operation mode states that a Simple
+				DRAS Client may be in during the specified time slot.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="startTime" type="xs:double">
+				<xs:annotation>
+					<xs:documentation>
+						This is the start time for the time slot defined
+						as part of this OperationState. It is a realtive
+						offset in seconds from the beginning of the DR
+						Event period. The end of this time slot is
+						defined by the start tie of the successive
+						OperationState in the ResponseSchedule. If there
+						are no more OperationStates then the end tme is
+						the end of the DR Event period.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="rules">
+				<xs:annotation>
+					<xs:documentation>
+						This is an ordered list of rules that define
+						what operation mode value is set during the
+						OperationState time slot. See the Rule entity
+						for a definition of a Rule.
+
+						This defines a set of simple rules that map the
+						DR Event Info to a specific Simple Client level.
+						The set of rules are expressed in terms of an
+						ordered list wherein each entry in the list
+						represents a Boolean equation such that if the
+						equation is true then the corresponding
+						operation mode value will be set. The equations
+						are Boolean comparisons of the existing Event
+						Info Type ID’s for this program along with the
+						BID that may have been made for a DR event.
+
+						Below is an example table where there is a
+						single Event Info Type of PRICE_ABSOLUTE and a
+						corresponding BID from the Participant
+
+						Value Equation MODERATE Real_Time_Price gt 5 AND
+						BID gt 10 HIGH Real_Time_Price gt 10 AND BID gt
+						10 MODERATE Real_Time_Price gt 5 AND BID lt 5
+						SPECIAL Real_Time_Price gt 15 NORMAL TRUE
+
+						where gt stands for GREATER THAN.
+
+						In this example Real_Time_Price was the name
+						given to an EventInforType that was configured
+						as part of this Program. See EventInfoType for
+						more information. BID corresponds to a bid that
+						was submitted by the Participant for this DR
+						Event.
+
+						Note that each row in the list is evaluated from
+						top to bottom until one of the equations is
+						true. Whichever equation is true then the
+						corresponding value is used to set the operation
+						mode value. Note that if none of the rows are
+						true then the operation mode value does not
+						change. It is therefore good practice to put a
+						default TRUE value at the very end which will be
+						used if none of the other equations are true.
+
+						The following Boolean operations should be
+						supported: • AND • OR • XOR • NOT • GREATER
+						THAN, GREATER THAN OR EQUAL • LESS THAN, LESS
+						THAN OR EQUAL • EQUAL, NOT EQUAL • GROUPING,
+						i.e. parenthesis
+
+						In general the equation is represented as a
+						simple string. It is beyond the scope of this
+						standard to specify the exact syntax of the
+						equation strings that are used for this purpose.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="rule"
+							type="tns:Rule">
+							<xs:annotation>
+								<xs:documentation>
+									An instance of a Rule entity.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Rule">
+		<xs:annotation>
+			<xs:documentation>
+				This is used to define a specific Rule. A Rule is a
+				value and corresponding equation such that if the
+				equation evaluates to true then the value is set. If the
+				equation is false then the value is not used.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="value">
+				<xs:annotation>
+					<xs:documentation>
+						The value to use if the equation is TRUE. It can
+						take on any of the values:
+
+						NORMAL MODERATE HIGH SPECIAL
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="NORMAL" />
+						<xs:enumeration value="MODERATE" />
+						<xs:enumeration value="HIGH" />
+						<xs:enumeration value="SPECIAL" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="equation" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						A text based equation whcih may use a number of
+						tokens and variables that can be easily parsed
+						by the DRAS. An example includes:
+
+						Real_time_Price gt 5 AND BID gt 10
+
+						where gt stands for GREATER THAN.
+
+						In this example Real_Time_Price was the name
+						given to an EventInforType that was configured
+						as part of this Program. See EventInfoType for
+						more information. BID corresponds to a bid that
+						was submitted by the Participant for this DR
+						Event.
+
+						In general there are a number of boolean
+						operations that may be used to compare the
+						EventInfoType instances to values.
+
+
+						The following Boolean operations should be
+						supported: • AND • OR • XOR • NOT • GREATER
+						THAN, GREATER THAN OR EQUAL • LESS THAN, LESS
+						THAN OR EQUAL • EQUAL, NOT EQUAL • GROUPING,
+						i.e. parenthesis
+
+						In general the equation is represented as a
+						simple string. It is beyond the scope of this
+						standard to specify the exact syntax of the
+						equation strings that are used for this purpose.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

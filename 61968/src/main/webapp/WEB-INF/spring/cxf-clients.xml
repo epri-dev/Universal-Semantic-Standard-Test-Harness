@@ -1,0 +1,134 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+	<bean class="com.sixthc.client.ReplyMeterServiceRequestsClient"
+		id="replyCreateMeterServiceRequestsClient" autowire="byName">
+		<property name="loggingInInterceptor">
+			<bean class="com.sixthc.interceptor.LoggingInInterceptor">
+				<property name="interfaceName" value="MD_CIS-MDM_Request_Reply(MeterServiceRequest)" />
+				<property name="packageName" value="Meter Connect" />
+				<property name="vendorRoleType" value="CIS" />
+				<property name="resultCode" value="success" />
+				<property name="stage" value="clientIn"/>
+			</bean>
+		</property>
+		<property name="loggingInFaultInterceptor">
+			<bean class="com.sixthc.interceptor.LoggingInInterceptor">
+				<property name="interfaceName" value="MD_CIS-MDM_Request_Reply(MeterServiceRequest)" />
+				<property name="packageName" value="Meter Connect" />
+				<property name="vendorRoleType" value="CIS" />
+				<property name="resultCode" value="fail" />
+								<property name="stage" value="clientInFault"/>
+				
+			</bean>
+		</property>
+		<property name="loggingOutInterceptor">
+			<bean class="com.sixthc.interceptor.LoggingOutInterceptor">
+				<property name="interfaceName" value="MD_CIS-MDM_Request_Reply(MeterServiceRequest)" />
+				<property name="packageName" value="Meter Connect" />
+				<property name="vendorRoleType" value="CIS" />
+				<property name="resultCode" value="success" />
+								<property name="stage" value="clientOut"/>
+				
+			</bean>
+		</property>
+		<property name="loggingOutFaultInterceptor">
+			<bean class="com.sixthc.interceptor.LoggingOutInterceptor">
+				<property name="interfaceName" value="MD_CIS-MDM_Request_Reply(MeterServiceRequest)" />
+				<property name="packageName" value="Meter Connect" />
+				<property name="vendorRoleType" value="CIS" />
+				<property name="resultCode" value="fail" />
+								<property name="stage" value="clientOutFault"/>
+				
+			</bean>
+		</property>
+	</bean>
+	
+	<bean class="com.sixthc.client.ReplyMeterServiceRequestsClient"
+		id="replyChangeMeterServiceRequestsClient" autowire="byName">
+		<property name="loggingInInterceptor">
+			<bean class="com.sixthc.interceptor.LoggingInInterceptor">
+				<property name="interfaceName" value="MD_CIS-MDM_Request_Updated(MeterServiceRequest)" />
+				<property name="packageName" value="Meter Connect" />
+				<property name="vendorRoleType" value="CIS" />
+				<property name="resultCode" value="success" />
+				<property name="stage" value="clientIn"/>
+			</bean>
+		</property>
+		<property name="loggingInFaultInterceptor">
+			<bean class="com.sixthc.interceptor.LoggingInInterceptor">
+				<property name="interfaceName" value="MD_CIS-MDM_Request_Updated(MeterServiceRequest)" />
+				<property name="packageName" value="Meter Connect" />
+				<property name="vendorRoleType" value="CIS" />
+				<property name="resultCode" value="fail" />
+								<property name="stage" value="clientInFault"/>
+				
+			</bean>
+		</property>
+		<property name="loggingOutInterceptor">
+			<bean class="com.sixthc.interceptor.LoggingOutInterceptor">
+				<property name="interfaceName" value="MD_CIS-MDM_Request_Updated(MeterServiceRequest)" />
+				<property name="packageName" value="Meter Connect" />
+				<property name="vendorRoleType" value="CIS" />
+				<property name="resultCode" value="success" />
+								<property name="stage" value="clientOut"/>
+				
+			</bean>
+		</property>
+		<property name="loggingOutFaultInterceptor">
+			<bean class="com.sixthc.interceptor.LoggingOutInterceptor">
+				<property name="interfaceName" value="MD_CIS-MDM_Request_Updated(MeterServiceRequest)" />
+				<property name="packageName" value="Meter Connect" />
+				<property name="vendorRoleType" value="CIS" />
+				<property name="resultCode" value="fail" />
+								<property name="stage" value="clientOutFault"/>
+				
+			</bean>
+		</property>
+	</bean>
+	
+	<bean class="com.sixthc.client.SendMeterServiceRequestsClient"
+		id="sendCreateMeterServiceRequestsClient" autowire="byName">
+		<property name="loggingInInterceptor">
+			<bean class="com.sixthc.interceptor.LoggingInInterceptor">
+				<property name="interfaceName" value="MD_MDM-CIS_Request_Create(MeterServiceRequest)" />
+				<property name="packageName" value="Meter Connect" />
+				<property name="vendorRoleType" value="MDMS" />
+				<property name="resultCode" value="success" />
+				<property name="stage" value="clientIn"/>
+			</bean>
+		</property>
+		<property name="loggingInFaultInterceptor">
+			<bean class="com.sixthc.interceptor.LoggingInInterceptor">
+				<property name="interfaceName" value="MD_MDM-CIS_Request_Create(MeterServiceRequest)" />
+				<property name="packageName" value="Meter Connect" />
+				<property name="vendorRoleType" value="MDMS" />
+				<property name="resultCode" value="fail" />
+								<property name="stage" value="clientInFault"/>
+				
+			</bean>
+		</property>
+		<property name="loggingOutInterceptor">
+			<bean class="com.sixthc.interceptor.LoggingOutInterceptor">
+				<property name="interfaceName" value="MD_MDM-CIS_Request_Create(MeterServiceRequest)" />
+				<property name="packageName" value="Meter Connect" />
+				<property name="vendorRoleType" value="MDMS" />
+				<property name="resultCode" value="success" />
+								<property name="stage" value="clientOut"/>
+				
+			</bean>
+		</property>
+		<property name="loggingOutFaultInterceptor">
+			<bean class="com.sixthc.interceptor.LoggingOutInterceptor">
+				<property name="interfaceName" value="MD_MDM-CIS_Request_Create(MeterServiceRequest)" />
+				<property name="packageName" value="Meter Connect" />
+				<property name="vendorRoleType" value="MDMS" />
+				<property name="resultCode" value="fail" />
+								<property name="stage" value="clientOutFault"/>
+				
+			</bean>
+		</property>
+	</bean>
+</beans>

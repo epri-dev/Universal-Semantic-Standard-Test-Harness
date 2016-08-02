@@ -1,0 +1,331 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:DIME="http://schemas.xmlsoap.org/ws/2002/04/dime/wsdl/" xmlns:MIME="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:SOAP="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" xmlns:WSDL="http://schemas.xmlsoap.org/wsdl/" xmlns:ns="urn:bacnet_ws" xmlns:tns="urn:bacnet-web-services" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" name="bacnet" targetNamespace="urn:bacnet-web-services">
+
+<types>
+
+ <schema xmlns="http://www.w3.org/2001/XMLSchema" attributeFormDefault="unqualified" elementFormDefault="unqualified" targetNamespace="urn:bacnet_ws">
+  <import namespace="http://schemas.xmlsoap.org/soap/encoding/"/>
+  <complexType name="ArrayOfstring">
+   <complexContent>
+    <restriction base="SOAP-ENC:Array">
+     <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="item" type="xsd:string"/>
+     </sequence>
+     <attribute WSDL:arrayType="xsd:string[]" ref="SOAP-ENC:arrayType"/>
+    </restriction>
+   </complexContent>
+  </complexType>
+  <element name="result" type="xsd:string"/>
+  <element name="options" type="xsd:string"/>
+  <element name="path" type="xsd:string"/>
+  <element name="results" type="ns:ArrayOfstring"/>
+  <element name="paths" type="ns:ArrayOfstring"/>
+  <element name="basePath" type="xsd:string"/>
+  <element name="index" type="xsd:unsignedInt"/>
+  <element name="count" type="xsd:unsignedInt"/>
+  <element name="value" type="xsd:string"/>
+  <element name="values" type="ns:ArrayOfstring"/>
+  <element name="start" type="xsd:string"/>
+  <element name="interval" type="xsd:string"/>
+  <element name="response" type="xsd:hexBinary"/>
+  <element name="request" type="xsd:hexBinary"/>
+ </schema>
+
+</types>
+
+<message name="getValueRequest">
+ <part name="options" type="xsd:string"/>
+ <part name="path" type="xsd:string"/>
+</message>
+
+<message name="getValueResponse">
+ <part name="result" type="xsd:string"/>
+</message>
+
+<message name="getValuesRequest">
+ <part name="options" type="xsd:string"/>
+ <part name="paths" type="ns:ArrayOfstring"/>
+</message>
+
+<message name="getValuesResponse">
+ <part name="results" type="ns:ArrayOfstring"/>
+</message>
+
+<message name="getRelativeValuesRequest">
+ <part name="options" type="xsd:string"/>
+ <part name="basePath" type="xsd:string"/>
+ <part name="paths" type="ns:ArrayOfstring"/>
+</message>
+
+<message name="getRelativeValuesResponse">
+ <part name="results" type="ns:ArrayOfstring"/>
+</message>
+
+<message name="getArrayRequest">
+ <part name="options" type="xsd:string"/>
+ <part name="path" type="xsd:string"/>
+</message>
+
+<message name="getArrayResponse">
+ <part name="results" type="ns:ArrayOfstring"/>
+</message>
+
+<message name="getArrayRangeRequest">
+ <part name="options" type="xsd:string"/>
+ <part name="path" type="xsd:string"/>
+ <part name="index" type="xsd:unsignedInt"/>
+ <part name="count" type="xsd:unsignedInt"/>
+</message>
+
+<message name="getArrayRangeResponse">
+ <part name="results" type="ns:ArrayOfstring"/>
+</message>
+
+<message name="getArraySizeRequest">
+ <part name="options" type="xsd:string"/>
+ <part name="path" type="xsd:string"/>
+</message>
+
+<message name="getArraySizeResponse">
+ <part name="result" type="xsd:string"/>
+</message>
+
+<message name="setValueRequest">
+ <part name="options" type="xsd:string"/>
+ <part name="path" type="xsd:string"/>
+ <part name="value" type="xsd:string"/>
+</message>
+
+<message name="setValueResponse">
+ <part name="result" type="xsd:string"/>
+</message>
+
+<message name="setValuesRequest">
+ <part name="options" type="xsd:string"/>
+ <part name="paths" type="ns:ArrayOfstring"/>
+ <part name="values" type="ns:ArrayOfstring"/>
+</message>
+
+<message name="setValuesResponse">
+ <part name="results" type="ns:ArrayOfstring"/>
+</message>
+
+<message name="getHistoryPeriodicRequest">
+ <part name="options" type="xsd:string"/>
+ <part name="path" type="xsd:string"/>
+ <part name="start" type="xsd:string"/>
+ <part name="interval" type="xsd:string"/>
+ <part name="count" type="xsd:unsignedInt"/>
+</message>
+
+<message name="getHistoryPeriodicResponse">
+ <part name="results" type="ns:ArrayOfstring"/>
+</message>
+
+<message name="getDefaultLocaleRequest">
+ <part name="options" type="xsd:string"/>
+</message>
+
+<message name="getDefaultLocaleResponse">
+ <part name="result" type="xsd:string"/>
+</message>
+
+<message name="getSupportedLocalsRequest">
+ <part name="options" type="xsd:string"/>
+</message>
+
+<message name="getSupportedLocalsResponse">
+ <part name="results" type="ns:ArrayOfstring"/>
+</message>
+
+<message name="executeFunctionRequest">
+ <part name="request" type="xsd:hexBinary"/>
+</message>
+
+<message name="executeFunctionResponse">
+ <part name="response" type="xsd:hexBinary"/>
+</message>
+
+<portType name="bacnetPortType">
+ <operation name="getValue">
+  <documentation>Service definition of function ns__getValue</documentation>
+  <input message="tns:getValueRequest"/>
+  <output message="tns:getValueResponse"/>
+ </operation>
+ <operation name="getValues">
+  <documentation>Service definition of function ns__getValues</documentation>
+  <input message="tns:getValuesRequest"/>
+  <output message="tns:getValuesResponse"/>
+ </operation>
+ <operation name="getRelativeValues">
+  <documentation>Service definition of function ns__getRelativeValues</documentation>
+  <input message="tns:getRelativeValuesRequest"/>
+  <output message="tns:getRelativeValuesResponse"/>
+ </operation>
+ <operation name="getArray">
+  <documentation>Service definition of function ns__getArray</documentation>
+  <input message="tns:getArrayRequest"/>
+  <output message="tns:getArrayResponse"/>
+ </operation>
+ <operation name="getArrayRange">
+  <documentation>Service definition of function ns__getArrayRange</documentation>
+  <input message="tns:getArrayRangeRequest"/>
+  <output message="tns:getArrayRangeResponse"/>
+ </operation>
+ <operation name="getArraySize">
+  <documentation>Service definition of function ns__getArraySize</documentation>
+  <input message="tns:getArraySizeRequest"/>
+  <output message="tns:getArraySizeResponse"/>
+ </operation>
+ <operation name="setValue">
+  <documentation>Service definition of function ns__setValue</documentation>
+  <input message="tns:setValueRequest"/>
+  <output message="tns:setValueResponse"/>
+ </operation>
+ <operation name="setValues">
+  <documentation>Service definition of function ns__setValues</documentation>
+  <input message="tns:setValuesRequest"/>
+  <output message="tns:setValuesResponse"/>
+ </operation>
+ <operation name="getHistoryPeriodic">
+  <documentation>Service definition of function ns__getHistoryPeriodic</documentation>
+  <input message="tns:getHistoryPeriodicRequest"/>
+  <output message="tns:getHistoryPeriodicResponse"/>
+ </operation>
+ <operation name="getDefaultLocale">
+  <documentation>Service definition of function ns__getDefaultLocale</documentation>
+  <input message="tns:getDefaultLocaleRequest"/>
+  <output message="tns:getDefaultLocaleResponse"/>
+ </operation>
+ <operation name="getSupportedLocals">
+  <documentation>Service definition of function ns__getSupportedLocals</documentation>
+  <input message="tns:getSupportedLocalsRequest"/>
+  <output message="tns:getSupportedLocalsResponse"/>
+ </operation>
+ <operation name="executeFunction">
+  <documentation>Service definition of function ns__executeFunction</documentation>
+  <input message="tns:executeFunctionRequest"/>
+  <output message="tns:executeFunctionResponse"/>
+ </operation>
+</portType>
+
+<binding name="bacnet" type="tns:bacnetPortType">
+ <SOAP:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
+ <operation name="getValue">
+  <SOAP:operation soapAction="" style="rpc"/>
+  <input>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </input>
+  <output>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </output>
+ </operation>
+ <operation name="getValues">
+  <SOAP:operation soapAction="" style="rpc"/>
+  <input>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </input>
+  <output>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </output>
+ </operation>
+ <operation name="getRelativeValues">
+  <SOAP:operation soapAction="" style="rpc"/>
+  <input>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </input>
+  <output>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </output>
+ </operation>
+ <operation name="getArray">
+  <SOAP:operation soapAction="" style="rpc"/>
+  <input>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </input>
+  <output>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </output>
+ </operation>
+ <operation name="getArrayRange">
+  <SOAP:operation soapAction="" style="rpc"/>
+  <input>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </input>
+  <output>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </output>
+ </operation>
+ <operation name="getArraySize">
+  <SOAP:operation soapAction="" style="rpc"/>
+  <input>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </input>
+  <output>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </output>
+ </operation>
+ <operation name="setValue">
+  <SOAP:operation soapAction="" style="rpc"/>
+  <input>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </input>
+  <output>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </output>
+ </operation>
+ <operation name="setValues">
+  <SOAP:operation soapAction="" style="rpc"/>
+  <input>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </input>
+  <output>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </output>
+ </operation>
+ <operation name="getHistoryPeriodic">
+  <SOAP:operation soapAction="" style="rpc"/>
+  <input>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </input>
+  <output>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </output>
+ </operation>
+ <operation name="getDefaultLocale">
+  <SOAP:operation soapAction="" style="rpc"/>
+  <input>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </input>
+  <output>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </output>
+ </operation>
+ <operation name="getSupportedLocals">
+  <SOAP:operation soapAction="" style="rpc"/>
+  <input>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </input>
+  <output>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </output>
+ </operation>
+ <operation name="executeFunction">
+  <SOAP:operation soapAction="" style="rpc"/>
+  <input>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </input>
+  <output>
+     <SOAP:body encodingStyle="http://schemas.xmlsoap.org/soap/encoding/" namespace="urn:bacnet_ws" use="encoded"/>
+  </output>
+ </operation>
+</binding>
+
+<service name="bacnet">
+ <documentation>gSOAP 2.7.8c generated service definition</documentation>
+ <port binding="tns:bacnet" name="bacnet">
+  <SOAP:address location="https://seurat.cbt.nist.gov:8443/SNSI/services/bacnet"/>
+ </port>
+</service>
+
+</definitions>

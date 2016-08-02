@@ -1,0 +1,3509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="MeterConnect-MDMS-3" resourceRoot="${projectDir}" soapui-version="3.6.1" abortOnError="false" runType="SEQUENTIAL" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="SendEndDeviceControls_Binding" type="wsdl" bindingName="{http://iec.ch/TC57/2011/EndDeviceControls}SendEndDeviceControls_Binding" soapVersion="1_1" anonymous="optional" definition="../../wsdl_v1/SendEndDeviceControls.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/Users/bgoodwin/workspace/epri/wsdl_v1/SendEndDeviceControls.wsdl"><con:part><con:url>file:/Users/bgoodwin/workspace/epri/wsdl_v1/SendEndDeviceControls.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="SendEndDeviceControls" targetNamespace="http://iec.ch/TC57/2011/EndDeviceControls" xmlns:tns="http://iec.ch/TC57/2011/EndDeviceControls" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:infoMessage="http://www.iec.ch/TC57/2011/EndDeviceControlsMessage">
+  <wsdl:types>
+    <xs:schema targetNamespace="http://www.iec.ch/TC57/2011/EndDeviceControlsMessage" elementFormDefault="qualified">
+      <xs:include schemaLocation="xsd/EndDeviceControlsMessage.xsd"/>
+    </xs:schema>
+  </wsdl:types>
+  <!--Message Definitions-->
+  <wsdl:message name="CreatedEndDeviceControlsEventMessage">
+    <wsdl:part name="CreatedEndDeviceControlsEventMessage" element="infoMessage:CreatedEndDeviceControls"/>
+  </wsdl:message>
+  <wsdl:message name="ChangedEndDeviceControlsEventMessage">
+    <wsdl:part name="ChangedEndDeviceControlsEventMessage" element="infoMessage:ChangedEndDeviceControls"/>
+  </wsdl:message>
+  <wsdl:message name="ClosedEndDeviceControlsEventMessage">
+    <wsdl:part name="ClosedEndDeviceControlsEventMessage" element="infoMessage:ClosedEndDeviceControls"/>
+  </wsdl:message>
+  <wsdl:message name="CanceledEndDeviceControlsEventMessage">
+    <wsdl:part name="CanceledEndDeviceControlsEventMessage" element="infoMessage:CanceledEndDeviceControls"/>
+  </wsdl:message>
+  <wsdl:message name="DeletedEndDeviceControlsEventMessage">
+    <wsdl:part name="DeletedEndDeviceControlsEventMessage" element="infoMessage:DeletedEndDeviceControls"/>
+  </wsdl:message>
+  <wsdl:message name="ResponseMessage">
+    <wsdl:part name="ResponseMessage" element="infoMessage:EndDeviceControlsResponseMessage"/>
+  </wsdl:message>
+  <wsdl:message name="FaultMessage">
+    <wsdl:part name="FaultMessage" element="infoMessage:EndDeviceControlsFaultMessage"/>
+  </wsdl:message>
+  <!--Port Definitions-->
+  <wsdl:portType name="SendEndDeviceControls_Port">
+    <wsdl:operation name="CreatedEndDeviceControls">
+      <wsdl:input name="CreatedEndDeviceControlsEvent" message="tns:CreatedEndDeviceControlsEventMessage"/>
+      <wsdl:output name="CreatedEndDeviceControlsResponse" message="tns:ResponseMessage"/>
+      <wsdl:fault name="CreatedEndDeviceControlsFault" message="tns:FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="ChangedEndDeviceControls">
+      <wsdl:input name="ChangedEndDeviceControlsEvent" message="tns:ChangedEndDeviceControlsEventMessage"/>
+      <wsdl:output name="ChangedEndDeviceControlsResponse" message="tns:ResponseMessage"/>
+      <wsdl:fault name="ChangedEndDeviceControlsFault" message="tns:FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="CanceledEndDeviceControls">
+      <wsdl:input name="CanceledEndDeviceControlsEvent" message="tns:CanceledEndDeviceControlsEventMessage"/>
+      <wsdl:output name="CanceledEndDeviceControlsResponse" message="tns:ResponseMessage"/>
+      <wsdl:fault name="CanceledEndDeviceControlsFault" message="tns:FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="ClosedEndDeviceControls">
+      <wsdl:input name="ClosedEndDeviceControlsEvent" message="tns:ClosedEndDeviceControlsEventMessage"/>
+      <wsdl:output name="ClosedEndDeviceControlsResponse" message="tns:ResponseMessage"/>
+      <wsdl:fault name="ClosedEndDeviceControlsFault" message="tns:FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeletedEndDeviceControls">
+      <wsdl:input name="DeletedEndDeviceControlsEvent" message="tns:DeletedEndDeviceControlsEventMessage"/>
+      <wsdl:output name="DeletedEndDeviceControlsResponse" message="tns:ResponseMessage"/>
+      <wsdl:fault name="DeletedEndDeviceControlsFault" message="tns:FaultMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="SendEndDeviceControls_Binding" type="tns:SendEndDeviceControls_Port">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CreatedEndDeviceControls">
+      <soap:operation soapAction="http://iec.ch/TC57/2011/EndDeviceControls/CreatedEndDeviceControls" style="document"/>
+      <wsdl:input name="CreatedEndDeviceControlsEvent">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CreatedEndDeviceControlsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CreatedEndDeviceControlsFault">
+        <soap:fault name="CreatedEndDeviceControlsFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ChangedEndDeviceControls">
+      <soap:operation soapAction="http://iec.ch/TC57/2011/EndDeviceControls/ChangedEndDeviceControls" style="document"/>
+      <wsdl:input name="ChangedEndDeviceControlsEvent">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ChangedEndDeviceControlsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ChangedEndDeviceControlsFault">
+        <soap:fault name="ChangedEndDeviceControlsFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CanceledEndDeviceControls">
+      <soap:operation soapAction="http://iec.ch/TC57/2011/EndDeviceControls/CanceledEndDeviceControls" style="document"/>
+      <wsdl:input name="CanceledEndDeviceControlsEvent">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CanceledEndDeviceControlsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CanceledEndDeviceControlsFault">
+        <soap:fault name="CanceledEndDeviceControlsFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ClosedEndDeviceControls">
+      <soap:operation soapAction="http://iec.ch/TC57/2011/EndDeviceControls/ClosedEndDeviceControls" style="document"/>
+      <wsdl:input name="ClosedEndDeviceControlsEvent">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ClosedEndDeviceControlsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ClosedEndDeviceControlsFault">
+        <soap:fault name="ClosedEndDeviceControlsFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeletedEndDeviceControls">
+      <soap:operation soapAction="http://iec.ch/TC57/2011/EndDeviceControls/DeletedEndDeviceControls" style="document"/>
+      <wsdl:input name="DeletedEndDeviceControlsEvent">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="DeletedEndDeviceControlsResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DeletedEndDeviceControlsFault">
+        <soap:fault name="DeletedEndDeviceControlsFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="SendEndDeviceControls">
+    <wsdl:port name="SendEndDeviceControls_Port" binding="tns:SendEndDeviceControls_Binding">
+      <soap:address location="http://iec.ch/TC57/2011/SendEndDeviceControls"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:/Users/bgoodwin/workspace/epri/wsdl_v1/xsd/EndDeviceControlsMessage.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://www.iec.ch/TC57/2011/EndDeviceControlsMessage" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.0" xmlns:tns="http://www.iec.ch/TC57/2011/EndDeviceControlsMessage" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msg="http://www.iec.ch/TC57/2011/schema/message" xmlns:obj="http://iec.ch/TC57/2011/EndDeviceControls#">
+  <!--Base Message Definitions-->
+  <xs:import namespace="http://www.iec.ch/TC57/2011/schema/message" schemaLocation="Message.xsd"/>
+  <!--CIM Information Object Definition-->
+  <xs:import namespace="http://iec.ch/TC57/2011/EndDeviceControls#" schemaLocation="EndDeviceControls.xsd"/>
+  <!--PayloadType Definition-->
+  <xs:complexType name="EndDeviceControlsPayloadType">
+    <xs:sequence>
+      <xs:element ref="obj:EndDeviceControls"/>
+      <xs:element name="OperationSet" type="msg:OperationSet" minOccurs="0"/>
+      <xs:element name="Compressed" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>For compressed and/or binary, uuencoded payloads</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Format" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Hint as to format of payload, e.g. XML, RDF, SVF,
+						BINARY, PDF, ...</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!--Message Types-->
+  <!--RequestMessageType-->
+  <xs:complexType name="EndDeviceControlsRequestMessageType">
+    <xs:sequence>
+      <xs:element name="Header" type="msg:HeaderType"/>
+      <xs:element name="Request" type="msg:RequestType" minOccurs="0"/>
+      <xs:element name="Payload" type="tns:EndDeviceControlsPayloadType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!--ResponseMessageType-->
+  <xs:complexType name="EndDeviceControlsResponseMessageType">
+    <xs:sequence>
+      <xs:element name="Header" type="msg:HeaderType"/>
+      <xs:element name="Reply" type="msg:ReplyType"/>
+      <xs:element name="Payload" type="tns:EndDeviceControlsPayloadType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!--EventMessageType-->
+  <xs:complexType name="EndDeviceControlsEventMessageType">
+    <xs:sequence>
+      <xs:element name="Header" type="msg:HeaderType"/>
+      <xs:element name="Payload" type="tns:EndDeviceControlsPayloadType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!--FaultMessageType-->
+  <xs:complexType name="EndDeviceControlsFaultMessageType">
+    <xs:sequence>
+      <xs:element name="Reply" type="msg:ReplyType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CreateEndDeviceControls" type="tns:EndDeviceControlsRequestMessageType"/>
+  <xs:element name="ChangeEndDeviceControls" type="tns:EndDeviceControlsRequestMessageType"/>
+  <xs:element name="CancelEndDeviceControls" type="tns:EndDeviceControlsRequestMessageType"/>
+  <xs:element name="CloseEndDeviceControls" type="tns:EndDeviceControlsRequestMessageType"/>
+  <xs:element name="DeleteEndDeviceControls" type="tns:EndDeviceControlsRequestMessageType"/>
+  <xs:element name="CreatedEndDeviceControls" type="tns:EndDeviceControlsEventMessageType"/>
+  <xs:element name="ChangedEndDeviceControls" type="tns:EndDeviceControlsEventMessageType"/>
+  <xs:element name="CanceledEndDeviceControls" type="tns:EndDeviceControlsEventMessageType"/>
+  <xs:element name="ClosedEndDeviceControls" type="tns:EndDeviceControlsEventMessageType"/>
+  <xs:element name="DeletedEndDeviceControls" type="tns:EndDeviceControlsEventMessageType"/>
+  <xs:element name="EndDeviceControlsResponseMessage" type="tns:EndDeviceControlsResponseMessageType"/>
+  <xs:element name="EndDeviceControlsFaultMessage" type="tns:EndDeviceControlsFaultMessageType"/>
+  <xs:element name="EndDeviceControlsRequestMessage" type="tns:EndDeviceControlsRequestMessageType"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/bgoodwin/workspace/epri/wsdl_v1/xsd/Message.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://www.iec.ch/TC57/2011/schema/message" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.0" xmlns="http://www.iec.ch/TC57/2011/schema/message" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="RequestType">
+    <xs:annotation>
+      <xs:documentation>Request type definition</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:annotation>
+        <xs:documentation>Request package is typically used to supply parameters for 'get' requests</xs:documentation>
+      </xs:annotation>
+      <xs:element name="StartTime" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Start time of interest</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EndTime" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>End time of interest</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Option" type="OptionType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Request type specialization</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ID" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Object ID for request</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>This can be a CIM profile defined as an XSD with a CIM-specific namespace</xs:documentation>
+        </xs:annotation>
+      </xs:any>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReplyType">
+    <xs:annotation>
+      <xs:documentation>Reply type definition</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:annotation>
+        <xs:documentation>Reply package is used to confirm success or report errors</xs:documentation>
+      </xs:annotation>
+      <xs:element name="Result">
+        <xs:annotation>
+          <xs:documentation>Reply code: OK, PARTIAL or FAILED</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="OK"/>
+            <xs:enumeration value="PARTIAL"/>
+            <xs:enumeration value="FAILED"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Error" type="ErrorType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Reply details describing one or more errors</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ID" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Resulting transaction ID (usually consequence of create)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="operationId" type="xs:integer" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The reply.operationId provides the unique identifier of the Operation for which this reply.result is relevant. Thus, it is assumed that this is a partial reply in direct response to one of the operations contained in an OperationSet request.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PayloadType">
+    <xs:annotation>
+      <xs:documentation>Payload container</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>For XML payloads, usually CIM profiles defined using an XSD in a profile-specific namespace.</xs:documentation>
+          </xs:annotation>
+        </xs:any>
+        <xs:element name="OperationSet" type="OperationSet" minOccurs="0"/>
+        <xs:element name="Compressed" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>For compressed and/or binary, uuencoded payloads</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="Format" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Hint as to format of payload, e.g. XML, RDF, SVF, BINARY, PDF, ...</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OperationSet">
+    <xs:annotation>
+      <xs:documentation>Each operation set is a collection of operations that may require operational-integrity and/or sequence control.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="enforceMsgSequence" type="xs:boolean" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>If set to TRUE, the Operation.##other messages must be processed in the sequence presented. If omitted, assume FALSE.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="enforceTransactionalIntegrity" type="xs:boolean" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Set to TRUE when all of the Operation.##other messages must be processed successfully or else the entire message set must be rolled back. If omitted, assume TRUE.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Operation" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>For master data set synchronization XML payloads.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="operationId" type="xs:integer">
+              <xs:annotation>
+                <xs:documentation>The payload.operation.operationId provides the unique identifier (within the OperationSet) of the Operation for the purpose of reference in subsequent messages (e.g. OperationSet reply).</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="noun" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>The payload.operation.##other also identifies the noun, this element is optionally supplied to simplify processing.</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <!--insert nouns from parts 1-8 here-->
+                  <!--nouns from "61958-9_MeterReadingAndControl_2ed-working-draft-20110412.docx"-->
+                  <xs:enumeration value="AuxiliaryAgreementConfig"/>
+                  <xs:enumeration value="ComModuleConfig"/>
+                  <xs:enumeration value="CustomerAccountConfig"/>
+                  <xs:enumeration value="CustomerAgreementConfig"/>
+                  <xs:enumeration value="CustomerConfig"/>
+                  <xs:enumeration value="CustomerMeterDataSet"/>
+                  <xs:enumeration value="EndDeviceConfig"/>
+                  <xs:enumeration value="EndDeviceControls"/>
+                  <xs:enumeration value="EndDeviceEvents"/>
+                  <xs:enumeration value="EndDeviceFirmware"/>
+                  <xs:enumeration value="EndDeviceGroups"/>
+                  <xs:enumeration value="MasterDataLinkageConfig"/>
+                  <xs:enumeration value="MeterConfig"/>
+                  <xs:enumeration value="MeterReadings"/>
+                  <xs:enumeration value="MeterReadSchedule"/>
+                  <xs:enumeration value="MeterServiceRequest"/>
+                  <xs:enumeration value="MeterServiceRequests"/>
+                  <xs:enumeration value="PricingStructureConfig"/>
+                  <xs:enumeration value="ReceiptRecord"/>
+                  <xs:enumeration value="ServiceCategoryConfig"/>
+                  <xs:enumeration value="ServiceLocationConfig"/>
+                  <xs:enumeration value="ServiceSupplierConfig"/>
+                  <xs:enumeration value="TransactionRecord"/>
+                  <xs:enumeration value="UsagePointConfig"/>
+                  <xs:enumeration value="UsagePointGroups"/>
+                  <xs:enumeration value="UsagePointLocationConfig"/>
+                  <!--insert nouns parts 10-12 here"-->
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="verb" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>"create", "delete", "change", etc.</xs:documentation>
+              </xs:annotation>
+              <xs:simpleType>
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="cancel"/>
+                  <xs:enumeration value="canceled"/>
+                  <xs:enumeration value="change"/>
+                  <xs:enumeration value="changed"/>
+                  <xs:enumeration value="create"/>
+                  <xs:enumeration value="created"/>
+                  <xs:enumeration value="close"/>
+                  <xs:enumeration value="closed"/>
+                  <xs:enumeration value="delete"/>
+                  <xs:enumeration value="deleted"/>
+                  <xs:enumeration value="get"/>
+                  <xs:enumeration value="show"/>
+                  <xs:enumeration value="reply"/>
+                  <xs:enumeration value="subscribe"/>
+                  <xs:enumeration value="unsubscribe"/>
+                  <xs:enumeration value="execute"/>
+                  <xs:enumeration value="report"/>
+                  <xs:enumeration value="stop"/>
+                  <xs:enumeration value="terminate"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="elementOperation" type="xs:boolean" default="false" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>TRUE if the verb is operating at the element level. In such a case, the verb is to be applied to the elements populated in the payload.operation.##other below. If omitted, assume FALSE.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:any namespace="##other" processContents="skip" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>An XML payload which carries a CIM profile defined using an XSD in a profile-specific namespate. Individual payloads are used collectively to create a series of related operations. See the "enforce" boolean flags in the header for instructions on how to process these messages.</xs:documentation>
+              </xs:annotation>
+            </xs:any>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReplayDetectionType">
+    <xs:annotation>
+      <xs:documentation>Used to detect and prevent replay attacks</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Nonce" type="xs:string"/>
+      <xs:element name="Created" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UserType">
+    <xs:annotation>
+      <xs:documentation>User type definition</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="UserID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>User identifier</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Organization" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>User parent organization identifier</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HeaderType">
+    <xs:annotation>
+      <xs:documentation>Message header type definition</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:annotation>
+        <xs:documentation>Message header contains control and descriptive information about the message.</xs:documentation>
+      </xs:annotation>
+      <xs:element name="Verb">
+        <xs:annotation>
+          <xs:documentation>This enumerated list of verbs that can be used to form message types in compliance with the IEC 61968 standard.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="cancel"/>
+            <xs:enumeration value="canceled"/>
+            <xs:enumeration value="change"/>
+            <xs:enumeration value="changed"/>
+            <xs:enumeration value="create"/>
+            <xs:enumeration value="created"/>
+            <xs:enumeration value="close"/>
+            <xs:enumeration value="closed"/>
+            <xs:enumeration value="delete"/>
+            <xs:enumeration value="deleted"/>
+            <xs:enumeration value="get"/>
+            <xs:enumeration value="show"/>
+            <xs:enumeration value="reply"/>
+            <xs:enumeration value="subscribe"/>
+            <xs:enumeration value="unsubscribe"/>
+            <xs:enumeration value="execute"/>
+            <xs:enumeration value="report"/>
+            <xs:enumeration value="stop"/>
+            <xs:enumeration value="terminate"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Noun">
+        <xs:annotation>
+          <xs:documentation>The Noun of the Control Area identifies the main subject of the message type, typically a real world object defined in the CIM.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <!--insert nouns from parts 1-8 here-->
+            <!--nouns from "61958-9_MeterReadingAndControl_2ed-working-draft-20110412.docx"-->
+            <xs:enumeration value="AuxiliaryAgreementConfig"/>
+            <xs:enumeration value="ComModuleConfig"/>
+            <xs:enumeration value="CustomerAccountConfig"/>
+            <xs:enumeration value="CustomerAgreementConfig"/>
+            <xs:enumeration value="CustomerConfig"/>
+            <xs:enumeration value="CustomerMeterDataSet"/>
+            <xs:enumeration value="EndDeviceConfig"/>
+            <xs:enumeration value="EndDeviceControls"/>
+            <xs:enumeration value="EndDeviceEvents"/>
+            <xs:enumeration value="EndDeviceFirmware"/>
+            <xs:enumeration value="EndDeviceGroups"/>
+            <xs:enumeration value="MasterDataLinkageConfig"/>
+            <xs:enumeration value="MeterConfig"/>
+            <xs:enumeration value="MeterReadings"/>
+            <xs:enumeration value="MeterReadSchedule"/>
+            <xs:enumeration value="MeterServiceRequest"/>
+            <xs:enumeration value="MeterServiceRequests"/>
+            <xs:enumeration value="PricingStructureConfig"/>
+            <xs:enumeration value="ReceiptRecord"/>
+            <xs:enumeration value="ServiceCategoryConfig"/>
+            <xs:enumeration value="ServiceLocationConfig"/>
+            <xs:enumeration value="ServiceSupplierConfig"/>
+            <xs:enumeration value="TransactionRecord"/>
+            <xs:enumeration value="UsagePointConfig"/>
+            <xs:enumeration value="UsagePointGroups"/>
+            <xs:enumeration value="UsagePointLocationConfig"/>
+            <!--insert nouns parts 10-12 here"-->
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Revision" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Revision level of the message type.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ReplayDetection" type="ReplayDetectionType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Use to introduce randomness in the message to enhance effectiveness of encryption</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Context" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Intended context for information usage, e.g. PRODUCTION, TESTING, TRAINING, ...</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="PRODUCTION"/>
+            <xs:enumeration value="TESTING"/>
+            <xs:enumeration value="DEVELOPMENT"/>
+            <xs:enumeration value="STUDY"/>
+            <xs:enumeration value="TRAINING"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Timestamp" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Application level relevant time and date for when this instance of the message type was produced. This is not intended to be used by middleware for message management.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Source" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Source system or application that sends the message</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AsyncReplyFlag" type="xs:boolean" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Indicates whether or not reply should be asynchronous</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ReplyAddress" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Address to be used for asynchronous replies, typically a URL/topic/queue.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AckRequired" type="xs:boolean" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Indicates whether or not an acknowledgement is required</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="User" type="UserType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>User information of the sender</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MessageID" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Unique message ID to be used for tracking messages</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CorrelationID" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>ID to be used by applications for correlating replies</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Comment" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Optional comment</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Property" type="MessageProperty" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Message properties can be used to identify information needed for extended routing and filtering capabilities</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Message" type="MessageType">
+    <xs:annotation>
+      <xs:documentation>Common IEC 61968 Message Definition</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="MessageProperty">
+    <xs:annotation>
+      <xs:documentation>Message properties can be used for extended routing and filtering</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name" type="xs:string"/>
+      <xs:element name="Value" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RequestMessage" type="RequestMessageType">
+    <xs:annotation>
+      <xs:documentation>Request message structure</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="ResponseMessage" type="ResponseMessageType">
+    <xs:annotation>
+      <xs:documentation>Response message structure</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="EventMessage" type="EventMessageType">
+    <xs:annotation>
+      <xs:documentation>Event message structure</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="MessageType">
+    <xs:annotation>
+      <xs:documentation>Generic Message Type</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Header" type="HeaderType"/>
+      <xs:element name="Request" type="RequestType" minOccurs="0"/>
+      <xs:element name="Reply" type="ReplyType" minOccurs="0"/>
+      <xs:element name="Payload" type="PayloadType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RequestMessageType">
+    <xs:annotation>
+      <xs:documentation>Request Message Type, which will typically result in a ResponseMessage to be returned. This isn typically used to initiate a transaction or a query request.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Header" type="HeaderType"/>
+      <xs:element name="Request" type="RequestType" minOccurs="0"/>
+      <xs:element name="Payload" type="PayloadType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResponseMessageType">
+    <xs:annotation>
+      <xs:documentation>Response MessageType, typically used to reply to a RequestMessage</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Header" type="HeaderType"/>
+      <xs:element name="Reply" type="ReplyType"/>
+      <xs:element name="Payload" type="PayloadType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FaultMessageType">
+    <xs:annotation>
+      <xs:documentation>Fault Messsage Type, which is used in cases where the incoming message (including the header) can not be parsed</xs:documentation>
+    </xs:annotation>
+  </xs:complexType>
+  <xs:complexType name="EventMessageType">
+    <xs:annotation>
+      <xs:documentation>Event Message Type, which is used to indicate a condition of potential interest.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Header" type="HeaderType"/>
+      <xs:element name="Payload" type="PayloadType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ErrorType">
+    <xs:annotation>
+      <xs:documentation>Error Structure</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="code" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Application defined error code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="level" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Severity level, e.g. INFORMATIVE, WARNING, FATAL, CATASTROPHIC</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="INFORM"/>
+            <xs:enumeration value="WARNING"/>
+            <xs:enumeration value="FATAL"/>
+            <xs:enumeration value="CATASTROPHIC"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="reason" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Description of the error</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="details" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Free form detailed text description of error</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="xpath" type="xs:QName" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>XPath expression to identify specific XML element</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="stackTrace" type="xs:string" minOccurs="0"/>
+      <xs:element name="Location" type="LocationType" minOccurs="0"/>
+      <xs:element name="object" type="IdentifiedObject" minOccurs="0"/>
+      <xs:element name="operationId" type="xs:integer" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The reply.operationId provides the unique identifier of the Operation for which this reply.result.error is relevant. Thus, it is assumed that this is an error from one of the operations contained in an OperationSet request.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OptionType">
+    <xs:annotation>
+      <xs:documentation>Request options</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="value" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocationType">
+    <xs:annotation>
+      <xs:documentation>Process location where error was encountered</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="node" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Name of the pipeline/branch/route node where error occurred</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="pipeline" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Name of the pipeline where error occurred (if applicable)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="stage" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Name of the stage where error occurred (if applicable)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IdentifiedObject">
+    <xs:annotation>
+      <xs:documentation>From CIM</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="mRID" minOccurs="0"/>
+      <xs:element name="Name" type="Name" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="objectType" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>CIM class name that classiifies the identified object</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NameType">
+    <xs:annotation>
+      <xs:documentation>From CIM</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="name"/>
+      <xs:element name="description" minOccurs="0"/>
+      <xs:element name="NameTypeAuthority" type="NameTypeAuthority" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Name">
+    <xs:annotation>
+      <xs:documentation>From CIM</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="name"/>
+      <xs:element name="NameType" type="NameType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NameTypeAuthority">
+    <xs:annotation>
+      <xs:documentation>From CIM</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="name"/>
+      <xs:element name="description" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FaultMessage" type="FaultMessageType"/>
+  <xs:element name="adverbTypes">
+    <xs:simpleType>
+      <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:/Users/bgoodwin/workspace/epri/wsdl_v1/xsd/EndDeviceControls.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://iec.ch/TC57/2011/EndDeviceControls#" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:a="http://langdale.com.au/2005/Message#" xmlns:sawsdl="http://www.w3.org/ns/sawsdl" xmlns="http://langdale.com.au/2005/Message#" xmlns:m="http://iec.ch/TC57/2011/EndDeviceControls#">
+  <xs:annotation/>
+  <xs:element name="EndDeviceControls" type="m:EndDeviceControls"/>
+  <xs:complexType name="EndDeviceControls">
+    <xs:sequence>
+      <xs:element name="EndDeviceControl" type="m:EndDeviceControl" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="EndDeviceControlType" type="m:EndDeviceControlType" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ControlledAppliance" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ControlledAppliance">
+    <xs:annotation>
+      <xs:documentation>Appliance controlled with a PAN device control.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="isElectricVehicle" minOccurs="0" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ControlledAppliance.isElectricVehicle">
+        <xs:annotation>
+          <xs:documentation>True if the appliance is an electric vehicle.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="isExteriorLighting" minOccurs="0" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ControlledAppliance.isExteriorLighting">
+        <xs:annotation>
+          <xs:documentation>True if the appliance is exterior lighting.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="isGenerationSystem" minOccurs="0" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ControlledAppliance.isGenerationSystem">
+        <xs:annotation>
+          <xs:documentation>True if the appliance is a generation system.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="isHvacCompressorOrFurnace" minOccurs="0" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ControlledAppliance.isHvacCompressorOrFurnace">
+        <xs:annotation>
+          <xs:documentation>True if the appliance is HVAC compressor or
+						furnace.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="isInteriorLighting" minOccurs="0" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ControlledAppliance.isInteriorLighting">
+        <xs:annotation>
+          <xs:documentation>True if the appliance is interor lighting.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="isIrrigationPump" minOccurs="0" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ControlledAppliance.isIrrigationPump">
+        <xs:annotation>
+          <xs:documentation>True if the appliance is an irrigation pump.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="isManagedCommercialIndustrialLoad" minOccurs="0" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ControlledAppliance.isManagedCommercialIndustrialLoad">
+        <xs:annotation>
+          <xs:documentation>True if the appliance is managed commerial or
+						industial load.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="isPoolPumpSpaJacuzzi" minOccurs="0" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ControlledAppliance.isPoolPumpSpaJacuzzi">
+        <xs:annotation>
+          <xs:documentation>True if the appliance is a pool, pump, spa or
+						jacuzzi.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="isSimpleMiscLoad" minOccurs="0" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ControlledAppliance.isSimpleMiscLoad">
+        <xs:annotation>
+          <xs:documentation>True if the appliance is a simple miscellaneous
+						load.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="isSmartAppliance" minOccurs="0" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ControlledAppliance.isSmartAppliance">
+        <xs:annotation>
+          <xs:documentation>True if the appliance is a smart appliance.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="isStripAndBaseboardHeater" minOccurs="0" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ControlledAppliance.isStripAndBaseboardHeater">
+        <xs:annotation>
+          <xs:documentation>True if the appliance is a stip or baseboard
+						heater.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="isWaterHeater" minOccurs="0" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ControlledAppliance.isWaterHeater">
+        <xs:annotation>
+          <xs:documentation>True if the appliance is a water heater.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="DateTimeInterval" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#DateTimeInterval">
+    <xs:annotation>
+      <xs:documentation>Interval of date and time.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="end" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#DateTimeInterval.end">
+        <xs:annotation>
+          <xs:documentation>End date and time of this interval.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="start" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#DateTimeInterval.start">
+        <xs:annotation>
+          <xs:documentation>Start date and time of this interval.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EndDeviceAction" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceAction">
+    <xs:annotation>
+      <xs:documentation>Action/command performed by an end device on a
+				device other than the end device.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="command" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceAction.command">
+        <xs:annotation>
+          <xs:documentation>Command text.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="duration" minOccurs="0" maxOccurs="1" type="m:Minutes" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceAction.duration">
+        <xs:annotation>
+          <xs:documentation>Amount of time the action of this control is to
+						remain active.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="durationIndefinite" minOccurs="0" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceAction.durationIndefinite">
+        <xs:annotation>
+          <xs:documentation>True if the action of this control is indefinite.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="startDateTime" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceAction.startDateTime">
+        <xs:annotation>
+          <xs:documentation>Start date and time for action of this control.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EndDeviceControl" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceControl">
+    <xs:annotation>
+      <xs:documentation>Instructs an end device (or an end device group) to
+				perform a specified action.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="mRID" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.mRID">
+        <xs:annotation>
+          <xs:documentation>A Model Authority issues mRIDs. Given that each
+						Model Authority has a unique id and this id is part of the mRID,
+						then the mRID is globally unique.</xs:documentation>
+          <xs:documentation>Global uniqeness is easily achived by using a
+						UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+          <xs:documentation>For CIMXML data files the mRID is mapped to
+						rdf:ID or rdf:about attributes that identifies CIM object
+						elements.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="drProgramLevel" minOccurs="0" maxOccurs="1" type="xs:integer" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceControl.drProgramLevel">
+        <xs:annotation>
+          <xs:documentation>Level of a demand response program request, where
+						0=emergency. Note: Attribute is not defined on
+						DemandResponseProgram as it is not its inherent property (it
+						serves to control it).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="drProgramMandatory" minOccurs="0" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceControl.drProgramMandatory">
+        <xs:annotation>
+          <xs:documentation>Whether a demand response program request is
+						mandatory. Note: Attribute is not defined on DemandResponseProgram
+						as it is not its inherent property (it serves to control it).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="issuerID" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceControl.issuerID">
+        <xs:annotation>
+          <xs:documentation>Unique identifier of the business entity
+						originating an end device control.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="issuerTrackingID" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceControl.issuerTrackingID">
+        <xs:annotation>
+          <xs:documentation>Identifier assigned by the initiator (e.g. retail
+						electric provider) of an end device control action to uniquely
+						identify the demand response event, text message, or other subject
+						of the control action. Can be used when cancelling an event or
+						text message request or to identify the originating event or text
+						message in a consequential end device event.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="priceSignal" minOccurs="0" maxOccurs="1" type="m:FloatQuantity" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceControl.priceSignal">
+        <xs:annotation>
+          <xs:documentation>(if applicable) Price signal used as parameter
+						for this end device control.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="reason" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceControl.reason">
+        <xs:annotation>
+          <xs:documentation>Reason for the control action that allows to
+						determine how to continue processing. For example, disconnect
+						meter command may require different processing by the receiving
+						system if it has been issued for a network-related reason
+						(protection) or for payment-related reason.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:choice minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceControl.EndDeviceAction">
+        <xs:annotation>
+          <xs:documentation>End device action issued by this end device
+						control.</xs:documentation>
+        </xs:annotation>
+        <xs:element name="PanDemandResponse" minOccurs="1" maxOccurs="1" type="m:PanDemandResponse" sawsdl:modelReference="">
+          <xs:annotation/>
+        </xs:element>
+        <xs:element name="PanDisplay" minOccurs="1" maxOccurs="1" type="m:PanDisplay" sawsdl:modelReference="">
+          <xs:annotation/>
+        </xs:element>
+        <xs:element name="PanPricing" minOccurs="1" maxOccurs="1" type="m:PanPricing" sawsdl:modelReference="">
+          <xs:annotation/>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="EndDeviceControlType" minOccurs="1" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceControl.EndDeviceControlType">
+        <xs:annotation>
+          <xs:documentation>Type of this end device control.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType sawsdl:modelReference="">
+          <xs:attribute name="ref" type="xs:string"/>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="EndDeviceGroups" minOccurs="0" maxOccurs="unbounded" type="m:EndDeviceGroup" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceControl.EndDeviceGroups">
+        <xs:annotation>
+          <xs:documentation>All end device groups receiving commands from
+						this end device control.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EndDevices" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceControl.EndDevices">
+        <xs:annotation>
+          <xs:documentation>All end devices receiving commands from this end
+						device control.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDevice">
+          <xs:sequence>
+            <xs:element name="mRID" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.mRID">
+              <xs:annotation>
+                <xs:documentation>A Model Authority issues mRIDs. Given that
+									each Model Authority has a unique id and this id is part of the
+									mRID, then the mRID is globally unique.</xs:documentation>
+                <xs:documentation>Global uniqeness is easily achived by using a
+									UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+                <xs:documentation>For CIMXML data files the mRID is mapped to
+									rdf:ID or rdf:about attributes that identifies CIM object
+									elements.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Names" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.Names">
+              <xs:annotation>
+                <xs:documentation>All names of this identified object.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name">
+                <xs:sequence>
+                  <xs:element name="name" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name.name">
+                    <xs:annotation>
+                      <xs:documentation>Any free text that name the object.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="NameType" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name.NameType">
+                    <xs:annotation>
+                      <xs:documentation>Type of this name.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType">
+                      <xs:sequence>
+                        <xs:element name="description" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.description">
+                          <xs:annotation>
+                            <xs:documentation>Description of the name type.</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="name" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.name">
+                          <xs:annotation>
+                            <xs:documentation>Name of the name type.</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="NameTypeAuthority" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.NameTypeAuthority">
+                          <xs:annotation>
+                            <xs:documentation>Authority responsible for managing names
+															of this type.</xs:documentation>
+                          </xs:annotation>
+                          <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority">
+                            <xs:sequence>
+                              <xs:element name="description" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority.description">
+                                <xs:annotation>
+                                  <xs:documentation>Description of the name type
+																		authority.</xs:documentation>
+                                </xs:annotation>
+                              </xs:element>
+                              <xs:element name="name" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority.name">
+                                <xs:annotation>
+                                  <xs:documentation>Name of the name type authority.</xs:documentation>
+                                </xs:annotation>
+                              </xs:element>
+                            </xs:sequence>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="primaryDeviceTiming" minOccurs="0" maxOccurs="1" type="m:EndDeviceTiming" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceControl.primaryDeviceTiming">
+        <xs:annotation>
+          <xs:documentation>Timing for the control actions performed on the
+						device identified in the end device control.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="secondaryDeviceTiming" minOccurs="0" maxOccurs="1" type="m:EndDeviceTiming" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceControl.secondaryDeviceTiming">
+        <xs:annotation>
+          <xs:documentation>Timing for the control actions performed by
+						devices that are responding to event related information sent to
+						the primary device indicated in the end device control. For
+						example, load control actions performed by a PAN device in
+						response to demand response event information sent to a PAN
+						gateway server.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="UsagePointGroups" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceControl.UsagePointGroups">
+        <xs:annotation>
+          <xs:documentation>All usage point groups receiving commands from
+						this end device control.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#UsagePointGroup">
+          <xs:sequence>
+            <xs:element name="mRID" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.mRID">
+              <xs:annotation>
+                <xs:documentation>A Model Authority issues mRIDs. Given that
+									each Model Authority has a unique id and this id is part of the
+									mRID, then the mRID is globally unique.</xs:documentation>
+                <xs:documentation>Global uniqeness is easily achived by using a
+									UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+                <xs:documentation>For CIMXML data files the mRID is mapped to
+									rdf:ID or rdf:about attributes that identifies CIM object
+									elements.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Names" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.Names">
+              <xs:annotation>
+                <xs:documentation>All names of this identified object.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name">
+                <xs:sequence>
+                  <xs:element name="name" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name.name">
+                    <xs:annotation>
+                      <xs:documentation>Any free text that name the object.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="NameType" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name.NameType">
+                    <xs:annotation>
+                      <xs:documentation>Type of this name.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType">
+                      <xs:sequence>
+                        <xs:element name="description" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.description">
+                          <xs:annotation>
+                            <xs:documentation>Description of the name type.</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="name" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.name">
+                          <xs:annotation>
+                            <xs:documentation>Name of the name type.</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="NameTypeAuthority" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.NameTypeAuthority">
+                          <xs:annotation>
+                            <xs:documentation>Authority responsible for managing names
+															of this type.</xs:documentation>
+                          </xs:annotation>
+                          <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority">
+                            <xs:sequence>
+                              <xs:element name="description" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority.description">
+                                <xs:annotation>
+                                  <xs:documentation>Description of the name type
+																		authority.</xs:documentation>
+                                </xs:annotation>
+                              </xs:element>
+                              <xs:element name="name" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority.name">
+                                <xs:annotation>
+                                  <xs:documentation>Name of the name type authority.</xs:documentation>
+                                </xs:annotation>
+                              </xs:element>
+                            </xs:sequence>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="UsagePoints" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceControl.UsagePoints">
+        <xs:annotation>
+          <xs:documentation>All usage points receiving commands from this end
+						device control.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#UsagePoint">
+          <xs:sequence>
+            <xs:element name="mRID" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.mRID">
+              <xs:annotation>
+                <xs:documentation>A Model Authority issues mRIDs. Given that
+									each Model Authority has a unique id and this id is part of the
+									mRID, then the mRID is globally unique.</xs:documentation>
+                <xs:documentation>Global uniqeness is easily achived by using a
+									UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+                <xs:documentation>For CIMXML data files the mRID is mapped to
+									rdf:ID or rdf:about attributes that identifies CIM object
+									elements.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="Names" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.Names">
+              <xs:annotation>
+                <xs:documentation>All names of this identified object.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name">
+                <xs:sequence>
+                  <xs:element name="name" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name.name">
+                    <xs:annotation>
+                      <xs:documentation>Any free text that name the object.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="NameType" minOccurs="0" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name.NameType">
+                    <xs:annotation>
+                      <xs:documentation>Type of this name.</xs:documentation>
+                    </xs:annotation>
+                    <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType">
+                      <xs:sequence>
+                        <xs:element name="description" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.description">
+                          <xs:annotation>
+                            <xs:documentation>Description of the name type.</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="name" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.name">
+                          <xs:annotation>
+                            <xs:documentation>Name of the name type.</xs:documentation>
+                          </xs:annotation>
+                        </xs:element>
+                        <xs:element name="NameTypeAuthority" minOccurs="1" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.NameTypeAuthority">
+                          <xs:annotation>
+                            <xs:documentation>Authority responsible for managing names
+															of this type.</xs:documentation>
+                          </xs:annotation>
+                          <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority">
+                            <xs:sequence>
+                              <xs:element name="description" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority.description">
+                                <xs:annotation>
+                                  <xs:documentation>Description of the name type
+																		authority.</xs:documentation>
+                                </xs:annotation>
+                              </xs:element>
+                              <xs:element name="name" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority.name">
+                                <xs:annotation>
+                                  <xs:documentation>Name of the name type authority.</xs:documentation>
+                                </xs:annotation>
+                              </xs:element>
+                            </xs:sequence>
+                          </xs:complexType>
+                        </xs:element>
+                      </xs:sequence>
+                    </xs:complexType>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EndDeviceControlType" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceControlType">
+    <xs:annotation>
+      <xs:documentation><![CDATA[Detailed description for a control produced by an
+				end device. Values in attributes allow for creation of recommended
+				codes to be used for identifying end device controls as follows:
+				&lt;type&gt;.&lt;domain&gt;.&lt;subDomain&gt;.&lt;eventOrAction&gt;.]]]]>><![CDATA[</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="mRID" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.mRID">
+        <xs:annotation>
+          <xs:documentation>A Model Authority issues mRIDs. Given that each
+						Model Authority has a unique id and this id is part of the mRID,
+						then the mRID is globally unique.</xs:documentation>
+          <xs:documentation>Global uniqeness is easily achived by using a
+						UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+          <xs:documentation>For CIMXML data files the mRID is mapped to
+						rdf:ID or rdf:about attributes that identifies CIM object
+						elements.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="domain" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceControlType.domain">
+        <xs:annotation>
+          <xs:documentation>High-level nature of the control.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="eventOrAction" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceControlType.eventOrAction">
+        <xs:annotation>
+          <xs:documentation>The most specific part of this control type. It
+						is mainly in the form of a verb that gives action to the control
+						that just occurred.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="subDomain" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceControlType.subDomain">
+        <xs:annotation>
+          <xs:documentation>More specific nature of the control, as a further
+						sub-categorisation of 'domain'.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="type" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceControlType.type">
+        <xs:annotation>
+          <xs:documentation>Type of physical device from which the control
+						was created. A value of zero (0) can be used when the source is
+						unknown.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Names" minOccurs="1" maxOccurs="1" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.Names">
+        <xs:annotation>
+          <xs:documentation>All names of this identified object.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType sawsdl:modelReference="">
+          <xs:attribute name="ref" type="xs:string"/>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EndDeviceGroup" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceGroup">
+    <xs:annotation>
+      <xs:documentation>Abstraction for management of group communications
+				within a two-way AMR system or the data for a group of related end
+				devices. Commands can be issued to all of the end devices that
+				belong to the group using a defined group address and the underlying
+				AMR communication infrastructure.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="mRID" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.mRID">
+        <xs:annotation>
+          <xs:documentation>A Model Authority issues mRIDs. Given that each
+						Model Authority has a unique id and this id is part of the mRID,
+						then the mRID is globally unique.</xs:documentation>
+          <xs:documentation>Global uniqeness is easily achived by using a
+						UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+          <xs:documentation>For CIMXML data files the mRID is mapped to
+						rdf:ID or rdf:about attributes that identifies CIM object
+						elements.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Names" minOccurs="0" maxOccurs="unbounded" type="m:Name" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.Names">
+        <xs:annotation>
+          <xs:documentation>All names of this identified object.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="EndDeviceTiming" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceTiming">
+    <xs:annotation/>
+    <xs:sequence>
+      <xs:element name="duration" minOccurs="0" maxOccurs="1" type="m:Minutes" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceTiming.duration">
+        <xs:annotation>
+          <xs:documentation>Duration of the end device control action or the
+						business event that is the subject of the end device control.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="durationIndefinite" minOccurs="0" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceTiming.durationIndefinite">
+        <xs:annotation>
+          <xs:documentation>True if 'duration' is indefinite.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="randomisation" minOccurs="0" maxOccurs="1" type="m:RandomisationKind" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceTiming.randomisation">
+        <xs:annotation>
+          <xs:documentation>Kind of randomisation to be applied to the end
+						device control actions to be executed.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="interval" minOccurs="0" maxOccurs="1" type="m:DateTimeInterval" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDeviceTiming.interval">
+        <xs:annotation>
+          <xs:documentation>Start and end time of an interval during which
+						end device control actions are to be executed.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Name" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name">
+    <xs:annotation>
+      <xs:documentation>The Name class provides the means to define any
+				number of human readable names for an object. A name is
+				&lt;b>not&lt;/b> to be used for defining inter-object
+				relationships. For inter-object relationships instead use the object
+				identification 'mRID'.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="name" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name.name">
+        <xs:annotation>
+          <xs:documentation>Any free text that name the object.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NameType" minOccurs="0" maxOccurs="1" type="m:NameType" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name.NameType">
+        <xs:annotation>
+          <xs:documentation>Type of this name.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NameType" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType">
+    <xs:annotation>
+      <xs:documentation>Type of name. Possible values for attribute 'name'
+				are implementation dependent but standard profiles may specify
+				types. An enterprise may have multiple IT systems each having its
+				own local name for the same object, e.g. a planning system may have
+				different names from an EMS. An object may also have different names
+				within the same IT system, e.g. localName and aliasName as defined
+				in CIM version 14. Their definitions from CIM14 are</xs:documentation>
+      <xs:documentation>The localName is a human readable name of the
+				object. It is only used with objects organized in a naming
+				hierarchy. localName: A free text name local to a node in a naming
+				hierarchy similar to a file directory structure. A power system
+				related naming hierarchy may be: Substation, VoltageLevel, Equipment
+				etc. Children of the same parent in such a hierarchy have names that
+				typically are unique among them.</xs:documentation>
+      <xs:documentation>aliasName: A free text alternate name typically
+				used in tabular reports where the column width is limited.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="description" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.description">
+        <xs:annotation>
+          <xs:documentation>Description of the name type.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="name" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.name">
+        <xs:annotation>
+          <xs:documentation>Name of the name type.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="NameTypeAuthority" minOccurs="0" maxOccurs="1" type="m:NameTypeAuthority" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.NameTypeAuthority">
+        <xs:annotation>
+          <xs:documentation>Authority responsible for managing names of this
+						type.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NameTypeAuthority" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority">
+    <xs:annotation>
+      <xs:documentation>Authority responsible for creation and management
+				of names of a given type; typically an organization or an enterprise
+				system.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="description" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority.description">
+        <xs:annotation>
+          <xs:documentation>Description of the name type authority.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="name" minOccurs="1" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority.name">
+        <xs:annotation>
+          <xs:documentation>Name of the name type authority.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PanDemandResponse" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanDemandResponse">
+    <xs:annotation>
+      <xs:documentation>PAN control used to issue action/command to PAN
+				devices during a demand response/load control event.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="m:EndDeviceAction">
+        <xs:sequence>
+          <xs:element name="avgLoadAdjustment" minOccurs="0" maxOccurs="1" type="m:PerCent" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanDemandResponse.avgLoadAdjustment">
+            <xs:annotation>
+              <xs:documentation>Used to define a maximum energy usage limit as
+								a percentage of the client implementations specific average
+								energy usage. The load adjustment percentage is added to 100%
+								creating a percentage limit applied to the client
+								implementations specific average energy usage. A -10% load
+								adjustment percentage will establish an energy usage limit equal
+								to 90% of the client implementations specific average energy
+								usage. Each load adjustment percentage is referenced to the
+								client implementations specific average energy usage. There are
+								no cumulative effects.</xs:documentation>
+              <xs:documentation>The range of this field is -100 to +100 with a
+								resolution of 1 percent. A -100% value equals a total load shed.
+								A +100% value will limit the energy usage to the client
+								implementations specific average energy usage.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="cancelControlMode" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanDemandResponse.cancelControlMode">
+            <xs:annotation>
+              <xs:documentation>Encoding of cancel control.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="cancelDateTime" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanDemandResponse.cancelDateTime">
+            <xs:annotation>
+              <xs:documentation>Timestamp when a canceling of the event is
+								scheduled to start.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="cancelNow" minOccurs="0" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanDemandResponse.cancelNow">
+            <xs:annotation>
+              <xs:documentation>If true, a canceling of the event should start
+								immediately.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="coolingOffset" minOccurs="0" maxOccurs="1" type="m:Temperature" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanDemandResponse.coolingOffset">
+            <xs:annotation>
+              <xs:documentation>Requested offset to apply to the normal cooling
+								setpoint at the time of the start of the event. It represents a
+								temperature change that will be applied to the associated
+								cooling set point. The temperature offsets will be calculated
+								per the local temperature in the thermostat. The calculated
+								temperature will be interpreted as the number of degrees to be
+								added to the cooling set point. Sequential demand response
+								events are not cumulative. The offset shall be applied to the
+								normal setpoint.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="coolingSetpoint" minOccurs="0" maxOccurs="1" type="m:Temperature" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanDemandResponse.coolingSetpoint">
+            <xs:annotation>
+              <xs:documentation>Requested cooling set point. Temperature set
+								point is typically defined and calculated based on local
+								temperature.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="criticalityLevel" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanDemandResponse.criticalityLevel">
+            <xs:annotation>
+              <xs:documentation>Level of criticality for the action of this
+								control. The action taken by load control devices for an event
+								can be solely based on this value, or combination with other
+								load control event fields supported by the device.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="dutyCycle" minOccurs="0" maxOccurs="1" type="m:PerCent" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanDemandResponse.dutyCycle">
+            <xs:annotation>
+              <xs:documentation>Maximum "On" state duty cycle as a percentage
+								of time. Example, if the value is 80, the device would be in an
+								"on" state for 80% of the time for the duration of the action.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="enrollmentGroup" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanDemandResponse.enrollmentGroup">
+            <xs:annotation>
+              <xs:documentation>Provides a mechanism to direct load control
+								actions to groups of PAN devices. It can be used in conjunction
+								with the PAN device types.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="heatingOffset" minOccurs="0" maxOccurs="1" type="m:Temperature" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanDemandResponse.heatingOffset">
+            <xs:annotation>
+              <xs:documentation>Requested offset to apply to the normal heating
+								setpoint at the time of the start of the event. It represents a
+								temperature change that will be applied to the associated
+								heating set point. The temperature offsets will be calculated
+								per the local temperature in the thermostat. The calculated
+								temperature will be interpreted as the number of degrees to be
+								subtracted from the heating set point. Sequential demand
+								response events are not cumulative. The offset shall be applied
+								to the normal setpoint.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="heatingSetpoint" minOccurs="0" maxOccurs="1" type="m:Temperature" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanDemandResponse.heatingSetpoint">
+            <xs:annotation>
+              <xs:documentation>Requested heating set point. Temperature set
+								point is typically defined and calculated based on local
+								temperature.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="appliance" minOccurs="0" maxOccurs="1" type="m:ControlledAppliance" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanDemandResponse.appliance">
+            <xs:annotation>
+              <xs:documentation>Appliance being controlled.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PanDisplay" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanDisplay">
+    <xs:annotation>
+      <xs:documentation>PAN action/command used to issue the displaying of
+				text messages on PAN devices.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="m:EndDeviceAction">
+        <xs:sequence>
+          <xs:element name="confirmationRequired" minOccurs="0" maxOccurs="1" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanDisplay.confirmationRequired">
+            <xs:annotation>
+              <xs:documentation>If true, the requesting entity (e.g. retail
+								electric provider) requires confirmation of the successful
+								display of the text message.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="priority" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanDisplay.priority">
+            <xs:annotation>
+              <xs:documentation>Priority associated with the text message to be
+								displayed.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="textMessage" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanDisplay.textMessage">
+            <xs:annotation>
+              <xs:documentation>Text to be displayed by a PAN device.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="transmissionMode" minOccurs="0" maxOccurs="1" type="m:TransmissionModeKind" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanDisplay.transmissionMode">
+            <xs:annotation>
+              <xs:documentation>Transmission mode to be used for this PAN
+								display control.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PanPricing" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanPricing">
+    <xs:annotation>
+      <xs:documentation>PAN action/command used to issue pricing
+				information to a PAN device.</xs:documentation>
+    </xs:annotation>
+    <xs:complexContent>
+      <xs:extension base="m:EndDeviceAction">
+        <xs:sequence>
+          <xs:element name="providerID" minOccurs="0" maxOccurs="1" type="xs:integer" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanPricing.providerID">
+            <xs:annotation>
+              <xs:documentation>Unique identifier for the commodity provider.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+          <xs:element name="PanPricingDetails" minOccurs="0" maxOccurs="unbounded" type="m:PanPricingDetail" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanPricing.PanPricingDetails">
+            <xs:annotation>
+              <xs:documentation>All pricing details issued by this PAN pricing
+								command/action.</xs:documentation>
+            </xs:annotation>
+          </xs:element>
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:complexType name="PanPricingDetail" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanPricingDetail">
+    <xs:annotation>
+      <xs:documentation>Detail for a single price command/action.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="alternateCostDelivered" minOccurs="0" maxOccurs="1" type="xs:float" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanPricingDetail.alternateCostDelivered">
+        <xs:annotation>
+          <xs:documentation>Alternative measure of the cost of the energy
+						consumed. An example might be the emissions of CO2 for each kWh of
+						electricity consumed providing a measure of the environmental
+						cost.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="alternateCostUnit" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanPricingDetail.alternateCostUnit">
+        <xs:annotation>
+          <xs:documentation>Cost unit for the alternate cost delivered field.
+						One example is kg of CO2 per unit of measure.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="currentTimeDate" minOccurs="0" maxOccurs="1" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanPricingDetail.currentTimeDate">
+        <xs:annotation>
+          <xs:documentation>Current time as determined by a PAN device.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="generationPrice" minOccurs="0" maxOccurs="1" type="m:Money" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanPricingDetail.generationPrice">
+        <xs:annotation>
+          <xs:documentation>Price of the commodity measured in base unit of
+						currency per 'unitOfMeasure'.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="generationPriceRatio" minOccurs="0" maxOccurs="1" type="xs:float" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanPricingDetail.generationPriceRatio">
+        <xs:annotation>
+          <xs:documentation>Ratio of 'generationPrice' to the "normal" price
+						chosen by the commodity provider.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="price" minOccurs="0" maxOccurs="1" type="m:Money" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanPricingDetail.price">
+        <xs:annotation>
+          <xs:documentation>Price of the commodity measured in base unit of
+						currency per 'unitOfMeasure'.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="priceRatio" minOccurs="0" maxOccurs="1" type="xs:float" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanPricingDetail.priceRatio">
+        <xs:annotation>
+          <xs:documentation>Ratio of 'price' to the "normal" price chosen by
+						the commodity provider.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="priceTier" minOccurs="0" maxOccurs="1" type="xs:integer" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanPricingDetail.priceTier">
+        <xs:annotation>
+          <xs:documentation>Pricing tier as chosen by the commodity provider.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="priceTierCount" minOccurs="0" maxOccurs="1" type="xs:integer" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanPricingDetail.priceTierCount">
+        <xs:annotation>
+          <xs:documentation>Maximum number of price tiers available.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="priceTierLabel" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanPricingDetail.priceTierLabel">
+        <xs:annotation>
+          <xs:documentation>Label for price tier.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="rateLabel" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanPricingDetail.rateLabel">
+        <xs:annotation>
+          <xs:documentation>Label of the current billing rate specified by
+						commodity provider.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="registerTier" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanPricingDetail.registerTier">
+        <xs:annotation>
+          <xs:documentation>Register tier accumulating usage information.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="unitOfMeasure" minOccurs="0" maxOccurs="1" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PanPricingDetail.unitOfMeasure">
+        <xs:annotation>
+          <xs:documentation>Defines commodity as well as its base unit of
+						measure.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:simpleType name="RandomisationKind" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#RandomisationKind">
+    <xs:annotation>
+      <xs:documentation>Kind of randomisation to be applied to control the
+				timing of end device control commands and/or the definition of
+				demand response and load control events.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="default">
+        <xs:annotation/>
+      </xs:enumeration>
+      <xs:enumeration value="end">
+        <xs:annotation/>
+      </xs:enumeration>
+      <xs:enumeration value="none">
+        <xs:annotation/>
+      </xs:enumeration>
+      <xs:enumeration value="start">
+        <xs:annotation/>
+      </xs:enumeration>
+      <xs:enumeration value="startAndEnd">
+        <xs:annotation/>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="TransmissionModeKind" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#TransmissionModeKind">
+    <xs:annotation>
+      <xs:documentation>Transmission mode for end device display controls.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="anonymous">
+        <xs:annotation/>
+      </xs:enumeration>
+      <xs:enumeration value="both">
+        <xs:annotation/>
+      </xs:enumeration>
+      <xs:enumeration value="normal">
+        <xs:annotation/>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:simpleType name="Minutes" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Minutes">
+    <xs:annotation>
+      <xs:documentation>Time in minutes</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:float"/>
+  </xs:simpleType>
+  <xs:simpleType name="FloatQuantity" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#FloatQuantity">
+    <xs:annotation>
+      <xs:documentation>Quantity with float value and associated unit
+				information.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:float"/>
+  </xs:simpleType>
+  <xs:simpleType name="PerCent" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PerCent">
+    <xs:annotation>
+      <xs:documentation>Normally 0 - 100 on a defined base</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:float"/>
+  </xs:simpleType>
+  <xs:simpleType name="Money" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Money">
+    <xs:annotation>
+      <xs:documentation>Amount of money</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:decimal"/>
+  </xs:simpleType>
+  <xs:simpleType name="Temperature" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Temperature">
+    <xs:annotation>
+      <xs:documentation>Value of temperature in degrees Celsius.</xs:documentation>
+    </xs:annotation>
+    <xs:restriction base="xs:float"/>
+  </xs:simpleType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://ec2-50-17-55-9.compute-1.amazonaws.com:8080/epriConnect/mdms/ami/send</con:endpoint><con:endpoint>http://iec.ch/TC57/2011/SendEndDeviceControls</con:endpoint><con:endpoint>http://localhost:8080/epriConnect/mdms/ami/send</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://iec.ch/TC57/2011/EndDeviceControls/CanceledEndDeviceControls" name="CanceledEndDeviceControls" bindingOperationName="CanceledEndDeviceControls" type="Request-Response" outputName="CanceledEndDeviceControlsResponse" inputName="CanceledEndDeviceControlsEvent" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://ec2-50-17-55-9.compute-1.amazonaws.com:8080/epriConnect/mdms/ami/send</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:end="http://www.iec.ch/TC57/2011/EndDeviceControlsMessage" xmlns:mes="http://www.iec.ch/TC57/2011/schema/message" xmlns:end1="http://iec.ch/TC57/2011/EndDeviceControls#">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <end:CanceledEndDeviceControls>
+         <end:Header>
+            <mes:Verb>?</mes:Verb>
+            <mes:Noun>?</mes:Noun>
+            <!--Optional:-->
+            <mes:Revision>?</mes:Revision>
+            <!--Optional:-->
+            <mes:ReplayDetection>
+               <mes:Nonce>?</mes:Nonce>
+               <mes:Created>?</mes:Created>
+            </mes:ReplayDetection>
+            <!--Optional:-->
+            <mes:Context>?</mes:Context>
+            <!--Optional:-->
+            <mes:Timestamp>?</mes:Timestamp>
+            <!--Optional:-->
+            <mes:Source>?</mes:Source>
+            <!--Optional:-->
+            <mes:AsyncReplyFlag>?</mes:AsyncReplyFlag>
+            <!--Optional:-->
+            <mes:ReplyAddress>?</mes:ReplyAddress>
+            <!--Optional:-->
+            <mes:AckRequired>?</mes:AckRequired>
+            <!--Optional:-->
+            <mes:User>
+               <mes:UserID>?</mes:UserID>
+               <mes:Organization>?</mes:Organization>
+            </mes:User>
+            <!--Optional:-->
+            <mes:MessageID>?</mes:MessageID>
+            <!--Optional:-->
+            <mes:CorrelationID>?</mes:CorrelationID>
+            <!--Optional:-->
+            <mes:Comment>?</mes:Comment>
+            <!--Zero or more repetitions:-->
+            <mes:Property>
+               <mes:Name>?</mes:Name>
+               <!--Optional:-->
+               <mes:Value>?</mes:Value>
+            </mes:Property>
+            <!--You may enter ANY elements at this point-->
+         </end:Header>
+         <!--Optional:-->
+         <end:Payload>
+            <end1:EndDeviceControls>
+               <!--Zero or more repetitions:-->
+               <end1:EndDeviceControl>
+                  <!--Optional:-->
+                  <end1:mRID>?</end1:mRID>
+                  <!--Optional:-->
+                  <end1:drProgramLevel>?</end1:drProgramLevel>
+                  <!--Optional:-->
+                  <end1:drProgramMandatory>?</end1:drProgramMandatory>
+                  <!--Optional:-->
+                  <end1:issuerID>?</end1:issuerID>
+                  <!--Optional:-->
+                  <end1:issuerTrackingID>?</end1:issuerTrackingID>
+                  <!--Optional:-->
+                  <end1:priceSignal>?</end1:priceSignal>
+                  <!--Optional:-->
+                  <end1:reason>?</end1:reason>
+                  <!--You have a CHOICE of the next 3 items at this level-->
+                  <end1:PanDemandResponse>
+                     <!--Optional:-->
+                     <end1:command>?</end1:command>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:startDateTime>?</end1:startDateTime>
+                     <!--Optional:-->
+                     <end1:avgLoadAdjustment>?</end1:avgLoadAdjustment>
+                     <!--Optional:-->
+                     <end1:cancelControlMode>?</end1:cancelControlMode>
+                     <!--Optional:-->
+                     <end1:cancelDateTime>?</end1:cancelDateTime>
+                     <!--Optional:-->
+                     <end1:cancelNow>?</end1:cancelNow>
+                     <!--Optional:-->
+                     <end1:coolingOffset>?</end1:coolingOffset>
+                     <!--Optional:-->
+                     <end1:coolingSetpoint>?</end1:coolingSetpoint>
+                     <!--Optional:-->
+                     <end1:criticalityLevel>?</end1:criticalityLevel>
+                     <!--Optional:-->
+                     <end1:dutyCycle>?</end1:dutyCycle>
+                     <!--Optional:-->
+                     <end1:enrollmentGroup>?</end1:enrollmentGroup>
+                     <!--Optional:-->
+                     <end1:heatingOffset>?</end1:heatingOffset>
+                     <!--Optional:-->
+                     <end1:heatingSetpoint>?</end1:heatingSetpoint>
+                     <!--Optional:-->
+                     <end1:appliance>
+                        <!--Optional:-->
+                        <end1:isElectricVehicle>?</end1:isElectricVehicle>
+                        <!--Optional:-->
+                        <end1:isExteriorLighting>?</end1:isExteriorLighting>
+                        <!--Optional:-->
+                        <end1:isGenerationSystem>?</end1:isGenerationSystem>
+                        <!--Optional:-->
+                        <end1:isHvacCompressorOrFurnace>?</end1:isHvacCompressorOrFurnace>
+                        <!--Optional:-->
+                        <end1:isInteriorLighting>?</end1:isInteriorLighting>
+                        <!--Optional:-->
+                        <end1:isIrrigationPump>?</end1:isIrrigationPump>
+                        <!--Optional:-->
+                        <end1:isManagedCommercialIndustrialLoad>?</end1:isManagedCommercialIndustrialLoad>
+                        <!--Optional:-->
+                        <end1:isPoolPumpSpaJacuzzi>?</end1:isPoolPumpSpaJacuzzi>
+                        <!--Optional:-->
+                        <end1:isSimpleMiscLoad>?</end1:isSimpleMiscLoad>
+                        <!--Optional:-->
+                        <end1:isSmartAppliance>?</end1:isSmartAppliance>
+                        <!--Optional:-->
+                        <end1:isStripAndBaseboardHeater>?</end1:isStripAndBaseboardHeater>
+                        <!--Optional:-->
+                        <end1:isWaterHeater>?</end1:isWaterHeater>
+                     </end1:appliance>
+                  </end1:PanDemandResponse>
+                  <end1:PanDisplay>
+                     <!--Optional:-->
+                     <end1:command>?</end1:command>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:startDateTime>?</end1:startDateTime>
+                     <!--Optional:-->
+                     <end1:confirmationRequired>?</end1:confirmationRequired>
+                     <!--Optional:-->
+                     <end1:priority>?</end1:priority>
+                     <!--Optional:-->
+                     <end1:textMessage>?</end1:textMessage>
+                     <!--Optional:-->
+                     <end1:transmissionMode>?</end1:transmissionMode>
+                  </end1:PanDisplay>
+                  <end1:PanPricing>
+                     <!--Optional:-->
+                     <end1:command>?</end1:command>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:startDateTime>?</end1:startDateTime>
+                     <!--Optional:-->
+                     <end1:providerID>?</end1:providerID>
+                     <!--Zero or more repetitions:-->
+                     <end1:PanPricingDetails>
+                        <!--Optional:-->
+                        <end1:alternateCostDelivered>?</end1:alternateCostDelivered>
+                        <!--Optional:-->
+                        <end1:alternateCostUnit>?</end1:alternateCostUnit>
+                        <!--Optional:-->
+                        <end1:currentTimeDate>?</end1:currentTimeDate>
+                        <!--Optional:-->
+                        <end1:generationPrice>?</end1:generationPrice>
+                        <!--Optional:-->
+                        <end1:generationPriceRatio>?</end1:generationPriceRatio>
+                        <!--Optional:-->
+                        <end1:price>?</end1:price>
+                        <!--Optional:-->
+                        <end1:priceRatio>?</end1:priceRatio>
+                        <!--Optional:-->
+                        <end1:priceTier>?</end1:priceTier>
+                        <!--Optional:-->
+                        <end1:priceTierCount>?</end1:priceTierCount>
+                        <!--Optional:-->
+                        <end1:priceTierLabel>?</end1:priceTierLabel>
+                        <!--Optional:-->
+                        <end1:rateLabel>?</end1:rateLabel>
+                        <!--Optional:-->
+                        <end1:registerTier>?</end1:registerTier>
+                        <!--Optional:-->
+                        <end1:unitOfMeasure>?</end1:unitOfMeasure>
+                     </end1:PanPricingDetails>
+                  </end1:PanPricing>
+                  <end1:EndDeviceControlType ref="?"/>
+                  <!--Zero or more repetitions:-->
+                  <end1:EndDeviceGroups>
+                     <!--Optional:-->
+                     <end1:mRID>?</end1:mRID>
+                     <!--Zero or more repetitions:-->
+                     <end1:Names>
+                        <end1:name>?</end1:name>
+                        <!--Optional:-->
+                        <end1:NameType>
+                           <!--Optional:-->
+                           <end1:description>?</end1:description>
+                           <end1:name>?</end1:name>
+                           <!--Optional:-->
+                           <end1:NameTypeAuthority>
+                              <!--Optional:-->
+                              <end1:description>?</end1:description>
+                              <end1:name>?</end1:name>
+                           </end1:NameTypeAuthority>
+                        </end1:NameType>
+                     </end1:Names>
+                  </end1:EndDeviceGroups>
+                  <!--Zero or more repetitions:-->
+                  <end1:EndDevices>
+                     <!--Optional:-->
+                     <end1:mRID>?</end1:mRID>
+                     <!--Zero or more repetitions:-->
+                     <end1:Names>
+                        <end1:name>?</end1:name>
+                        <!--Optional:-->
+                        <end1:NameType>
+                           <!--Optional:-->
+                           <end1:description>?</end1:description>
+                           <end1:name>?</end1:name>
+                           <!--Optional:-->
+                           <end1:NameTypeAuthority>
+                              <!--Optional:-->
+                              <end1:description>?</end1:description>
+                              <end1:name>?</end1:name>
+                           </end1:NameTypeAuthority>
+                        </end1:NameType>
+                     </end1:Names>
+                  </end1:EndDevices>
+                  <!--Optional:-->
+                  <end1:primaryDeviceTiming>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:randomisation>?</end1:randomisation>
+                     <!--Optional:-->
+                     <end1:interval>
+                        <!--Optional:-->
+                        <end1:end>?</end1:end>
+                        <!--Optional:-->
+                        <end1:start>?</end1:start>
+                     </end1:interval>
+                  </end1:primaryDeviceTiming>
+                  <!--Optional:-->
+                  <end1:secondaryDeviceTiming>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:randomisation>?</end1:randomisation>
+                     <!--Optional:-->
+                     <end1:interval>
+                        <!--Optional:-->
+                        <end1:end>?</end1:end>
+                        <!--Optional:-->
+                        <end1:start>?</end1:start>
+                     </end1:interval>
+                  </end1:secondaryDeviceTiming>
+                  <!--Zero or more repetitions:-->
+                  <end1:UsagePointGroups>
+                     <!--Optional:-->
+                     <end1:mRID>?</end1:mRID>
+                     <!--Zero or more repetitions:-->
+                     <end1:Names>
+                        <end1:name>?</end1:name>
+                        <!--Optional:-->
+                        <end1:NameType>
+                           <!--Optional:-->
+                           <end1:description>?</end1:description>
+                           <end1:name>?</end1:name>
+                           <!--Optional:-->
+                           <end1:NameTypeAuthority>
+                              <!--Optional:-->
+                              <end1:description>?</end1:description>
+                              <end1:name>?</end1:name>
+                           </end1:NameTypeAuthority>
+                        </end1:NameType>
+                     </end1:Names>
+                  </end1:UsagePointGroups>
+                  <!--Zero or more repetitions:-->
+                  <end1:UsagePoints>
+                     <!--Optional:-->
+                     <end1:mRID>?</end1:mRID>
+                     <!--Zero or more repetitions:-->
+                     <end1:Names>
+                        <end1:name>?</end1:name>
+                        <!--Optional:-->
+                        <end1:NameType>
+                           <!--Optional:-->
+                           <end1:description>?</end1:description>
+                           <end1:name>?</end1:name>
+                           <end1:NameTypeAuthority>
+                              <!--Optional:-->
+                              <end1:description>?</end1:description>
+                              <end1:name>?</end1:name>
+                           </end1:NameTypeAuthority>
+                        </end1:NameType>
+                     </end1:Names>
+                  </end1:UsagePoints>
+               </end1:EndDeviceControl>
+               <!--Zero or more repetitions:-->
+               <end1:EndDeviceControlType>
+                  <!--Optional:-->
+                  <end1:mRID>?</end1:mRID>
+                  <!--Optional:-->
+                  <end1:domain>?</end1:domain>
+                  <!--Optional:-->
+                  <end1:eventOrAction>?</end1:eventOrAction>
+                  <!--Optional:-->
+                  <end1:subDomain>?</end1:subDomain>
+                  <!--Optional:-->
+                  <end1:type>?</end1:type>
+                  <end1:Names ref="?"/>
+               </end1:EndDeviceControlType>
+            </end1:EndDeviceControls>
+            <!--Optional:-->
+            <end:OperationSet>
+               <!--Optional:-->
+               <mes:enforceMsgSequence>?</mes:enforceMsgSequence>
+               <!--Optional:-->
+               <mes:enforceTransactionalIntegrity>?</mes:enforceTransactionalIntegrity>
+               <!--Zero or more repetitions:-->
+               <mes:Operation>
+                  <mes:operationId>?</mes:operationId>
+                  <!--Optional:-->
+                  <mes:noun>?</mes:noun>
+                  <!--Optional:-->
+                  <mes:verb>?</mes:verb>
+                  <!--Optional:-->
+                  <mes:elementOperation>false</mes:elementOperation>
+                  <!--You may enter ANY elements at this point-->
+               </mes:Operation>
+            </end:OperationSet>
+            <!--Optional:-->
+            <end:Compressed>?</end:Compressed>
+            <!--Optional:-->
+            <end:Format>?</end:Format>
+         </end:Payload>
+      </end:CanceledEndDeviceControls>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://iec.ch/TC57/2011/EndDeviceControls/CanceledEndDeviceControls"/></con:call></con:operation><con:operation isOneWay="false" action="http://iec.ch/TC57/2011/EndDeviceControls/ChangedEndDeviceControls" name="ChangedEndDeviceControls" bindingOperationName="ChangedEndDeviceControls" type="Request-Response" outputName="ChangedEndDeviceControlsResponse" inputName="ChangedEndDeviceControlsEvent" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://ec2-50-17-55-9.compute-1.amazonaws.com:8080/epriConnect/mdms/ami/send</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:end="http://www.iec.ch/TC57/2011/EndDeviceControlsMessage" xmlns:mes="http://www.iec.ch/TC57/2011/schema/message" xmlns:end1="http://iec.ch/TC57/2011/EndDeviceControls#">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <end:ChangedEndDeviceControls>
+         <end:Header>
+            <mes:Verb>?</mes:Verb>
+            <mes:Noun>?</mes:Noun>
+            <!--Optional:-->
+            <mes:Revision>?</mes:Revision>
+            <!--Optional:-->
+            <mes:ReplayDetection>
+               <mes:Nonce>?</mes:Nonce>
+               <mes:Created>?</mes:Created>
+            </mes:ReplayDetection>
+            <!--Optional:-->
+            <mes:Context>?</mes:Context>
+            <!--Optional:-->
+            <mes:Timestamp>?</mes:Timestamp>
+            <!--Optional:-->
+            <mes:Source>?</mes:Source>
+            <!--Optional:-->
+            <mes:AsyncReplyFlag>?</mes:AsyncReplyFlag>
+            <!--Optional:-->
+            <mes:ReplyAddress>?</mes:ReplyAddress>
+            <!--Optional:-->
+            <mes:AckRequired>?</mes:AckRequired>
+            <!--Optional:-->
+            <mes:User>
+               <mes:UserID>?</mes:UserID>
+               <mes:Organization>?</mes:Organization>
+            </mes:User>
+            <!--Optional:-->
+            <mes:MessageID>?</mes:MessageID>
+            <!--Optional:-->
+            <mes:CorrelationID>?</mes:CorrelationID>
+            <!--Optional:-->
+            <mes:Comment>?</mes:Comment>
+            <!--Zero or more repetitions:-->
+            <mes:Property>
+               <mes:Name>?</mes:Name>
+               <!--Optional:-->
+               <mes:Value>?</mes:Value>
+            </mes:Property>
+            <!--You may enter ANY elements at this point-->
+         </end:Header>
+         <!--Optional:-->
+         <end:Payload>
+            <end1:EndDeviceControls>
+               <!--Zero or more repetitions:-->
+               <end1:EndDeviceControl>
+                  <!--Optional:-->
+                  <end1:mRID>?</end1:mRID>
+                  <!--Optional:-->
+                  <end1:drProgramLevel>?</end1:drProgramLevel>
+                  <!--Optional:-->
+                  <end1:drProgramMandatory>?</end1:drProgramMandatory>
+                  <!--Optional:-->
+                  <end1:issuerID>?</end1:issuerID>
+                  <!--Optional:-->
+                  <end1:issuerTrackingID>?</end1:issuerTrackingID>
+                  <!--Optional:-->
+                  <end1:priceSignal>?</end1:priceSignal>
+                  <!--Optional:-->
+                  <end1:reason>?</end1:reason>
+                  <!--You have a CHOICE of the next 3 items at this level-->
+                  <end1:PanDemandResponse>
+                     <!--Optional:-->
+                     <end1:command>?</end1:command>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:startDateTime>?</end1:startDateTime>
+                     <!--Optional:-->
+                     <end1:avgLoadAdjustment>?</end1:avgLoadAdjustment>
+                     <!--Optional:-->
+                     <end1:cancelControlMode>?</end1:cancelControlMode>
+                     <!--Optional:-->
+                     <end1:cancelDateTime>?</end1:cancelDateTime>
+                     <!--Optional:-->
+                     <end1:cancelNow>?</end1:cancelNow>
+                     <!--Optional:-->
+                     <end1:coolingOffset>?</end1:coolingOffset>
+                     <!--Optional:-->
+                     <end1:coolingSetpoint>?</end1:coolingSetpoint>
+                     <!--Optional:-->
+                     <end1:criticalityLevel>?</end1:criticalityLevel>
+                     <!--Optional:-->
+                     <end1:dutyCycle>?</end1:dutyCycle>
+                     <!--Optional:-->
+                     <end1:enrollmentGroup>?</end1:enrollmentGroup>
+                     <!--Optional:-->
+                     <end1:heatingOffset>?</end1:heatingOffset>
+                     <!--Optional:-->
+                     <end1:heatingSetpoint>?</end1:heatingSetpoint>
+                     <!--Optional:-->
+                     <end1:appliance>
+                        <!--Optional:-->
+                        <end1:isElectricVehicle>?</end1:isElectricVehicle>
+                        <!--Optional:-->
+                        <end1:isExteriorLighting>?</end1:isExteriorLighting>
+                        <!--Optional:-->
+                        <end1:isGenerationSystem>?</end1:isGenerationSystem>
+                        <!--Optional:-->
+                        <end1:isHvacCompressorOrFurnace>?</end1:isHvacCompressorOrFurnace>
+                        <!--Optional:-->
+                        <end1:isInteriorLighting>?</end1:isInteriorLighting>
+                        <!--Optional:-->
+                        <end1:isIrrigationPump>?</end1:isIrrigationPump>
+                        <!--Optional:-->
+                        <end1:isManagedCommercialIndustrialLoad>?</end1:isManagedCommercialIndustrialLoad>
+                        <!--Optional:-->
+                        <end1:isPoolPumpSpaJacuzzi>?</end1:isPoolPumpSpaJacuzzi>
+                        <!--Optional:-->
+                        <end1:isSimpleMiscLoad>?</end1:isSimpleMiscLoad>
+                        <!--Optional:-->
+                        <end1:isSmartAppliance>?</end1:isSmartAppliance>
+                        <!--Optional:-->
+                        <end1:isStripAndBaseboardHeater>?</end1:isStripAndBaseboardHeater>
+                        <!--Optional:-->
+                        <end1:isWaterHeater>?</end1:isWaterHeater>
+                     </end1:appliance>
+                  </end1:PanDemandResponse>
+                  <end1:PanDisplay>
+                     <!--Optional:-->
+                     <end1:command>?</end1:command>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:startDateTime>?</end1:startDateTime>
+                     <!--Optional:-->
+                     <end1:confirmationRequired>?</end1:confirmationRequired>
+                     <!--Optional:-->
+                     <end1:priority>?</end1:priority>
+                     <!--Optional:-->
+                     <end1:textMessage>?</end1:textMessage>
+                     <!--Optional:-->
+                     <end1:transmissionMode>?</end1:transmissionMode>
+                  </end1:PanDisplay>
+                  <end1:PanPricing>
+                     <!--Optional:-->
+                     <end1:command>?</end1:command>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:startDateTime>?</end1:startDateTime>
+                     <!--Optional:-->
+                     <end1:providerID>?</end1:providerID>
+                     <!--Zero or more repetitions:-->
+                     <end1:PanPricingDetails>
+                        <!--Optional:-->
+                        <end1:alternateCostDelivered>?</end1:alternateCostDelivered>
+                        <!--Optional:-->
+                        <end1:alternateCostUnit>?</end1:alternateCostUnit>
+                        <!--Optional:-->
+                        <end1:currentTimeDate>?</end1:currentTimeDate>
+                        <!--Optional:-->
+                        <end1:generationPrice>?</end1:generationPrice>
+                        <!--Optional:-->
+                        <end1:generationPriceRatio>?</end1:generationPriceRatio>
+                        <!--Optional:-->
+                        <end1:price>?</end1:price>
+                        <!--Optional:-->
+                        <end1:priceRatio>?</end1:priceRatio>
+                        <!--Optional:-->
+                        <end1:priceTier>?</end1:priceTier>
+                        <!--Optional:-->
+                        <end1:priceTierCount>?</end1:priceTierCount>
+                        <!--Optional:-->
+                        <end1:priceTierLabel>?</end1:priceTierLabel>
+                        <!--Optional:-->
+                        <end1:rateLabel>?</end1:rateLabel>
+                        <!--Optional:-->
+                        <end1:registerTier>?</end1:registerTier>
+                        <!--Optional:-->
+                        <end1:unitOfMeasure>?</end1:unitOfMeasure>
+                     </end1:PanPricingDetails>
+                  </end1:PanPricing>
+                  <end1:EndDeviceControlType ref="?"/>
+                  <!--Zero or more repetitions:-->
+                  <end1:EndDeviceGroups>
+                     <!--Optional:-->
+                     <end1:mRID>?</end1:mRID>
+                     <!--Zero or more repetitions:-->
+                     <end1:Names>
+                        <end1:name>?</end1:name>
+                        <!--Optional:-->
+                        <end1:NameType>
+                           <!--Optional:-->
+                           <end1:description>?</end1:description>
+                           <end1:name>?</end1:name>
+                           <!--Optional:-->
+                           <end1:NameTypeAuthority>
+                              <!--Optional:-->
+                              <end1:description>?</end1:description>
+                              <end1:name>?</end1:name>
+                           </end1:NameTypeAuthority>
+                        </end1:NameType>
+                     </end1:Names>
+                  </end1:EndDeviceGroups>
+                  <!--Zero or more repetitions:-->
+                  <end1:EndDevices>
+                     <!--Optional:-->
+                     <end1:mRID>?</end1:mRID>
+                     <!--Zero or more repetitions:-->
+                     <end1:Names>
+                        <end1:name>?</end1:name>
+                        <!--Optional:-->
+                        <end1:NameType>
+                           <!--Optional:-->
+                           <end1:description>?</end1:description>
+                           <end1:name>?</end1:name>
+                           <!--Optional:-->
+                           <end1:NameTypeAuthority>
+                              <!--Optional:-->
+                              <end1:description>?</end1:description>
+                              <end1:name>?</end1:name>
+                           </end1:NameTypeAuthority>
+                        </end1:NameType>
+                     </end1:Names>
+                  </end1:EndDevices>
+                  <!--Optional:-->
+                  <end1:primaryDeviceTiming>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:randomisation>?</end1:randomisation>
+                     <!--Optional:-->
+                     <end1:interval>
+                        <!--Optional:-->
+                        <end1:end>?</end1:end>
+                        <!--Optional:-->
+                        <end1:start>?</end1:start>
+                     </end1:interval>
+                  </end1:primaryDeviceTiming>
+                  <!--Optional:-->
+                  <end1:secondaryDeviceTiming>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:randomisation>?</end1:randomisation>
+                     <!--Optional:-->
+                     <end1:interval>
+                        <!--Optional:-->
+                        <end1:end>?</end1:end>
+                        <!--Optional:-->
+                        <end1:start>?</end1:start>
+                     </end1:interval>
+                  </end1:secondaryDeviceTiming>
+                  <!--Zero or more repetitions:-->
+                  <end1:UsagePointGroups>
+                     <!--Optional:-->
+                     <end1:mRID>?</end1:mRID>
+                     <!--Zero or more repetitions:-->
+                     <end1:Names>
+                        <end1:name>?</end1:name>
+                        <!--Optional:-->
+                        <end1:NameType>
+                           <!--Optional:-->
+                           <end1:description>?</end1:description>
+                           <end1:name>?</end1:name>
+                           <!--Optional:-->
+                           <end1:NameTypeAuthority>
+                              <!--Optional:-->
+                              <end1:description>?</end1:description>
+                              <end1:name>?</end1:name>
+                           </end1:NameTypeAuthority>
+                        </end1:NameType>
+                     </end1:Names>
+                  </end1:UsagePointGroups>
+                  <!--Zero or more repetitions:-->
+                  <end1:UsagePoints>
+                     <!--Optional:-->
+                     <end1:mRID>?</end1:mRID>
+                     <!--Zero or more repetitions:-->
+                     <end1:Names>
+                        <end1:name>?</end1:name>
+                        <!--Optional:-->
+                        <end1:NameType>
+                           <!--Optional:-->
+                           <end1:description>?</end1:description>
+                           <end1:name>?</end1:name>
+                           <end1:NameTypeAuthority>
+                              <!--Optional:-->
+                              <end1:description>?</end1:description>
+                              <end1:name>?</end1:name>
+                           </end1:NameTypeAuthority>
+                        </end1:NameType>
+                     </end1:Names>
+                  </end1:UsagePoints>
+               </end1:EndDeviceControl>
+               <!--Zero or more repetitions:-->
+               <end1:EndDeviceControlType>
+                  <!--Optional:-->
+                  <end1:mRID>?</end1:mRID>
+                  <!--Optional:-->
+                  <end1:domain>?</end1:domain>
+                  <!--Optional:-->
+                  <end1:eventOrAction>?</end1:eventOrAction>
+                  <!--Optional:-->
+                  <end1:subDomain>?</end1:subDomain>
+                  <!--Optional:-->
+                  <end1:type>?</end1:type>
+                  <end1:Names ref="?"/>
+               </end1:EndDeviceControlType>
+            </end1:EndDeviceControls>
+            <!--Optional:-->
+            <end:OperationSet>
+               <!--Optional:-->
+               <mes:enforceMsgSequence>?</mes:enforceMsgSequence>
+               <!--Optional:-->
+               <mes:enforceTransactionalIntegrity>?</mes:enforceTransactionalIntegrity>
+               <!--Zero or more repetitions:-->
+               <mes:Operation>
+                  <mes:operationId>?</mes:operationId>
+                  <!--Optional:-->
+                  <mes:noun>?</mes:noun>
+                  <!--Optional:-->
+                  <mes:verb>?</mes:verb>
+                  <!--Optional:-->
+                  <mes:elementOperation>false</mes:elementOperation>
+                  <!--You may enter ANY elements at this point-->
+               </mes:Operation>
+            </end:OperationSet>
+            <!--Optional:-->
+            <end:Compressed>?</end:Compressed>
+            <!--Optional:-->
+            <end:Format>?</end:Format>
+         </end:Payload>
+      </end:ChangedEndDeviceControls>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://iec.ch/TC57/2011/EndDeviceControls/ChangedEndDeviceControls"/></con:call></con:operation><con:operation isOneWay="false" action="http://iec.ch/TC57/2011/EndDeviceControls/ClosedEndDeviceControls" name="ClosedEndDeviceControls" bindingOperationName="ClosedEndDeviceControls" type="Request-Response" outputName="ClosedEndDeviceControlsResponse" inputName="ClosedEndDeviceControlsEvent" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://ec2-50-17-55-9.compute-1.amazonaws.com:8080/epriConnect/mdms/ami/send</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:end="http://www.iec.ch/TC57/2011/EndDeviceControlsMessage" xmlns:mes="http://www.iec.ch/TC57/2011/schema/message" xmlns:end1="http://iec.ch/TC57/2011/EndDeviceControls#">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <end:ClosedEndDeviceControls>
+         <end:Header>
+            <mes:Verb>?</mes:Verb>
+            <mes:Noun>?</mes:Noun>
+            <!--Optional:-->
+            <mes:Revision>?</mes:Revision>
+            <!--Optional:-->
+            <mes:ReplayDetection>
+               <mes:Nonce>?</mes:Nonce>
+               <mes:Created>?</mes:Created>
+            </mes:ReplayDetection>
+            <!--Optional:-->
+            <mes:Context>?</mes:Context>
+            <!--Optional:-->
+            <mes:Timestamp>?</mes:Timestamp>
+            <!--Optional:-->
+            <mes:Source>?</mes:Source>
+            <!--Optional:-->
+            <mes:AsyncReplyFlag>?</mes:AsyncReplyFlag>
+            <!--Optional:-->
+            <mes:ReplyAddress>?</mes:ReplyAddress>
+            <!--Optional:-->
+            <mes:AckRequired>?</mes:AckRequired>
+            <!--Optional:-->
+            <mes:User>
+               <mes:UserID>?</mes:UserID>
+               <mes:Organization>?</mes:Organization>
+            </mes:User>
+            <!--Optional:-->
+            <mes:MessageID>?</mes:MessageID>
+            <!--Optional:-->
+            <mes:CorrelationID>?</mes:CorrelationID>
+            <!--Optional:-->
+            <mes:Comment>?</mes:Comment>
+            <!--Zero or more repetitions:-->
+            <mes:Property>
+               <mes:Name>?</mes:Name>
+               <!--Optional:-->
+               <mes:Value>?</mes:Value>
+            </mes:Property>
+            <!--You may enter ANY elements at this point-->
+         </end:Header>
+         <!--Optional:-->
+         <end:Payload>
+            <end1:EndDeviceControls>
+               <!--Zero or more repetitions:-->
+               <end1:EndDeviceControl>
+                  <!--Optional:-->
+                  <end1:mRID>?</end1:mRID>
+                  <!--Optional:-->
+                  <end1:drProgramLevel>?</end1:drProgramLevel>
+                  <!--Optional:-->
+                  <end1:drProgramMandatory>?</end1:drProgramMandatory>
+                  <!--Optional:-->
+                  <end1:issuerID>?</end1:issuerID>
+                  <!--Optional:-->
+                  <end1:issuerTrackingID>?</end1:issuerTrackingID>
+                  <!--Optional:-->
+                  <end1:priceSignal>?</end1:priceSignal>
+                  <!--Optional:-->
+                  <end1:reason>?</end1:reason>
+                  <!--You have a CHOICE of the next 3 items at this level-->
+                  <end1:PanDemandResponse>
+                     <!--Optional:-->
+                     <end1:command>?</end1:command>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:startDateTime>?</end1:startDateTime>
+                     <!--Optional:-->
+                     <end1:avgLoadAdjustment>?</end1:avgLoadAdjustment>
+                     <!--Optional:-->
+                     <end1:cancelControlMode>?</end1:cancelControlMode>
+                     <!--Optional:-->
+                     <end1:cancelDateTime>?</end1:cancelDateTime>
+                     <!--Optional:-->
+                     <end1:cancelNow>?</end1:cancelNow>
+                     <!--Optional:-->
+                     <end1:coolingOffset>?</end1:coolingOffset>
+                     <!--Optional:-->
+                     <end1:coolingSetpoint>?</end1:coolingSetpoint>
+                     <!--Optional:-->
+                     <end1:criticalityLevel>?</end1:criticalityLevel>
+                     <!--Optional:-->
+                     <end1:dutyCycle>?</end1:dutyCycle>
+                     <!--Optional:-->
+                     <end1:enrollmentGroup>?</end1:enrollmentGroup>
+                     <!--Optional:-->
+                     <end1:heatingOffset>?</end1:heatingOffset>
+                     <!--Optional:-->
+                     <end1:heatingSetpoint>?</end1:heatingSetpoint>
+                     <!--Optional:-->
+                     <end1:appliance>
+                        <!--Optional:-->
+                        <end1:isElectricVehicle>?</end1:isElectricVehicle>
+                        <!--Optional:-->
+                        <end1:isExteriorLighting>?</end1:isExteriorLighting>
+                        <!--Optional:-->
+                        <end1:isGenerationSystem>?</end1:isGenerationSystem>
+                        <!--Optional:-->
+                        <end1:isHvacCompressorOrFurnace>?</end1:isHvacCompressorOrFurnace>
+                        <!--Optional:-->
+                        <end1:isInteriorLighting>?</end1:isInteriorLighting>
+                        <!--Optional:-->
+                        <end1:isIrrigationPump>?</end1:isIrrigationPump>
+                        <!--Optional:-->
+                        <end1:isManagedCommercialIndustrialLoad>?</end1:isManagedCommercialIndustrialLoad>
+                        <!--Optional:-->
+                        <end1:isPoolPumpSpaJacuzzi>?</end1:isPoolPumpSpaJacuzzi>
+                        <!--Optional:-->
+                        <end1:isSimpleMiscLoad>?</end1:isSimpleMiscLoad>
+                        <!--Optional:-->
+                        <end1:isSmartAppliance>?</end1:isSmartAppliance>
+                        <!--Optional:-->
+                        <end1:isStripAndBaseboardHeater>?</end1:isStripAndBaseboardHeater>
+                        <!--Optional:-->
+                        <end1:isWaterHeater>?</end1:isWaterHeater>
+                     </end1:appliance>
+                  </end1:PanDemandResponse>
+                  <end1:PanDisplay>
+                     <!--Optional:-->
+                     <end1:command>?</end1:command>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:startDateTime>?</end1:startDateTime>
+                     <!--Optional:-->
+                     <end1:confirmationRequired>?</end1:confirmationRequired>
+                     <!--Optional:-->
+                     <end1:priority>?</end1:priority>
+                     <!--Optional:-->
+                     <end1:textMessage>?</end1:textMessage>
+                     <!--Optional:-->
+                     <end1:transmissionMode>?</end1:transmissionMode>
+                  </end1:PanDisplay>
+                  <end1:PanPricing>
+                     <!--Optional:-->
+                     <end1:command>?</end1:command>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:startDateTime>?</end1:startDateTime>
+                     <!--Optional:-->
+                     <end1:providerID>?</end1:providerID>
+                     <!--Zero or more repetitions:-->
+                     <end1:PanPricingDetails>
+                        <!--Optional:-->
+                        <end1:alternateCostDelivered>?</end1:alternateCostDelivered>
+                        <!--Optional:-->
+                        <end1:alternateCostUnit>?</end1:alternateCostUnit>
+                        <!--Optional:-->
+                        <end1:currentTimeDate>?</end1:currentTimeDate>
+                        <!--Optional:-->
+                        <end1:generationPrice>?</end1:generationPrice>
+                        <!--Optional:-->
+                        <end1:generationPriceRatio>?</end1:generationPriceRatio>
+                        <!--Optional:-->
+                        <end1:price>?</end1:price>
+                        <!--Optional:-->
+                        <end1:priceRatio>?</end1:priceRatio>
+                        <!--Optional:-->
+                        <end1:priceTier>?</end1:priceTier>
+                        <!--Optional:-->
+                        <end1:priceTierCount>?</end1:priceTierCount>
+                        <!--Optional:-->
+                        <end1:priceTierLabel>?</end1:priceTierLabel>
+                        <!--Optional:-->
+                        <end1:rateLabel>?</end1:rateLabel>
+                        <!--Optional:-->
+                        <end1:registerTier>?</end1:registerTier>
+                        <!--Optional:-->
+                        <end1:unitOfMeasure>?</end1:unitOfMeasure>
+                     </end1:PanPricingDetails>
+                  </end1:PanPricing>
+                  <end1:EndDeviceControlType ref="?"/>
+                  <!--Zero or more repetitions:-->
+                  <end1:EndDeviceGroups>
+                     <!--Optional:-->
+                     <end1:mRID>?</end1:mRID>
+                     <!--Zero or more repetitions:-->
+                     <end1:Names>
+                        <end1:name>?</end1:name>
+                        <!--Optional:-->
+                        <end1:NameType>
+                           <!--Optional:-->
+                           <end1:description>?</end1:description>
+                           <end1:name>?</end1:name>
+                           <!--Optional:-->
+                           <end1:NameTypeAuthority>
+                              <!--Optional:-->
+                              <end1:description>?</end1:description>
+                              <end1:name>?</end1:name>
+                           </end1:NameTypeAuthority>
+                        </end1:NameType>
+                     </end1:Names>
+                  </end1:EndDeviceGroups>
+                  <!--Zero or more repetitions:-->
+                  <end1:EndDevices>
+                     <!--Optional:-->
+                     <end1:mRID>?</end1:mRID>
+                     <!--Zero or more repetitions:-->
+                     <end1:Names>
+                        <end1:name>?</end1:name>
+                        <!--Optional:-->
+                        <end1:NameType>
+                           <!--Optional:-->
+                           <end1:description>?</end1:description>
+                           <end1:name>?</end1:name>
+                           <!--Optional:-->
+                           <end1:NameTypeAuthority>
+                              <!--Optional:-->
+                              <end1:description>?</end1:description>
+                              <end1:name>?</end1:name>
+                           </end1:NameTypeAuthority>
+                        </end1:NameType>
+                     </end1:Names>
+                  </end1:EndDevices>
+                  <!--Optional:-->
+                  <end1:primaryDeviceTiming>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:randomisation>?</end1:randomisation>
+                     <!--Optional:-->
+                     <end1:interval>
+                        <!--Optional:-->
+                        <end1:end>?</end1:end>
+                        <!--Optional:-->
+                        <end1:start>?</end1:start>
+                     </end1:interval>
+                  </end1:primaryDeviceTiming>
+                  <!--Optional:-->
+                  <end1:secondaryDeviceTiming>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:randomisation>?</end1:randomisation>
+                     <!--Optional:-->
+                     <end1:interval>
+                        <!--Optional:-->
+                        <end1:end>?</end1:end>
+                        <!--Optional:-->
+                        <end1:start>?</end1:start>
+                     </end1:interval>
+                  </end1:secondaryDeviceTiming>
+                  <!--Zero or more repetitions:-->
+                  <end1:UsagePointGroups>
+                     <!--Optional:-->
+                     <end1:mRID>?</end1:mRID>
+                     <!--Zero or more repetitions:-->
+                     <end1:Names>
+                        <end1:name>?</end1:name>
+                        <!--Optional:-->
+                        <end1:NameType>
+                           <!--Optional:-->
+                           <end1:description>?</end1:description>
+                           <end1:name>?</end1:name>
+                           <!--Optional:-->
+                           <end1:NameTypeAuthority>
+                              <!--Optional:-->
+                              <end1:description>?</end1:description>
+                              <end1:name>?</end1:name>
+                           </end1:NameTypeAuthority>
+                        </end1:NameType>
+                     </end1:Names>
+                  </end1:UsagePointGroups>
+                  <!--Zero or more repetitions:-->
+                  <end1:UsagePoints>
+                     <!--Optional:-->
+                     <end1:mRID>?</end1:mRID>
+                     <!--Zero or more repetitions:-->
+                     <end1:Names>
+                        <end1:name>?</end1:name>
+                        <!--Optional:-->
+                        <end1:NameType>
+                           <!--Optional:-->
+                           <end1:description>?</end1:description>
+                           <end1:name>?</end1:name>
+                           <end1:NameTypeAuthority>
+                              <!--Optional:-->
+                              <end1:description>?</end1:description>
+                              <end1:name>?</end1:name>
+                           </end1:NameTypeAuthority>
+                        </end1:NameType>
+                     </end1:Names>
+                  </end1:UsagePoints>
+               </end1:EndDeviceControl>
+               <!--Zero or more repetitions:-->
+               <end1:EndDeviceControlType>
+                  <!--Optional:-->
+                  <end1:mRID>?</end1:mRID>
+                  <!--Optional:-->
+                  <end1:domain>?</end1:domain>
+                  <!--Optional:-->
+                  <end1:eventOrAction>?</end1:eventOrAction>
+                  <!--Optional:-->
+                  <end1:subDomain>?</end1:subDomain>
+                  <!--Optional:-->
+                  <end1:type>?</end1:type>
+                  <end1:Names ref="?"/>
+               </end1:EndDeviceControlType>
+            </end1:EndDeviceControls>
+            <!--Optional:-->
+            <end:OperationSet>
+               <!--Optional:-->
+               <mes:enforceMsgSequence>?</mes:enforceMsgSequence>
+               <!--Optional:-->
+               <mes:enforceTransactionalIntegrity>?</mes:enforceTransactionalIntegrity>
+               <!--Zero or more repetitions:-->
+               <mes:Operation>
+                  <mes:operationId>?</mes:operationId>
+                  <!--Optional:-->
+                  <mes:noun>?</mes:noun>
+                  <!--Optional:-->
+                  <mes:verb>?</mes:verb>
+                  <!--Optional:-->
+                  <mes:elementOperation>false</mes:elementOperation>
+                  <!--You may enter ANY elements at this point-->
+               </mes:Operation>
+            </end:OperationSet>
+            <!--Optional:-->
+            <end:Compressed>?</end:Compressed>
+            <!--Optional:-->
+            <end:Format>?</end:Format>
+         </end:Payload>
+      </end:ClosedEndDeviceControls>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://iec.ch/TC57/2011/EndDeviceControls/ClosedEndDeviceControls"/></con:call></con:operation><con:operation isOneWay="false" action="http://iec.ch/TC57/2011/EndDeviceControls/CreatedEndDeviceControls" name="CreatedEndDeviceControls" bindingOperationName="CreatedEndDeviceControls" type="Request-Response" outputName="CreatedEndDeviceControlsResponse" inputName="CreatedEndDeviceControlsEvent" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://ec2-50-17-55-9.compute-1.amazonaws.com:8080/epriConnect/mdms/ami/send</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:end="http://www.iec.ch/TC57/2011/EndDeviceControlsMessage" xmlns:mes="http://www.iec.ch/TC57/2011/schema/message" xmlns:end1="http://iec.ch/TC57/2011/EndDeviceControls#">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <end:CreatedEndDeviceControls>
+         <end:Header>
+            <mes:Verb>?</mes:Verb>
+            <mes:Noun>?</mes:Noun>
+            <!--Optional:-->
+            <mes:Revision>?</mes:Revision>
+            <!--Optional:-->
+            <mes:ReplayDetection>
+               <mes:Nonce>?</mes:Nonce>
+               <mes:Created>?</mes:Created>
+            </mes:ReplayDetection>
+            <!--Optional:-->
+            <mes:Context>?</mes:Context>
+            <!--Optional:-->
+            <mes:Timestamp>?</mes:Timestamp>
+            <!--Optional:-->
+            <mes:Source>?</mes:Source>
+            <!--Optional:-->
+            <mes:AsyncReplyFlag>?</mes:AsyncReplyFlag>
+            <!--Optional:-->
+            <mes:ReplyAddress>?</mes:ReplyAddress>
+            <!--Optional:-->
+            <mes:AckRequired>?</mes:AckRequired>
+            <!--Optional:-->
+            <mes:User>
+               <mes:UserID>?</mes:UserID>
+               <mes:Organization>?</mes:Organization>
+            </mes:User>
+            <!--Optional:-->
+            <mes:MessageID>?</mes:MessageID>
+            <!--Optional:-->
+            <mes:CorrelationID>?</mes:CorrelationID>
+            <!--Optional:-->
+            <mes:Comment>?</mes:Comment>
+            <!--Zero or more repetitions:-->
+            <mes:Property>
+               <mes:Name>?</mes:Name>
+               <!--Optional:-->
+               <mes:Value>?</mes:Value>
+            </mes:Property>
+            <!--You may enter ANY elements at this point-->
+         </end:Header>
+         <!--Optional:-->
+         <end:Payload>
+            <end1:EndDeviceControls>
+               <!--Zero or more repetitions:-->
+               <end1:EndDeviceControl>
+                  <!--Optional:-->
+                  <end1:mRID>?</end1:mRID>
+                  <!--Optional:-->
+                  <end1:drProgramLevel>?</end1:drProgramLevel>
+                  <!--Optional:-->
+                  <end1:drProgramMandatory>?</end1:drProgramMandatory>
+                  <!--Optional:-->
+                  <end1:issuerID>?</end1:issuerID>
+                  <!--Optional:-->
+                  <end1:issuerTrackingID>?</end1:issuerTrackingID>
+                  <!--Optional:-->
+                  <end1:priceSignal>?</end1:priceSignal>
+                  <!--Optional:-->
+                  <end1:reason>?</end1:reason>
+                  <!--You have a CHOICE of the next 3 items at this level-->
+                  <end1:PanDemandResponse>
+                     <!--Optional:-->
+                     <end1:command>?</end1:command>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:startDateTime>?</end1:startDateTime>
+                     <!--Optional:-->
+                     <end1:avgLoadAdjustment>?</end1:avgLoadAdjustment>
+                     <!--Optional:-->
+                     <end1:cancelControlMode>?</end1:cancelControlMode>
+                     <!--Optional:-->
+                     <end1:cancelDateTime>?</end1:cancelDateTime>
+                     <!--Optional:-->
+                     <end1:cancelNow>?</end1:cancelNow>
+                     <!--Optional:-->
+                     <end1:coolingOffset>?</end1:coolingOffset>
+                     <!--Optional:-->
+                     <end1:coolingSetpoint>?</end1:coolingSetpoint>
+                     <!--Optional:-->
+                     <end1:criticalityLevel>?</end1:criticalityLevel>
+                     <!--Optional:-->
+                     <end1:dutyCycle>?</end1:dutyCycle>
+                     <!--Optional:-->
+                     <end1:enrollmentGroup>?</end1:enrollmentGroup>
+                     <!--Optional:-->
+                     <end1:heatingOffset>?</end1:heatingOffset>
+                     <!--Optional:-->
+                     <end1:heatingSetpoint>?</end1:heatingSetpoint>
+                     <!--Optional:-->
+                     <end1:appliance>
+                        <!--Optional:-->
+                        <end1:isElectricVehicle>?</end1:isElectricVehicle>
+                        <!--Optional:-->
+                        <end1:isExteriorLighting>?</end1:isExteriorLighting>
+                        <!--Optional:-->
+                        <end1:isGenerationSystem>?</end1:isGenerationSystem>
+                        <!--Optional:-->
+                        <end1:isHvacCompressorOrFurnace>?</end1:isHvacCompressorOrFurnace>
+                        <!--Optional:-->
+                        <end1:isInteriorLighting>?</end1:isInteriorLighting>
+                        <!--Optional:-->
+                        <end1:isIrrigationPump>?</end1:isIrrigationPump>
+                        <!--Optional:-->
+                        <end1:isManagedCommercialIndustrialLoad>?</end1:isManagedCommercialIndustrialLoad>
+                        <!--Optional:-->
+                        <end1:isPoolPumpSpaJacuzzi>?</end1:isPoolPumpSpaJacuzzi>
+                        <!--Optional:-->
+                        <end1:isSimpleMiscLoad>?</end1:isSimpleMiscLoad>
+                        <!--Optional:-->
+                        <end1:isSmartAppliance>?</end1:isSmartAppliance>
+                        <!--Optional:-->
+                        <end1:isStripAndBaseboardHeater>?</end1:isStripAndBaseboardHeater>
+                        <!--Optional:-->
+                        <end1:isWaterHeater>?</end1:isWaterHeater>
+                     </end1:appliance>
+                  </end1:PanDemandResponse>
+                  <end1:PanDisplay>
+                     <!--Optional:-->
+                     <end1:command>?</end1:command>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:startDateTime>?</end1:startDateTime>
+                     <!--Optional:-->
+                     <end1:confirmationRequired>?</end1:confirmationRequired>
+                     <!--Optional:-->
+                     <end1:priority>?</end1:priority>
+                     <!--Optional:-->
+                     <end1:textMessage>?</end1:textMessage>
+                     <!--Optional:-->
+                     <end1:transmissionMode>?</end1:transmissionMode>
+                  </end1:PanDisplay>
+                  <end1:PanPricing>
+                     <!--Optional:-->
+                     <end1:command>?</end1:command>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:startDateTime>?</end1:startDateTime>
+                     <!--Optional:-->
+                     <end1:providerID>?</end1:providerID>
+                     <!--Zero or more repetitions:-->
+                     <end1:PanPricingDetails>
+                        <!--Optional:-->
+                        <end1:alternateCostDelivered>?</end1:alternateCostDelivered>
+                        <!--Optional:-->
+                        <end1:alternateCostUnit>?</end1:alternateCostUnit>
+                        <!--Optional:-->
+                        <end1:currentTimeDate>?</end1:currentTimeDate>
+                        <!--Optional:-->
+                        <end1:generationPrice>?</end1:generationPrice>
+                        <!--Optional:-->
+                        <end1:generationPriceRatio>?</end1:generationPriceRatio>
+                        <!--Optional:-->
+                        <end1:price>?</end1:price>
+                        <!--Optional:-->
+                        <end1:priceRatio>?</end1:priceRatio>
+                        <!--Optional:-->
+                        <end1:priceTier>?</end1:priceTier>
+                        <!--Optional:-->
+                        <end1:priceTierCount>?</end1:priceTierCount>
+                        <!--Optional:-->
+                        <end1:priceTierLabel>?</end1:priceTierLabel>
+                        <!--Optional:-->
+                        <end1:rateLabel>?</end1:rateLabel>
+                        <!--Optional:-->
+                        <end1:registerTier>?</end1:registerTier>
+                        <!--Optional:-->
+                        <end1:unitOfMeasure>?</end1:unitOfMeasure>
+                     </end1:PanPricingDetails>
+                  </end1:PanPricing>
+                  <end1:EndDeviceControlType ref="?"/>
+                  <!--Zero or more repetitions:-->
+                  <end1:EndDeviceGroups>
+                     <!--Optional:-->
+                     <end1:mRID>?</end1:mRID>
+                     <!--Zero or more repetitions:-->
+                     <end1:Names>
+                        <end1:name>?</end1:name>
+                        <!--Optional:-->
+                        <end1:NameType>
+                           <!--Optional:-->
+                           <end1:description>?</end1:description>
+                           <end1:name>?</end1:name>
+                           <!--Optional:-->
+                           <end1:NameTypeAuthority>
+                              <!--Optional:-->
+                              <end1:description>?</end1:description>
+                              <end1:name>?</end1:name>
+                           </end1:NameTypeAuthority>
+                        </end1:NameType>
+                     </end1:Names>
+                  </end1:EndDeviceGroups>
+                  <!--Zero or more repetitions:-->
+                  <end1:EndDevices>
+                     <!--Optional:-->
+                     <end1:mRID>?</end1:mRID>
+                     <!--Zero or more repetitions:-->
+                     <end1:Names>
+                        <end1:name>?</end1:name>
+                        <!--Optional:-->
+                        <end1:NameType>
+                           <!--Optional:-->
+                           <end1:description>?</end1:description>
+                           <end1:name>?</end1:name>
+                           <!--Optional:-->
+                           <end1:NameTypeAuthority>
+                              <!--Optional:-->
+                              <end1:description>?</end1:description>
+                              <end1:name>?</end1:name>
+                           </end1:NameTypeAuthority>
+                        </end1:NameType>
+                     </end1:Names>
+                  </end1:EndDevices>
+                  <!--Optional:-->
+                  <end1:primaryDeviceTiming>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:randomisation>?</end1:randomisation>
+                     <!--Optional:-->
+                     <end1:interval>
+                        <!--Optional:-->
+                        <end1:end>?</end1:end>
+                        <!--Optional:-->
+                        <end1:start>?</end1:start>
+                     </end1:interval>
+                  </end1:primaryDeviceTiming>
+                  <!--Optional:-->
+                  <end1:secondaryDeviceTiming>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:randomisation>?</end1:randomisation>
+                     <!--Optional:-->
+                     <end1:interval>
+                        <!--Optional:-->
+                        <end1:end>?</end1:end>
+                        <!--Optional:-->
+                        <end1:start>?</end1:start>
+                     </end1:interval>
+                  </end1:secondaryDeviceTiming>
+                  <!--Zero or more repetitions:-->
+                  <end1:UsagePointGroups>
+                     <!--Optional:-->
+                     <end1:mRID>?</end1:mRID>
+                     <!--Zero or more repetitions:-->
+                     <end1:Names>
+                        <end1:name>?</end1:name>
+                        <!--Optional:-->
+                        <end1:NameType>
+                           <!--Optional:-->
+                           <end1:description>?</end1:description>
+                           <end1:name>?</end1:name>
+                           <!--Optional:-->
+                           <end1:NameTypeAuthority>
+                              <!--Optional:-->
+                              <end1:description>?</end1:description>
+                              <end1:name>?</end1:name>
+                           </end1:NameTypeAuthority>
+                        </end1:NameType>
+                     </end1:Names>
+                  </end1:UsagePointGroups>
+                  <!--Zero or more repetitions:-->
+                  <end1:UsagePoints>
+                     <!--Optional:-->
+                     <end1:mRID>?</end1:mRID>
+                     <!--Zero or more repetitions:-->
+                     <end1:Names>
+                        <end1:name>?</end1:name>
+                        <!--Optional:-->
+                        <end1:NameType>
+                           <!--Optional:-->
+                           <end1:description>?</end1:description>
+                           <end1:name>?</end1:name>
+                           <end1:NameTypeAuthority>
+                              <!--Optional:-->
+                              <end1:description>?</end1:description>
+                              <end1:name>?</end1:name>
+                           </end1:NameTypeAuthority>
+                        </end1:NameType>
+                     </end1:Names>
+                  </end1:UsagePoints>
+               </end1:EndDeviceControl>
+               <!--Zero or more repetitions:-->
+               <end1:EndDeviceControlType>
+                  <!--Optional:-->
+                  <end1:mRID>?</end1:mRID>
+                  <!--Optional:-->
+                  <end1:domain>?</end1:domain>
+                  <!--Optional:-->
+                  <end1:eventOrAction>?</end1:eventOrAction>
+                  <!--Optional:-->
+                  <end1:subDomain>?</end1:subDomain>
+                  <!--Optional:-->
+                  <end1:type>?</end1:type>
+                  <end1:Names ref="?"/>
+               </end1:EndDeviceControlType>
+            </end1:EndDeviceControls>
+            <!--Optional:-->
+            <end:OperationSet>
+               <!--Optional:-->
+               <mes:enforceMsgSequence>?</mes:enforceMsgSequence>
+               <!--Optional:-->
+               <mes:enforceTransactionalIntegrity>?</mes:enforceTransactionalIntegrity>
+               <!--Zero or more repetitions:-->
+               <mes:Operation>
+                  <mes:operationId>?</mes:operationId>
+                  <!--Optional:-->
+                  <mes:noun>?</mes:noun>
+                  <!--Optional:-->
+                  <mes:verb>?</mes:verb>
+                  <!--Optional:-->
+                  <mes:elementOperation>false</mes:elementOperation>
+                  <!--You may enter ANY elements at this point-->
+               </mes:Operation>
+            </end:OperationSet>
+            <!--Optional:-->
+            <end:Compressed>?</end:Compressed>
+            <!--Optional:-->
+            <end:Format>?</end:Format>
+         </end:Payload>
+      </end:CreatedEndDeviceControls>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://iec.ch/TC57/2011/EndDeviceControls/CreatedEndDeviceControls"/></con:call></con:operation><con:operation isOneWay="false" action="http://iec.ch/TC57/2011/EndDeviceControls/DeletedEndDeviceControls" name="DeletedEndDeviceControls" bindingOperationName="DeletedEndDeviceControls" type="Request-Response" outputName="DeletedEndDeviceControlsResponse" inputName="DeletedEndDeviceControlsEvent" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings/><con:encoding>UTF-8</con:encoding><con:endpoint>http://ec2-50-17-55-9.compute-1.amazonaws.com:8080/epriConnect/mdms/ami/send</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:end="http://www.iec.ch/TC57/2011/EndDeviceControlsMessage" xmlns:mes="http://www.iec.ch/TC57/2011/schema/message" xmlns:end1="http://iec.ch/TC57/2011/EndDeviceControls#">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <end:DeletedEndDeviceControls>
+         <end:Header>
+            <mes:Verb>?</mes:Verb>
+            <mes:Noun>?</mes:Noun>
+            <!--Optional:-->
+            <mes:Revision>?</mes:Revision>
+            <!--Optional:-->
+            <mes:ReplayDetection>
+               <mes:Nonce>?</mes:Nonce>
+               <mes:Created>?</mes:Created>
+            </mes:ReplayDetection>
+            <!--Optional:-->
+            <mes:Context>?</mes:Context>
+            <!--Optional:-->
+            <mes:Timestamp>?</mes:Timestamp>
+            <!--Optional:-->
+            <mes:Source>?</mes:Source>
+            <!--Optional:-->
+            <mes:AsyncReplyFlag>?</mes:AsyncReplyFlag>
+            <!--Optional:-->
+            <mes:ReplyAddress>?</mes:ReplyAddress>
+            <!--Optional:-->
+            <mes:AckRequired>?</mes:AckRequired>
+            <!--Optional:-->
+            <mes:User>
+               <mes:UserID>?</mes:UserID>
+               <mes:Organization>?</mes:Organization>
+            </mes:User>
+            <!--Optional:-->
+            <mes:MessageID>?</mes:MessageID>
+            <!--Optional:-->
+            <mes:CorrelationID>?</mes:CorrelationID>
+            <!--Optional:-->
+            <mes:Comment>?</mes:Comment>
+            <!--Zero or more repetitions:-->
+            <mes:Property>
+               <mes:Name>?</mes:Name>
+               <!--Optional:-->
+               <mes:Value>?</mes:Value>
+            </mes:Property>
+            <!--You may enter ANY elements at this point-->
+         </end:Header>
+         <!--Optional:-->
+         <end:Payload>
+            <end1:EndDeviceControls>
+               <!--Zero or more repetitions:-->
+               <end1:EndDeviceControl>
+                  <!--Optional:-->
+                  <end1:mRID>?</end1:mRID>
+                  <!--Optional:-->
+                  <end1:drProgramLevel>?</end1:drProgramLevel>
+                  <!--Optional:-->
+                  <end1:drProgramMandatory>?</end1:drProgramMandatory>
+                  <!--Optional:-->
+                  <end1:issuerID>?</end1:issuerID>
+                  <!--Optional:-->
+                  <end1:issuerTrackingID>?</end1:issuerTrackingID>
+                  <!--Optional:-->
+                  <end1:priceSignal>?</end1:priceSignal>
+                  <!--Optional:-->
+                  <end1:reason>?</end1:reason>
+                  <!--You have a CHOICE of the next 3 items at this level-->
+                  <end1:PanDemandResponse>
+                     <!--Optional:-->
+                     <end1:command>?</end1:command>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:startDateTime>?</end1:startDateTime>
+                     <!--Optional:-->
+                     <end1:avgLoadAdjustment>?</end1:avgLoadAdjustment>
+                     <!--Optional:-->
+                     <end1:cancelControlMode>?</end1:cancelControlMode>
+                     <!--Optional:-->
+                     <end1:cancelDateTime>?</end1:cancelDateTime>
+                     <!--Optional:-->
+                     <end1:cancelNow>?</end1:cancelNow>
+                     <!--Optional:-->
+                     <end1:coolingOffset>?</end1:coolingOffset>
+                     <!--Optional:-->
+                     <end1:coolingSetpoint>?</end1:coolingSetpoint>
+                     <!--Optional:-->
+                     <end1:criticalityLevel>?</end1:criticalityLevel>
+                     <!--Optional:-->
+                     <end1:dutyCycle>?</end1:dutyCycle>
+                     <!--Optional:-->
+                     <end1:enrollmentGroup>?</end1:enrollmentGroup>
+                     <!--Optional:-->
+                     <end1:heatingOffset>?</end1:heatingOffset>
+                     <!--Optional:-->
+                     <end1:heatingSetpoint>?</end1:heatingSetpoint>
+                     <!--Optional:-->
+                     <end1:appliance>
+                        <!--Optional:-->
+                        <end1:isElectricVehicle>?</end1:isElectricVehicle>
+                        <!--Optional:-->
+                        <end1:isExteriorLighting>?</end1:isExteriorLighting>
+                        <!--Optional:-->
+                        <end1:isGenerationSystem>?</end1:isGenerationSystem>
+                        <!--Optional:-->
+                        <end1:isHvacCompressorOrFurnace>?</end1:isHvacCompressorOrFurnace>
+                        <!--Optional:-->
+                        <end1:isInteriorLighting>?</end1:isInteriorLighting>
+                        <!--Optional:-->
+                        <end1:isIrrigationPump>?</end1:isIrrigationPump>
+                        <!--Optional:-->
+                        <end1:isManagedCommercialIndustrialLoad>?</end1:isManagedCommercialIndustrialLoad>
+                        <!--Optional:-->
+                        <end1:isPoolPumpSpaJacuzzi>?</end1:isPoolPumpSpaJacuzzi>
+                        <!--Optional:-->
+                        <end1:isSimpleMiscLoad>?</end1:isSimpleMiscLoad>
+                        <!--Optional:-->
+                        <end1:isSmartAppliance>?</end1:isSmartAppliance>
+                        <!--Optional:-->
+                        <end1:isStripAndBaseboardHeater>?</end1:isStripAndBaseboardHeater>
+                        <!--Optional:-->
+                        <end1:isWaterHeater>?</end1:isWaterHeater>
+                     </end1:appliance>
+                  </end1:PanDemandResponse>
+                  <end1:PanDisplay>
+                     <!--Optional:-->
+                     <end1:command>?</end1:command>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:startDateTime>?</end1:startDateTime>
+                     <!--Optional:-->
+                     <end1:confirmationRequired>?</end1:confirmationRequired>
+                     <!--Optional:-->
+                     <end1:priority>?</end1:priority>
+                     <!--Optional:-->
+                     <end1:textMessage>?</end1:textMessage>
+                     <!--Optional:-->
+                     <end1:transmissionMode>?</end1:transmissionMode>
+                  </end1:PanDisplay>
+                  <end1:PanPricing>
+                     <!--Optional:-->
+                     <end1:command>?</end1:command>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:startDateTime>?</end1:startDateTime>
+                     <!--Optional:-->
+                     <end1:providerID>?</end1:providerID>
+                     <!--Zero or more repetitions:-->
+                     <end1:PanPricingDetails>
+                        <!--Optional:-->
+                        <end1:alternateCostDelivered>?</end1:alternateCostDelivered>
+                        <!--Optional:-->
+                        <end1:alternateCostUnit>?</end1:alternateCostUnit>
+                        <!--Optional:-->
+                        <end1:currentTimeDate>?</end1:currentTimeDate>
+                        <!--Optional:-->
+                        <end1:generationPrice>?</end1:generationPrice>
+                        <!--Optional:-->
+                        <end1:generationPriceRatio>?</end1:generationPriceRatio>
+                        <!--Optional:-->
+                        <end1:price>?</end1:price>
+                        <!--Optional:-->
+                        <end1:priceRatio>?</end1:priceRatio>
+                        <!--Optional:-->
+                        <end1:priceTier>?</end1:priceTier>
+                        <!--Optional:-->
+                        <end1:priceTierCount>?</end1:priceTierCount>
+                        <!--Optional:-->
+                        <end1:priceTierLabel>?</end1:priceTierLabel>
+                        <!--Optional:-->
+                        <end1:rateLabel>?</end1:rateLabel>
+                        <!--Optional:-->
+                        <end1:registerTier>?</end1:registerTier>
+                        <!--Optional:-->
+                        <end1:unitOfMeasure>?</end1:unitOfMeasure>
+                     </end1:PanPricingDetails>
+                  </end1:PanPricing>
+                  <end1:EndDeviceControlType ref="?"/>
+                  <!--Zero or more repetitions:-->
+                  <end1:EndDeviceGroups>
+                     <!--Optional:-->
+                     <end1:mRID>?</end1:mRID>
+                     <!--Zero or more repetitions:-->
+                     <end1:Names>
+                        <end1:name>?</end1:name>
+                        <!--Optional:-->
+                        <end1:NameType>
+                           <!--Optional:-->
+                           <end1:description>?</end1:description>
+                           <end1:name>?</end1:name>
+                           <!--Optional:-->
+                           <end1:NameTypeAuthority>
+                              <!--Optional:-->
+                              <end1:description>?</end1:description>
+                              <end1:name>?</end1:name>
+                           </end1:NameTypeAuthority>
+                        </end1:NameType>
+                     </end1:Names>
+                  </end1:EndDeviceGroups>
+                  <!--Zero or more repetitions:-->
+                  <end1:EndDevices>
+                     <!--Optional:-->
+                     <end1:mRID>?</end1:mRID>
+                     <!--Zero or more repetitions:-->
+                     <end1:Names>
+                        <end1:name>?</end1:name>
+                        <!--Optional:-->
+                        <end1:NameType>
+                           <!--Optional:-->
+                           <end1:description>?</end1:description>
+                           <end1:name>?</end1:name>
+                           <!--Optional:-->
+                           <end1:NameTypeAuthority>
+                              <!--Optional:-->
+                              <end1:description>?</end1:description>
+                              <end1:name>?</end1:name>
+                           </end1:NameTypeAuthority>
+                        </end1:NameType>
+                     </end1:Names>
+                  </end1:EndDevices>
+                  <!--Optional:-->
+                  <end1:primaryDeviceTiming>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:randomisation>?</end1:randomisation>
+                     <!--Optional:-->
+                     <end1:interval>
+                        <!--Optional:-->
+                        <end1:end>?</end1:end>
+                        <!--Optional:-->
+                        <end1:start>?</end1:start>
+                     </end1:interval>
+                  </end1:primaryDeviceTiming>
+                  <!--Optional:-->
+                  <end1:secondaryDeviceTiming>
+                     <!--Optional:-->
+                     <end1:duration>?</end1:duration>
+                     <!--Optional:-->
+                     <end1:durationIndefinite>?</end1:durationIndefinite>
+                     <!--Optional:-->
+                     <end1:randomisation>?</end1:randomisation>
+                     <!--Optional:-->
+                     <end1:interval>
+                        <!--Optional:-->
+                        <end1:end>?</end1:end>
+                        <!--Optional:-->
+                        <end1:start>?</end1:start>
+                     </end1:interval>
+                  </end1:secondaryDeviceTiming>
+                  <!--Zero or more repetitions:-->
+                  <end1:UsagePointGroups>
+                     <!--Optional:-->
+                     <end1:mRID>?</end1:mRID>
+                     <!--Zero or more repetitions:-->
+                     <end1:Names>
+                        <end1:name>?</end1:name>
+                        <!--Optional:-->
+                        <end1:NameType>
+                           <!--Optional:-->
+                           <end1:description>?</end1:description>
+                           <end1:name>?</end1:name>
+                           <!--Optional:-->
+                           <end1:NameTypeAuthority>
+                              <!--Optional:-->
+                              <end1:description>?</end1:description>
+                              <end1:name>?</end1:name>
+                           </end1:NameTypeAuthority>
+                        </end1:NameType>
+                     </end1:Names>
+                  </end1:UsagePointGroups>
+                  <!--Zero or more repetitions:-->
+                  <end1:UsagePoints>
+                     <!--Optional:-->
+                     <end1:mRID>?</end1:mRID>
+                     <!--Zero or more repetitions:-->
+                     <end1:Names>
+                        <end1:name>?</end1:name>
+                        <!--Optional:-->
+                        <end1:NameType>
+                           <!--Optional:-->
+                           <end1:description>?</end1:description>
+                           <end1:name>?</end1:name>
+                           <end1:NameTypeAuthority>
+                              <!--Optional:-->
+                              <end1:description>?</end1:description>
+                              <end1:name>?</end1:name>
+                           </end1:NameTypeAuthority>
+                        </end1:NameType>
+                     </end1:Names>
+                  </end1:UsagePoints>
+               </end1:EndDeviceControl>
+               <!--Zero or more repetitions:-->
+               <end1:EndDeviceControlType>
+                  <!--Optional:-->
+                  <end1:mRID>?</end1:mRID>
+                  <!--Optional:-->
+                  <end1:domain>?</end1:domain>
+                  <!--Optional:-->
+                  <end1:eventOrAction>?</end1:eventOrAction>
+                  <!--Optional:-->
+                  <end1:subDomain>?</end1:subDomain>
+                  <!--Optional:-->
+                  <end1:type>?</end1:type>
+                  <end1:Names ref="?"/>
+               </end1:EndDeviceControlType>
+            </end1:EndDeviceControls>
+            <!--Optional:-->
+            <end:OperationSet>
+               <!--Optional:-->
+               <mes:enforceMsgSequence>?</mes:enforceMsgSequence>
+               <!--Optional:-->
+               <mes:enforceTransactionalIntegrity>?</mes:enforceTransactionalIntegrity>
+               <!--Zero or more repetitions:-->
+               <mes:Operation>
+                  <mes:operationId>?</mes:operationId>
+                  <!--Optional:-->
+                  <mes:noun>?</mes:noun>
+                  <!--Optional:-->
+                  <mes:verb>?</mes:verb>
+                  <!--Optional:-->
+                  <mes:elementOperation>false</mes:elementOperation>
+                  <!--You may enter ANY elements at this point-->
+               </mes:Operation>
+            </end:OperationSet>
+            <!--Optional:-->
+            <end:Compressed>?</end:Compressed>
+            <!--Optional:-->
+            <end:Format>?</end:Format>
+         </end:Payload>
+      </end:DeletedEndDeviceControls>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://iec.ch/TC57/2011/EndDeviceControls/DeletedEndDeviceControls"/></con:call></con:operation></con:interface><con:testSuite name="SendEndDeviceControls_Binding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="CreatedEndDeviceControls TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="Success"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SendEndDeviceControls_Binding</con:interface><con:operation>CreatedEndDeviceControls</con:operation><con:request name="Success"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://ec2-50-17-55-9.compute-1.amazonaws.com:8080/epriConnect/mdms/ami/send</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:end="http://www.iec.ch/TC57/2011/EndDeviceControlsMessage" xmlns:mes="http://www.iec.ch/TC57/2011/schema/message" xmlns:end1="http://iec.ch/TC57/2011/EndDeviceControls#">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <end:CreatedEndDeviceControls>
+        <end:Header>
+            <mes:Verb>create</mes:Verb>
+            <mes:Noun>EndDeviceControls</mes:Noun>
+            <mes:Revision>0.1A</mes:Revision>
+            <mes:Context>TESTING</mes:Context>
+            <mes:Timestamp>2011-06-17T09:30:47.0Z</mes:Timestamp>
+            <mes:Source>CIS-002</mes:Source>
+            <mes:AsyncReplyFlag>true</mes:AsyncReplyFlag>
+            <mes:AckRequired>true</mes:AckRequired>
+            <mes:CorrelationID>String</mes:CorrelationID>
+            <mes:Comment>Remote End Device Controls</mes:Comment>
+         </end:Header>
+   	 <end:Payload>
+            <end1:EndDeviceControls>
+               <end1:EndDeviceControl>
+                  <end1:mRID>9801</end1:mRID>
+                  <end1:EndDeviceControlType ref="1.2"/>
+               </end1:EndDeviceControl>
+            </end1:EndDeviceControls>
+         </end:Payload>
+      </end:CreatedEndDeviceControls>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:testStep type="request" name="Fail"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>SendEndDeviceControls_Binding</con:interface><con:operation>CreatedEndDeviceControls</con:operation><con:request name="Fail"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://ec2-50-17-55-9.compute-1.amazonaws.com:8080/epriConnect/mdms/ami/send</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:end="http://www.iec.ch/TC57/2011/EndDeviceControlsMessage" xmlns:mes="http://www.iec.ch/TC57/2011/schema/message" xmlns:end1="http://iec.ch/TC57/2011/EndDeviceControls#">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <end:CreatedEndDeviceControls>
+               <end:Header>
+            <mes:Verb>create</mes:Verb>
+            <mes:Noun>EndDeviceControls</mes:Noun>
+            <mes:Revision>0.1A</mes:Revision>
+            <mes:Context>TESTING</mes:Context>
+            <mes:Timestamp>?</mes:Timestamp>
+            <mes:Source>CIS-002</mes:Source>
+            <mes:AsyncReplyFlag>true</mes:AsyncReplyFlag>
+            <mes:AckRequired>true</mes:AckRequired>
+            <mes:CorrelationID>String</mes:CorrelationID>
+            <mes:Comment>Remote End Device Controls</mes:Comment>
+         </end:Header>
+   	 <end:Payload>
+            <end1:EndDeviceControls>
+               <end1:EndDeviceControl>
+                  <end1:mRID>9801</end1:mRID>
+                  <end1:EndDeviceControlType ref="?"/>
+               </end1:EndDeviceControl>
+            </end1:EndDeviceControls>
+         </end:Payload>
+      </end:CreatedEndDeviceControls>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:assertion type="SOAP Response"/><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/></con:soapui-project>

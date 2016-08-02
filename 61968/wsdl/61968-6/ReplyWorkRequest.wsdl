@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://iec.ch/TC57/2010/WorkRequest" xmlns:infoMessage="http://www.iec.ch/TC57/2010/WorkRequestMessage" name="ReplyWorkRequest" targetNamespace="http://iec.ch/TC57/2010/WorkRequest">
+	<wsdl:types>
+		<xs:schema targetNamespace="http://www.iec.ch/TC57/2010/WorkRequestMessage" elementFormDefault="qualified">
+			<xs:include schemaLocation="xsd/WorkRequestMessage.xsd"/>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="CreatedWorkRequestEventMessage">
+		<wsdl:part name="CreatedWorkRequestEventMessage" element="infoMessage:CreatedWorkRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ChangedWorkRequestEventMessage">
+		<wsdl:part name="ChangedWorkRequestEventMessage" element="infoMessage:ChangedWorkRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ClosedWorkRequestEventMessage">
+		<wsdl:part name="ClosedWorkRequestEventMessage" element="infoMessage:ClosedWorkRequest"/>
+	</wsdl:message>
+	<wsdl:message name="CanceledWorkRequestEventMessage">
+		<wsdl:part name="CanceledWorkRequestEventMessage" element="infoMessage:CanceledWorkRequest"/>
+	</wsdl:message>
+	<wsdl:message name="DeletedWorkRequestEventMessage">
+		<wsdl:part name="DeletedWorkRequestEventMessage" element="infoMessage:DeletedWorkRequest"/>
+	</wsdl:message>
+	<wsdl:message name="ResponseMessage">
+		<wsdl:part name="ResponseMessage" element="infoMessage:WorkRequestResponseMessage"/>
+	</wsdl:message>
+	<wsdl:message name="FaultMessage">
+		<wsdl:part name="FaultMessage" element="infoMessage:WorkRequestFaultMessage"/>
+	</wsdl:message>
+	<wsdl:portType name="WorkRequest_Port">
+		<wsdl:operation name="CreatedWorkRequest">
+			<wsdl:input name="CreatedWorkRequestRequest" message="tns:CreatedWorkRequestEventMessage"/>
+			<wsdl:output name="CreatedWorkRequestResponse" message="tns:ResponseMessage"/>
+			<wsdl:fault name="CreatedWorkRequestFault" message="tns:FaultMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="ChangedWorkRequest">
+			<wsdl:input name="ChangedWorkRequestRequest" message="tns:ChangedWorkRequestEventMessage"/>
+			<wsdl:output name="ChangedWorkRequestResponse" message="tns:ResponseMessage"/>
+			<wsdl:fault name="ChangedWorkRequestFault" message="tns:FaultMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="CanceledWorkRequest">
+			<wsdl:input name="CanceledWorkRequestRequest" message="tns:CanceledWorkRequestEventMessage"/>
+			<wsdl:output name="CanceledWorkRequestResponse" message="tns:ResponseMessage"/>
+			<wsdl:fault name="CanceledWorkRequestFault" message="tns:FaultMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="ClosedWorkRequest">
+			<wsdl:input name="ClosedWorkRequestRequest" message="tns:ClosedWorkRequestEventMessage"/>
+			<wsdl:output name="ClosedWorkRequestResponse" message="tns:ResponseMessage"/>
+			<wsdl:fault name="ClosedWorkRequestFault" message="tns:FaultMessage"/>
+		</wsdl:operation>
+		<wsdl:operation name="DeletedWorkRequest">
+			<wsdl:input name="DeletedWorkRequestRequest" message="tns:DeletedWorkRequestEventMessage"/>
+			<wsdl:output name="DeletedWorkRequestResponse" message="tns:ResponseMessage"/>
+			<wsdl:fault name="DeletedWorkRequestFault" message="tns:FaultMessage"/>
+		</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="WorkRequest_Binding" type="tns:WorkRequest_Port">
+		<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+		<wsdl:operation name="CreatedWorkRequest">
+			<soap:operation soapAction="http://iec.ch/TC57/2010/WorkRequest/CreatedWorkRequest" style="document"/>
+			<wsdl:input name="CreatedWorkRequestRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="CreatedWorkRequestResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="CreatedWorkRequestFault">
+				<soap:fault name="CreatedWorkRequestFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="ChangedWorkRequest">
+			<soap:operation soapAction="http://iec.ch/TC57/2010/WorkRequest/ChangedWorkRequest" style="document"/>
+			<wsdl:input name="ChangedWorkRequestRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="ChangedWorkRequestResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="ChangedWorkRequestFault">
+				<soap:fault name="ChangedWorkRequestFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="CanceledWorkRequest">
+			<soap:operation soapAction="http://iec.ch/TC57/2010/WorkRequest/CanceledWorkRequest" style="document"/>
+			<wsdl:input name="CanceledWorkRequestRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="CanceledWorkRequestResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="CanceledWorkRequestFault">
+				<soap:fault name="CanceledWorkRequestFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="ClosedWorkRequest">
+			<soap:operation soapAction="http://iec.ch/TC57/2010/WorkRequest/ClosedWorkRequest" style="document"/>
+			<wsdl:input name="ClosedWorkRequestRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="ClosedWorkRequestResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="ClosedWorkRequestFault">
+				<soap:fault name="ClosedWorkRequestFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="DeletedWorkRequest">
+			<soap:operation soapAction="http://iec.ch/TC57/2010/WorkRequest/DeletedWorkRequest" style="document"/>
+			<wsdl:input name="DeletedWorkRequestRequest">
+				<soap:body use="literal"/>
+			</wsdl:input>
+			<wsdl:output name="DeletedWorkRequestResponse">
+				<soap:body use="literal"/>
+			</wsdl:output>
+			<wsdl:fault name="DeletedWorkRequestFault">
+				<soap:fault name="DeletedWorkRequestFault" use="literal"/>
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="ReplyWorkRequest">
+		<wsdl:port name="WorkRequest_Port" binding="tns:WorkRequest_Binding">
+			<soap:address location="http://iec.ch/TC57/2010/ReplyWorkRequest"/>
+		</wsdl:port>
+	</wsdl:service>
+	<!-- Message Definitions -->
+	<!-- Port Definitions -->
+</wsdl:definitions>

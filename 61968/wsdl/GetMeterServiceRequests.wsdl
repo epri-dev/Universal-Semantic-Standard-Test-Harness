@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions
+		name="GetMeterServiceRequests" 
+        targetNamespace="http://iec.ch/TC57/2011/MeterServiceRequests" 
+        xmlns:tns="http://iec.ch/TC57/2011/MeterServiceRequests" 
+        xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" 
+        xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" 
+        xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+        xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+        xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" 
+        xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" 
+        xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" 
+        xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" 
+        xmlns:infoMessage="http://www.iec.ch/TC57/2011/MeterServiceRequestsMessage">
+		
+		<wsdl:types>
+			
+			<xs:schema targetNamespace="http://www.iec.ch/TC57/2011/MeterServiceRequestsMessage"
+							   elementFormDefault="qualified">
+				
+                <xs:include schemaLocation="xsd/MeterServiceRequestsMessage.xsd"/>
+				
+			</xs:schema>
+			
+		</wsdl:types>
+		
+		<!-- Message Definitions -->
+		<wsdl:message name="GetMeterServiceRequestsRequestMessage">
+			<wsdl:part name="GetMeterServiceRequestsRequestMessage" element="infoMessage:MeterServiceRequestsRequestMessage"/>
+		</wsdl:message>
+		
+		<wsdl:message name="ResponseMessage">
+			<wsdl:part name="ResponseMessage" element="infoMessage:MeterServiceRequestsResponseMessage"/>
+		</wsdl:message>
+		
+		<wsdl:message name="FaultMessage">
+			<wsdl:part name="FaultMessage" element="infoMessage:MeterServiceRequestsFaultMessage"/>
+		</wsdl:message>
+		
+		<!-- Port Definitions -->
+		<wsdl:portType name="GetMeterServiceRequests_Port">
+			
+			<wsdl:operation name="GetMeterServiceRequests">
+				<wsdl:input name="GetMeterServiceRequestsRequest" message="tns:GetMeterServiceRequestsRequestMessage"/>
+				<wsdl:output name="GetMeterServiceRequestsResponse" message="tns:ResponseMessage"/>
+				<wsdl:fault name="GetMeterServiceRequestsFault" message="tns:FaultMessage"/>
+			</wsdl:operation>
+			
+		</wsdl:portType>
+		
+		<wsdl:binding name="GetMeterServiceRequests_Binding" type="tns:GetMeterServiceRequests_Port">
+		
+			<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+			
+			<wsdl:operation name="GetMeterServiceRequests">
+				<soap:operation soapAction="http://iec.ch/TC57/2011/GetMeterServiceRequests/GetMeterServiceRequests" style="document"/>
+				<wsdl:input name="GetMeterServiceRequestsRequest">
+					<soap:body use="literal"/>
+				</wsdl:input>
+				<wsdl:output name="GetMeterServiceRequestsResponse">
+					<soap:body use="literal"/>
+				</wsdl:output>
+				<wsdl:fault name="GetMeterServiceRequestsFault">
+					<soap:fault name="GetMeterServiceRequestsFault" use="literal"/>
+				</wsdl:fault>
+			</wsdl:operation>
+		</wsdl:binding>
+		
+		<wsdl:service name="GetMeterServiceRequests">
+			<wsdl:port name="GetMeterServiceRequests_Port" binding="tns:GetMeterServiceRequests_Binding">
+				<soap:address location="http://iec.ch/TC57/2011/GetMeterServiceRequests"/>
+			</wsdl:port>
+		</wsdl:service>
+	
+</wsdl:definitions>

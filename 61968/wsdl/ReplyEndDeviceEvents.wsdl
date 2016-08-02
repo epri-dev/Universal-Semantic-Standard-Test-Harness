@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="ReplyEndDeviceEvents"
+	targetNamespace="http://iec.ch/TC57/2011/EndDeviceEvents" xmlns:tns="http://iec.ch/TC57/2011/EndDeviceEvents"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+	xmlns:infoMessage="http://www.iec.ch/TC57/2011/EndDeviceEventsMessage">
+
+	<wsdl:types>
+
+		<xs:schema targetNamespace="http://www.iec.ch/TC57/2011/EndDeviceEventsMessage"
+			elementFormDefault="qualified">
+
+			<xs:include schemaLocation="xsd/EndDeviceEventsMessage.xsd" />
+
+		</xs:schema>
+
+	</wsdl:types>
+
+	<!-- Message Definitions -->
+
+	<wsdl:message name="CreatedEndDeviceEventsEventMessage">
+		<wsdl:part name="CreatedEndDeviceEventsEventMessage"
+			element="infoMessage:CreatedEndDeviceEvents" />
+	</wsdl:message>
+
+	<wsdl:message name="ChangedEndDeviceEventsEventMessage">
+		<wsdl:part name="ChangedEndDeviceEventsEventMessage"
+			element="infoMessage:ChangedEndDeviceEvents" />
+	</wsdl:message>
+
+	<wsdl:message name="ClosedEndDeviceEventsEventMessage">
+		<wsdl:part name="ClosedEndDeviceEventsEventMessage"
+			element="infoMessage:ClosedEndDeviceEvents" />
+	</wsdl:message>
+
+	<wsdl:message name="CanceledEndDeviceEventsEventMessage">
+		<wsdl:part name="CanceledEndDeviceEventsEventMessage"
+			element="infoMessage:CanceledEndDeviceEvents" />
+	</wsdl:message>
+
+	<wsdl:message name="DeletedEndDeviceEventsEventMessage">
+		<wsdl:part name="DeletedEndDeviceEventsEventMessage"
+			element="infoMessage:DeletedEndDeviceEvents" />
+	</wsdl:message>
+
+	<wsdl:message name="ResponseMessage">
+		<wsdl:part name="ResponseMessage"
+			element="infoMessage:EndDeviceEventsResponseMessage" />
+	</wsdl:message>
+
+	<wsdl:message name="FaultMessage">
+		<wsdl:part name="FaultMessage" element="infoMessage:EndDeviceEventsFaultMessage" />
+	</wsdl:message>
+
+	<!-- Port Definitions -->
+	<wsdl:portType name="ReplyEndDeviceEvents_Port">
+		<wsdl:operation name="CreatedEndDeviceEvents">
+			<wsdl:input name="CreatedEndDeviceEventsEvent"
+				message="tns:CreatedEndDeviceEventsEventMessage" />
+			<wsdl:output name="CreatedEndDeviceEventsResponse"
+				message="tns:ResponseMessage" />
+			<wsdl:fault name="CreatedEndDeviceEventsFault" message="tns:FaultMessage" />
+		</wsdl:operation>
+
+		<wsdl:operation name="ChangedEndDeviceEvents">
+			<wsdl:input name="ChangedEndDeviceEventsEvent"
+				message="tns:ChangedEndDeviceEventsEventMessage" />
+			<wsdl:output name="ChangedEndDeviceEventsResponse"
+				message="tns:ResponseMessage" />
+			<wsdl:fault name="ChangedEndDeviceEventsFault" message="tns:FaultMessage" />
+		</wsdl:operation>
+
+		<wsdl:operation name="CanceledEndDeviceEvents">
+			<wsdl:input name="CanceledEndDeviceEventsEvent"
+				message="tns:CanceledEndDeviceEventsEventMessage" />
+			<wsdl:output name="CanceledEndDeviceEventsResponse"
+				message="tns:ResponseMessage" />
+			<wsdl:fault name="CanceledEndDeviceEventsFault" message="tns:FaultMessage" />
+		</wsdl:operation>
+
+		<wsdl:operation name="ClosedEndDeviceEvents">
+			<wsdl:input name="ClosedEndDeviceEventsEvent" message="tns:ClosedEndDeviceEventsEventMessage" />
+			<wsdl:output name="ClosedEndDeviceEventsResponse"
+				message="tns:ResponseMessage" />
+			<wsdl:fault name="ClosedEndDeviceEventsFault" message="tns:FaultMessage" />
+		</wsdl:operation>
+
+		<wsdl:operation name="DeletedEndDeviceEvents">
+			<wsdl:input name="DeletedEndDeviceEventsEvent"
+				message="tns:DeletedEndDeviceEventsEventMessage" />
+			<wsdl:output name="DeletedEndDeviceEventsResponse"
+				message="tns:ResponseMessage" />
+			<wsdl:fault name="DeletedEndDeviceEventsFault" message="tns:FaultMessage" />
+		</wsdl:operation>
+
+	</wsdl:portType>
+
+	<wsdl:binding name="ReplyEndDeviceEvents_Binding" type="tns:ReplyEndDeviceEvents_Port">
+
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+
+		<wsdl:operation name="CreatedEndDeviceEvents">
+			<soap:operation
+				soapAction="http://iec.ch/TC57/2011/EndDeviceEvents/CreatedEndDeviceEvents"
+				style="document" />
+			<wsdl:input name="CreatedEndDeviceEventsEvent">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="CreatedEndDeviceEventsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="CreatedEndDeviceEventsFault">
+				<soap:fault name="CreatedEndDeviceEventsFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="ChangedEndDeviceEvents">
+			<soap:operation
+				soapAction="http://iec.ch/TC57/2011/EndDeviceEvents/ChangedEndDeviceEvents"
+				style="document" />
+			<wsdl:input name="ChangedEndDeviceEventsEvent">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="ChangedEndDeviceEventsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="ChangedEndDeviceEventsFault">
+				<soap:fault name="ChangedEndDeviceEventsFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="CanceledEndDeviceEvents">
+			<soap:operation
+				soapAction="http://iec.ch/TC57/2011/EndDeviceEvents/CanceledEndDeviceEvents"
+				style="document" />
+			<wsdl:input name="CanceledEndDeviceEventsEvent">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="CanceledEndDeviceEventsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="CanceledEndDeviceEventsFault">
+				<soap:fault name="CanceledEndDeviceEventsFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="ClosedEndDeviceEvents">
+			<soap:operation
+				soapAction="http://iec.ch/TC57/2011/EndDeviceEvents/ClosedEndDeviceEvents"
+				style="document" />
+			<wsdl:input name="ClosedEndDeviceEventsEvent">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="ClosedEndDeviceEventsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="ClosedEndDeviceEventsFault">
+				<soap:fault name="ClosedEndDeviceEventsFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+		<wsdl:operation name="DeletedEndDeviceEvents">
+			<soap:operation
+				soapAction="http://iec.ch/TC57/2011/EndDeviceEvents/DeletedEndDeviceEvents"
+				style="document" />
+			<wsdl:input name="DeletedEndDeviceEventsEvent">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="DeletedEndDeviceEventsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="DeletedEndDeviceEventsFault">
+				<soap:fault name="DeletedEndDeviceEventsFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="ReplyEndDeviceEvents">
+		<wsdl:port name="ReplyEndDeviceEvents_Port" binding="tns:ReplyEndDeviceEvents_Binding">
+			<soap:address location="http://iec.ch/TC57/2011/ReplyEndDeviceEvents" />
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>

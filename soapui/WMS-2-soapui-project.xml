@@ -1,0 +1,1494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project name="WMS-2" resourceRoot="" soapui-version="3.6.1" xmlns:con="http://eviware.com/soapui/config"><con:settings/><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="WorkRequest_Binding" type="wsdl" bindingName="{http://iec.ch/TC57/2010/WorkRequest}WorkRequest_Binding" soapVersion="1_1" anonymous="optional" definition="file:/C:/sixth/epri/proxytest2/epriConnect/src/wsdl_v1/61968-6/RequestWorkRequest.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/sixth/epri/proxytest2/epriConnect/src/wsdl_v1/61968-6/RequestWorkRequest.wsdl"><con:part><con:url>file:/C:/sixth/epri/proxytest2/epriConnect/src/wsdl_v1/61968-6/RequestWorkRequest.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="RequestWorkRequest" targetNamespace="http://iec.ch/TC57/2010/WorkRequest" xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://iec.ch/TC57/2010/WorkRequest" xmlns:infoMessage="http://www.iec.ch/TC57/2010/WorkRequestMessage">
+  <wsdl:types>
+    <xs:schema targetNamespace="http://www.iec.ch/TC57/2010/WorkRequestMessage" elementFormDefault="qualified">
+      <xs:include schemaLocation="xsd/WorkRequestMessage.xsd"/>
+    </xs:schema>
+  </wsdl:types>
+  <!--Message Definitions-->
+  <wsdl:message name="CreateWorkRequestEventMessage">
+    <wsdl:part name="CreateWorkRequestEventMessage" element="infoMessage:CreateWorkRequest"/>
+  </wsdl:message>
+  <wsdl:message name="ChangeWorkRequestEventMessage">
+    <wsdl:part name="ChangeWorkRequestEventMessage" element="infoMessage:ChangeWorkRequest"/>
+  </wsdl:message>
+  <wsdl:message name="CloseWorkRequestEventMessage">
+    <wsdl:part name="CloseWorkRequestEventMessage" element="infoMessage:CloseWorkRequest"/>
+  </wsdl:message>
+  <wsdl:message name="CancelWorkRequestEventMessage">
+    <wsdl:part name="CancelWorkRequestEventMessage" element="infoMessage:CancelWorkRequest"/>
+  </wsdl:message>
+  <wsdl:message name="DeleteWorkRequestEventMessage">
+    <wsdl:part name="DeleteWorkRequestEventMessage" element="infoMessage:DeleteWorkRequest"/>
+  </wsdl:message>
+  <wsdl:message name="ResponseMessage">
+    <wsdl:part name="ResponseMessage" element="infoMessage:WorkRequestResponseMessage"/>
+  </wsdl:message>
+  <wsdl:message name="FaultMessage">
+    <wsdl:part name="FaultMessage" element="infoMessage:WorkRequestFaultMessage"/>
+  </wsdl:message>
+  <!--Port Definitions-->
+  <wsdl:portType name="WorkRequest_Port">
+    <wsdl:operation name="CreateWorkRequest">
+      <wsdl:input name="CreateWorkRequestRequest" message="tns:CreateWorkRequestEventMessage"/>
+      <wsdl:output name="CreateWorkRequestResponse" message="tns:ResponseMessage"/>
+      <wsdl:fault name="CreateWorkRequestFault" message="tns:FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeWorkRequest">
+      <wsdl:input name="ChangeWorkRequestRequest" message="tns:ChangeWorkRequestEventMessage"/>
+      <wsdl:output name="ChangeWorkRequestResponse" message="tns:ResponseMessage"/>
+      <wsdl:fault name="ChangeWorkRequestFault" message="tns:FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="CancelWorkRequest">
+      <wsdl:input name="CancelWorkRequestRequest" message="tns:CancelWorkRequestEventMessage"/>
+      <wsdl:output name="CancelWorkRequestResponse" message="tns:ResponseMessage"/>
+      <wsdl:fault name="CancelWorkRequestFault" message="tns:FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="CloseWorkRequest">
+      <wsdl:input name="CloseWorkRequestRequest" message="tns:CloseWorkRequestEventMessage"/>
+      <wsdl:output name="CloseWorkRequestResponse" message="tns:ResponseMessage"/>
+      <wsdl:fault name="CloseWorkRequestFault" message="tns:FaultMessage"/>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteWorkRequest">
+      <wsdl:input name="DeleteWorkRequestRequest" message="tns:DeleteWorkRequestEventMessage"/>
+      <wsdl:output name="DeleteWorkRequestResponse" message="tns:ResponseMessage"/>
+      <wsdl:fault name="DeleteWorkRequestFault" message="tns:FaultMessage"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="WorkRequest_Binding" type="tns:WorkRequest_Port">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="CreateWorkRequest">
+      <soap:operation soapAction="http://iec.ch/TC57/2010/WorkRequest/CreateWorkRequest" style="document"/>
+      <wsdl:input name="CreateWorkRequestRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CreateWorkRequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CreateWorkRequestFault">
+        <soap:fault name="CreateWorkRequestFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeWorkRequest">
+      <soap:operation soapAction="http://iec.ch/TC57/2010/WorkRequest/ChangeWorkRequest" style="document"/>
+      <wsdl:input name="ChangeWorkRequestRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="ChangeWorkRequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="ChangeWorkRequestFault">
+        <soap:fault name="ChangeWorkRequestFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CancelWorkRequest">
+      <soap:operation soapAction="http://iec.ch/TC57/2010/WorkRequest/CancelWorkRequest" style="document"/>
+      <wsdl:input name="CancelWorkRequestRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CancelWorkRequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CancelWorkRequestFault">
+        <soap:fault name="CancelWorkRequestFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="CloseWorkRequest">
+      <soap:operation soapAction="http://iec.ch/TC57/2010/WorkRequest/CloseWorkRequest" style="document"/>
+      <wsdl:input name="CloseWorkRequestRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="CloseWorkRequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="CloseWorkRequestFault">
+        <soap:fault name="CloseWorkRequestFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteWorkRequest">
+      <soap:operation soapAction="http://iec.ch/TC57/2010/WorkRequest/DeleteWorkRequest" style="document"/>
+      <wsdl:input name="DeleteWorkRequestRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="DeleteWorkRequestResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+      <wsdl:fault name="DeleteWorkRequestFault">
+        <soap:fault name="DeleteWorkRequestFault" use="literal"/>
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="RequestWorkRequest">
+    <wsdl:port name="WorkRequest_Port" binding="tns:WorkRequest_Binding">
+      <soap:address location="http://iec.ch/TC57/2010/RequestWorkRequest"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>file:\C:\sixth\epri\proxytest2\epriConnect\src\wsdl_v1\61968-6\xsd\WorkRequestMessage.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://www.iec.ch/TC57/2010/WorkRequestMessage" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.0" xmlns="http://www.iec.ch/TC57/2010/WorkRequestMessage" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msg="http://www.iec.ch/TC57/2010/schema/message" xmlns:obj="http://iec.ch/TC57/2010/WorkRequest#">
+  <!--Base Message Definitions-->
+  <xs:import namespace="http://www.iec.ch/TC57/2010/schema/message" schemaLocation="Message.xsd"/>
+  <!--CIM Information Object Definition-->
+  <xs:import namespace="http://iec.ch/TC57/2010/WorkRequest#" schemaLocation="WorkRequest.xsd"/>
+  <!--PayloadType Definition-->
+  <xs:complexType name="WorkRequestPayloadType">
+    <xs:sequence>
+      <xs:element ref="obj:WorkRequest"/>
+      <xs:element name="OperationSet" type="msg:OperationSet" minOccurs="0"/>
+      <xs:element name="Compressed" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>For compressed and/or binary, uuencoded payloads</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Format" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Hint as to format of payload, e.g. XML, RDF, SVF, BINARY, PDF, ...</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <!--Message Types-->
+  <!--RequestMessageType-->
+  <xs:complexType name="WorkRequestRequestMessageType">
+    <xs:sequence>
+      <xs:element name="Header" type="msg:HeaderType"/>
+      <xs:element name="Request" type="msg:RequestType" minOccurs="0"/>
+      <xs:element name="Payload" type="WorkRequestPayloadType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!--ResponseMessageType-->
+  <xs:complexType name="WorkRequestResponseMessageType">
+    <xs:sequence>
+      <xs:element name="Header" type="msg:HeaderType"/>
+      <xs:element name="Reply" type="msg:ReplyType"/>
+      <xs:element name="Payload" type="WorkRequestPayloadType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!--EventMessageType-->
+  <xs:complexType name="WorkRequestEventMessageType">
+    <xs:sequence>
+      <xs:element name="Header" type="msg:HeaderType"/>
+      <xs:element name="Payload" type="WorkRequestPayloadType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <!--FaultMessageType-->
+  <xs:complexType name="WorkRequestFaultMessageType">
+    <xs:sequence>
+      <xs:element name="Reply" type="msg:ReplyType"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CreateWorkRequest" type="WorkRequestRequestMessageType"/>
+  <xs:element name="ChangeWorkRequest" type="WorkRequestRequestMessageType"/>
+  <xs:element name="CancelWorkRequest" type="WorkRequestRequestMessageType"/>
+  <xs:element name="CloseWorkRequest" type="WorkRequestRequestMessageType"/>
+  <xs:element name="DeleteWorkRequest" type="WorkRequestRequestMessageType"/>
+  <xs:element name="CreatedWorkRequest" type="WorkRequestEventMessageType"/>
+  <xs:element name="ChangedWorkRequest" type="WorkRequestEventMessageType"/>
+  <xs:element name="CanceledWorkRequest" type="WorkRequestEventMessageType"/>
+  <xs:element name="ClosedWorkRequest" type="WorkRequestEventMessageType"/>
+  <xs:element name="DeletedWorkRequest" type="WorkRequestEventMessageType"/>
+  <xs:element name="WorkRequestResponseMessage" type="WorkRequestResponseMessageType"/>
+  <xs:element name="WorkRequestFaultMessage" type="WorkRequestFaultMessageType"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\sixth\epri\proxytest2\epriConnect\src\wsdl_v1\61968-6\xsd\Message.xsd</con:url><con:content><![CDATA[<!--Common Message Specification for IEC 61968-->
+<xs:schema targetNamespace="http://www.iec.ch/TC57/2010/schema/message" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.0" xmlns="http://www.iec.ch/TC57/2010/schema/message" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="RequestType">
+    <xs:annotation>
+      <xs:documentation>Request type definition</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:annotation>
+        <xs:documentation>Request package is typically used to supply parameters for 'get' requests</xs:documentation>
+      </xs:annotation>
+      <xs:element name="StartTime" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Start time of interest</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="EndTime" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>End time of interest</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Option" type="OptionType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Request type specialization</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ID" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Object ID for request</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>This can be a CIM profile defined as an XSD with a CIM-specific namespace</xs:documentation>
+        </xs:annotation>
+      </xs:any>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReplyType">
+    <xs:annotation>
+      <xs:documentation>Reply type definition</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:annotation>
+        <xs:documentation>Reply package is used to confirm success or report errors</xs:documentation>
+      </xs:annotation>
+      <xs:element name="Result">
+        <xs:annotation>
+          <xs:documentation>Reply code: OK, PARTIAL or FAILED</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="OK"/>
+            <xs:enumeration value="PARTIAL"/>
+            <xs:enumeration value="FAILED"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Error" type="ErrorType" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Reply details describing one or more errors</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ID" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Resulting transaction ID (usually consequence of create)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="operationId" type="xs:integer" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The reply.operationId provides the unique identifier of the Operation for which this reply.result is relevant. Thus, it is  assumed that this is a partial reply in direct response to one of the operations contained in an OperationSet request.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="PayloadType">
+    <xs:annotation>
+      <xs:documentation>Payload container</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:choice>
+        <xs:any namespace="##other" minOccurs="0" maxOccurs="unbounded">
+          <xs:annotation>
+            <xs:documentation>For XML payloads, usually CIM profiles defined using an XSD in a profile-specific namespace.</xs:documentation>
+          </xs:annotation>
+        </xs:any>
+        <xs:element name="OperationSet" type="OperationSet" minOccurs="0"/>
+        <xs:element name="Compressed" type="xs:string" minOccurs="0">
+          <xs:annotation>
+            <xs:documentation>For compressed and/or binary, uuencoded payloads</xs:documentation>
+          </xs:annotation>
+        </xs:element>
+      </xs:choice>
+      <xs:element name="Format" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Hint as to format of payload, e.g. XML, RDF, SVF, BINARY, PDF, ...</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OperationSet">
+    <xs:annotation>
+      <xs:documentation>Each operation set is a collection of operations that may require operational-integrity and/or sequence control.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="enforceMsgSequence" type="xs:boolean" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>If set to TRUE, the Operation.##other messages must be processed in the sequence presented. If omitted, assume FALSE.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="enforceTransactionalIntegrity" type="xs:boolean" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Set to TRUE when all of the Operation.##other messages must be processed successfully or else the entire message set must be rolled back. If omitted, assume TRUE.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Operation" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>For master data set synchronization XML payloads.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element name="operationId" type="xs:integer">
+              <xs:annotation>
+                <xs:documentation>The payload.operation.operationId provides the unique identifier (within the OperationSet) of the Operation for the purpose of reference in subsequent messages (e.g. OperationSet reply).</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="noun" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>The payload.operation.##other also identifies the noun, this element is optionally supplied to simplify processing.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="verb" type="xs:string" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>"create", "delete", "change", etc.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="elementOperation" type="xs:boolean" default="false" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>TRUE if the verb is operating at the element level. In such a case, the verb is to be applied to the elements populated in the payload.operation.##other below. If omitted, assume FALSE.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:any namespace="##other" processContents="skip" minOccurs="0">
+              <xs:annotation>
+                <xs:documentation>An XML payload which carries a CIM profile defined using an XSD in a profile-specific namespate. Individual payloads are used collectively to create a series of related operations. See the "enforce" boolean flags in the header for instructions on how to process these messages.</xs:documentation>
+              </xs:annotation>
+            </xs:any>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ReplayDetectionType">
+    <xs:annotation>
+      <xs:documentation>Used to detect and prevent replay attacks</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Nonce" type="xs:string"/>
+      <xs:element name="Created" type="xs:dateTime"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="UserType">
+    <xs:annotation>
+      <xs:documentation>User type definition</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="UserID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>User identifier</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Organization" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>User parent organization identifier</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="HeaderType">
+    <xs:annotation>
+      <xs:documentation>Message header type definition</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:annotation>
+        <xs:documentation>Message header contains control and descriptive information about the message.</xs:documentation>
+      </xs:annotation>
+      <xs:element name="Verb">
+        <xs:annotation>
+          <xs:documentation>This enumerated list of verbs that can be used to form message types in compliance with the IEC 61968 standard.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="cancel"/>
+            <xs:enumeration value="canceled"/>
+            <xs:enumeration value="change"/>
+            <xs:enumeration value="changed"/>
+            <xs:enumeration value="create"/>
+            <xs:enumeration value="created"/>
+            <xs:enumeration value="close"/>
+            <xs:enumeration value="closed"/>
+            <xs:enumeration value="delete"/>
+            <xs:enumeration value="deleted"/>
+            <xs:enumeration value="get"/>
+            <xs:enumeration value="show"/>
+            <xs:enumeration value="reply"/>
+            <xs:enumeration value="subscribe"/>
+            <xs:enumeration value="unsubscribe"/>
+            <xs:enumeration value="execute"/>
+            <xs:enumeration value="report"/>
+            <xs:enumeration value="stop"/>
+            <xs:enumeration value="terminate"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Noun" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>The Noun of the Control Area identifies the main subject of the message type, typically a real world object defined in the CIM.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Revision" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Revision level of the message type.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ReplayDetection" type="ReplayDetectionType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Use to introduce randomness in the message to enhance effectiveness of encryption</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Context" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Intended context for information usage, e.g. PRODUCTION, TESTING, TRAINING, ...</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="PRODUCTION"/>
+            <xs:enumeration value="TESTING"/>
+            <xs:enumeration value="DEVELOPMENT"/>
+            <xs:enumeration value="STUDY"/>
+            <xs:enumeration value="TRAINING"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="Timestamp" type="xs:dateTime" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Application level relevant time and date for when this  instance of the message type was produced.  This is not intended to be used by middleware for message management.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Source" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Source system or application that sends the message</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AsyncReplyFlag" type="xs:boolean" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Indicates whether or not reply should be asynchronous</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ReplyAddress" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Address to be used for asynchronous replies, typically a URL/topic/queue.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="AckRequired" type="xs:boolean" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Indicates whether or not an acknowledgement is required</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="User" type="UserType" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>User information of the sender</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="MessageID" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Unique message ID to be used for tracking messages</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CorrelationID" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>ID to be used by applications for correlating replies</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Comment" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Optional comment</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Property" type="MessageProperty" minOccurs="0" maxOccurs="unbounded">
+        <xs:annotation>
+          <xs:documentation>Message properties can be used to identify information needed for extended routing and filtering capabilities</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="Message" type="MessageType">
+    <xs:annotation>
+      <xs:documentation>Common IEC 61968 Message Definition</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="MessageProperty">
+    <xs:annotation>
+      <xs:documentation>Message properties can be used for extended routing and filtering</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Name" type="xs:string"/>
+      <xs:element name="Value" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RequestMessage" type="RequestMessageType">
+    <xs:annotation>
+      <xs:documentation>Request message structure</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="ResponseMessage" type="ResponseMessageType">
+    <xs:annotation>
+      <xs:documentation>Response message structure</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:element name="EventMessage" type="EventMessageType">
+    <xs:annotation>
+      <xs:documentation>Event message structure</xs:documentation>
+    </xs:annotation>
+  </xs:element>
+  <xs:complexType name="MessageType">
+    <xs:annotation>
+      <xs:documentation>Generic Message Type</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Header" type="HeaderType"/>
+      <xs:element name="Request" type="RequestType" minOccurs="0"/>
+      <xs:element name="Reply" type="ReplyType" minOccurs="0"/>
+      <xs:element name="Payload" type="PayloadType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="RequestMessageType">
+    <xs:annotation>
+      <xs:documentation>Request Message Type, which will typically result in a ResponseMessage to be returned. This isn typically used to initiate a transaction or a query request.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Header" type="HeaderType"/>
+      <xs:element name="Request" type="RequestType" minOccurs="0"/>
+      <xs:element name="Payload" type="PayloadType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ResponseMessageType">
+    <xs:annotation>
+      <xs:documentation>Response MessageType, typically used to reply to a RequestMessage</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Header" type="HeaderType"/>
+      <xs:element name="Reply" type="ReplyType"/>
+      <xs:element name="Payload" type="PayloadType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="FaultMessageType">
+    <xs:annotation>
+      <xs:documentation>Fault Messsage Type, which is used in cases where the incoming message (including the header) can not be parsed</xs:documentation>
+    </xs:annotation>
+  </xs:complexType>
+  <xs:complexType name="EventMessageType">
+    <xs:annotation>
+      <xs:documentation>Event Message Type, which is used to indicate a condition of potential interest.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="Header" type="HeaderType"/>
+      <xs:element name="Payload" type="PayloadType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ErrorType">
+    <xs:annotation>
+      <xs:documentation>Error Structure</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="code" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>Application defined error code</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="level" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Severity level, e.g. INFORMATIVE, WARNING, FATAL, CATASTROPHIC</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType>
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="INFORM"/>
+            <xs:enumeration value="WARNING"/>
+            <xs:enumeration value="FATAL"/>
+            <xs:enumeration value="CATASTROPHIC"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="reason" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Description of the error</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="details" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Free form detailed text description of error</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="xpath" type="xs:QName" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>XPath expression to identify specific XML element</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="stackTrace" type="xs:string" minOccurs="0"/>
+      <xs:element name="Location" type="LocationType" minOccurs="0"/>
+      <xs:element name="object" type="IdentifiedObject" minOccurs="0"/>
+      <xs:element name="operationId" type="xs:integer" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>The reply.operationId provides the unique identifier of the Operation for which this reply.result.error is relevant. Thus, it is  assumed that this is an error from one of the operations contained in an OperationSet request.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="OptionType">
+    <xs:annotation>
+      <xs:documentation>Request options</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="name" type="xs:string"/>
+      <xs:element name="value" type="xs:string" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="LocationType">
+    <xs:annotation>
+      <xs:documentation>Process location where error was encountered</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="node" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Name of the pipeline/branch/route node where error occurred</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="pipeline" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Name of the pipeline where error occurred (if applicable)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="stage" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>Name of the stage where error occurred (if applicable)</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="IdentifiedObject">
+    <xs:annotation>
+      <xs:documentation>From CIM</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="mRID" minOccurs="0"/>
+      <xs:element name="Name" type="Name" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="objectType" type="xs:string" minOccurs="0">
+        <xs:annotation>
+          <xs:documentation>CIM class name that classiifies the identified object</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NameType">
+    <xs:annotation>
+      <xs:documentation>From CIM</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="name"/>
+      <xs:element name="description" minOccurs="0"/>
+      <xs:element name="NameTypeAuthority" type="NameTypeAuthority" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Name">
+    <xs:annotation>
+      <xs:documentation>From CIM</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="name"/>
+      <xs:element name="NameType" type="NameType" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="NameTypeAuthority">
+    <xs:annotation>
+      <xs:documentation>From CIM</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="name"/>
+      <xs:element name="description" minOccurs="0"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="FaultMessage" type="FaultMessageType"/>
+  <xs:element name="adverbTypes">
+    <xs:simpleType>
+      <xs:restriction base="xs:string"/>
+    </xs:simpleType>
+  </xs:element>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>file:\C:\sixth\epri\proxytest2\epriConnect\src\wsdl_v1\61968-6\xsd\WorkRequest.xsd</con:url><con:content><![CDATA[<xs:schema targetNamespace="http://iec.ch/TC57/2010/WorkRequest#" elementFormDefault="qualified" attributeFormDefault="unqualified" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:a="http://langdale.com.au/2005/Message#" xmlns:sawsdl="http://www.w3.org/ns/sawsdl" xmlns="http://langdale.com.au/2005/Message#" xmlns:m="http://iec.ch/TC57/2010/WorkRequest#">
+  <xs:element name="WorkRequest" type="m:WorkRequest"/>
+  <xs:complexType name="WorkRequest">
+    <xs:sequence>
+      <xs:element name="Organisation" type="m:Organisation" minOccurs="0" maxOccurs="unbounded"/>
+      <xs:element name="Work" type="m:Work" minOccurs="0" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="ActivityRecord" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ActivityRecord">
+    <xs:annotation>
+      <xs:documentation>Records activity for an entity at a point in time; activity may be for an event that has already occurred or for a planned activity.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="createdDateTime" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ActivityRecord.createdDateTime">
+        <xs:annotation>
+          <xs:documentation>Date and time this activity record has been created (different from the 'status.dateTime', which is the time of a status change of the associated object, if applicable).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="reason" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ActivityRecord.reason">
+        <xs:annotation>
+          <xs:documentation>Reason for event resulting in this activity record, typically supplied when user initiated.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="severity" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ActivityRecord.severity">
+        <xs:annotation>
+          <xs:documentation>Severity level of event resulting in this activity record.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="type" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#ActivityRecord.type">
+        <xs:annotation>
+          <xs:documentation>Type of event resulting in this activity record.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Asset" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Asset">
+    <xs:annotation>
+      <xs:documentation>Tangible resource of the utility, including power system equipment, cabinets, buildings, etc. For electrical network equipment, the role of the asset is defined through PowerSystemResource and its subclasses, defined mainly in the Wires model (refer to IEC61970-301 and model package IEC61970::Wires). Asset description places emphasis on the physical characteristics of the equipment fulfilling that role.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="mRID" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID">
+        <xs:annotation>
+          <xs:documentation>A Model Authority issues mRIDs. Given that each Model Authority has a unique id and this id is part of the mRID, then the mRID is globally unique.</xs:documentation>
+          <xs:documentation>Global uniqeness is easily achived by using a UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+          <xs:documentation>For CIMXML data files the mRID is mapped to rdf:ID or rdf:about attributes that identifies CIM object elements.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="critical" type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Asset.critical">
+        <xs:annotation>
+          <xs:documentation>True if asset is considered critical for some reason (for example, a pole with critical attachments).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="utcNumber" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Asset.utcNumber">
+        <xs:annotation>
+          <xs:documentation>Uniquely tracked commodity (UTC) number.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Location" type="m:WorkLocation" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Asset.Location">
+        <xs:annotation>
+          <xs:documentation>Location of this asset.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Names" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#IdentifiedObject.Names">
+        <xs:annotation>
+          <xs:documentation>All names of this identified object.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Name">
+          <xs:sequence>
+            <xs:element name="name" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Name.name">
+              <xs:annotation>
+                <xs:documentation>Any free text that name the object.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="NameType" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Name.NameType">
+              <xs:annotation>
+                <xs:documentation>Type of this name.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#NameType">
+                <xs:sequence>
+                  <xs:element name="description" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#NameType.description">
+                    <xs:annotation>
+                      <xs:documentation>Description of the name type.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="name" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#NameType.name">
+                    <xs:annotation>
+                      <xs:documentation>Name of the name type.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Crew" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Crew">
+    <xs:annotation>
+      <xs:documentation>A crew is a group of people with specific skills, tools, and vehicles.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="mRID" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID">
+        <xs:annotation>
+          <xs:documentation>A Model Authority issues mRIDs. Given that each Model Authority has a unique id and this id is part of the mRID, then the mRID is globally unique.</xs:documentation>
+          <xs:documentation>Global uniqeness is easily achived by using a UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+          <xs:documentation>For CIMXML data files the mRID is mapped to rdf:ID or rdf:about attributes that identifies CIM object elements.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="type" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Crew.type">
+        <xs:annotation>
+          <xs:documentation>Category by utility's work management standards and practices.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Names" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#IdentifiedObject.Names">
+        <xs:annotation>
+          <xs:documentation>All names of this identified object.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Name">
+          <xs:sequence>
+            <xs:element name="name" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Name.name">
+              <xs:annotation>
+                <xs:documentation>Any free text that name the object.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="NameType" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Name.NameType">
+              <xs:annotation>
+                <xs:documentation>Type of this name.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#NameType">
+                <xs:sequence>
+                  <xs:element name="description" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#NameType.description">
+                    <xs:annotation>
+                      <xs:documentation>Description of the name type.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="name" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#NameType.name">
+                    <xs:annotation>
+                      <xs:documentation>Name of the name type.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Organisation" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Organisation">
+    <xs:annotation>
+      <xs:documentation>Organisation that might have roles as utility, contractor, supplier, manufacturer, customer, etc.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="mRID" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID">
+        <xs:annotation>
+          <xs:documentation>A Model Authority issues mRIDs. Given that each Model Authority has a unique id and this id is part of the mRID, then the mRID is globally unique.</xs:documentation>
+          <xs:documentation>Global uniqeness is easily achived by using a UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+          <xs:documentation>For CIMXML data files the mRID is mapped to rdf:ID or rdf:about attributes that identifies CIM object elements.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Names" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#IdentifiedObject.Names">
+        <xs:annotation>
+          <xs:documentation>All names of this identified object.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Name">
+          <xs:sequence>
+            <xs:element name="name" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Name.name">
+              <xs:annotation>
+                <xs:documentation>Any free text that name the object.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="NameType" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Name.NameType">
+              <xs:annotation>
+                <xs:documentation>Type of this name.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#NameType">
+                <xs:sequence>
+                  <xs:element name="description" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#NameType.description">
+                    <xs:annotation>
+                      <xs:documentation>Description of the name type.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="name" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#NameType.name">
+                    <xs:annotation>
+                      <xs:documentation>Name of the name type.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="phone1" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Organisation.phone1">
+        <xs:annotation>
+          <xs:documentation>Phone number.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TelephoneNumber">
+          <xs:sequence>
+            <xs:element name="areaCode" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TelephoneNumber.areaCode">
+              <xs:annotation>
+                <xs:documentation>Area or region code.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="cityCode" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TelephoneNumber.cityCode">
+              <xs:annotation>
+                <xs:documentation>(if applicable) City code.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="countryCode" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TelephoneNumber.countryCode">
+              <xs:annotation>
+                <xs:documentation>Country code.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="extension" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TelephoneNumber.extension">
+              <xs:annotation>
+                <xs:documentation>(if applicable) Extension for this telephone number.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="localNumber" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TelephoneNumber.localNumber">
+              <xs:annotation>
+                <xs:documentation>Main (local) part of this telephone number.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="streetAddress" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Organisation.streetAddress">
+        <xs:annotation>
+          <xs:documentation>Street address.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetAddress">
+          <xs:sequence>
+            <xs:element name="streetDetail" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetAddress.streetDetail">
+              <xs:annotation>
+                <xs:documentation>Street detail.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail">
+                <xs:sequence>
+                  <xs:element name="addressGeneral" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail.addressGeneral">
+                    <xs:annotation>
+                      <xs:documentation>Additional address information, for example a mailstop.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="buildingName" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail.buildingName">
+                    <xs:annotation>
+                      <xs:documentation>(if applicable) In certain cases the physical location of the place of interest does not have a direct point of entry from the street, but may be located inside a larger structure such as a building, complex, office block, apartment, etc.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="code" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail.code">
+                    <xs:annotation>
+                      <xs:documentation>(if applicable) Utilities often make use of external reference systems, such as those of the town-planner's department or surveyor general's mapping system, that allocate global reference codes to streets.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="name" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail.name">
+                    <xs:annotation>
+                      <xs:documentation>Name of the street.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="number" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail.number">
+                    <xs:annotation>
+                      <xs:documentation>Designator of the specific location on the street.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="prefix" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail.prefix">
+                    <xs:annotation>
+                      <xs:documentation>Prefix to the street name. For example: North, South, East, West.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="suffix" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail.suffix">
+                    <xs:annotation>
+                      <xs:documentation>Suffix to the street name. For example: North, South, East, West.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="suiteNumber" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail.suiteNumber">
+                    <xs:annotation>
+                      <xs:documentation>Number of the apartment or suite.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="type" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail.type">
+                    <xs:annotation>
+                      <xs:documentation>Type of street. Examples include: street, circle, boulevard, avenue, road, drive, etc.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="withinTownLimits" type="xs:boolean" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail.withinTownLimits">
+                    <xs:annotation>
+                      <xs:documentation>True if this street is within the legal geographical boundaries of the specified town (default).</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="townDetail" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetAddress.townDetail">
+              <xs:annotation>
+                <xs:documentation>Town detail.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TownDetail">
+                <xs:sequence>
+                  <xs:element name="code" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TownDetail.code">
+                    <xs:annotation>
+                      <xs:documentation>Town code.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="country" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TownDetail.country">
+                    <xs:annotation>
+                      <xs:documentation>Name of the country.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="name" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TownDetail.name">
+                    <xs:annotation>
+                      <xs:documentation>Town name.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="section" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TownDetail.section">
+                    <xs:annotation>
+                      <xs:documentation>Town section. For example, it is common for there to be 36 sections per township.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="stateOrProvince" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TownDetail.stateOrProvince">
+                    <xs:annotation>
+                      <xs:documentation>Name of the state or province.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="Work" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Work">
+    <xs:annotation>
+      <xs:documentation>Document used to request, initiate, track and record work. This is synonymous with work breakdown structure (WBS), which is traversed through the (currently informative) recursive association of Work.</xs:documentation>
+      <xs:documentation>Note that the work name is equal to the WBS name, which is given in the inherited "name" attribute.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="mRID" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID">
+        <xs:annotation>
+          <xs:documentation>A Model Authority issues mRIDs. Given that each Model Authority has a unique id and this id is part of the mRID, then the mRID is globally unique.</xs:documentation>
+          <xs:documentation>Global uniqeness is easily achived by using a UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+          <xs:documentation>For CIMXML data files the mRID is mapped to rdf:ID or rdf:about attributes that identifies CIM object elements.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="kind" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Work.kind">
+        <xs:annotation>
+          <xs:documentation>Kind of work.</xs:documentation>
+        </xs:annotation>
+        <xs:simpleType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkKind">
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="construction"/>
+            <xs:enumeration value="disconnect"/>
+            <xs:enumeration value="inspection"/>
+            <xs:enumeration value="maintenance"/>
+            <xs:enumeration value="meter"/>
+            <xs:enumeration value="other"/>
+            <xs:enumeration value="reconnect"/>
+            <xs:enumeration value="repair"/>
+            <xs:enumeration value="service"/>
+            <xs:enumeration value="test"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="lastModifiedDateTime" type="xs:dateTime" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Document.lastModifiedDateTime">
+        <xs:annotation>
+          <xs:documentation>Date and time this document was last modified. Documents may potentially be modified many times during their lifetime.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="priority" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Work.priority">
+        <xs:annotation>
+          <xs:documentation>Priority of work.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="requestDateTime" type="xs:dateTime" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Work.requestDateTime">
+        <xs:annotation>
+          <xs:documentation>Date and time work was requested.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="type" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Document.type">
+        <xs:annotation>
+          <xs:documentation>Utility-specific classification of this document, according to their corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="ActivityRecords" type="m:ActivityRecord" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Document.ActivityRecords">
+        <xs:annotation>
+          <xs:documentation>All activity records created for this document.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="TimeSchedules" type="m:WorkTimeSchedule" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Work.TimeSchedules"/>
+      <xs:element name="workStatus" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Work.workStatus">
+        <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkStatus">
+          <xs:sequence>
+            <xs:element name="kind" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkStatus.kind">
+              <xs:simpleType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkStatusKind">
+                <xs:restriction base="xs:string">
+                  <xs:enumeration value="approved"/>
+                  <xs:enumeration value="cancelled"/>
+                  <xs:enumeration value="closed"/>
+                  <xs:enumeration value="completed"/>
+                  <xs:enumeration value="editedInHistory"/>
+                  <xs:enumeration value="inProgress"/>
+                  <xs:enumeration value="waitingOnApproval"/>
+                  <xs:enumeration value="waitingOnMaterial"/>
+                  <xs:enumeration value="waitingOnPlantCondition"/>
+                  <xs:enumeration value="waitingToBeScheduled"/>
+                </xs:restriction>
+              </xs:simpleType>
+            </xs:element>
+            <xs:element name="status" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkStatus.status">
+              <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Status">
+                <xs:sequence>
+                  <xs:element name="dateTime" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Status.dateTime">
+                    <xs:annotation>
+                      <xs:documentation>Date and time for which status 'value' applies.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="reason" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Status.reason">
+                    <xs:annotation>
+                      <xs:documentation>Reason code or explanation for why an object went to the current status 'value'.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="remark" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Status.remark">
+                    <xs:annotation>
+                      <xs:documentation>Pertinent information regarding the current 'value', as free form text.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="value" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Status.value">
+                    <xs:annotation>
+                      <xs:documentation>Status value at 'dateTime'; prior status changes may have been kept in instances of activity records associated with the object to which this status applies.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="WorkTasks" type="m:WorkTask" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Work.WorkTasks"/>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WorkLocation" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkLocation">
+    <xs:annotation>
+      <xs:documentation>Information about a particular location for various forms of work such as a one call request.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="mRID" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID">
+        <xs:annotation>
+          <xs:documentation>A Model Authority issues mRIDs. Given that each Model Authority has a unique id and this id is part of the mRID, then the mRID is globally unique.</xs:documentation>
+          <xs:documentation>Global uniqeness is easily achived by using a UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+          <xs:documentation>For CIMXML data files the mRID is mapped to rdf:ID or rdf:about attributes that identifies CIM object elements.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="block" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkLocation.block">
+        <xs:annotation>
+          <xs:documentation>Name, identifier, or description of the block, if applicable, in which work is to occur.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="direction" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.direction">
+        <xs:annotation>
+          <xs:documentation>(if applicable) Direction that allows field crews to quickly find a given asset. For a given location, such as a street address, this is the relative direction in which to find the asset. For example, a streetlight may be located at the 'NW' (northwest) corner of the customer's site, or a usage point may be located on the second floor of an apartment building.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="lot" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkLocation.lot">
+        <xs:annotation>
+          <xs:documentation>Name, identifier, or description of the lot, if applicable, in which work is to occur.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="nearestIntersection" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkLocation.nearestIntersection">
+        <xs:annotation>
+          <xs:documentation>The names of streets at the nearest intersection to work area.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="subdivision" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkLocation.subdivision">
+        <xs:annotation>
+          <xs:documentation>Name, identifier, or description of the subdivision, if applicable, in which work is to occur.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="CoordinateSystem" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.CoordinateSystem">
+        <xs:annotation>
+          <xs:documentation>Coordinate system used to describe position points of this location.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#CoordinateSystem">
+          <xs:sequence>
+            <xs:element name="crsUrn" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#CoordinateSystem.crsUrn">
+              <xs:annotation>
+                <xs:documentation>A Uniform Resource Name (URN) for the coordinate reference system (crs) used to define 'Location.PositionPoints'.</xs:documentation>
+                <xs:documentation>An example would be the European Petroleum Survey Group (EPSG) code for a coordinate reference system, defined in URN under the Open Geospatial Consortium (OGC) namespace as: urn:ogc :def:uom:EPSG::XXXX, where XXXX is an EPSG code (a full list of codes can be found at the EPSG Registry website http://www.epsg-registry.org/). To define the coordinate system as being WGS84 (latitude, longitude) using an EPSG OGC, this attribute would be urn:ogc:def:uom:EPSG::4236.</xs:documentation>
+                <xs:documentation>A profile should limit this code to a set of allowed URNs agreed to by all sending and receiving parties.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="Hazards" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.Hazards">
+        <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Hazard">
+          <xs:sequence>
+            <xs:element name="type" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Hazard.type">
+              <xs:annotation>
+                <xs:documentation>Classification by utility's corporate standards and practices.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="mainAddress" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.mainAddress">
+        <xs:annotation>
+          <xs:documentation>Main address of the location.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetAddress">
+          <xs:sequence>
+            <xs:element name="status" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetAddress.status">
+              <xs:annotation>
+                <xs:documentation>Status of this address.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Status">
+                <xs:sequence>
+                  <xs:element name="reason" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Status.reason">
+                    <xs:annotation>
+                      <xs:documentation>Reason code or explanation for why an object went to the current status 'value'.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="remark" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Status.remark">
+                    <xs:annotation>
+                      <xs:documentation>Pertinent information regarding the current 'value', as free form text.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="value" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Status.value">
+                    <xs:annotation>
+                      <xs:documentation>Status value at 'dateTime'; prior status changes may have been kept in instances of activity records associated with the object to which this status applies.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="streetDetail" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetAddress.streetDetail">
+              <xs:annotation>
+                <xs:documentation>Street detail.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail">
+                <xs:sequence>
+                  <xs:element name="addressGeneral" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail.addressGeneral">
+                    <xs:annotation>
+                      <xs:documentation>Additional address information, for example a mailstop.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="buildingName" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail.buildingName">
+                    <xs:annotation>
+                      <xs:documentation>(if applicable) In certain cases the physical location of the place of interest does not have a direct point of entry from the street, but may be located inside a larger structure such as a building, complex, office block, apartment, etc.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="code" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail.code">
+                    <xs:annotation>
+                      <xs:documentation>(if applicable) Utilities often make use of external reference systems, such as those of the town-planner's department or surveyor general's mapping system, that allocate global reference codes to streets.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="name" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail.name">
+                    <xs:annotation>
+                      <xs:documentation>Name of the street.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="number" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail.number">
+                    <xs:annotation>
+                      <xs:documentation>Designator of the specific location on the street.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="prefix" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail.prefix">
+                    <xs:annotation>
+                      <xs:documentation>Prefix to the street name. For example: North, South, East, West.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="suffix" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail.suffix">
+                    <xs:annotation>
+                      <xs:documentation>Suffix to the street name. For example: North, South, East, West.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="suiteNumber" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail.suiteNumber">
+                    <xs:annotation>
+                      <xs:documentation>Number of the apartment or suite.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="type" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail.type">
+                    <xs:annotation>
+                      <xs:documentation>Type of street. Examples include: street, circle, boulevard, avenue, road, drive, etc.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="withinTownLimits" type="xs:boolean" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetDetail.withinTownLimits">
+                    <xs:annotation>
+                      <xs:documentation>True if this street is within the legal geographical boundaries of the specified town (default).</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+            <xs:element name="townDetail" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#StreetAddress.townDetail">
+              <xs:annotation>
+                <xs:documentation>Town detail.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TownDetail">
+                <xs:sequence>
+                  <xs:element name="code" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TownDetail.code">
+                    <xs:annotation>
+                      <xs:documentation>Town code.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="country" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TownDetail.country">
+                    <xs:annotation>
+                      <xs:documentation>Name of the country.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="name" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TownDetail.name">
+                    <xs:annotation>
+                      <xs:documentation>Town name.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="section" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TownDetail.section">
+                    <xs:annotation>
+                      <xs:documentation>Town section. For example, it is common for there to be 36 sections per township.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="stateOrProvince" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TownDetail.stateOrProvince">
+                    <xs:annotation>
+                      <xs:documentation>Name of the state or province.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="PositionPoints" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Location.PositionPoints">
+        <xs:annotation>
+          <xs:documentation>Sequence of position points describing this location, expressed in coordinate system 'Location.CoordinateSystem'.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PositionPoint">
+          <xs:sequence>
+            <xs:element name="sequenceNumber" type="xs:integer" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PositionPoint.sequenceNumber">
+              <xs:annotation>
+                <xs:documentation>Zero-relative sequence number of this point within a series of points.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="xPosition" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PositionPoint.xPosition">
+              <xs:annotation>
+                <xs:documentation>X axis position.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="yPosition" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PositionPoint.yPosition">
+              <xs:annotation>
+                <xs:documentation>Y axis position.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="zPosition" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#PositionPoint.zPosition">
+              <xs:annotation>
+                <xs:documentation>(if applicable) Z axis position.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WorkTask" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkTask">
+    <xs:annotation>
+      <xs:documentation>A set of tasks is required to implement a design.</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element name="mRID" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#IdentifiedObject.mRID">
+        <xs:annotation>
+          <xs:documentation>A Model Authority issues mRIDs. Given that each Model Authority has a unique id and this id is part of the mRID, then the mRID is globally unique.</xs:documentation>
+          <xs:documentation>Global uniqeness is easily achived by using a UUID for the mRID. It is strongly recommended to do this.</xs:documentation>
+          <xs:documentation>For CIMXML data files the mRID is mapped to rdf:ID or rdf:about attributes that identifies CIM object elements.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="description" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkTask.description"/>
+      <xs:element name="priority" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkTask.priority">
+        <xs:annotation>
+          <xs:documentation>The priority of this work task.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="subject" type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Document.subject">
+        <xs:annotation>
+          <xs:documentation>Document subject.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="type" type="xs:string" minOccurs="0" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#Document.type">
+        <xs:annotation>
+          <xs:documentation>Utility-specific classification of this document, according to their corporate standards, practices, and existing IT systems (e.g., for management of assets, maintenance, work, outage, customers, etc.).</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element name="Assets" type="m:Asset" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkTask.Assets"/>
+      <xs:element name="Crews" type="m:Crew" minOccurs="0" maxOccurs="unbounded" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkTask.Crews">
+        <xs:annotation>
+          <xs:documentation>All Crews participating in this WorkTask.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+  <xs:complexType name="WorkTimeSchedule" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkTimeSchedule">
+    <xs:sequence>
+      <xs:element name="kind" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkTimeSchedule.kind">
+        <xs:simpleType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#WorkTimeScheduleKind">
+          <xs:restriction base="xs:string">
+            <xs:enumeration value="actual"/>
+            <xs:enumeration value="earliest"/>
+            <xs:enumeration value="estimate"/>
+            <xs:enumeration value="latest"/>
+            <xs:enumeration value="request"/>
+          </xs:restriction>
+        </xs:simpleType>
+      </xs:element>
+      <xs:element name="scheduleInterval" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#TimeSchedule.scheduleInterval">
+        <xs:annotation>
+          <xs:documentation>Schedule date and time interval.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#DateTimeInterval">
+          <xs:sequence>
+            <xs:element name="end" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#DateTimeInterval.end">
+              <xs:annotation>
+                <xs:documentation>End date and time of this interval.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+            <xs:element name="start" type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/CIM-generic#DateTimeInterval.start">
+              <xs:annotation>
+                <xs:documentation>Start date and time of this interval.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://iec.ch/TC57/2010/RequestWorkRequest</con:endpoint><con:endpoint>http://ec2-72-44-33-79.compute-1.amazonaws.com:8080/epriConnect/wms/WorkRequest</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://iec.ch/TC57/2010/WorkRequest/CancelWorkRequest" name="CancelWorkRequest" bindingOperationName="CancelWorkRequest" type="Request-Response" outputName="CancelWorkRequestResponse" inputName="CancelWorkRequestRequest" receivesAttachments="false" sendsAttachments="false"><con:settings/></con:operation><con:operation isOneWay="false" action="http://iec.ch/TC57/2010/WorkRequest/ChangeWorkRequest" name="ChangeWorkRequest" bindingOperationName="ChangeWorkRequest" type="Request-Response" outputName="ChangeWorkRequestResponse" inputName="ChangeWorkRequestRequest" receivesAttachments="false" sendsAttachments="false"><con:settings/></con:operation><con:operation isOneWay="false" action="http://iec.ch/TC57/2010/WorkRequest/CloseWorkRequest" name="CloseWorkRequest" bindingOperationName="CloseWorkRequest" type="Request-Response" outputName="CloseWorkRequestResponse" inputName="CloseWorkRequestRequest" receivesAttachments="false" sendsAttachments="false"><con:settings/></con:operation><con:operation isOneWay="false" action="http://iec.ch/TC57/2010/WorkRequest/CreateWorkRequest" name="CreateWorkRequest" bindingOperationName="CreateWorkRequest" type="Request-Response" outputName="CreateWorkRequestResponse" inputName="CreateWorkRequestRequest" receivesAttachments="false" sendsAttachments="false"><con:settings/></con:operation><con:operation isOneWay="false" action="http://iec.ch/TC57/2010/WorkRequest/DeleteWorkRequest" name="DeleteWorkRequest" bindingOperationName="DeleteWorkRequest" type="Request-Response" outputName="DeleteWorkRequestResponse" inputName="DeleteWorkRequestRequest" receivesAttachments="false" sendsAttachments="false"><con:settings/></con:operation></con:interface><con:testSuite name="WorkRequest_Binding TestSuite"><con:settings/><con:runType>SEQUENTIAL</con:runType><con:testCase failOnError="true" failTestCaseOnErrors="true" keepSession="false" maxResults="0" name="CreateWorkRequest TestCase" searchProperties="true"><con:settings/><con:testStep type="request" name="CreateWorkRequest"><con:settings/><con:config xsi:type="con:RequestStep" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:interface>WorkRequest_Binding</con:interface><con:operation>CreateWorkRequest</con:operation><con:request name="CreateWorkRequest"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://ec2-72-44-33-79.compute-1.amazonaws.com:8080/epriConnect/wms/WorkRequest</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:wor="http://www.iec.ch/TC57/2010/WorkRequestMessage" xmlns:mes="http://www.iec.ch/TC57/2010/schema/message" xmlns:wor1="http://iec.ch/TC57/2010/WorkRequest#">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <wor:CreateWorkRequest>
+         <wor:Header>
+            <mes:Verb>TEST</mes:Verb>
+            <mes:Noun>TEST1</mes:Noun>
+            <!--Optional:-->
+            <mes:Revision>1.1</mes:Revision>
+            <!--Optional:-->
+            <mes:ReplayDetection>
+               <mes:Nonce>NONE</mes:Nonce>
+               <mes:Created>2011-06-17T09:30:47.0Z</mes:Created>
+            </mes:ReplayDetection>
+            <!--Optional:-->
+            <mes:Context>TEST</mes:Context>
+            <!--Optional:-->
+            <mes:Timestamp>2011-06-17T09:30:47.0Z</mes:Timestamp>
+            <!--Optional:-->
+            <mes:Source>NONE</mes:Source>
+            <!--Optional:-->
+            <mes:AsyncReplyFlag>true</mes:AsyncReplyFlag>
+            <!--Optional:-->
+            <mes:ReplyAddress>http://dfmaus.dyndns.ws:8088/wmsMock</mes:ReplyAddress>
+            <!--Optional:-->
+            <mes:AckRequired>false</mes:AckRequired>
+            <!--Optional:-->
+            <mes:User>
+               <mes:UserID>SIXTHC</mes:UserID>
+               <mes:Organization>SIXTHC</mes:Organization>
+            </mes:User>
+            <!--Optional:-->
+            <mes:MessageID>NONE</mes:MessageID>
+            <!--Optional:-->
+            <mes:CorrelationID>1.2</mes:CorrelationID>
+            <!--Optional:-->
+            <mes:Comment>test</mes:Comment>
+            <!--Zero or more repetitions:-->
+            <mes:Property>
+               <mes:Name>none</mes:Name>
+               <!--Optional:-->
+               <mes:Value>none</mes:Value>
+            </mes:Property>
+            <!--You may enter ANY elements at this point-->
+         </wor:Header>
+         <!--Optional:-->
+         <wor:Request>
+            <!--Optional:-->
+            <mes:StartTime>2011-06-17T09:30:47.0Z</mes:StartTime>
+            <!--Optional:-->
+            <mes:EndTime>2011-06-17T09:30:47.0Z</mes:EndTime>
+            <!--Zero or more repetitions:-->
+            <mes:Option>
+               <mes:name>TEST1</mes:name>
+               <!--Optional:-->
+               <mes:value>TEST1</mes:value>
+            </mes:Option>
+            <!--Zero or more repetitions:-->
+            <mes:ID>2.7</mes:ID>
+            <!--You may enter ANY elements at this point-->
+         </wor:Request>
+         <!--Optional:-->
+         <wor:Payload>
+            <wor1:WorkRequest>             
+            </wor1:WorkRequest>
+            <!--Optional:-->
+            <wor:OperationSet>
+               <!--Optional:-->
+               <mes:enforceMsgSequence>true</mes:enforceMsgSequence>
+               <!--Optional:-->
+               <mes:enforceTransactionalIntegrity>false</mes:enforceTransactionalIntegrity>
+             
+            </wor:OperationSet>
+         </wor:Payload>
+      </wor:CreateWorkRequest>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig action="http://iec.ch/TC57/2010/WorkRequest/CreateWorkRequest" mustUnderstand="NONE" version="200508"/><con:wsrmConfig version="1.2"/></con:request></con:config></con:testStep><con:properties/></con:testCase><con:properties/></con:testSuite><con:properties/><con:wssContainer/></con:soapui-project>

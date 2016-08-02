@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<wsdl:definitions name="SendDREventOptOut"
+	targetNamespace="http://osgug.ucaiug.org/ns/2010/06/wsoadr/wsdl/SendDREventOptOut"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns="http://schemas.xmlsoap.org/wsdl/" xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/"
+	xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/"
+	xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+	xmlns:tns="http://osgug.ucaiug.org/ns/2010/06/wsoadr/wsdl/SendDREventOptOut"
+	xmlns:typeMessage="http://osgug.ucaiug.org/ns/2010/06/wsoadr/schema/message"
+	xmlns:typeHeader="http://osgug.ucaiug.org/2010/06/schema/header"
+	xmlns:typeReply="http://osgug.ucaiug.org/2010/06/schema/reply"
+	xmlns:typePayload="http://osgug.ucaiug.org/ns/2010/06/wsoadr/DREventOptOut">
+
+	<wsdl:documentation>A web service for DREventOptOut data transaction
+	</wsdl:documentation>
+	<wsdl:types>
+		<xs:schema targetNamespace="http://osgug.ucaiug.org/ns/2010/06/wsoadr/schema/message">
+			<xs:import namespace="http://osgug.ucaiug.org/2010/06/schema/header"
+				schemaLocation="../Common/Header.xsd" />
+			<xs:import namespace="http://osgug.ucaiug.org/2010/06/schema/reply"
+				schemaLocation="../Common/Reply.xsd" />
+			<xs:import namespace="http://osgug.ucaiug.org/ns/2010/06/wsoadr/DREventOptOut"
+				schemaLocation="DREventOptOut.xsd" />
+			<xs:element name="CreatedDREventOptOut" type="typeMessage:MessageType" />
+			<xs:complexType name="MessageType">
+				<xs:sequence>
+					<xs:element name="Header" type="typeHeader:MessageHeaderType" />
+					<xs:element name="Reply" type="typeReply:ReplyType"
+						minOccurs="0" />
+					<xs:element name="Payload" type="typePayload:DREventOptOut"
+						minOccurs="0" />
+				</xs:sequence>
+			</xs:complexType>
+		</xs:schema>
+	</wsdl:types>
+	<wsdl:message name="CreatedDREventOptOutInput">
+		<wsdl:part name="CreatedDREventOptOut" element="typeMessage:CreatedDREventOptOut" />
+	</wsdl:message>
+	<wsdl:message name="replyData">
+		<wsdl:part name="replyData" element="typeReply:Reply" />
+	</wsdl:message>
+	<wsdl:message name="faultReturn">
+		<wsdl:part name="faultInfor" element="typeReply:Reply">
+			<wsdl:documentation>fault information</wsdl:documentation>
+		</wsdl:part>
+	</wsdl:message>
+
+	<wsdl:portType name="DREventOptOut">
+		<wsdl:operation name="CreatedDREventOptOut">
+			<wsdl:documentation>CreatedDREventOptOut</wsdl:documentation>
+			<wsdl:input name="CreatedDREventOptOutInput" message="tns:CreatedDREventOptOutInput" />
+			<wsdl:output name="CreatedDREventOptOutOutput" message="tns:replyData" />
+			<wsdl:fault name="faultInfor" message="tns:faultReturn" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="DREventOptOut_Binding" type="tns:DREventOptOut">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="CreatedDREventOptOut">
+			<wsdl:documentation>CreatedDREventOptOut binding</wsdl:documentation>
+			<soap:operation
+				soapAction="http://osgug.ucaiug.org/ns/2010/06/wsoadr/wsdl/SendDREventOptOut/CreatedDREventOptOut"
+				style="document" />
+			<wsdl:input name="CreatedDREventOptOutInput">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="CreatedDREventOptOutOutput">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="faultInfor">
+				<soap:fault name="faultInfor" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="SendDREventOptOut">
+		<wsdl:port name="DREventOptOut_Port" binding="tns:DREventOptOut_Binding">
+			<soap:address
+				location="http://osgug.ucaiug.org/ns/2010/06/wsoadr/wsdl/SendDREventOptOut" />
+		</wsdl:port>
+	</wsdl:service>
+</wsdl:definitions>
+

@@ -1,0 +1,1922 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:a="http://langdale.com.au/2005/Message#" xmlns:sawsdl="http://www.w3.org/ns/sawsdl"
+	targetNamespace="http://iec.ch/TC57/2011/MeterServiceRequests#"
+	elementFormDefault="qualified" attributeFormDefault="unqualified"
+	xmlns:m="http://iec.ch/TC57/2011/MeterServiceRequests#" xmlns:msg="http://www.iec.ch/TC57/2011/schema/message">
+	<xs:annotation />
+	<xs:import namespace="http://www.iec.ch/TC57/2011/schema/message"
+		schemaLocation="Message.xsd" />
+	<xs:element name="MeterServiceRequests" type="m:MeterServiceRequests" />
+	<xs:complexType name="MeterServiceRequests">
+		<xs:sequence>
+			<xs:element name="Header" type="msg:HeaderType" />
+			<xs:element name="MeterServiceWork" type="m:MeterServiceWork"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="ReadingQualityType" type="m:ReadingQualityType"
+				minOccurs="0" maxOccurs="unbounded" />
+			<xs:element name="ReadingType" type="m:ReadingType"
+				minOccurs="0" maxOccurs="unbounded" />
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="DateTimeInterval"
+		sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#DateTimeInterval">
+		<xs:annotation>
+			<xs:documentation>Interval of date and time.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="end" minOccurs="0" maxOccurs="1"
+				type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#DateTimeInterval.end">
+				<xs:annotation>
+					<xs:documentation>End date and time of this interval.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="start" minOccurs="0" maxOccurs="1"
+				type="xs:dateTime"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#DateTimeInterval.start">
+				<xs:annotation>
+					<xs:documentation>Start date and time of this interval.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="Meter"
+		sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Meter">
+		<xs:annotation>
+			<xs:documentation>Physical asset that performs the metering role of
+				the usage poiny. Used for measuring consumption and detection of
+				events.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="mRID" minOccurs="0" maxOccurs="1"
+				type="xs:string"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.mRID">
+				<xs:annotation>
+					<xs:documentation>A Model Authority issues mRIDs. Given that each
+						Model Authority has a unique id and this id is part of the mRID,
+						then the mRID is globally unique.</xs:documentation>
+					<xs:documentation>Global uniqeness is easily achived by using a
+						UUID for the mRID. It is strongly recommended to do this.
+					</xs:documentation>
+					<xs:documentation>For CIMXML data files the mRID is mapped to
+						rdf:ID or rdf:about attributes that identifies CIM object
+						elements.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="amrSystem" minOccurs="0" maxOccurs="1"
+				type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#EndDevice.amrSystem">
+				<xs:annotation>
+					<xs:documentation>Automated meter reading (AMR) system responsible
+						for communications to this end device.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="formNumber" minOccurs="0" maxOccurs="1"
+				type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Meter.formNumber">
+				<xs:annotation>
+					<xs:documentation>Meter form designation per ANSI C12.10 or other
+						applicable standard. An alphanumeric designation denoting the
+						circuit arrangement for which the meter is applicable and its
+						specific terminal arrangement.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="serialNumber" minOccurs="0" maxOccurs="1"
+				type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Asset.serialNumber">
+				<xs:annotation>
+					<xs:documentation>Serial number of this asset.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="MeterMultipliers" minOccurs="0"
+				maxOccurs="unbounded"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Meter.MeterMultipliers">
+				<xs:annotation>
+					<xs:documentation>All multipliers applied at this meter.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType
+					sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#MeterMultiplier">
+					<xs:sequence>
+						<xs:element name="mRID" minOccurs="0" maxOccurs="1"
+							type="xs:string"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.mRID">
+							<xs:annotation>
+								<xs:documentation>A Model Authority issues mRIDs. Given that
+									each Model Authority has a unique id and this id is part of the
+									mRID, then the mRID is globally unique.</xs:documentation>
+								<xs:documentation>Global uniqeness is easily achived by using a
+									UUID for the mRID. It is strongly recommended to do this.
+								</xs:documentation>
+								<xs:documentation>For CIMXML data files the mRID is mapped to
+									rdf:ID or rdf:about attributes that identifies CIM object
+									elements.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="kind" minOccurs="1" maxOccurs="1"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#MeterMultiplier.kind">
+							<xs:annotation>
+								<xs:documentation>Kind of multiplier.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType
+								sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#MeterMultiplierKind">
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="ctRatio">
+										<xs:annotation>
+											<xs:documentation>Current transformer ratio used to convert
+												associated quantities to real measurements.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="kE">
+										<xs:annotation>
+											<xs:documentation>Test constant.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="kH">
+										<xs:annotation>
+											<xs:documentation>Meter kh (watthour) constant. The number of
+												watthours that must be applied to the meter to cause one
+												disk revolution for an electromechanical meter or the number
+												of watthours represented by one increment pulse for an
+												electronic meter.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="kR">
+										<xs:annotation>
+											<xs:documentation>Register multiplier. The number to multiply
+												the register reading by in order to get kWh.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="ptRatio">
+										<xs:annotation>
+											<xs:documentation>Voltage transformer ratio used to convert
+												associated quantities to real measurements.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="transformerRatio">
+										<xs:annotation>
+											<xs:documentation>Product of the CT ratio and PT ratio.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="value" minOccurs="1" maxOccurs="1"
+							type="xs:float"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#MeterMultiplier.value">
+							<xs:annotation>
+								<xs:documentation>Multiplier value.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="Names" minOccurs="0" maxOccurs="unbounded"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.Names">
+							<xs:annotation>
+								<xs:documentation>All names of this identified object.
+								</xs:documentation>
+							</xs:annotation>
+							<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name">
+								<xs:sequence>
+									<xs:element name="name" minOccurs="1" maxOccurs="1"
+										type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name.name">
+										<xs:annotation>
+											<xs:documentation>Any free text that name the object.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="NameType" minOccurs="0" maxOccurs="1"
+										sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name.NameType">
+										<xs:annotation>
+											<xs:documentation>Type of this name.</xs:documentation>
+										</xs:annotation>
+										<xs:complexType
+											sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType">
+											<xs:sequence>
+												<xs:element name="description" minOccurs="0"
+													maxOccurs="1" type="xs:string"
+													sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.description">
+													<xs:annotation>
+														<xs:documentation>Description of the name type.
+														</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="name" minOccurs="1" maxOccurs="1"
+													type="xs:string"
+													sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.name">
+													<xs:annotation>
+														<xs:documentation>Name of the name type.
+														</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="NameTypeAuthority" minOccurs="0"
+													maxOccurs="1"
+													sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.NameTypeAuthority">
+													<xs:annotation>
+														<xs:documentation>Authority responsible for managing names
+															of this type.</xs:documentation>
+													</xs:annotation>
+													<xs:complexType
+														sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority">
+														<xs:sequence>
+															<xs:element name="description" minOccurs="0"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority.description">
+																<xs:annotation>
+																	<xs:documentation>Description of the name type
+																		authority.</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="name" minOccurs="1"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority.name">
+																<xs:annotation>
+																	<xs:documentation>Name of the name type authority.
+																	</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="MeterReadings" minOccurs="0" maxOccurs="unbounded"
+				type="m:MeterReading" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Meter.MeterReadings">
+				<xs:annotation>
+					<xs:documentation>All meter readings provided by this meter.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Names" minOccurs="0" maxOccurs="unbounded"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.Names">
+				<xs:annotation>
+					<xs:documentation>All names of this identified object.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name">
+					<xs:sequence>
+						<xs:element name="name" minOccurs="1" maxOccurs="1"
+							type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name.name">
+							<xs:annotation>
+								<xs:documentation>Any free text that name the object.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="NameType" minOccurs="0" maxOccurs="1"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name.NameType">
+							<xs:annotation>
+								<xs:documentation>Type of this name.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType
+								sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType">
+								<xs:sequence>
+									<xs:element name="description" minOccurs="0"
+										maxOccurs="1" type="xs:string"
+										sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.description">
+										<xs:annotation>
+											<xs:documentation>Description of the name type.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="name" minOccurs="1" maxOccurs="1"
+										type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.name">
+										<xs:annotation>
+											<xs:documentation>Name of the name type.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="NameTypeAuthority" minOccurs="0"
+										maxOccurs="1"
+										sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.NameTypeAuthority">
+										<xs:annotation>
+											<xs:documentation>Authority responsible for managing names of
+												this type.</xs:documentation>
+										</xs:annotation>
+										<xs:complexType
+											sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority">
+											<xs:sequence>
+												<xs:element name="description" minOccurs="0"
+													maxOccurs="1" type="xs:string"
+													sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority.description">
+													<xs:annotation>
+														<xs:documentation>Description of the name type authority.
+														</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="name" minOccurs="1" maxOccurs="1"
+													type="xs:string"
+													sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority.name">
+													<xs:annotation>
+														<xs:documentation>Name of the name type authority.
+														</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MeterReading"
+		sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#MeterReading">
+		<xs:annotation>
+			<xs:documentation>Set of values obtained from the meter.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="Readings" minOccurs="0" maxOccurs="unbounded"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#MeterReading.Readings">
+				<xs:annotation>
+					<xs:documentation>All reading values contained within this meter
+						reading.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Reading">
+					<xs:sequence>
+						<xs:element name="reason" minOccurs="0" maxOccurs="1"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Reading.reason">
+							<xs:annotation>
+								<xs:documentation>Reason for this reading being taken.
+								</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType
+								sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingReasonKind">
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="billing">
+										<xs:annotation>
+											<xs:documentation>Inquiry or demand.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="demandReset">
+										<xs:annotation />
+									</xs:enumeration>
+									<xs:enumeration value="inquiry">
+										<xs:annotation />
+									</xs:enumeration>
+									<xs:enumeration value="installation">
+										<xs:annotation />
+									</xs:enumeration>
+									<xs:enumeration value="loadManagement">
+										<xs:annotation />
+									</xs:enumeration>
+									<xs:enumeration value="loadResearch">
+										<xs:annotation />
+									</xs:enumeration>
+									<xs:enumeration value="moveIn">
+										<xs:annotation />
+									</xs:enumeration>
+									<xs:enumeration value="moveOut">
+										<xs:annotation />
+									</xs:enumeration>
+									<xs:enumeration value="other">
+										<xs:annotation />
+									</xs:enumeration>
+									<xs:enumeration value="removal">
+										<xs:annotation />
+									</xs:enumeration>
+									<xs:enumeration value="serviceConnect">
+										<xs:annotation />
+									</xs:enumeration>
+									<xs:enumeration value="serviceDisconnect">
+										<xs:annotation />
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="reportedDateTime" minOccurs="0"
+							maxOccurs="1" type="xs:dateTime"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#BaseReading.reportedDateTime">
+							<xs:annotation>
+								<xs:documentation>(used only when there are detailed auditing
+									requirements) Date and time at which the reading was first
+									delivered to the metering system.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="source" minOccurs="0" maxOccurs="1"
+							type="xs:string"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#BaseReading.source">
+							<xs:annotation>
+								<xs:documentation>System that originally supplied the reading
+									(e.g., customer, AMI system, handheld reading system, another
+									enterprise system, etc.).</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="timeStamp" minOccurs="1" maxOccurs="1"
+							type="xs:dateTime"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#MeasurementValue.timeStamp">
+							<xs:annotation>
+								<xs:documentation>The time when the value was last updated
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="value" minOccurs="0" maxOccurs="1"
+							type="xs:float" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#BaseReading.value">
+							<xs:annotation>
+								<xs:documentation>Value of this reading.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="ReadingQualities" minOccurs="0"
+							maxOccurs="unbounded"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#BaseReading.ReadingQualities">
+							<xs:annotation>
+								<xs:documentation>All qualities of this reading.
+								</xs:documentation>
+							</xs:annotation>
+							<xs:complexType
+								sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingQuality">
+								<xs:sequence>
+									<xs:element name="comment" minOccurs="0" maxOccurs="1"
+										type="xs:string"
+										sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingQuality.comment">
+										<xs:annotation>
+											<xs:documentation>Elaboration on the quality code.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="source" minOccurs="0" maxOccurs="1"
+										type="xs:string"
+										sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingQuality.source">
+										<xs:annotation>
+											<xs:documentation>System acting as the source of the quality
+												code.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="timeStamp" minOccurs="0"
+										maxOccurs="1" type="xs:dateTime"
+										sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingQuality.timeStamp">
+										<xs:annotation>
+											<xs:documentation>Date and time at which the quality code was
+												assigned or ascertained.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="ReadingQualityType" minOccurs="1"
+										maxOccurs="1"
+										sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingQuality.ReadingQualityType">
+										<xs:annotation>
+											<xs:documentation>Type of this reading quality.
+											</xs:documentation>
+										</xs:annotation>
+										<xs:complexType sawsdl:modelReference="">
+											<xs:attribute name="ref" type="xs:string" />
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="ReadingType" minOccurs="1" maxOccurs="1"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Reading.ReadingType">
+							<xs:annotation>
+								<xs:documentation>Type information for this reading value.
+								</xs:documentation>
+							</xs:annotation>
+							<xs:complexType sawsdl:modelReference="">
+								<xs:attribute name="ref" type="xs:string" />
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="timePeriod" minOccurs="0" maxOccurs="1"
+							type="m:DateTimeInterval"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#BaseReading.timePeriod">
+							<xs:annotation>
+								<xs:documentation>Start and end of the period for those readings
+									whose type has a time attribute such as 'billing', seasonal' or
+									'forTheSpecifiedPeriod'.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="valuesInterval" minOccurs="0" maxOccurs="1"
+				type="m:DateTimeInterval"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#MeterReading.valuesInterval">
+				<xs:annotation>
+					<xs:documentation>Date and time interval of the data items
+						contained within this meter reading.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="MeterServiceWork"
+		sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#MeterServiceWork">
+		<xs:annotation>
+			<xs:documentation>Work involving meters.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="kind" minOccurs="0" maxOccurs="1"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Work.kind">
+				<xs:annotation>
+					<xs:documentation>Kind of work.</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#WorkKind">
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="construction">
+							<xs:annotation />
+						</xs:enumeration>
+						<xs:enumeration value="disconnect">
+							<xs:annotation />
+						</xs:enumeration>
+						<xs:enumeration value="inspection">
+							<xs:annotation />
+						</xs:enumeration>
+						<xs:enumeration value="maintenance">
+							<xs:annotation />
+						</xs:enumeration>
+						<xs:enumeration value="meter">
+							<xs:annotation />
+						</xs:enumeration>
+						<xs:enumeration value="other">
+							<xs:annotation />
+						</xs:enumeration>
+						<xs:enumeration value="reconnect">
+							<xs:annotation />
+						</xs:enumeration>
+						<xs:enumeration value="repair">
+							<xs:annotation />
+						</xs:enumeration>
+						<xs:enumeration value="service">
+							<xs:annotation />
+						</xs:enumeration>
+						<xs:enumeration value="test">
+							<xs:annotation />
+						</xs:enumeration>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="lastModifiedDateTime" minOccurs="0"
+				maxOccurs="1" type="xs:dateTime"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Document.lastModifiedDateTime">
+				<xs:annotation>
+					<xs:documentation>Date and time this document was last modified.
+						Documents may potentially be modified many times during their
+						lifetime.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="priority" minOccurs="0" maxOccurs="1"
+				type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Work.priority">
+				<xs:annotation>
+					<xs:documentation>Priority of work.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="requestDateTime" minOccurs="0"
+				maxOccurs="1" type="xs:dateTime"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Work.requestDateTime">
+				<xs:annotation>
+					<xs:documentation>Date and time work was requested.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="type" minOccurs="0" maxOccurs="1"
+				type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Document.type">
+				<xs:annotation>
+					<xs:documentation>Utility-specific classification of this document,
+						according to their corporate standards, practices, and existing IT
+						systems (e.g., for management of assets, maintenance, work,
+						outage, customers, etc.).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ActivityRecords" minOccurs="0"
+				maxOccurs="unbounded"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Document.ActivityRecords">
+				<xs:annotation>
+					<xs:documentation>All activity records created for this document.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType
+					sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ActivityRecord">
+					<xs:sequence>
+						<xs:element name="createdDateTime" minOccurs="1"
+							maxOccurs="1" type="xs:dateTime"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ActivityRecord.createdDateTime">
+							<xs:annotation>
+								<xs:documentation>Date and time this activity record has been
+									created (different from the 'status.dateTime', which is the
+									time of a status change of the associated object, if
+									applicable).</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="reason" minOccurs="0" maxOccurs="1"
+							type="xs:string"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ActivityRecord.reason">
+							<xs:annotation>
+								<xs:documentation>Reason for event resulting in this activity
+									record, typically supplied when user initiated.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="severity" minOccurs="0" maxOccurs="1"
+							type="xs:string"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ActivityRecord.severity">
+							<xs:annotation>
+								<xs:documentation>Severity level of event resulting in this
+									activity record.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="type" minOccurs="1" maxOccurs="1"
+							type="xs:string"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ActivityRecord.type">
+							<xs:annotation>
+								<xs:documentation>Type of event resulting in this activity
+									record.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Customers" minOccurs="0" maxOccurs="unbounded"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Work.Customers">
+				<xs:annotation>
+					<xs:documentation>All the customers for which this work is
+						performed.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Customer">
+					<xs:sequence>
+						<xs:element name="mRID" minOccurs="0" maxOccurs="1"
+							type="xs:string"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.mRID">
+							<xs:annotation>
+								<xs:documentation>A Model Authority issues mRIDs. Given that
+									each Model Authority has a unique id and this id is part of the
+									mRID, then the mRID is globally unique.</xs:documentation>
+								<xs:documentation>Global uniqeness is easily achived by using a
+									UUID for the mRID. It is strongly recommended to do this.
+								</xs:documentation>
+								<xs:documentation>For CIMXML data files the mRID is mapped to
+									rdf:ID or rdf:about attributes that identifies CIM object
+									elements.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="kind" minOccurs="0" maxOccurs="1"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Customer.kind">
+							<xs:annotation>
+								<xs:documentation>Kind of customer.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType
+								sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#CustomerKind">
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="commercialIndustrial">
+										<xs:annotation />
+									</xs:enumeration>
+									<xs:enumeration value="energyServiceScheduler">
+										<xs:annotation />
+									</xs:enumeration>
+									<xs:enumeration value="energyServiceSupplier">
+										<xs:annotation />
+									</xs:enumeration>
+									<xs:enumeration value="internalUse">
+										<xs:annotation />
+									</xs:enumeration>
+									<xs:enumeration value="other">
+										<xs:annotation />
+									</xs:enumeration>
+									<xs:enumeration value="pumpingLoad">
+										<xs:annotation />
+									</xs:enumeration>
+									<xs:enumeration value="residential">
+										<xs:annotation />
+									</xs:enumeration>
+									<xs:enumeration value="residentialAndCommercial">
+										<xs:annotation />
+									</xs:enumeration>
+									<xs:enumeration value="residentialAndStreetlight">
+										<xs:annotation />
+									</xs:enumeration>
+									<xs:enumeration value="residentialFarmService">
+										<xs:annotation />
+									</xs:enumeration>
+									<xs:enumeration value="residentialStreetlightOthers">
+										<xs:annotation />
+									</xs:enumeration>
+									<xs:enumeration value="windMachine">
+										<xs:annotation />
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="pucNumber" minOccurs="0" maxOccurs="1"
+							type="xs:string"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Customer.pucNumber">
+							<xs:annotation>
+								<xs:documentation>(if applicable) Public utility commission
+									(PUC) identification number.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="specialNeed" minOccurs="0" maxOccurs="1"
+							type="xs:string"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Customer.specialNeed">
+							<xs:annotation>
+								<xs:documentation>True if customer organisation has special
+									service needs such as life support, hospitals, etc.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="vip" minOccurs="0" maxOccurs="1"
+							type="xs:boolean" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Customer.vip">
+							<xs:annotation>
+								<xs:documentation>True if this is an important customer.
+									Importance is for matters different than those in 'specialNeed'
+									attribute.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="CustomerAgreements" minOccurs="0"
+							maxOccurs="unbounded"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Customer.CustomerAgreements">
+							<xs:annotation>
+								<xs:documentation>All agreements of this customer.
+								</xs:documentation>
+							</xs:annotation>
+							<xs:complexType
+								sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#CustomerAgreement">
+								<xs:sequence>
+									<xs:element name="mRID" minOccurs="0" maxOccurs="1"
+										type="xs:string"
+										sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.mRID">
+										<xs:annotation>
+											<xs:documentation>A Model Authority issues mRIDs. Given that
+												each Model Authority has a unique id and this id is part of
+												the mRID, then the mRID is globally unique.
+											</xs:documentation>
+											<xs:documentation>Global uniqeness is easily achived by using
+												a UUID for the mRID. It is strongly recommended to do this.
+											</xs:documentation>
+											<xs:documentation>For CIMXML data files the mRID is mapped to
+												rdf:ID or rdf:about attributes that identifies CIM object
+												elements.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="Names" minOccurs="0" maxOccurs="unbounded"
+										sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.Names">
+										<xs:annotation>
+											<xs:documentation>All names of this identified object.
+											</xs:documentation>
+										</xs:annotation>
+										<xs:complexType
+											sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name">
+											<xs:sequence>
+												<xs:element name="name" minOccurs="1" maxOccurs="1"
+													type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name.name">
+													<xs:annotation>
+														<xs:documentation>Any free text that name the object.
+														</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="NameType" minOccurs="0"
+													maxOccurs="1"
+													sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name.NameType">
+													<xs:annotation>
+														<xs:documentation>Type of this name.</xs:documentation>
+													</xs:annotation>
+													<xs:complexType
+														sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType">
+														<xs:sequence>
+															<xs:element name="description" minOccurs="0"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.description">
+																<xs:annotation>
+																	<xs:documentation>Description of the name type.
+																	</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="name" minOccurs="1"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.name">
+																<xs:annotation>
+																	<xs:documentation>Name of the name type.
+																	</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="NameTypeAuthority"
+																minOccurs="0" maxOccurs="1"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.NameTypeAuthority">
+																<xs:annotation>
+																	<xs:documentation>Authority responsible for managing
+																		names of this type.</xs:documentation>
+																</xs:annotation>
+																<xs:complexType
+																	sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority">
+																	<xs:sequence>
+																		<xs:element name="description" minOccurs="0"
+																			maxOccurs="1" type="xs:string"
+																			sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority.description">
+																			<xs:annotation>
+																				<xs:documentation>Description of the name type
+																					authority.</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="name" minOccurs="1"
+																			maxOccurs="1" type="xs:string"
+																			sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority.name">
+																			<xs:annotation>
+																				<xs:documentation>Name of the name type authority.
+																				</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="Names" minOccurs="0" maxOccurs="unbounded"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.Names">
+							<xs:annotation>
+								<xs:documentation>All names of this identified object.
+								</xs:documentation>
+							</xs:annotation>
+							<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name">
+								<xs:sequence>
+									<xs:element name="name" minOccurs="1" maxOccurs="1"
+										type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name.name">
+										<xs:annotation>
+											<xs:documentation>Any free text that name the object.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="NameType" minOccurs="0" maxOccurs="1"
+										sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name.NameType">
+										<xs:annotation>
+											<xs:documentation>Type of this name.</xs:documentation>
+										</xs:annotation>
+										<xs:complexType
+											sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType">
+											<xs:sequence>
+												<xs:element name="description" minOccurs="0"
+													maxOccurs="1" type="xs:string"
+													sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.description">
+													<xs:annotation>
+														<xs:documentation>Description of the name type.
+														</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="name" minOccurs="1" maxOccurs="1"
+													type="xs:string"
+													sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.name">
+													<xs:annotation>
+														<xs:documentation>Name of the name type.
+														</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="NameTypeAuthority" minOccurs="0"
+													maxOccurs="1"
+													sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.NameTypeAuthority">
+													<xs:annotation>
+														<xs:documentation>Authority responsible for managing names
+															of this type.</xs:documentation>
+													</xs:annotation>
+													<xs:complexType
+														sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority">
+														<xs:sequence>
+															<xs:element name="description" minOccurs="0"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority.description">
+																<xs:annotation>
+																	<xs:documentation>Description of the name type
+																		authority.</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="name" minOccurs="1"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority.name">
+																<xs:annotation>
+																	<xs:documentation>Name of the name type authority.
+																	</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="status" minOccurs="0" maxOccurs="1"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Customer.status">
+							<xs:annotation>
+								<xs:documentation>Status of this customer.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Status">
+								<xs:sequence>
+									<xs:element name="dateTime" minOccurs="0" maxOccurs="1"
+										type="xs:dateTime"
+										sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Status.dateTime">
+										<xs:annotation>
+											<xs:documentation>Date and time for which status 'value'
+												applies.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="reason" minOccurs="0" maxOccurs="1"
+										type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Status.reason">
+										<xs:annotation>
+											<xs:documentation>Reason code or explanation for why an
+												object went to the current status 'value'.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="remark" minOccurs="0" maxOccurs="1"
+										type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Status.remark">
+										<xs:annotation>
+											<xs:documentation>Pertinent information regarding the current
+												'value', as free form text.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="value" minOccurs="1" maxOccurs="1"
+										type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Status.value">
+										<xs:annotation>
+											<xs:documentation>Status value at 'dateTime'; prior status
+												changes may have been kept in instances of activity records
+												associated with the object to which this status applies.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Meter" minOccurs="1" maxOccurs="1" type="m:Meter"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#MeterServiceWork.Meter">
+				<xs:annotation>
+					<xs:documentation>Meter on which this non-replacement work is
+						performed.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="OldMeter" minOccurs="0" maxOccurs="1"
+				type="m:Meter"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#MeterServiceWork.OldMeter">
+				<xs:annotation>
+					<xs:documentation>Old meter replaced by this work.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" minOccurs="0" maxOccurs="1"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Document.status">
+				<xs:annotation>
+					<xs:documentation>Status of subject matter (e.g., Agreement, Work)
+						this document represents. For status of the document itself, use
+						'docStatus' attribute.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Status">
+					<xs:sequence>
+						<xs:element name="dateTime" minOccurs="0" maxOccurs="1"
+							type="xs:dateTime" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Status.dateTime">
+							<xs:annotation>
+								<xs:documentation>Date and time for which status 'value'
+									applies.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="reason" minOccurs="0" maxOccurs="1"
+							type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Status.reason">
+							<xs:annotation>
+								<xs:documentation>Reason code or explanation for why an object
+									went to the current status 'value'.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="remark" minOccurs="0" maxOccurs="1"
+							type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Status.remark">
+							<xs:annotation>
+								<xs:documentation>Pertinent information regarding the current
+									'value', as free form text.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="value" minOccurs="1" maxOccurs="1"
+							type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Status.value">
+							<xs:annotation>
+								<xs:documentation>Status value at 'dateTime'; prior status
+									changes may have been kept in instances of activity records
+									associated with the object to which this status applies.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="UsagePoint" minOccurs="0" maxOccurs="1"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#MeterServiceWork.UsagePoint">
+				<xs:annotation>
+					<xs:documentation>Usage point to which this meter service work
+						applies.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType
+					sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#UsagePoint">
+					<xs:sequence>
+						<xs:element name="checkBilling" minOccurs="0"
+							maxOccurs="1" type="xs:boolean"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#UsagePoint.checkBilling">
+							<xs:annotation>
+								<xs:documentation>True if as a result of an inspection or
+									otherwise, there is a reason to suspect that a previous billing
+									may have been performed with erroneous data. Value should be
+									reset once this potential discrepancy has been resolved.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="grounded" minOccurs="0" maxOccurs="1"
+							type="xs:boolean"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#UsagePoint.grounded">
+							<xs:annotation>
+								<xs:documentation>True if grounded.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="isVirtual" minOccurs="0" maxOccurs="1"
+							type="xs:boolean"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#UsagePoint.isVirtual">
+							<xs:annotation>
+								<xs:documentation>If true, this usage point is virtual, i.e., no
+									physical location exists in the network where a meter could be
+									located to collect the meter readings. For example, one may
+									define a virtual usage point to serve as an aggregation of
+									usage for all of a companies premises distributed widely across
+									the distribution territory. Otherwise, the usage point is
+									physical, i.e., there is a logical point in the network where a
+									meter could be located to collect meter readings.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="nominalServiceVoltage" minOccurs="0"
+							maxOccurs="1" type="m:Voltage"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#UsagePoint.nominalServiceVoltage">
+							<xs:annotation>
+								<xs:documentation>Nominal service voltage.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="phaseCode" minOccurs="0" maxOccurs="1"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#UsagePoint.phaseCode">
+							<xs:annotation>
+								<xs:documentation>Phase code. Number of wires and number of
+									phases can be deduced from enumeration literal values. For
+									example, ABCN is three-phase, four-wire. s12n
+									(splitSecondary12N) is single-phase, three-wire. s1n and s2n
+									are single-phase, two-wire.</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType
+								sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#PhaseCode">
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="A">
+										<xs:annotation>
+											<xs:documentation>Phase A.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="AB">
+										<xs:annotation>
+											<xs:documentation>Phases A and B</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="ABC">
+										<xs:annotation>
+											<xs:documentation>Phases A, B, and C.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="ABCN">
+										<xs:annotation>
+											<xs:documentation>Phases A, B, C, and N.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="ABN">
+										<xs:annotation>
+											<xs:documentation>Phases A, B, and neutral.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="AC">
+										<xs:annotation>
+											<xs:documentation>Phases A and C</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="ACN">
+										<xs:annotation>
+											<xs:documentation>Phases A, C and neutral.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="AN">
+										<xs:annotation>
+											<xs:documentation>Phases A and neutral.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="B">
+										<xs:annotation>
+											<xs:documentation>Phase B.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="BC">
+										<xs:annotation>
+											<xs:documentation>Phases B and C</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="BCN">
+										<xs:annotation>
+											<xs:documentation>Phases B, C, and neutral.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="BN">
+										<xs:annotation>
+											<xs:documentation>Phases B and neutral.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="C">
+										<xs:annotation>
+											<xs:documentation>Phase C.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="CN">
+										<xs:annotation>
+											<xs:documentation>Phases C and neutral.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="N">
+										<xs:annotation>
+											<xs:documentation>Neutral phase.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="s1">
+										<xs:annotation>
+											<xs:documentation>Secondary phase 1.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="s12">
+										<xs:annotation>
+											<xs:documentation>Secondary phase 1 and 2.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="s12N">
+										<xs:annotation>
+											<xs:documentation>Secondary phases 1, 2, and neutral.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="s1N">
+										<xs:annotation>
+											<xs:documentation>Secondary phase 1 and neutral.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="s2">
+										<xs:annotation>
+											<xs:documentation>Secondary phase 2.</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+									<xs:enumeration value="s2N">
+										<xs:annotation>
+											<xs:documentation>Secondary phase 2 and neutral.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:enumeration>
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element name="ratedCurrent" minOccurs="0"
+							maxOccurs="1" type="m:CurrentFlow"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#UsagePoint.ratedCurrent">
+							<xs:annotation>
+								<xs:documentation>Current that this usage point is configured to
+									deliver.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="ratedPower" minOccurs="0" maxOccurs="1"
+							type="m:ActivePower"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#UsagePoint.ratedPower">
+							<xs:annotation>
+								<xs:documentation>Power that this usage point is configured to
+									deliver.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="serviceDeliveryRemark" minOccurs="0"
+							maxOccurs="1" type="xs:string"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#UsagePoint.serviceDeliveryRemark">
+							<xs:annotation>
+								<xs:documentation>Remarks about this usage point, for example
+									the reason for it being rated with a non-nominal priority.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="servicePriority" minOccurs="0"
+							maxOccurs="1" type="xs:string"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#UsagePoint.servicePriority">
+							<xs:annotation>
+								<xs:documentation>Priority of service for this usage point. Note
+									that usage points at the same service location can have
+									different priorities.</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="ServiceLocation" minOccurs="0"
+							maxOccurs="1"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#UsagePoint.ServiceLocation">
+							<xs:annotation>
+								<xs:documentation>Service location where the service delivered
+									by this usage point is consumed.</xs:documentation>
+							</xs:annotation>
+							<xs:complexType
+								sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ServiceLocation">
+								<xs:sequence>
+									<xs:element name="accessMethod" minOccurs="0"
+										maxOccurs="1" type="xs:string"
+										sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ServiceLocation.accessMethod">
+										<xs:annotation>
+											<xs:documentation>Method for the service person to access
+												this service locations. For example, a description of where
+												to obtain a key if the facility is unmanned and secured.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="needsInspection" minOccurs="0"
+										maxOccurs="1" type="xs:boolean"
+										sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ServiceLocation.needsInspection">
+										<xs:annotation>
+											<xs:documentation>True if inspection is needed of facilities
+												at this service location. This could be requested by a
+												customer, due to suspected tampering, environmental concerns
+												(e.g., a fire in the vicinity), or to correct incompatible
+												data.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="siteAccessProblem" minOccurs="0"
+										maxOccurs="1" type="xs:string"
+										sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ServiceLocation.siteAccessProblem">
+										<xs:annotation>
+											<xs:documentation>Problems previously encountered when
+												visiting or performing work on this location. Examples
+												include: bad dog, violent customer, verbally abusive
+												occupant, obstructions, safety hazards, etc.
+											</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="mainAddress" minOccurs="0"
+										maxOccurs="1"
+										sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Location.mainAddress">
+										<xs:annotation>
+											<xs:documentation>Main address of the location.
+											</xs:documentation>
+										</xs:annotation>
+										<xs:complexType
+											sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#StreetAddress">
+											<xs:sequence>
+												<xs:element name="streetDetail" minOccurs="0"
+													maxOccurs="1"
+													sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#StreetAddress.streetDetail">
+													<xs:annotation>
+														<xs:documentation>Street detail.</xs:documentation>
+													</xs:annotation>
+													<xs:complexType
+														sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#StreetDetail">
+														<xs:sequence>
+															<xs:element name="addressGeneral" minOccurs="0"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#StreetDetail.addressGeneral">
+																<xs:annotation>
+																	<xs:documentation>Additional address information, for
+																		example a mailstop.</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="buildingName" minOccurs="0"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#StreetDetail.buildingName">
+																<xs:annotation>
+																	<xs:documentation>(if applicable) In certain cases the
+																		physical location of the place of interest does not
+																		have a direct point of entry from the street, but may
+																		be located inside a larger structure such as a
+																		building, complex, office block, apartment, etc.
+																	</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="code" minOccurs="0"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#StreetDetail.code">
+																<xs:annotation>
+																	<xs:documentation>(if applicable) Utilities often make
+																		use of external reference systems, such as those of
+																		the town-planner's department or surveyor general's
+																		mapping system, that allocate global reference codes
+																		to streets.</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="name" minOccurs="0"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#StreetDetail.name">
+																<xs:annotation>
+																	<xs:documentation>Name of the street.
+																	</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="number" minOccurs="0"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#StreetDetail.number">
+																<xs:annotation>
+																	<xs:documentation>Designator of the specific location
+																		on the street.</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="prefix" minOccurs="0"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#StreetDetail.prefix">
+																<xs:annotation>
+																	<xs:documentation>Prefix to the street name. For
+																		example: North, South, East, West.</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="suffix" minOccurs="0"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#StreetDetail.suffix">
+																<xs:annotation>
+																	<xs:documentation>Suffix to the street name. For
+																		example: North, South, East, West.</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="suiteNumber" minOccurs="0"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#StreetDetail.suiteNumber">
+																<xs:annotation>
+																	<xs:documentation>Number of the apartment or suite.
+																	</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="type" minOccurs="0"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#StreetDetail.type">
+																<xs:annotation>
+																	<xs:documentation>Type of street. Examples include:
+																		street, circle, boulevard, avenue, road, drive, etc.
+																	</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="withinTownLimits" minOccurs="0"
+																maxOccurs="1" type="xs:boolean"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#StreetDetail.withinTownLimits">
+																<xs:annotation>
+																	<xs:documentation>True if this street is within the
+																		legal geographical boundaries of the specified town
+																		(default).</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+												<xs:element name="townDetail" minOccurs="0"
+													maxOccurs="1"
+													sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#StreetAddress.townDetail">
+													<xs:annotation>
+														<xs:documentation>Town detail.</xs:documentation>
+													</xs:annotation>
+													<xs:complexType
+														sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#TownDetail">
+														<xs:sequence>
+															<xs:element name="code" minOccurs="0"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#TownDetail.code">
+																<xs:annotation>
+																	<xs:documentation>Town code.</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="country" minOccurs="0"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#TownDetail.country">
+																<xs:annotation>
+																	<xs:documentation>Name of the country.
+																	</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="name" minOccurs="0"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#TownDetail.name">
+																<xs:annotation>
+																	<xs:documentation>Town name.</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="section" minOccurs="0"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#TownDetail.section">
+																<xs:annotation>
+																	<xs:documentation>Town section. For example, it is
+																		common for there to be 36 sections per township.
+																	</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="stateOrProvince" minOccurs="0"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#TownDetail.stateOrProvince">
+																<xs:annotation>
+																	<xs:documentation>Name of the state or province.
+																	</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+						<xs:element name="ServiceMultipliers" minOccurs="0"
+							maxOccurs="unbounded"
+							sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#UsagePoint.ServiceMultipliers">
+							<xs:annotation>
+								<xs:documentation>All multipliers applied at this usage point
+								</xs:documentation>
+							</xs:annotation>
+							<xs:complexType
+								sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ServiceMultiplier">
+								<xs:sequence>
+									<xs:element name="mRID" minOccurs="0" maxOccurs="1"
+										type="xs:string"
+										sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.mRID">
+										<xs:annotation>
+											<xs:documentation>A Model Authority issues mRIDs. Given that
+												each Model Authority has a unique id and this id is part of
+												the mRID, then the mRID is globally unique.
+											</xs:documentation>
+											<xs:documentation>Global uniqeness is easily achived by using
+												a UUID for the mRID. It is strongly recommended to do this.
+											</xs:documentation>
+											<xs:documentation>For CIMXML data files the mRID is mapped to
+												rdf:ID or rdf:about attributes that identifies CIM object
+												elements.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="kind" minOccurs="1" maxOccurs="1"
+										sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ServiceMultiplier.kind">
+										<xs:annotation>
+											<xs:documentation>Kind of multiplier.</xs:documentation>
+										</xs:annotation>
+										<xs:simpleType
+											sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ServiceMultiplierKind">
+											<xs:restriction base="xs:string">
+												<xs:enumeration value="ctRatio">
+													<xs:annotation>
+														<xs:documentation>Current transformer ratio used to
+															convert associated quantities to real measurements.
+														</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="ptRatio">
+													<xs:annotation>
+														<xs:documentation>Voltage transformer ratio used to
+															convert associated quantities to real measurements.
+														</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+												<xs:enumeration value="transformerRatio">
+													<xs:annotation>
+														<xs:documentation>Product of the CT ratio and PT ratio.
+														</xs:documentation>
+													</xs:annotation>
+												</xs:enumeration>
+											</xs:restriction>
+										</xs:simpleType>
+									</xs:element>
+									<xs:element name="value" minOccurs="1" maxOccurs="1"
+										type="xs:float"
+										sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ServiceMultiplier.value">
+										<xs:annotation>
+											<xs:documentation>Multiplier value.</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="Names" minOccurs="0" maxOccurs="unbounded"
+										sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.Names">
+										<xs:annotation>
+											<xs:documentation>All names of this identified object.
+											</xs:documentation>
+										</xs:annotation>
+										<xs:complexType
+											sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name">
+											<xs:sequence>
+												<xs:element name="name" minOccurs="1" maxOccurs="1"
+													type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name.name">
+													<xs:annotation>
+														<xs:documentation>Any free text that name the object.
+														</xs:documentation>
+													</xs:annotation>
+												</xs:element>
+												<xs:element name="NameType" minOccurs="0"
+													maxOccurs="1"
+													sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name.NameType">
+													<xs:annotation>
+														<xs:documentation>Type of this name.</xs:documentation>
+													</xs:annotation>
+													<xs:complexType
+														sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType">
+														<xs:sequence>
+															<xs:element name="description" minOccurs="0"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.description">
+																<xs:annotation>
+																	<xs:documentation>Description of the name type.
+																	</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="name" minOccurs="1"
+																maxOccurs="1" type="xs:string"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.name">
+																<xs:annotation>
+																	<xs:documentation>Name of the name type.
+																	</xs:documentation>
+																</xs:annotation>
+															</xs:element>
+															<xs:element name="NameTypeAuthority"
+																minOccurs="0" maxOccurs="1"
+																sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.NameTypeAuthority">
+																<xs:annotation>
+																	<xs:documentation>Authority responsible for managing
+																		names of this type.</xs:documentation>
+																</xs:annotation>
+																<xs:complexType
+																	sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority">
+																	<xs:sequence>
+																		<xs:element name="description" minOccurs="0"
+																			maxOccurs="1" type="xs:string"
+																			sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority.description">
+																			<xs:annotation>
+																				<xs:documentation>Description of the name type
+																					authority.</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																		<xs:element name="name" minOccurs="1"
+																			maxOccurs="1" type="xs:string"
+																			sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameTypeAuthority.name">
+																			<xs:annotation>
+																				<xs:documentation>Name of the name type authority.
+																				</xs:documentation>
+																			</xs:annotation>
+																		</xs:element>
+																	</xs:sequence>
+																</xs:complexType>
+															</xs:element>
+														</xs:sequence>
+													</xs:complexType>
+												</xs:element>
+											</xs:sequence>
+										</xs:complexType>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Name"
+		sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name">
+		<xs:annotation>
+			<xs:documentation>The Name class provides the means to define any
+				number of human readable names for an object. A name is
+				&lt;b&gt;not&lt;/b&gt; to be used for defining inter-object
+				relationships. For inter-object relationships instead use the object
+				identification 'mRID'.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" minOccurs="1" maxOccurs="1"
+				type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name.name">
+				<xs:annotation>
+					<xs:documentation>Any free text that name the object.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="NameType" minOccurs="0" maxOccurs="1"
+				type="m:NameType" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Name.NameType">
+				<xs:annotation>
+					<xs:documentation>Type of this name.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NameType"
+		sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType">
+		<xs:annotation>
+			<xs:documentation>Type of name. Possible values for attribute 'name'
+				are implementation dependent but standard profiles may specify
+				types. An enterprise may have multiple IT systems each having its
+				own local name for the same object, e.g. a planning system may have
+				different names from an EMS. An object may also have different names
+				within the same IT system, e.g. localName and aliasName as defined
+				in CIM version 14. Their definitions from CIM14 are
+			</xs:documentation>
+			<xs:documentation>The localName is a human readable name of the
+				object. It is only used with objects organized in a naming
+				hierarchy. localName: A free text name local to a node in a naming
+				hierarchy similar to a file directory structure. A power system
+				related naming hierarchy may be: Substation, VoltageLevel, Equipment
+				etc. Children of the same parent in such a hierarchy have names that
+				typically are unique among them.</xs:documentation>
+			<xs:documentation>aliasName: A free text alternate name typically
+				used in tabular reports where the column width is limited.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" minOccurs="1" maxOccurs="1"
+				type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#NameType.name">
+				<xs:annotation>
+					<xs:documentation>Name of the name type.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReadingQualityType"
+		sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingQualityType">
+		<xs:annotation>
+			<xs:documentation>Detailed description for a quality of a reading
+				value, produced by an end device or a system. Values in attributes
+				allow for creation of recommended codes to be used for identifying
+				reading value quality codes as follows:
+				&amp;lt;systemId&amp;gt;.&amp;lt;category&amp;gt;.&amp;lt;index&amp;gt;.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="mRID" minOccurs="0" maxOccurs="1"
+				type="xs:string"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.mRID">
+				<xs:annotation>
+					<xs:documentation>A Model Authority issues mRIDs. Given that each
+						Model Authority has a unique id and this id is part of the mRID,
+						then the mRID is globally unique.</xs:documentation>
+					<xs:documentation>Global uniqeness is easily achived by using a
+						UUID for the mRID. It is strongly recommended to do this.
+					</xs:documentation>
+					<xs:documentation>For CIMXML data files the mRID is mapped to
+						rdf:ID or rdf:about attributes that identifies CIM object
+						elements.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="category" minOccurs="0" maxOccurs="1"
+				type="xs:string"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingQualityType.category">
+				<xs:annotation>
+					<xs:documentation>High-level nature of the reading value quality.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subCategory" minOccurs="0" maxOccurs="1"
+				type="xs:string"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingQualityType.subCategory">
+				<xs:annotation>
+					<xs:documentation>More specific nature of the reading value
+						quality, as a further sub-categorisation of 'category'.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="systemId" minOccurs="0" maxOccurs="1"
+				type="xs:string"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingQualityType.systemId">
+				<xs:annotation>
+					<xs:documentation>Identification of the system which has declared
+						the issue with the data or provided commentary on the data.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Names" minOccurs="1" maxOccurs="unbounded"
+				type="m:Name"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.Names">
+				<xs:annotation>
+					<xs:documentation>All names of this identified object.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ReadingType"
+		sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingType">
+		<xs:annotation>
+			<xs:documentation>Detailed description for a type of a reading value.
+				Values in attributes allow for creation of recommended codes to be
+				used for identifying reading value types as follows:
+				&amp;lt;macroPeriod&amp;gt;.&amp;lt;aggregate&amp;gt;.&amp;lt;measuringPeriod&amp;gt;.&amp;lt;accumulation&amp;gt;.&amp;lt;flowDirection&amp;gt;.&amp;lt;commodity&amp;gt;.&amp;lt;measurementKind&amp;gt;.&amp;lt;interharmonic.numerator&amp;gt;.&amp;lt;interharmonic.denominator&amp;gt;.&amp;lt;argument.numerator&amp;gt;.&amp;lt;argument.denominator&amp;gt;.&amp;lt;tou&amp;gt;.&amp;lt;cpp&amp;gt;.&amp;lt;consumptionTier&amp;gt;.&amp;lt;phases&amp;gt;.&amp;lt;multiplier&amp;gt;.&amp;lt;unit&amp;gt;.&amp;lt;currency&amp;gt;.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="mRID" minOccurs="0" maxOccurs="1"
+				type="xs:string"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.mRID">
+				<xs:annotation>
+					<xs:documentation>A Model Authority issues mRIDs. Given that each
+						Model Authority has a unique id and this id is part of the mRID,
+						then the mRID is globally unique.</xs:documentation>
+					<xs:documentation>Global uniqeness is easily achived by using a
+						UUID for the mRID. It is strongly recommended to do this.
+					</xs:documentation>
+					<xs:documentation>For CIMXML data files the mRID is mapped to
+						rdf:ID or rdf:about attributes that identifies CIM object
+						elements.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="accumulation" minOccurs="0" maxOccurs="1"
+				type="xs:string"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingType.accumulation">
+				<xs:annotation>
+					<xs:documentation>Accumulation behaviour of a reading over time,
+						usually 'measuringPeriod', to be used with individual endpoints
+						(as opposed to 'macroPeriod' and 'aggregate' that are used to
+						describe aggregations of data from individual endpoints).
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="aggregate" minOccurs="0" maxOccurs="1"
+				type="xs:string"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingType.aggregate">
+				<xs:annotation>
+					<xs:documentation>Salient attribute of the reading data aggregated
+						from individual endpoints. This is mainly used to define a
+						mathematical operation carried out over 'macroPeriod', but may
+						also be used to describe an attribute of the data when the
+						'macroPeriod' is not defined.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="commodity" minOccurs="0" maxOccurs="1"
+				type="xs:string"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingType.commodity">
+				<xs:annotation>
+					<xs:documentation>Commodity being measured.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="consumptionTier" minOccurs="0"
+				maxOccurs="1" type="xs:integer"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingType.consumptionTier">
+				<xs:annotation>
+					<xs:documentation>In case of common flat-rate pricing for power, in
+						which all purchases are at a given rate, 'consumptionTier'=0.
+						Otherwise, the value indicates the consumption tier, which can be
+						used in conjunction with TOU or CPP pricing.</xs:documentation>
+					<xs:documentation>Consumption tier pricing refers to the method of
+						billing in which a certain "block" of energy is purchased/sold at
+						one price, after which the next block of energy is purchased at
+						another price, and so on, all throughout a defined period. At the
+						start of the defined period, consumption is initially zero, and
+						any usage is measured against the first consumption tier
+						('consumptionTier'=1). If this block of energy is consumed before
+						the end of the period, energy consumption moves to be reconed
+						against the second consumption tier ('consumptionTier'=2), and so
+						on. At the end of the defined period, the consumption accumulator
+						is reset, and usage within the 'consumptionTier'=1 restarts.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="cpp" minOccurs="0" maxOccurs="1"
+				type="xs:integer" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingType.cpp">
+				<xs:annotation>
+					<xs:documentation>Critical peak period (CPP) bucket the reading
+						value is attributed to. Value 0 means not applicable. Even though
+						CPP is usually considered a specialised form of time of use 'tou',
+						this attribute is defined explicitly for flexibility.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="currency" minOccurs="0" maxOccurs="1"
+				type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingType.currency">
+				<xs:annotation />
+			</xs:element>
+			<xs:element name="flowDirection" minOccurs="0" maxOccurs="1"
+				type="xs:string"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingType.flowDirection">
+				<xs:annotation>
+					<xs:documentation>Flow direction for a reading where the direction
+						of flow of the commodity is important (for electricity
+						measurements this includes current, energy, power, and demand).
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="macroPeriod" minOccurs="0" maxOccurs="1"
+				type="xs:string"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingType.macroPeriod">
+				<xs:annotation>
+					<xs:documentation>Time period of interest that reflects how the
+						reading is viewed or captured over a long period of time.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="measurementKind" minOccurs="0"
+				maxOccurs="1" type="xs:string"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingType.measurementKind">
+				<xs:annotation>
+					<xs:documentation>Identifies "what" is being measured, as
+						refinement of 'commodity'. When combined with 'unit', it provides
+						detail to the unit of measure. For example, 'energy' with a unit
+						of measure of 'kWh' indicates to the user that active energy is
+						being measured, while with 'kVAh' or 'kVArh', it indicates
+						apparent energy and reactive energy, respectively. 'power' can be
+						combined in a similar way with various power units of measure:
+						Distortion power ('distortionVoltAmperes') with 'kVA' is different
+						from 'power' with 'kVA'.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="measuringPeriod" minOccurs="0"
+				maxOccurs="1" type="xs:string"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingType.measuringPeriod">
+				<xs:annotation>
+					<xs:documentation>Time attribute inherent or fundamental to the
+						reading value (as opposed to 'macroPeriod' that supplies an
+						"adjective" to describe aspects of a time period with regard to
+						the measurement). It refers to the way the value was originally
+						measured and not to the frequency at which it is reported or
+						presented. For example, an hourly interval of consumption data
+						would have value 'hourly' as an attribute. However in the case of
+						an hourly sampled voltage value, the meterReadings schema would
+						carry the 'hourly' interval size information.</xs:documentation>
+					<xs:documentation>It is common for meters to report demand in a
+						form that is measured over the course of a portion of an hour,
+						while enterprise applications however commonly assume the demand
+						(in kW or kVAr) normalised to 1 hour. The sytem that receives
+						readings directly from the meter therefore must perform this
+						transformation before publishing readings for use by the other
+						enterprise systems. The scalar used is chosen based on the block
+						size (not any sub-interval size).</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="multiplier" minOccurs="0" maxOccurs="1"
+				type="xs:string"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingType.multiplier">
+				<xs:annotation />
+			</xs:element>
+			<xs:element name="phases" minOccurs="0" maxOccurs="1"
+				type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingType.phases">
+				<xs:annotation />
+			</xs:element>
+			<xs:element name="tou" minOccurs="0" maxOccurs="1"
+				type="xs:integer" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingType.tou">
+				<xs:annotation>
+					<xs:documentation>Time of use (TOU) bucket the reading value is
+						attributed to. Value 0 means not applicable.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="unit" minOccurs="0" maxOccurs="1"
+				type="xs:string" sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingType.unit">
+				<xs:annotation />
+			</xs:element>
+			<xs:element name="argument" minOccurs="0" maxOccurs="1"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingType.argument">
+				<xs:annotation>
+					<xs:documentation>Argument used to introduce numbers into the unit
+						of measure description where they are needed (e.g., 4 where the
+						measure needs an argument such as CEMI(n=4)). Most arguments used
+						in practice however will be integers (i.e., 'denominator'=1).
+					</xs:documentation>
+					<xs:documentation>Value 0 in 'numerator' and 'denominator' means
+						not applicable.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType sawsdl:modelReference="">
+					<xs:attribute name="ref" type="xs:string" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="interharmonic" minOccurs="0" maxOccurs="1"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ReadingType.interharmonic">
+				<xs:annotation>
+					<xs:documentation>Indication of a "harmonic" or "interharmonic"
+						basis for the measurement. Value 0 in 'numerator' and
+						'denominator' means not applicable.</xs:documentation>
+				</xs:annotation>
+				<xs:complexType sawsdl:modelReference="">
+					<xs:attribute name="ref" type="xs:string" />
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="Names" minOccurs="1" maxOccurs="unbounded"
+				type="m:Name"
+				sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#IdentifiedObject.Names">
+				<xs:annotation>
+					<xs:documentation>All names of this identified object.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="CurrentFlow"
+		sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#CurrentFlow">
+		<xs:annotation>
+			<xs:documentation>Electrical current (positive flow is out of the
+				ConductingEquipment into the ConnectivityNode)</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:float" />
+	</xs:simpleType>
+	<xs:simpleType name="Voltage"
+		sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#Voltage">
+		<xs:annotation>
+			<xs:documentation>Electrical voltage.</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:float" />
+	</xs:simpleType>
+	<xs:simpleType name="ActivePower"
+		sawsdl:modelReference="http://iec.ch/TC57/2011/CIM-schema-cim15#ActivePower">
+		<xs:annotation>
+			<xs:documentation>Product of RMS value of the voltage and the RMS
+				value of the in-phase component of the current</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:float" />
+	</xs:simpleType>
+</xs:schema>

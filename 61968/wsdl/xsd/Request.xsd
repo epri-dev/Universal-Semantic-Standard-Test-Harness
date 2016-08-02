@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	targetNamespace="http://sixthc.com/Request" elementFormDefault="qualified"
+	xmlns:tns="http://sixthc.com/Request" attributeFormDefault="unqualified"
+	xmlns:edcm="http://www.iec.ch/TC57/2011/EndDeviceControlsMessage"
+	xmlns:edc="http://iec.ch/TC57/2011/EndDeviceControls#" xmlns:mrm="http://www.iec.ch/TC57/2011/MeterReadingsMessage"
+	xmlns:mr="http://iec.ch/TC57/2011/MeterReadings#" xmlns:mrsm="http://www.iec.ch/TC57/2011/MeterReadScheduleMessage"
+	xmlns:mrs="http://iec.ch/TC57/2011/MeterReadSchedule#" xmlns:msrm="http://www.iec.ch/TC57/2011/MeterServiceRequestsMessage"
+	xmlns:msr="http://iec.ch/TC57/2011/MeterServiceRequests#" xmlns:edem="http://www.iec.ch/TC57/2011/EndDeviceEventsMessage"
+	xmlns:ede="http://iec.ch/TC57/2011/EndDeviceEvents#" xmlns:mess="http://www.iec.ch/TC57/2011/schema/message">
+
+	<xs:import namespace="http://www.iec.ch/TC57/2011/EndDeviceControlsMessage"
+		schemaLocation="EndDeviceControlsMessage.xsd" />
+	<xs:import namespace="http://iec.ch/TC57/2011/EndDeviceControls#"
+		schemaLocation="EndDeviceControls.xsd" />
+	<xs:import namespace="http://www.iec.ch/TC57/2011/MeterReadingsMessage"
+		schemaLocation="MeterReadingsMessage.xsd" />
+	<xs:import namespace="http://iec.ch/TC57/2011/MeterReadings#"
+		schemaLocation="MeterReadings.xsd" />
+	<xs:import namespace="http://www.iec.ch/TC57/2011/MeterReadScheduleMessage"
+		schemaLocation="MeterReadScheduleMessage.xsd" />
+	<xs:import namespace="http://iec.ch/TC57/2011/MeterReadSchedule#"
+		schemaLocation="MeterReadSchedule.xsd" />
+	<xs:import namespace="http://www.iec.ch/TC57/2011/MeterServiceRequestsMessage"
+		schemaLocation="MeterServiceRequestsMessage.xsd" />
+	<xs:import namespace="http://iec.ch/TC57/2011/MeterServiceRequests#"
+		schemaLocation="MeterServiceRequests.xsd" />
+	<xs:import namespace="http://www.iec.ch/TC57/2011/EndDeviceEventsMessage"
+		schemaLocation="EndDeviceEventsMessage.xsd" />
+	<xs:import namespace="http://iec.ch/TC57/2011/EndDeviceEvents#"
+		schemaLocation="EndDeviceEvents.xsd" />
+	<xs:import namespace="http://www.iec.ch/TC57/2011/schema/message"
+		schemaLocation="Message.xsd" />
+
+	<xs:complexType name="EndDeviceControlsPayload">
+		<xs:sequence>
+			<xs:element name="Service" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Reply" />
+						<xs:enumeration value="Send" />
+						<xs:enumeration value="Request" />
+						<xs:enumeration value="Get" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Command" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Create" />
+						<xs:enumeration value="Change" />
+						<xs:enumeration value="Close" />
+						<xs:enumeration value="Cancel" />
+						<xs:enumeration value="Delete" />
+						<xs:enumeration value="Created" />
+						<xs:enumeration value="Changed" />
+						<xs:enumeration value="Closed" />
+						<xs:enumeration value="Canceled" />
+						<xs:enumeration value="Deleted" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Address" type="xs:string" />
+			<xs:element name="Payload" type="edcm:EndDeviceControlsEventMessageType" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MeterReadingsPayload">
+		<xs:sequence>
+			<xs:element name="Service" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Reply" />
+						<xs:enumeration value="Send" />
+						<xs:enumeration value="Request" />
+						<xs:enumeration value="Get" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Command" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Create" />
+						<xs:enumeration value="Change" />
+						<xs:enumeration value="Close" />
+						<xs:enumeration value="Cancel" />
+						<xs:enumeration value="Delete" />
+						<xs:enumeration value="Created" />
+						<xs:enumeration value="Changed" />
+						<xs:enumeration value="Closed" />
+						<xs:enumeration value="Canceled" />
+						<xs:enumeration value="Deleted" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Address" type="xs:string" />
+			<xs:element name="Payload" type="mrm:MeterReadingsEventMessageType" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MeterReadSchedulePayload">
+		<xs:sequence>
+			<xs:element name="Service" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Reply" />
+						<xs:enumeration value="Send" />
+						<xs:enumeration value="Request" />
+						<xs:enumeration value="Get" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Command" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Create" />
+						<xs:enumeration value="Change" />
+						<xs:enumeration value="Close" />
+						<xs:enumeration value="Cancel" />
+						<xs:enumeration value="Delete" />
+						<xs:enumeration value="Created" />
+						<xs:enumeration value="Changed" />
+						<xs:enumeration value="Closed" />
+						<xs:enumeration value="Canceled" />
+						<xs:enumeration value="Deleted" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Address" type="xs:string" />
+			<xs:element name="Payload" type="mrsm:MeterReadScheduleEventMessageType" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="MeterServiceRequestsPayload">
+		<xs:sequence>
+			<xs:element name="Service" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Reply" />
+						<xs:enumeration value="Send" />
+						<xs:enumeration value="Request" />
+						<xs:enumeration value="Get" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Command" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Create" />
+						<xs:enumeration value="Change" />
+						<xs:enumeration value="Close" />
+						<xs:enumeration value="Cancel" />
+						<xs:enumeration value="Delete" />
+						<xs:enumeration value="Created" />
+						<xs:enumeration value="Changed" />
+						<xs:enumeration value="Closed" />
+						<xs:enumeration value="Canceled" />
+						<xs:enumeration value="Deleted" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Address" type="xs:string" />
+			<xs:element name="Payload" type="msrm:MeterServiceRequestsEventMessageType" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:complexType name="EndDeviceEventsPayload">
+		<xs:sequence>
+			<xs:element name="Service" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Reply" />
+						<xs:enumeration value="Send" />
+						<xs:enumeration value="Request" />
+						<xs:enumeration value="Get" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Command" minOccurs="1" maxOccurs="1">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Create" />
+						<xs:enumeration value="Change" />
+						<xs:enumeration value="Close" />
+						<xs:enumeration value="Cancel" />
+						<xs:enumeration value="Delete" />
+						<xs:enumeration value="Created" />
+						<xs:enumeration value="Changed" />
+						<xs:enumeration value="Closed" />
+						<xs:enumeration value="Canceled" />
+						<xs:enumeration value="Deleted" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="Address" type="xs:string" />
+			<xs:element name="Payload" type="edem:EndDeviceEventsEventMessageType" />
+		</xs:sequence>
+	</xs:complexType>
+
+	<xs:element name="MeterReadingsPayloadMessage" type="tns:MeterReadingsPayload" />
+	<xs:element name="EndDeviceControlsPayloadMessage" type="tns:EndDeviceControlsPayload" />
+	<xs:element name="MeterReadSchedulePayloadMessage" type="tns:MeterReadSchedulePayload" />
+	<xs:element name="MeterServiceRequestsPayloadMessage" type="tns:MeterServiceRequestsPayload" />
+	<xs:element name="EndDeviceEventsPayloadMessage" type="tns:EndDeviceEventsPayload" />
+	<xs:element name="ResponseMessage" type="mess:ReplyType" />
+	<xs:element name="FaultMessage" type="mess:FaultMessageType" />
+</xs:schema>

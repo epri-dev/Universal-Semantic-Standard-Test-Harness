@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns:tns="urn:Bid" elementFormDefault="qualified"
+	targetNamespace="urn:Bid" version="0.9"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:complexType name="Bid">
+		<xs:annotation>
+			<xs:documentation>
+				This is the type used to support bids submitted by a
+				Participant. It supports both standing bids and active
+				bids.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="bidBlocks">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element minOccurs="0" maxOccurs="unbounded"
+							name="block" type="tns:BidBlock" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemaVersion" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>
+					Version of the schema.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="participantAccount" type="xs:string"
+			use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Reference to the Participant Account that this bid
+					corresponds to.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="programName" type="xs:string"
+			use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					This is a reference to the Program that this bid is
+					applied to. It corresponds to the name attribute of
+					the Program. Note that if the eventID attribute of
+					the Bid is specified then the ProgramName is
+					redundant and not necessary.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="eventID" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					This is the identifier of the event that this bid
+					corresponds to. In the case of a stadning bid this
+					field is not defined.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="options" type="xs:string" use="optional">
+			<xs:annotation>
+				<xs:documentation>
+					This is used to help qualify various aspects of the
+					bid such as narrowing the bid to specific programs
+					of a cafeteria plan. They are mainly used by the
+					Utility Operators top help them make choices
+					concering which bids to accept and the exact syntax
+					of these options are beyond the scope of this
+					standard.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="signature" type="xs:string" />
+	</xs:complexType>
+	<xs:complexType name="BidBlock">
+		<xs:sequence>
+			<xs:element minOccurs="0" name="load" type="xs:double" />
+			<xs:element minOccurs="0" name="price" type="xs:double" />
+			<xs:element minOccurs="0" name="duration" type="xs:double" />
+			<xs:element minOccurs="0" name="timePeriod">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="startTime" type="xs:dateTime" />
+						<xs:element name="endTime" type="xs:dateTime" />
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ListOfBids">
+		<xs:annotation>
+			<xs:documentation>List of Bids.</xs:documentation>
+		</xs:annotation>
+        <xs:sequence>
+		<xs:element minOccurs="0" maxOccurs="unbounded"
+		name="bids" type="tns:Bid" />
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns:tns="urn:OptOutState" elementFormDefault="qualified" targetNamespace="urn:OptOutState" version="0.9" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="OptOutState">
+    <xs:annotation>
+      <xs:documentation>This is used by the Participant to opt out of DR Events.  It can be used to opt out of either an entire program or simply a single DR Event. </xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="participantID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>An identifier of the ParticipantAccount for which this opt-out condition applies.  This corresponds to the accountID attribute of a ParticipantAccount entity.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="programName" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>This is a reference to that name of a program tha tthis opt-out state applies.  This correpsonds to the name attribute of a UtilityProgram entity.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="DRASClients">
+        <xs:annotation>
+          <xs:documentation>This is an optional list of DRAS Clients that this opt-out condition applies to.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="DRASClientID" type="xs:string">
+              <xs:annotation>
+                <xs:documentation>This is a reference to a specific DRAS Client.  It corresponds to the identifier attribute of the DRASClient entity.</xs:documentation>
+              </xs:annotation>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element minOccurs="0" name="eventID" type="xs:string">
+        <xs:annotation>
+          <xs:documentation>This refers to a specific DR Event that this opt-out condition applies to.  It corresponds to the eventIdentifier attribute.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+      <xs:element minOccurs="0" name="schedule">
+        <xs:annotation>
+          <xs:documentation>This is a list of time spans that the opt-out condition applies to.</xs:documentation>
+        </xs:annotation>
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="timeElement">
+              <xs:annotation>
+                <xs:documentation>This is a specific time span defined by a start date/time and and end date/time.</xs:documentation>
+              </xs:annotation>
+              <xs:complexType>
+                <xs:sequence>
+                  <xs:element name="start" type="xs:dateTime">
+                    <xs:annotation>
+                      <xs:documentation>The start date/time of the time span.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                  <xs:element name="end" type="xs:dateTime">
+                    <xs:annotation>
+                      <xs:documentation>The end date/time of the time span.</xs:documentation>
+                    </xs:annotation>
+                  </xs:element>
+                </xs:sequence>
+              </xs:complexType>
+            </xs:element>
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:sequence>
+    <xs:attribute name="schemaVersion" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>Version of the schema.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+    <xs:attribute name="identifier" type="xs:string">
+      <xs:annotation>
+        <xs:documentation>An identifier for this opt-out specification.</xs:documentation>
+      </xs:annotation>
+    </xs:attribute>
+  </xs:complexType>
+  <xs:complexType name="ListOfOptOutStates">
+    <xs:annotation>
+      <xs:documentation>This represents a list of OptOutStates.
+</xs:documentation>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="optOutState" type="tns:OptOutState">
+        <xs:annotation>
+          <xs:documentation>This is an instance of an OptOutState in the list.</xs:documentation>
+        </xs:annotation>
+      </xs:element>
+    </xs:sequence>
+  </xs:complexType>
+</xs:schema>

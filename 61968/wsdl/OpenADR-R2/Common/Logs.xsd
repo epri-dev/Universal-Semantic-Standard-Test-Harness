@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns:tns="urn:Logs" elementFormDefault="qualified"
+	targetNamespace="urn:Logs" version="0.9"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:complexType name="TransactionLog">
+		<xs:annotation>
+			<xs:documentation>
+				All transactions with the DRAS are logged and may be
+				queried by various operators. A transaction is defined
+				as an invocation of a web service method. Each entry in
+				the transaction log is represented by this entity.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="userName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This is the name of the user that invoked the
+						transaction.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="role">
+				<xs:annotation>
+					<xs:documentation>
+						This is the security role of the user that
+						invoked the transaction.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="DRAS_OPERATOR" />
+						<xs:enumeration value="UTILITY_OPERATOR" />
+						<xs:enumeration value="PARTICIPANT_OPERATOR" />
+						<xs:enumeration value="DRAS_CLIENT" />
+						<xs:enumeration value="INSTALLER" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="timeStamp" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>
+						This is the date/time that the transaction
+						occured.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="transactionName" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This is the name of the method that was invoked
+						as part of this transaction.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="description"
+				type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This is a free form textual description of the
+						transaction.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="result">
+				<xs:annotation>
+					<xs:documentation>
+						This is result of the transaction and can take
+						on the value of SUCCESS or FAILURE.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="SUCCESS" />
+						<xs:enumeration value="FAILURE" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemaVersion" type="xs:string">
+			<xs:annotation>
+				<xs:documentation>
+					This is the schema version.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="DRASClientAlarm">
+		<xs:annotation>
+			<xs:documentation>
+				The DRAS monitors when DRAS Clients go on or off line
+				and logs those events as a so called alarm. These alarms
+				can be queried by various operators and are represented
+				by this entity.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DRASClientID" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This is a reference to the DRAS Client that
+						generated this alarm. It corresponds to the
+						identity attribute of a DRASClient entity.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="timeStamp" type="xs:dateTime">
+				<xs:annotation>
+					<xs:documentation>
+						This is the date/time that the alarm was
+						generated.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="description"
+				type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This is a free form textual description of the
+						alarm.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status">
+				<xs:annotation>
+					<xs:documentation>
+						This is the change in the status of the DRAS
+						Client that caused the alram to be generated.
+						Valid values are ONLINE, OFFLINE.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="ONLINE" />
+						<xs:enumeration value="OFFLINE" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="schemaVersion" type="xs:string"
+			use="required">
+			<xs:annotation>
+				<xs:documentation>
+					This is the version of the schema.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="ListOfTransactionLogs">
+		<xs:annotation>
+			<xs:documentation>
+				This represents a list of TransactionLogs.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded"
+				name="transactionLog" type="tns:TransactionLog">
+				<xs:annotation>
+					<xs:documentation>
+						An instance of a TransactionLog in the list.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ListOfDRASClientAlarms">
+		<xs:annotation>
+			<xs:documentation>
+				Represents a list of DRASClientAlarms.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded"
+				name="drasClientAlarm" type="tns:DRASClientAlarm">
+				<xs:annotation>
+					<xs:documentation>
+						Instance of a DRASClientAlarm in the list.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

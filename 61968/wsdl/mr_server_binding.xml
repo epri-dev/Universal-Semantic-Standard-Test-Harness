@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" wsdlLocation="mr_server.wsdl"
+	xmlns="http://java.sun.com/xml/ns/jaxws">
+	<bindings
+		node="wsdl:definitions/wsdl:types//s:complexType[@name='meterEvent']">
+		<bindings node=".//s:attribute[@name='value']">
+			<property name="value2" />
+		</bindings>
+	</bindings>
+</bindings>
+
+<!-- <jaxws:bindings wsdlLocation="mr_server.wsdl" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" 
+	xmlns:jaxws="http://java.sun.com/xml/ns/jaxws" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" 
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" node="wsdl:definitions/wsdl:types/xsd:schema"> 
+	<jaxb:bindings version="2.0" node="//wsdl:definitions/wsdl:types//s:complexType[@name='meterEvent']"> 
+	<bindings node=".//s:attribute[@name='value']"> <property name="value2" /> 
+	</bindings> </jaxb:bindings> </jaxws:bindings> -->

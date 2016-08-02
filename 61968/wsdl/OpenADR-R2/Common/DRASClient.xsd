@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Created with Liquid XML Studio 1.0.8.0 (http://www.liquid-technologies.com) -->
+<xs:schema xmlns:tns="urn:DRASClient" xmlns:ns0="urn:UtilityProgram"
+	xmlns:ns1="urn:ResponseSchedule" elementFormDefault="qualified"
+	targetNamespace="urn:DRASClient" version="0.9"
+	xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<xs:import schemaLocation="wsdl/OpenADR-R2/Common/UtilityProgram.xsd"
+		namespace="urn:UtilityProgram" />
+	<xs:import schemaLocation="wsdl/OpenADR-R2/Common/ResponseSchedule.xsd"
+		namespace="urn:ResponseSchedule" />
+	<xs:complexType name="DRASClient">
+		<xs:annotation>
+			<xs:documentation>
+				This is the information that describes a DRAS Client.
+				The DRAS Client is the entity within a Participants
+				facility that communicates with the DRAS to receive DR
+				event information. A Participant may have more than one
+				DRAS Client associated with their Participant Account. A
+				DRAS Client may belong to only one Participant Account.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="clientType">
+				<xs:annotation>
+					<xs:documentation>
+						This specifies whether the DRAS client is SMART
+						or SIMPLE.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="SIMPLE" />
+						<xs:enumeration value="SMART" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="onLine" type="xs:boolean">
+				<xs:annotation>
+					<xs:documentation>
+						If set to FALSE then this indicates that the
+						DRAS Client is off line and should not recieve
+						any automated DR Event information. If set to
+						TRUE then the DRAS Client is operatig normally
+						and should recieve automated DR Event
+						information. Setting this to FALSE is typically
+						used during installation in order to manually
+						send test signals to the DRAS Client.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="programs">
+				<xs:annotation>
+					<xs:documentation>
+						This is a list of references to DR programs that
+						this DRAS Client will participate in. If this is
+						left undefiend then it is assumed that the DRAS
+						Client participates in all DR programs that the
+						Participant Account participates in. If the DRAS
+						Client does NOT participate in a program then is
+						will not receive DR Events associated with that
+						program.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element maxOccurs="unbounded" name="program"
+							type="ns0:ProgramInfo">
+							<xs:annotation>
+								<xs:documentation>
+									This is an instance of a
+									specification of which programs the
+									DRAS Client will participate in. It
+									includes both a reference to the
+									program name and an instance of a
+									ProgramConstraint that is specific
+									to this DRAS Clients participation
+									in that program.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="commsParams">
+				<xs:annotation>
+					<xs:documentation>
+						This specifies a variety of parameters that are
+						associated with how the DRAS Client and the DRAS
+						communicate.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="connectionType">
+							<xs:annotation>
+								<xs:documentation>
+									This specifies whether the DRAS
+									initiates communication with DRAS
+									Client (PUSH) or the DRAS Client
+									initiates communication with the
+									DRAS (PULL) when a DR event is
+									issued by the Utility/ISO.
+								</xs:documentation>
+							</xs:annotation>
+							<xs:simpleType>
+								<xs:restriction base="xs:string">
+									<xs:enumeration value="PUSH" />
+									<xs:enumeration value="PULL" />
+								</xs:restriction>
+							</xs:simpleType>
+						</xs:element>
+						<xs:element minOccurs="0" name="clientURI"
+							type="xs:string">
+							<xs:annotation>
+								<xs:documentation>
+									If the PUSH model is used then this
+									specifies the URI of the DRAS Client
+									that is used to communicate with the
+									DRAS Client.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0"
+							name="clientAuthentication" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>
+									If the PUSH model is used then this
+									specifies the authentication
+									information that is required for the
+									DRAS to communicate with the DRAS
+									Client.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="pollingPeriod"
+							type="xs:unsignedLong">
+							<xs:annotation>
+								<xs:documentation>
+									If the PULL model is used then this
+									specifies the period in seconds at
+									which the DRAS Client will poll the
+									DRAS for DR event information. It is
+									typically used by the DRAS to
+									determine if a DRAS Client has gone
+									off line.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="retryCount"
+							type="xs:unsignedInt">
+							<xs:annotation>
+								<xs:documentation>
+									If there is an error in the
+									communications of the DRAS with a
+									DRAS Client (PUSH model) then this
+									parameter defines how many times it
+									should retry the sending of that
+									information.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element minOccurs="0" name="retryPeriod"
+							type="xs:unsignedLong">
+							<xs:annotation>
+								<xs:documentation>
+									If there is an error in the
+									communications of the DRAS with a
+									DRAS Client (PUSH model) then this
+									parameter defines the period in
+									seconds between retries.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element minOccurs="0" name="locationInformation"
+				type="tns:Location">
+				<xs:annotation>
+					<xs:documentation>
+						This is used to specify the location of the DRAS
+						Client.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="simpleClientResponseSchedules">
+				<xs:annotation>
+					<xs:documentation>
+						If this is a SIMPLE DRAS Client then this
+						specifies the various response schedules that
+						are used for this DRAS Client. Note that each DR
+						program may have its own response schedule and
+						thus this is a list of response schedules.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="responseSchedule"
+							type="ns1:ResponseSchedule">
+							<xs:annotation>
+								<xs:documentation>
+									This is an instance of a
+									ResponseSchedule for a specific DR
+									program. See the definition of a
+									ResponseSchedule for more
+									information.
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+		<xs:attribute name="identifier" type="xs:string"
+			use="required">
+			<xs:annotation>
+				<xs:documentation>
+					This is the attribute that identifies the DRAS
+					Client. The identifier is assigned when the DRAS
+					Client record is created within the DRAS.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="participantID" type="xs:string"
+			use="required">
+			<xs:annotation>
+				<xs:documentation>
+					This is the indetifier of the Participant Account
+					that this DRAS Client record is associated with. It
+					correpsonds to the accountID attribute of the
+					Participant Account.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+		<xs:attribute name="schemaVersion" type="xs:string"
+			use="required">
+			<xs:annotation>
+				<xs:documentation>
+					Version of the schema.
+				</xs:documentation>
+			</xs:annotation>
+		</xs:attribute>
+	</xs:complexType>
+	<xs:complexType name="Location">
+		<xs:annotation>
+			<xs:documentation>
+				An entity used to describe a location.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" name="gridLocation"
+				type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This specifies the grid location of the facility
+						that the DRAS Client is installed in.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="address" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+						This specifies a text based address for the DRAS
+						Client.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element minOccurs="0" name="coordinate">
+				<xs:annotation>
+					<xs:documentation>
+						This specifies an actual latitude and longitude
+						coordinate for the location of the DRAS Client.
+					</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="latitude" type="xs:double">
+							<xs:annotation>
+								<xs:documentation>
+									latitude value
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="longitude" type="xs:double">
+							<xs:annotation>
+								<xs:documentation>
+									longitude value
+								</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="CommsStatus">
+		<xs:annotation>
+			<xs:documentation>
+				This is used to represent the communications status of a
+				DRAS Client.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="DRASClientID" type="xs:string" />
+			<xs:element name="status">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="OK" />
+						<xs:enumeration value="OFFLINE" />
+						<xs:enumeration value="ERRORS" />
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ListOfCommsStatus">
+		<xs:annotation>
+			<xs:documentation>
+				This is a list of DRAS Client CommsStatus.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded" name="status" type="tns:CommsStatus">
+				<xs:annotation>
+					<xs:documentation>
+						This is a list of CommsStatus.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="ListOfDRASClients">
+		<xs:annotation>
+			<xs:documentation>
+				This represents a list of DRASClient objects.
+			</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element minOccurs="0" maxOccurs="unbounded"
+				name="drasClient" type="tns:DRASClient">
+				<xs:annotation>
+					<xs:documentation>
+						Instance of a DRASClient object in the list.
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

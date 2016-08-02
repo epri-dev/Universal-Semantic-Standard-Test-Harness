@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.example.org/UtilityInterface/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="UtilityInterface"
+	targetNamespace="http://www.example.org/UtilityInterface/" xmlns:xsd1="urn:EventState">
+	<wsdl:types>
+		<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+			<xsd:import namespace="urn:EventState"
+				schemaLocation="wsdl/OpenADR-R2/Common/EventState.xsd"></xsd:import>
+		</xsd:schema>
+	</wsdl:types>
+</wsdl:definitions>

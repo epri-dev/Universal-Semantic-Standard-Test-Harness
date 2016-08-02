@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- edited with XMLSpy v2011 (http://www.altova.com) by Shawn Hu (Xtensible Solutions) -->
+<!-- wsdl/OpenADR-R2Common Message Specification for IEC 61968 -->
+<!-- edited by Gerald Gray (Guiding Principle Consulting) to create OpenADR version -->
+<xs:schema xmlns="http://osgug.ucaiug.org/2010/06/schema/message" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://osgug.ucaiug.org/2010/06/schema/message" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.0">
+	<xs:element name="Reply" type="RequestType"/>
+	<xs:complexType name="RequestType">
+		<xs:annotation>
+			<xs:documentation>Request type definition</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:annotation>
+				<xs:documentation>Request package is typically used to supply parameters for 'get' requests</xs:documentation>
+			</xs:annotation>
+			<xs:element name="StartTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Start time of interest</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="EndTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>End time of interest</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Option" type="OptionType" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Request type specialization</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ID" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Object ID for request</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:any namespace="##other" processContents="lax" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>This can be a CIM profile defined as an XSD with a CIM-specific namespace</xs:documentation>
+				</xs:annotation>
+			</xs:any>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="OptionType">
+		<xs:annotation>
+			<xs:documentation>Request options</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name" type="xs:string"/>
+			<xs:element name="value" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

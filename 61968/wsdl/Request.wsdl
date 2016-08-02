@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions name="Request"
+	targetNamespace="http://sixthc.com/Request" xmlns:tns="http://sixthc.com/Request"
+	xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+	xmlns:wsi="http://ws-i.org/schemas/conformanceClaim/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/"
+	xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/"
+	xmlns:edc="http://www.iec.ch/TC57/2011/EndDeviceControlsMessage"
+	xmlns:req="http://sixthc.com/Request" xmlns:msg="http://www.iec.ch/TC57/2011/schema/message">
+
+	<wsdl:types>
+		<xs:schema targetNamespace="http://www.iec.ch/TC57/2011/EndDeviceControlsMessage"
+			elementFormDefault="qualified">
+			<xs:include schemaLocation="xsd/EndDeviceControlsMessage.xsd" />
+		</xs:schema>
+
+		<xs:schema targetNamespace="http://sixthc.com/Request"
+			elementFormDefault="qualified">
+			<xs:include schemaLocation="xsd/Request.xsd" />
+		</xs:schema>
+
+		<xs:schema targetNamespace="http://www.iec.ch/TC57/2011/schema/message"
+			elementFormDefault="qualified">
+			<xs:include schemaLocation="xsd/Message.xsd" />
+		</xs:schema>
+	</wsdl:types>
+
+
+	<!-- Message Definitions -->
+
+	<wsdl:message name="RequestEndDeviceControlsMessage">
+		<wsdl:part name="EndDevicePayload" element="req:EndDeviceControlsPayloadMessage" />
+	</wsdl:message>
+
+	<wsdl:message name="RequestEndDeviceEventsMessage">
+		<wsdl:part name="EndDeviceEventsPayload" element="req:EndDeviceEventsPayloadMessage" />
+	</wsdl:message>
+
+	<wsdl:message name="RequestMeterReadingsMessage">
+		<wsdl:part name="MeterReadingsPayload" element="req:MeterReadingsPayloadMessage" />
+	</wsdl:message>
+
+	<wsdl:message name="RequestMeterServiceRequestsMessage">
+		<wsdl:part name="MeterServiceRequestsPayload" element="req:MeterServiceRequestsPayloadMessage" />
+	</wsdl:message>
+
+	<wsdl:message name="RequestMeterReadScheduleMessage">
+		<wsdl:part name="MeterReadSchedulePayload" element="req:MeterReadSchedulePayloadMessage" />
+	</wsdl:message>
+
+	<wsdl:message name="ResponseMessage">
+		<wsdl:part name="ResponseMessage" element="tns:ResponseMessage" />
+	</wsdl:message>
+
+	<wsdl:message name="FaultMessage">
+		<wsdl:part name="FaultMessage" element="msg:FaultMessage" />
+	</wsdl:message>
+
+	<!-- Port Definitions -->
+	<wsdl:portType name="Request_Port">
+		<wsdl:operation name="RequestEndDeviceControls">
+			<wsdl:input name="EndDeviceControlsPayload" message="tns:RequestEndDeviceControlsMessage" />
+			<wsdl:output name="EndDeviceControlsResponse" message="tns:ResponseMessage" />
+			<wsdl:fault name="EndDeviceControlsResponseFault" message="tns:FaultMessage" />
+		</wsdl:operation>
+
+		<wsdl:operation name="RequestEndDeviceEvents">
+			<wsdl:input name="EndDeviceEventsPayload" message="tns:RequestEndDeviceEventsMessage" />
+			<wsdl:output name="EndDeviceEventsResponse" message="tns:ResponseMessage" />
+			<wsdl:fault name="EndDeviceEventsResponseFault" message="tns:FaultMessage" />
+		</wsdl:operation>
+
+		<wsdl:operation name="RequestMeterReadings">
+			<wsdl:input name="MeterReadingsPayload" message="tns:RequestMeterReadingsMessage" />
+			<wsdl:output name="MeterReadingsResponse" message="tns:ResponseMessage" />
+			<wsdl:fault name="MeterReadingsResponseFault" message="tns:FaultMessage" />
+		</wsdl:operation>
+
+		<wsdl:operation name="RequestMeterServiceRequests">
+			<wsdl:input name="MeterServiceRequestsPayload" message="tns:RequestMeterServiceRequestsMessage" />
+			<wsdl:output name="MeterServiceRequestsResponse" message="tns:ResponseMessage" />
+			<wsdl:fault name="MeterServiceRequestsResponseFault"
+				message="tns:FaultMessage" />
+		</wsdl:operation>
+
+		<wsdl:operation name="RequestMeterReadSchedule">
+			<wsdl:input name="MeterReadSchedulePayload" message="tns:RequestMeterReadScheduleMessage" />
+			<wsdl:output name="MeterReadScheduleResponse" message="tns:ResponseMessage" />
+			<wsdl:fault name="MeterReadScheduleResponseFault" message="tns:FaultMessage" />
+		</wsdl:operation>
+	</wsdl:portType>
+
+	<wsdl:binding name="Request_Binding" type="tns:Request_Port">
+
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+
+		<wsdl:operation name="RequestEndDeviceControls">
+			<soap:operation soapAction="http://com.sixthc/Request/RequestEndDeviceControls"
+				style="document" />
+			<wsdl:input name="EndDeviceControlsPayload">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="EndDeviceControlsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="EndDeviceControlsResponseFault">
+				<soap:fault name="EndDeviceControlsResponseFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="RequestEndDeviceEvents">
+			<soap:operation soapAction="http://com.sixthc/Request/RequestEndDeviceEvents"
+				style="document" />
+			<wsdl:input name="EndDeviceEventsPayload">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="EndDeviceEventsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="EndDeviceEventsResponseFault">
+				<soap:fault name="EndDeviceEventsResponseFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="RequestMeterReadings">
+			<soap:operation soapAction="http://com.sixthc/Request/RequestMeterReadings"
+				style="document" />
+			<wsdl:input name="MeterReadingsPayload">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="MeterReadingsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="MeterReadingsResponseFault">
+				<soap:fault name="MeterReadingsResponseFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="RequestMeterServiceRequests">
+			<soap:operation
+				soapAction="http://com.sixthc/Request/RequestMeterServiceRequests"
+				style="document" />
+			<wsdl:input name="MeterServiceRequestsPayload">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="MeterServiceRequestsResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="MeterServiceRequestsResponseFault">
+				<soap:fault name="MeterServiceRequestsResponseFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+
+		<wsdl:operation name="RequestMeterReadSchedule">
+			<soap:operation soapAction="http://com.sixthc/Request/RequestMeterReadSchedule"
+				style="document" />
+			<wsdl:input name="MeterReadSchedulePayload">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="MeterReadScheduleResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+			<wsdl:fault name="MeterReadScheduleResponseFault">
+				<soap:fault name="MeterReadScheduleResponseFault" use="literal" />
+			</wsdl:fault>
+		</wsdl:operation>
+	</wsdl:binding>
+
+	<wsdl:service name="Request">
+		<wsdl:port name="Request_Port" binding="tns:Request_Binding">
+			<soap:address location="http://com.sixthc/Request" />
+		</wsdl:port>
+	</wsdl:service>
+
+</wsdl:definitions>

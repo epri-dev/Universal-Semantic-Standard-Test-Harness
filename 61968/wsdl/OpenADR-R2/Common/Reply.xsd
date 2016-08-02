@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited by Gerald Gray (Guiding Principle Consulting) to create OpenADR version -->
+<xs:schema xmlns="http://osgug.ucaiug.org/2010/06/schema/reply" xmlns:xs="http://www.w3.org/2001/XMLSchema" targetNamespace="http://osgug.ucaiug.org/2010/06/schema/reply" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:element name="Reply" type="ReplyType"/>
+	<xs:complexType name="ReplyType">
+		<xs:annotation>
+			<xs:documentation>This captures an event happened during a service transaction. This can be used to represent receipt acknowledgment and  error information</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="creationTime" type="xs:dateTime" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Event creation time</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="description" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Event description</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ID" type="xs:string" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>Resulting transaction ID (usually consequence of create)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="replyCode" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Reply code: OK or application defined error code</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="result" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Event result. This represents the outcome of a service invocation.</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Error" type="Error_Type" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Error" type="Error_Type"/>
+	<xs:complexType name="Error_Type">
+		<xs:annotation>
+			<xs:documentation>Errors in a service call</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="code" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>error code</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="details" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>content about the error</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="level" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Severity level, e.g. INFORMATIVE, WARNING, FATAL, CATASTROPHIC</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="INFORM"/>
+						<xs:enumeration value="WARNING"/>
+						<xs:enumeration value="FATAL"/>
+						<xs:enumeration value="CATASTROPHIC"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="reason" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>description of the error</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="stackTrace" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>stack trace</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="xpath" type="xs:QName" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>XPath expression to identify specific XML element</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Location" type="Location_Type" minOccurs="0"/>
+			<xs:element name="Object" type="IdentifiedObject" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="Location" type="Location_Type"/>
+	<xs:complexType name="Location_Type">
+		<xs:annotation>
+			<xs:documentation>Identifies the pipeline and the stage where the error occurred </xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="node" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name of the Pipeline/Branch/Route node where error occurred</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="pipeline" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name of the Pipeline where error occurred (if applicable)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="stage" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Name of the Stage where error occurred (if applicable)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="IdentifiedObject">
+		<xs:annotation>
+			<xs:documentation>From CIM</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="mRID" minOccurs="0"/>
+			<xs:element name="objectType" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>CIM class name that classiifies the identified object</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Name" type="Name" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NameType">
+		<xs:annotation>
+			<xs:documentation>From CIM</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name"/>
+			<xs:element name="description" minOccurs="0"/>
+			<xs:element name="NameTypeAuthority" type="NameTypeAuthority" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="Name">
+		<xs:annotation>
+			<xs:documentation>From CIM</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name"/>
+			<xs:element name="NameType" type="NameType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="NameTypeAuthority">
+		<xs:annotation>
+			<xs:documentation>From CIM</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="name"/>
+			<xs:element name="description" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>
